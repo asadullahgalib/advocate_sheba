@@ -1,0 +1,909 @@
+/* ==========================================
+   LAW FIRM SECTION
+========================================== */
+
+.law-firms-section {
+    background: #f8f8f8;
+}
+
+
+/* ==========================================
+   MAIN CARD
+========================================== */
+
+.law-firm-card {
+
+    background: #ffffff;
+
+    border: 1px solid #d9d9d9;
+
+    border-radius: 22px;
+
+    padding: 22px;
+
+    height: 100%;
+
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+
+    overflow: hidden;
+
+    transition: all 0.3s ease;
+}
+
+
+.law-firm-card:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
+}
+
+
+/* ==========================================
+   TITLE
+========================================== */
+
+.law-firm-title {
+
+    font-size: 20px;
+
+    color: #173b63;
+
+    font-weight: 500;
+
+    margin-bottom: 18px;
+}
+
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.firm-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 15px;
+}
+
+
+/* ==========================================
+   LOGO
+========================================== */
+
+.firm-logo {
+
+    width: 105px;
+
+    min-width: 105px;
+
+    height: 105px;
+
+    border-radius: 25px;
+
+    background: #dcecff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #2362a5;
+
+    font-size: 48px;
+}
+
+
+/* ==========================================
+   FIRM NAME
+========================================== */
+
+.firm-name-area {
+
+    min-width: 0;
+
+    flex: 1;
+}
+
+
+.firm-name-area h3 {
+
+    font-size: 24px;
+
+    line-height: 1.2;
+
+    margin: 0 0 6px;
+
+    color: #111111;
+
+    font-weight: 700;
+
+    word-break: break-word;
+}
+
+
+.firm-name-area p {
+
+    margin: 0;
+
+    color: #222222;
+
+    font-size: 18px;
+
+    line-height: 1.3;
+}
+
+
+/* ==========================================
+   INFORMATION
+========================================== */
+
+.firm-info-line {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    margin-bottom: 9px;
+
+    color: #222222;
+
+    font-size: 16px;
+
+    line-height: 1.4;
+}
+
+
+.firm-info-line i {
+
+    width: 20px;
+
+    min-width: 20px;
+
+    font-size: 18px;
+
+    margin-top: 2px;
+
+    color: #111111;
+}
+
+
+/* Star */
+
+.firm-info-line .fa-star {
+
+    color: #111111;
+}
+
+
+/* Location */
+
+.firm-info-line .fa-map-marker {
+
+    color: #111111;
+}
+
+
+/* ==========================================
+   BADGES
+========================================== */
+
+.firm-badges {
+
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    margin: 8px 0 12px;
+}
+
+
+.firm-badges span {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 6px 16px;
+
+    border-radius: 20px;
+
+    font-size: 16px;
+
+    line-height: 1.2;
+}
+
+
+.badge-registered {
+
+    background: #c9ebca;
+
+    color: #166d29;
+}
+
+
+.badge-established {
+
+    background: #d5e7fa;
+
+    color: #245b9c;
+}
+
+
+/* ==========================================
+   PRACTICE COURT
+========================================== */
+
+.practice-box {
+
+    background: #dff2e4;
+
+    border-radius: 15px;
+
+    padding: 12px 14px;
+
+    margin-top: 12px;
+
+    margin-bottom: 12px;
+    height: 150px;
+}
+
+
+.practice-title {
+
+    color: #18706a;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    margin-bottom: 4px;
+}
+
+
+.practice-text {
+
+    color: #111111;
+
+    font-size: 15px;
+
+    line-height: 1.45;
+}
+
+
+.practice-text span {
+
+    font-size: 14px;
+}
+
+
+.practice-text b {
+
+    color: #16736c;
+
+    margin: 0 3px;
+}
+
+
+/* ==========================================
+   SPECIALIZATION
+========================================== */
+
+.specialization {
+    height: 75px;
+    padding: 2px 2px 0;
+}
+
+
+.specialization-title {
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    color: #111111;
+
+    margin-bottom: 2px;
+}
+
+
+.specialization-text {
+
+    font-size: 16px;
+
+    line-height: 1.5;
+
+    color: #222222;
+}
+
+
+.specialization-text b {
+
+    color: #19736e;
+
+    margin: 0 4px;
+}
+
+
+/* ==========================================
+   DIVIDER
+========================================== */
+
+.firm-divider {
+
+    height: 1px;
+
+    background: #dddddd;
+
+    margin: 12px 0;
+}
+
+
+/* ==========================================
+   ADDRESS
+========================================== */
+
+.firm-address {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+    margin-bottom: 12px;
+}
+
+
+.address-icon {
+
+    width: 42px;
+
+    min-width: 42px;
+
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #19736e;
+
+    font-size: 35px;
+}
+
+
+.address-content {
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+.address-content strong {
+
+    display: block;
+
+    color: #19736e;
+
+    font-size: 18px;
+
+    margin-bottom: 3px;
+}
+
+
+.address-content p {
+
+    margin: 0;
+
+    color: #333333;
+
+    font-size: 15px;
+
+    line-height: 1.4;
+}
+
+
+/* ==========================================
+   CALL + WHATSAPP
+========================================== */
+
+.firm-actions {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 8px;
+}
+
+
+.firm-action-btn {
+
+    flex: 1;
+
+    min-width: 0;
+
+    height: 52px;
+
+    border: 2px solid #19736e;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    text-decoration: none;
+
+    color: #19736e;
+
+    font-size: 20px;
+
+    font-weight: 500;
+
+    transition: 0.3s ease;
+}
+
+
+.firm-action-btn i {
+
+    font-size: 27px;
+}
+
+
+.firm-action-btn:hover {
+
+    background: #19736e;
+
+    color: #ffffff;
+}
+
+
+/* ==========================================
+   SHARE PROFILE
+========================================== */
+
+.share-profile-btn {
+
+    width: 100%;
+
+    height: 55px;
+
+    margin-top: 12px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #050505;
+
+    color: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    font-size: 21px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+
+.share-profile-btn i {
+
+    font-size: 26px;
+}
+
+
+.share-profile-btn:hover {
+    color: #fff;
+    background: #19736e;
+}
+
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 1199.98px) {
+
+    .law-firm-card {
+
+        padding: 17px;
+    }
+
+    .firm-logo {
+
+        width: 85px;
+
+        min-width: 85px;
+
+        height: 85px;
+
+        font-size: 38px;
+    }
+
+    .firm-name-area h3 {
+
+        font-size: 20px;
+    }
+
+    .firm-name-area p {
+
+        font-size: 15px;
+    }
+
+    .firm-info-line {
+
+        font-size: 14px;
+    }
+
+    .practice-title,
+    .specialization-title {
+
+        font-size: 17px;
+    }
+
+    .practice-text,
+    .specialization-text {
+
+        font-size: 13px;
+    }
+
+    .address-content strong {
+
+        font-size: 16px;
+    }
+
+    .address-content p {
+
+        font-size: 13px;
+    }
+
+    .firm-action-btn {
+
+        font-size: 16px;
+
+        gap: 5px;
+    }
+
+    .share-profile-btn {
+
+        font-size: 17px;
+    }
+
+}
+
+
+/* ==========================================
+   MOBILE
+   2 CARDS PER ROW
+========================================== */
+
+@media (max-width: 767.98px) {
+    .specialization{
+        height: auto !important;
+    }
+    .law-firms-section {
+        padding-left: 3px;
+        padding-right: 3px;
+        margin-top: -45px;
+    }
+
+
+    .law-firms-section .container-fluid {
+
+        padding-left: 4px;
+
+        padding-right: 4px;
+    }
+
+
+    .law-firms-section .row {
+
+        --bs-gutter-x: 4px;
+
+        --bs-gutter-y: 6px;
+    }
+
+
+    .law-firm-card {
+
+        border-radius: 12px;
+
+        padding: 10px;
+
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+
+    /* Title */
+
+    .law-firm-title {
+
+        font-size: 13px;
+
+        margin-bottom: 10px;
+    }
+
+
+    /* Header */
+
+    .firm-header {
+
+        gap: 7px;
+
+        margin-bottom: 9px;
+
+        align-items: center;
+    }
+
+
+    /* Logo */
+
+    .firm-logo {
+
+        width: 55px;
+
+        min-width: 55px;
+
+        height: 55px;
+
+        border-radius: 14px;
+
+        font-size: 25px;
+    }
+
+
+    /* Name */
+
+    .firm-name-area h3 {
+
+        font-size: 14px;
+
+        line-height: 1.2;
+
+        margin-bottom: 3px;
+    }
+
+
+    .firm-name-area p {
+
+        font-size: 10px;
+
+        line-height: 1.25;
+    }
+
+
+    /* Information */
+
+    .firm-info-line {
+
+        gap: 5px;
+
+        margin-bottom: 5px;
+
+        font-size: 10px;
+
+        line-height: 1.3;
+    }
+
+
+    .firm-info-line i {
+
+        width: 12px;
+
+        min-width: 12px;
+
+        font-size: 11px;
+
+        margin-top: 1px;
+    }
+
+
+    /* Badges */
+
+    .firm-badges {
+
+        gap: 4px;
+
+        margin: 5px 0 7px;
+    }
+
+
+    .firm-badges span {
+
+        padding: 4px 7px;
+
+        font-size: 9px;
+
+        border-radius: 12px;
+    }
+
+
+    /* Practice */
+
+    .practice-box {
+
+        padding: 7px 8px;
+
+        border-radius: 9px;
+
+        margin-top: 7px;
+        height: auto !important;
+        margin-bottom: 7px;
+    }
+
+
+    .practice-title {
+
+        font-size: 12px;
+
+        margin-bottom: 2px;
+    }
+
+
+    .practice-text {
+
+        font-size: 9px;
+
+        line-height: 1.35;
+    }
+
+
+    .practice-text span {
+
+        font-size: 8px;
+    }
+
+
+    /* Specialization */
+
+    .specialization-title {
+
+        font-size: 12px;
+
+        margin-bottom: 1px;
+    }
+
+
+    .specialization-text {
+
+        font-size: 9px;
+
+        line-height: 1.35;
+    }
+
+
+    .specialization-text b {
+
+        margin: 0 2px;
+    }
+
+
+    /* Divider */
+
+    .firm-divider {
+
+        margin: 7px 0;
+
+    }
+
+
+    /* Address */
+
+    .firm-address {
+
+        gap: 5px;
+
+        margin-bottom: 7px;
+    }
+
+
+    .address-icon {
+
+        width: 22px;
+
+        min-width: 22px;
+
+        height: 22px;
+
+        font-size: 20px;
+    }
+
+
+    .address-content strong {
+
+        font-size: 11px;
+
+        margin-bottom: 1px;
+    }
+
+
+    .address-content p {
+
+        font-size: 9px;
+
+        line-height: 1.3;
+    }
+
+
+    /* Call / WhatsApp */
+
+    .firm-actions {
+
+        gap: 4px;
+
+        margin-top: 5px;
+    }
+
+
+    .firm-action-btn {
+
+        height: 34px;
+
+        border-width: 1px;
+
+        border-radius: 7px;
+
+        gap: 3px;
+
+        font-size: 11px;
+    }
+
+
+    .firm-action-btn i {
+
+        font-size: 15px;
+    }
+
+
+    /* Share */
+
+    .share-profile-btn {
+
+        height: 36px;
+
+        margin-top: 5px;
+
+        border-radius: 7px;
+
+        gap: 6px;
+
+        font-size: 11px;
+    }
+
+
+    .share-profile-btn i {
+
+        font-size: 15px;
+    }
+
+}

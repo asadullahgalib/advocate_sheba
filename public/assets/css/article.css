@@ -1,0 +1,611 @@
+/* =========================================================
+   BLOG PAGE WRAPPER
+========================================================= */
+
+.doctors-blog-page {
+    background: #ffffff;
+    color: #18264b;
+    font-family: "Noto Sans Bengali", "Hind Siliguri",
+                 "SolaimanLipi", Arial, sans-serif;
+}
+
+.doctors-blog-page .blog-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+
+/* =========================================================
+   BREADCRUMB
+========================================================= */
+
+.doctors-blog-breadcrumb {
+    padding: 20px 0 15px;
+}
+
+.doctors-blog-breadcrumb ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    font-size: 15px;
+}
+
+.doctors-blog-breadcrumb li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #4f5d78;
+}
+
+.doctors-blog-breadcrumb li a {
+    color: #172849;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.doctors-blog-breadcrumb li a:hover {
+    color: #0d9998;
+}
+
+.doctors-blog-breadcrumb .breadcrumb-arrow {
+    color: #8090a8;
+    font-size: 13px;
+}
+
+.doctors-blog-breadcrumb .current {
+    color: #16284d;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   SPECIALIST CATEGORY CAROUSEL
+========================================================== */
+
+.specialist-carousel-wrapper {
+    position: relative;
+    margin: 8px 0 20px;
+    border-radius: 15px;
+    background: #ffffff;
+}
+
+.specialist-carousel {
+    position: relative;
+    overflow: hidden;
+
+    padding: 4px 45px;
+
+    border: 1px solid #e7ebef;
+    border-radius: 15px;
+
+    background: #ffffff;
+}
+
+.specialist-track {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+
+    padding: 14px 0;
+}
+
+.specialist-track::-webkit-scrollbar {
+    display: none;
+}
+
+.specialist-item {
+    flex: 0 0 auto;
+
+    padding: 11px 18px;
+
+    border: 1px solid #e2e6ea;
+    border-radius: 30px;
+
+    background: #f7f8fa;
+
+    color: #27334f;
+    font-size: 15px;
+    font-weight: 500;
+
+    text-decoration: none;
+    white-space: nowrap;
+
+    transition: all 0.25s ease;
+}
+
+.specialist-item:hover {
+    color: #ffffff;
+    background: #079694;
+    border-color: #079694;
+}
+
+.specialist-item.active {
+    color: #ffffff;
+    background: #079694;
+    border-color: #079694;
+
+    box-shadow: 0 4px 12px rgba(7, 150, 148, 0.20);
+}
+
+
+/* Carousel arrows */
+
+.specialist-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    z-index: 10;
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #e1e6ea;
+    border-radius: 50%;
+
+    background: #ffffff;
+    color: #33415c;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.specialist-arrow:hover {
+    color: #ffffff;
+    background: #079694;
+    border-color: #079694;
+}
+
+.specialist-arrow.left {
+    left: 8px;
+}
+
+.specialist-arrow.right {
+    right: 8px;
+}
+
+.specialist-arrow i {
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   BLOG HEADER
+========================================================== */
+
+.blog-header {
+    padding: 5px 0 25px;
+}
+
+.blog-category-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 8px 14px;
+
+    border-radius: 8px;
+
+    background: #eefafa;
+    color: #078f8d;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.blog-category-label i {
+    font-size: 13px;
+}
+
+.blog-title {
+    margin: 12px 0 15px;
+
+    color: #16264b;
+
+    font-size: 43px;
+    line-height: 1.28;
+    font-weight: 700;
+
+    letter-spacing: -0.5px;
+}
+
+.blog-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+
+    color: #66748c;
+    font-size: 15px;
+}
+
+.blog-meta .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.blog-meta .meta-item:first-child {
+    color: #182849;
+    font-weight: 600;
+}
+
+.blog-meta i {
+    color: #079694;
+}
+
+.blog-meta .dot {
+    color: #b5becb;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================== */
+
+.blog-main-section {
+    padding-bottom: 60px;
+}
+
+.blog-content-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1.55fr) minmax(320px, 0.95fr);
+    gap: 30px;
+    align-items: start;
+}
+
+
+/* =========================================================
+   ARTICLE
+========================================================== */
+
+.blog-article {
+    min-width: 0;
+}
+
+.blog-featured-image {
+    width: 100%;
+    height: auto;
+
+    display: block;
+
+    border-radius: 15px;
+
+    object-fit: cover;
+}
+
+.blog-article-content {
+    padding-top: 28px;
+}
+
+.blog-article-content p {
+    margin-bottom: 18px;
+
+    color: #4e5c73;
+
+    font-size: 17px;
+    line-height: 1.9;
+}
+
+.blog-article-content h2 {
+    margin: 35px 0 15px;
+
+    color: #17284b;
+
+    font-size: 28px;
+    line-height: 1.4;
+    font-weight: 700;
+}
+
+.blog-article-content h3 {
+    margin: 28px 0 12px;
+
+    color: #17284b;
+
+    font-size: 22px;
+    line-height: 1.4;
+    font-weight: 700;
+}
+
+.blog-article-content ul {
+    margin: 0 0 20px;
+    padding-left: 22px;
+}
+
+.blog-article-content li {
+    margin-bottom: 9px;
+
+    color: #4e5c73;
+
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.blog-article-content strong {
+    color: #263756;
+}
+
+
+/* =========================================================
+   KEY OVERVIEW CARD
+========================================================== */
+
+.key-overview-card {
+    position: sticky;
+    top: 25px;
+
+    padding: 28px 30px;
+
+    border: 1px solid #ccefee;
+    border-radius: 20px;
+
+    background: #f8ffff;
+}
+
+.key-overview-title {
+    margin-bottom: 22px;
+
+    color: #008f8d;
+
+    font-size: 14px;
+    font-weight: 800;
+
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.key-overview-text {
+    margin: 0;
+
+    color: #42526b;
+
+    font-size: 17px;
+    line-height: 1.85;
+    font-style: italic;
+}
+
+.key-overview-divider {
+    width: 100%;
+    height: 1px;
+
+    margin: 28px 0;
+
+    background: #cce8e7;
+}
+
+.overview-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    color: #008f8d;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+.overview-link:hover {
+    color: #006c6b;
+}
+
+.overview-link i {
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   TEST TABLE
+========================================================== */
+
+.blog-table-wrapper {
+    margin: 25px 0;
+    overflow-x: auto;
+
+    border: 1px solid #e5eaef;
+    border-radius: 12px;
+}
+
+.blog-test-table {
+    width: 100%;
+    margin: 0;
+
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+.blog-test-table th,
+.blog-test-table td {
+    padding: 13px 15px;
+
+    border-bottom: 1px solid #e8edf1;
+
+    text-align: left;
+    vertical-align: middle;
+}
+
+.blog-test-table th {
+    background: #eefafa;
+    color: #16304e;
+
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.blog-test-table td {
+    color: #536176;
+
+    font-size: 15px;
+}
+
+.blog-test-table tr:last-child td {
+    border-bottom: 0;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 1199px) {
+
+    .blog-title {
+        font-size: 38px;
+    }
+
+    .blog-content-row {
+        grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.85fr);
+        gap: 25px;
+    }
+}
+
+
+@media (max-width: 991px) {
+
+    .blog-title {
+        font-size: 34px;
+    }
+
+    .blog-content-row {
+        grid-template-columns: 1fr;
+    }
+
+    .key-overview-card {
+        position: static;
+    }
+
+    .specialist-carousel {
+        padding-left: 42px;
+        padding-right: 42px;
+    }
+}
+
+
+@media (max-width: 767px) {
+
+    .doctors-blog-breadcrumb {
+        padding-top: 15px;
+    }
+
+    .doctors-blog-breadcrumb ul {
+        font-size: 13px;
+        gap: 5px;
+    }
+
+    .blog-title {
+        margin-top: 10px;
+
+        font-size: 29px;
+        line-height: 1.35;
+    }
+
+    .blog-meta {
+        font-size: 13px;
+        gap: 8px;
+    }
+
+    .blog-main-section {
+        padding-bottom: 40px;
+    }
+
+    .blog-featured-image {
+        border-radius: 12px;
+    }
+
+    .blog-article-content p {
+        font-size: 16px;
+        line-height: 1.8;
+    }
+
+    .blog-article-content h2 {
+        font-size: 25px;
+    }
+
+    .blog-article-content h3 {
+        font-size: 20px;
+    }
+
+    .key-overview-card {
+        padding: 22px;
+        border-radius: 15px;
+    }
+
+    .specialist-carousel {
+        border-radius: 12px;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    .specialist-track {
+        padding: 10px 0;
+    }
+
+    .specialist-item {
+        padding: 9px 15px;
+        font-size: 14px;
+    }
+
+    .specialist-arrow {
+        width: 34px;
+        height: 34px;
+    }
+}
+
+
+@media (max-width: 575px) {
+
+    .blog-container {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+
+    .blog-title {
+        font-size: 25px;
+    }
+
+    .blog-meta {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .blog-meta .dot {
+        display: none;
+    }
+
+    .blog-category-label {
+        font-size: 11px;
+        padding: 7px 11px;
+    }
+
+    .specialist-carousel {
+        padding-left: 38px;
+        padding-right: 38px;
+    }
+
+    .specialist-item {
+        padding: 8px 13px;
+        font-size: 13px;
+    }
+}

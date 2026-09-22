@@ -1,0 +1,114 @@
+/*== Specialist Card CSS =====*/
+
+.specialist-card {
+    display: block;
+    text-decoration: none !important;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.specialist-image {
+    position: relative;
+    width: 100%;
+    height: 90px;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #ddd;
+}
+
+.specialist-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+/*
+=================================
+Transparent Text Background
+=================================
+*/
+.specialist-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    padding: 12px 5px 10px 5px;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    text-align: center;
+
+    transition: all 0.3s ease;
+}
+
+.specialist-overlay h6 {
+    margin: 0;
+    padding: 0;
+
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+}
+
+
+/*
+=================================
+Hover Effect
+=================================
+*/
+
+.specialist-card:hover .specialist-image img {
+    transform: scale(1.08);
+}
+
+.specialist-card:hover .specialist-overlay {
+    background: rgba(27, 72, 157, 0.80);
+}
+
+
+/*
+=================================
+Tablet
+=================================
+*/
+
+@media (max-width: 991px) {
+
+    .specialist-image {
+        height: 90px;
+    }
+
+    .specialist-overlay h6 {
+        font-size: 13px;
+    }
+
+}
+
+
+/*
+=================================
+Mobile
+=================================
+*/
+
+@media (max-width: 575px) {
+
+    .specialist-image {
+        height: 90px;
+        border-radius: 8px;
+    }
+
+    .specialist-overlay {
+        padding: 8px 3px 7px 3px;
+    }
+
+    .specialist-overlay h6 {
+        font-size: 12px;
+        line-height: 17px;
+    }
+
+}

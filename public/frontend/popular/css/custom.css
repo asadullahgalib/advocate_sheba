@@ -1,0 +1,296 @@
+.wpcf7-form-control-wrap {
+        position: relative;
+    }
+    .wpcf7 input[type="tel"] {
+        direction: ltr;
+    }
+    *,
+    *:before,
+    *:after {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    div,
+    ul,
+    li,
+    p {
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+    }
+    p {
+        font-family: inherit;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 17px;
+    }
+    ul {
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 17px;
+        list-style-position: outside;
+    }
+    @media print {
+        * {
+            background: transparent!important;
+            color: black!important;
+            box-shadow: none!important;
+            text-shadow: none!important;
+            filter: none!important;
+            -ms-filter: none!important;
+        }
+        img {
+            page-break-inside: avoid;
+        }
+        img {
+            max-width: 100%!important;
+        }
+        p {
+            orphans: 3;
+            widows: 3;
+        }
+    }
+    label {
+        font-size: 14px;
+        color: #4d4d4d;
+        cursor: pointer;
+        display: block;
+        font-weight: 500;
+        margin-bottom: 3px;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="tel"] {
+        background-color: #fff;
+        font-family: inherit;
+        border: 1px solid #ccc;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        -ms-border-radius: 2px;
+        -o-border-radius: 2px;
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+        -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+        color: rgba(0, 0, 0, .75);
+        display: block;
+        font-size: 14px;
+        margin: 0 0 12px 0;
+        padding: 6px;
+        height: 32px;
+        width: 100%;
+        -webkit-transition: all .15s linear;
+        -moz-transition: all .15s linear;
+        -o-transition: all .15s linear;
+        transition: all .15s linear;
+    }
+    input[type="text"]:focus,
+    input[type="tel"]:focus {
+        background: #fafafa;
+        border-color: #b3b3b3;
+    }
+    img {
+        height: auto;
+    }
+    img {
+        max-width: 100%;
+    }
+    img {
+        -ms-interpolation-mode: bicubic;
+    }
+    * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    div,
+    ul,
+    li,
+    p {
+        margin: 0;
+        padding: 0;
+        font-size: 13px;
+    }
+    p {
+        font-family: inherit;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 1.4;
+        margin-bottom: 17px;
+    }
+    .elementor *,
+    .elementor :after,
+    .elementor :before {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    .elementor img {
+        height: auto;
+        max-width: 100%;
+        border: none;
+        -webkit-border-radius: 0;
+        border-radius: 0;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+    [data-class="wpcf7cf_group"] {
+        display: none;
+    }
+    label {
+        cursor: default;
+    }
+    .od-payment-section {
+        margin-bottom: 30px;
+    }
+    ul.od-payment-options {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    li.each-method {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+        border: 0 solid #707070;
+        box-shadow: 0 1px 3px #aaa;
+    }
+    li.each-method>input.payment-radio {
+        display: none;
+    }
+    li.each-method>label {
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+        margin: 0;
+        background: #fff;
+        padding: 5px 15px;
+        border-bottom: 0 solid #707070;
+        align-items: center;
+        position: relative;
+    }
+    li.each-method input[type="radio"].payment-radio:checked~label {
+        background: #fff;
+        border-bottom: 1px solid #d5d5d5;
+    }
+    li.each-method>label span.payment-select-checkmark {
+        position: absolute;
+        top: 10.3px;
+        left: 13.3px;
+        height: 18px;
+        width: 18px;
+        background-color: #fff;
+        margin-left: 0;
+        border: 1px solid #522B79;
+    }
+    li.each-method:hover .payment-select-checkmark {
+        background-color: #e5e5e5;
+    }
+    li.each-method input[type="radio"].payment-radio:checked~label .payment-select-checkmark {
+        background-color: #522B79;
+    }
+    .payment-select-checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+    li.each-method input[type="radio"].payment-radio:checked~label .payment-select-checkmark:after {
+        display: block;
+    }
+    .payment-select-checkmark:after {
+        left: 7px;
+        top: 3px;
+        width: 5px;
+        height: 10px;
+        border: solid #fff;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+    li.each-method>label span {
+        font-size: 16px;
+        color: #522B79;
+        margin-left: 25px;
+    }
+    li.each-method>label picture {
+        display: flex;
+        align-self: center;
+    }
+    li.each-method>label img {
+        max-height: 35px;
+        max-width: 50px;
+    }
+    .payment-method-card {
+        display: none;
+        visibility: hidden;
+        padding: 10px 15px;
+    }
+    .each-method input[type="radio"].payment-radio:checked~.payment-method-card {
+        display: block;
+        visibility: visible;
+    }
+    .each-pyment-input {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+    .each-pyment-input label {
+        max-width: 49%;
+        flex: 0 0 49%;
+        margin-right: 1%;
+    }
+    .each-pyment-input span.wpcf7-form-control-wrap {
+        max-width: 50%;
+        flex: 0 0 50%;
+    }
+    .each-pyment-input span input {
+        margin-bottom: 0;
+    }
+    p>span.od-payment-highlight {
+        background: rgba(108, 0, 146, .75);
+        color: #fff;
+        padding: 0 5px;
+        border-radius: 2px;
+    }
+    @media (max-width:350px) {
+        .each-pyment-input {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .each-pyment-input label,
+        .each-pyment-input span {
+            max-width: 100%;
+            flex: 0 0 100%;
+            width: 100%;
+        }
+    }
+
+    .disabled-date{
+        background-color:red !important;
+    }
+    @media only screen and (min-width:320px) and (max-width:720px){
+        .custom_fee{
+            margin-top: 0px !important;
+        }
+        .doctor_appoint_consultation{
+            font-size: 11px !important;
+            padding: 11px 7px !important;
+            background-color: #BF1E2D;
+            background-color: #129AF7;
+            min-width: 145px !important;
+            width: 145px !important;
+        }
+        .doctor_appoint_followup{
+            font-size: 11px !important;
+            padding: 11px 7px !important;
+            background-color: #fff;
+            color: #000;
+            max-width: 145px !important;
+            width: 145px !important;
+            border: 1px solid #129AF7;
+        }
+    }
