@@ -131,6 +131,30 @@ class FrontenController extends Controller
         return view('frontend.single_pages.law_firm_details',$data);
     }
 
+    public function legalInformation(){
+        $data['categories']     = Category::all();
+        $data['departments']    = Department::orderBy('sort','asc')->get();
+        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
+        $data['page_type'] = 'legal_information';
+        return view('frontend.single_pages.legal_information',$data);
+    }
+
+    public function courts(){
+        $data['categories']     = Category::all();
+        $data['departments']    = Department::orderBy('sort','asc')->get();
+        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
+        $data['page_type'] = 'courts';
+        return view('frontend.single_pages.courts',$data);
+    }
+
+    public function legalNews(){
+        $data['categories']     = Category::all();
+        $data['departments']    = Department::orderBy('sort','asc')->get();
+        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
+        $data['page_type'] = 'legal_news';
+        return view('frontend.single_pages.legal_news',$data);
+    }
+
     public function locationWiseList(){
         $data['categories']     = Category::all();
         $data['departments']    = Department::orderBy('sort','asc')->get();

@@ -1,846 +1,790 @@
 @extends('frontend.layouts.master')
 @section('content')
 
-<link rel="stylesheet" type="text/css" href="{{asset('assets/css/find_law_firm.css')}}">
-
-<link rel="stylesheet" type="text/css" href="{{asset('assets/css/find_advocate.css')}}">
-
 @include('frontend.single_pages.single_search_bar')
 
-<!-- =========================
-     LAW FIRMS SECTION
-========================= -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-<section class="law-firms-section py-4">
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/find_law_firm.css')}}">
 
-    <div class="container-fluid">
+<main class="main pages" style="background-color: #f5f5f5;border-radius: 15px;margin-bottom: 10px;">
+    <div class="page-content pt-50" style="padding:20px 0px 10px 0px !important">
+        <div class="container">
+            <div class="archive-header-2">
 
-        <div class="row g-3">
+                <div class="row">
+                    <!-- Law Firm 1 -->
+                    <div class="col-lg-4 col-md-4 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
+                        <div class="doctor-profile-card">
+                            <!-- Header -->
+                            <div class="doctor-profile-title">
+                                <h3>
+                                    Law Firm Profile
+                                </h3>
+                            </div>
 
-            <!-- ================= CARD 01 ================= -->
-            <div class="col-md-3">
+                            <!-- Main Profile -->
+                            <div class="doctor-main-profile">
 
-                <div class="law-firm-card">
+                                <!-- Advocate Image -->
+                                <div class="doctor-image-wrapper">
 
-                    <!-- Title -->
-                    <div class="law-firm-title">
-                        Law Firm Profile
-                    </div>
+                                    <div class="doctor-image-box">
 
-                    <!-- Logo + Name -->
-                    <div class="firm-header">
+                                        <!-- আপনার Advocate Image এখানে দিন -->
+                                        <img src="{{asset('frontend/firm_logo.jpg')}}"
+                                             alt="গালিব ল অ্যাসোসিয়েটস">
 
-                        <div class="firm-logo">
-                            <i class="fa fa-balance-scale"></i>
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Doctor Information -->
+                                <div class="doctor-info">
+
+                                    <!-- Name -->
+                                    <div class="doctor-name">
+
+                                        <h2>
+                                            গালিব ল অ্যাসোসিয়েটস 
+                                        </h2>
+
+
+                                    </div>
+
+
+                                    <!-- Speciality -->
+                                    <div class="doctor-speciality">
+
+                                        <strong>
+                                            Law Firm: Supreme Court of Bangladesh
+                                        </strong>
+                                    </div>
+
+                                    <!-- Consultant -->
+                                    <div class="doctor-detail-item">
+
+                                        <i class="fa fa-user-circle-o"></i>
+
+                                        <span>
+                                            <strong>Led by Adv. Md. Asadullah Galib</strong>
+                                        </span>
+
+                                    </div>
+
+
+                                    <!-- Qualification -->
+                                    <div class="doctor-qualification">
+
+                                        <button class="btn btn-primary btn-sm" style="background-color: #c9ebca;color: #166d29;margin: 0px;line-height: 0.8;margin-bottom: 5px;">Bar Registered</button> &nbsp;
+                                        <button class="btn btn-primary btn-sm" style="background-color: #c9ebca;color: #166d29;margin: 0px;line-height: 0.8;margin-bottom: 5px;">Est. 2012</button>
+
+
+                                    </div>
+
+
+                                    <!-- Rating -->
+                                    <div class="doctor-rating">
+
+                                        <i class="fa fa-star-o" style="color:#d89d00;font-size:18px;"></i>
+
+                                        <span class="rating-number">
+                                            4.8
+                                        </span>
+
+                                        <span class="review-count">
+                                            (128 Reviews) . 5 lawyers
+                                        </span>
+
+                                    </div>
+
+                                    <!-- Hospital -->
+                                    <div class="doctor-detail-item">
+
+                                        <i class="fa fa-map-marker"></i>
+
+                                        <span>
+                                            Shahbagh, Dhaka · Kishoreganj branch
+                                        </span>
+
+                                    </div>
+
+                                    <div class="firm-info-line">
+
+                                        <i class="fa fa-briefcase"></i>
+
+                                        <span>
+                                            Corporate · Family · Property law
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Practice Court -->
+                            <div class="practice-box">
+
+                                <div class="practice-title">
+                                    প্র্যাকটিস আদালত:
+                                </div>
+
+                                <div class="practice-text">
+
+                                    Supreme Court of Bangladesh
+                                    <br>
+
+                                    <span>
+                                        (High Court Division & Appellate Division)
+                                    </span>
+
+                                    <br>
+
+                                    জেলা জজ আদালত
+                                    <b>•</b>
+                                    সেশন জজ আদালত
+                                    <b>•</b>
+                                    ম্যাজিস্ট্রেট আদালত
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Specialization -->
+                            <div class="specialization">
+
+                                <div class="specialization-title">
+                                    অতিরিক্ত বিশেষজ্ঞতা:
+                                </div>
+
+                                <div class="specialization-text">
+
+                                    ফৌজদারী
+                                    <b>•</b>
+                                    দেওয়ানী
+                                    <b>•</b>
+                                    পারিবারিক
+                                    <b>•</b>
+                                    জমি-জমা
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Divider -->
+                            <div class="firm-divider"></div>
+
+
+                            <!-- Address -->
+                            <div class="firm-address">
+
+                                <div class="address-icon">
+                                    <i class="fa fa-map-marker"></i>
+                                </div>
+
+                                <div class="address-content">
+
+                                    <strong>
+                                        চেম্বারের পূর্ণ ঠিকানা:
+                                    </strong>
+
+                                    <p>
+                                        কিশোরগঞ্জ ২৫০ শয্যা হাসপাতালের পাশে,
+                                        <br>
+                                        [বাড়ি নং, রোড, এলাকা, থানা]
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="doctor-action-buttons">
+
+                                <!-- WhatsApp + Share -->
+                                <div class="row g-3 doctor-bottom-buttons" style="margin-bottom: 15px;">
+
+                                    <!-- WhatsApp -->
+                                    <div class="col-6">
+
+                                        <a href="tel:+8801700000000"
+                                           class="doctor-outline-btn">
+
+                                            <i class="fa fa-phone"></i>
+
+                                            <span>
+                                                Call
+                                            </span>
+
+                                        </a>
+
+                                    </div>
+
+
+                                    <!-- Share -->
+                                    <div class="col-6">
+
+                                        <a href="https://wa.me/8801700000000" target="_blank"
+                                           class="doctor-outline-btn">
+
+                                            <i class="fa fa-whatsapp"></i>
+
+                                            <span>
+                                                WhatsApp
+                                            </span>
+
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Appointment -->
+                                <div class="mb-3">
+
+                                    <a href="{{route('our.law-firm-details')}}"
+                                        class="doctor-btn btn-appointment">
+
+                                        <i class="fa fa-eye"></i>
+
+                                        <span>
+                                            View Details
+                                        </span>
+
+                                    </a>
+
+                                </div>
+                            </div>
+
                         </div>
+                    </div>
 
-                        <div class="firm-name-area">
+                    <!-- Law Firm 2 -->
+                    <div class="col-lg-4 col-md-4 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
+                        <div class="doctor-profile-card">
+                            <!-- Header -->
+                            <div class="doctor-profile-title">
+                                <h3>
+                                    Law Firm Profile
+                                </h3>
+                            </div>
 
-                            <h3>
-                                গালিব ল অ্যাসোসিয়েটস
-                            </h3>
+                            <!-- Main Profile -->
+                            <div class="doctor-main-profile">
 
-                            <p>
-                                Law Firm · Supreme Court of Bangladesh
-                            </p>
+                                <!-- Advocate Image -->
+                                <div class="doctor-image-wrapper">
+
+                                    <div class="doctor-image-box">
+
+                                        <!-- আপনার Advocate Image এখানে দিন -->
+                                        <img src="{{asset('frontend/firm_logo.jpg')}}"
+                                             alt="গালিব ল অ্যাসোসিয়েটস">
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Doctor Information -->
+                                <div class="doctor-info">
+
+                                    <!-- Name -->
+                                    <div class="doctor-name">
+
+                                        <h2>
+                                            Rahman & Associates
+                                        </h2>
+
+
+                                    </div>
+
+
+                                    <!-- Speciality -->
+                                    <div class="doctor-speciality">
+
+                                        <strong>
+                                            Law Firm: Supreme Court of Bangladesh
+                                        </strong>
+                                    </div>
+
+                                    <!-- Consultant -->
+                                    <div class="doctor-detail-item">
+
+                                        <i class="fa fa-user-circle-o"></i>
+
+                                        <span>
+                                            <strong>Led by Adv. Md. Asadullah Galib</strong>
+                                        </span>
+
+                                    </div>
+
+
+                                    <!-- Qualification -->
+                                    <div class="doctor-qualification">
+
+                                        <button class="btn btn-primary btn-sm" style="background-color: #c9ebca;color: #166d29;margin: 0px;line-height: 0.8;margin-bottom: 5px;">Bar Registered</button> &nbsp;
+                                        <button class="btn btn-primary btn-sm" style="background-color: #c9ebca;color: #166d29;margin: 0px;line-height: 0.8;margin-bottom: 5px;">Est. 2012</button>
+
+
+                                    </div>
+
+
+                                    <!-- Rating -->
+                                    <div class="doctor-rating">
+
+                                        <i class="fa fa-star-o" style="color:#d89d00;font-size:18px;"></i>
+
+                                        <span class="rating-number">
+                                            4.8
+                                        </span>
+
+                                        <span class="review-count">
+                                            (128 Reviews) . 5 lawyers
+                                        </span>
+
+                                    </div>
+
+                                    <!-- Hospital -->
+                                    <div class="doctor-detail-item">
+
+                                        <i class="fa fa-map-marker"></i>
+
+                                        <span>
+                                            Shahbagh, Dhaka · Kishoreganj branch
+                                        </span>
+
+                                    </div>
+
+                                    <div class="firm-info-line">
+
+                                        <i class="fa fa-briefcase"></i>
+
+                                        <span>
+                                            Corporate · Family · Property law
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Practice Court -->
+                            <div class="practice-box">
+
+                                <div class="practice-title">
+                                    প্র্যাকটিস আদালত:
+                                </div>
+
+                                <div class="practice-text">
+
+                                    Supreme Court of Bangladesh
+                                    <br>
+
+                                    <span>
+                                        (High Court Division & Appellate Division)
+                                    </span>
+
+                                    <br>
+
+                                    জেলা জজ আদালত
+                                    <b>•</b>
+                                    সেশন জজ আদালত
+                                    <b>•</b>
+                                    ম্যাজিস্ট্রেট আদালত
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Specialization -->
+                            <div class="specialization">
+
+                                <div class="specialization-title">
+                                    অতিরিক্ত বিশেষজ্ঞতা:
+                                </div>
+
+                                <div class="specialization-text">
+
+                                    ফৌজদারী
+                                    <b>•</b>
+                                    দেওয়ানী
+                                    <b>•</b>
+                                    পারিবারিক
+                                    <b>•</b>
+                                    জমি-জমা
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Divider -->
+                            <div class="firm-divider"></div>
+
+
+                            <!-- Address -->
+                            <div class="firm-address">
+
+                                <div class="address-icon">
+                                    <i class="fa fa-map-marker"></i>
+                                </div>
+
+                                <div class="address-content">
+
+                                    <strong>
+                                        চেম্বারের পূর্ণ ঠিকানা:
+                                    </strong>
+
+                                    <p>
+                                        কিশোরগঞ্জ ২৫০ শয্যা হাসপাতালের পাশে,
+                                        <br>
+                                        [বাড়ি নং, রোড, এলাকা, থানা]
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="doctor-action-buttons">
+
+                                <!-- WhatsApp + Share -->
+                                <div class="row g-3 doctor-bottom-buttons" style="margin-bottom: 15px;">
+
+                                    <!-- WhatsApp -->
+                                    <div class="col-6">
+
+                                        <a href="tel:+8801700000000"
+                                           class="doctor-outline-btn">
+
+                                            <i class="fa fa-phone"></i>
+
+                                            <span>
+                                                Call
+                                            </span>
+
+                                        </a>
+
+                                    </div>
+
+
+                                    <!-- Share -->
+                                    <div class="col-6">
+
+                                        <a href="https://wa.me/8801700000000" target="_blank"
+                                           class="doctor-outline-btn">
+
+                                            <i class="fa fa-whatsapp"></i>
+
+                                            <span>
+                                                WhatsApp
+                                            </span>
+
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Appointment -->
+                                <div class="mb-3">
+
+                                    <a href="{{route('our.law-firm-details')}}"
+                                        class="doctor-btn btn-appointment">
+
+                                        <i class="fa fa-eye"></i>
+
+                                        <span>
+                                            View Details
+                                        </span>
+
+                                    </a>
+
+                                </div>
+                            </div>
 
                         </div>
-
                     </div>
 
+                    <!-- Law Firm 3 -->
+                    <div class="col-lg-4 col-md-4 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
+                        <div class="doctor-profile-card">
+                            <!-- Header -->
+                            <div class="doctor-profile-title">
+                                <h3>
+                                    Law Firm Profile
+                                </h3>
+                            </div>
 
-                    <!-- Led By -->
-                    <div class="firm-info-line">
-                        <i class="fa fa-user"></i>
+                            <!-- Main Profile -->
+                            <div class="doctor-main-profile">
 
-                        <span>
-                            Led by Adv. Md. Asadullah Galib
-                        </span>
-                    </div>
+                                <!-- Advocate Image -->
+                                <div class="doctor-image-wrapper">
 
+                                    <div class="doctor-image-box">
 
-                    <!-- Badges -->
-                    <div class="firm-badges">
+                                        <!-- আপনার Advocate Image এখানে দিন -->
+                                        <img src="{{asset('frontend/firm_logo.jpg')}}"
+                                             alt="গালিব ল অ্যাসোসিয়েটস">
 
-                        <span class="badge-registered">
-                            Bar Registered
-                        </span>
+                                    </div>
 
-                        <span class="badge-established">
-                            Est. 2012
-                        </span>
-
-                    </div>
-
-
-                    <!-- Rating -->
-                    <div class="firm-info-line">
-
-                        <i class="fa fa-star"></i>
-
-                        <span>
-                            4.7 (312 reviews) · 6 lawyers
-                        </span>
-
-                    </div>
+                                </div>
 
 
-                    <!-- Location -->
-                    <div class="firm-info-line">
+                                <!-- Doctor Information -->
+                                <div class="doctor-info">
 
-                        <i class="fa fa-map-marker"></i>
+                                    <!-- Name -->
+                                    <div class="doctor-name">
 
-                        <span>
-                            Shahbagh, Dhaka · Kishoreganj branch
-                        </span>
-
-                    </div>
-
-
-                    <!-- Practice Area -->
-                    <div class="firm-info-line">
-
-                        <i class="fa fa-briefcase"></i>
-
-                        <span>
-                            Corporate · Family · Property law
-                        </span>
-
-                    </div>
+                                        <h2>
+                                            Ahmed Legal Associates
+                                        </h2>
 
 
-                    <!-- Practice Court -->
-                    <div class="practice-box">
+                                    </div>
 
-                        <div class="practice-title">
-                            প্র্যাকটিস আদালত:
+
+                                    <!-- Speciality -->
+                                    <div class="doctor-speciality">
+
+                                        <strong>
+                                            Law Firm: Supreme Court of Bangladesh
+                                        </strong>
+                                    </div>
+
+                                    <!-- Consultant -->
+                                    <div class="doctor-detail-item">
+
+                                        <i class="fa fa-user-circle-o"></i>
+
+                                        <span>
+                                            <strong>Led by Adv. Md. Asadullah Galib</strong>
+                                        </span>
+
+                                    </div>
+
+
+                                    <!-- Qualification -->
+                                    <div class="doctor-qualification">
+
+                                        <button class="btn btn-primary btn-sm" style="background-color: #c9ebca;color: #166d29;margin: 0px;line-height: 0.8;margin-bottom: 5px;">Bar Registered</button> &nbsp;
+                                        <button class="btn btn-primary btn-sm" style="background-color: #c9ebca;color: #166d29;margin: 0px;line-height: 0.8;margin-bottom: 5px;">Est. 2012</button>
+
+
+                                    </div>
+
+
+                                    <!-- Rating -->
+                                    <div class="doctor-rating">
+
+                                        <i class="fa fa-star-o" style="color:#d89d00;font-size:18px;"></i>
+
+                                        <span class="rating-number">
+                                            4.8
+                                        </span>
+
+                                        <span class="review-count">
+                                            (128 Reviews) . 5 lawyers
+                                        </span>
+
+                                    </div>
+
+                                    <!-- Hospital -->
+                                    <div class="doctor-detail-item">
+
+                                        <i class="fa fa-map-marker"></i>
+
+                                        <span>
+                                            Shahbagh, Dhaka · Kishoreganj branch
+                                        </span>
+
+                                    </div>
+
+                                    <div class="firm-info-line">
+
+                                        <i class="fa fa-briefcase"></i>
+
+                                        <span>
+                                            Corporate · Family · Property law
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Practice Court -->
+                            <div class="practice-box">
+
+                                <div class="practice-title">
+                                    প্র্যাকটিস আদালত:
+                                </div>
+
+                                <div class="practice-text">
+
+                                    Supreme Court of Bangladesh
+                                    <br>
+
+                                    <span>
+                                        (High Court Division & Appellate Division)
+                                    </span>
+
+                                    <br>
+
+                                    জেলা জজ আদালত
+                                    <b>•</b>
+                                    সেশন জজ আদালত
+                                    <b>•</b>
+                                    ম্যাজিস্ট্রেট আদালত
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Specialization -->
+                            <div class="specialization">
+
+                                <div class="specialization-title">
+                                    অতিরিক্ত বিশেষজ্ঞতা:
+                                </div>
+
+                                <div class="specialization-text">
+
+                                    ফৌজদারী
+                                    <b>•</b>
+                                    দেওয়ানী
+                                    <b>•</b>
+                                    পারিবারিক
+                                    <b>•</b>
+                                    জমি-জমা
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Divider -->
+                            <div class="firm-divider"></div>
+
+
+                            <!-- Address -->
+                            <div class="firm-address">
+
+                                <div class="address-icon">
+                                    <i class="fa fa-map-marker"></i>
+                                </div>
+
+                                <div class="address-content">
+
+                                    <strong>
+                                        চেম্বারের পূর্ণ ঠিকানা:
+                                    </strong>
+
+                                    <p>
+                                        কিশোরগঞ্জ ২৫০ শয্যা হাসপাতালের পাশে,
+                                        <br>
+                                        [বাড়ি নং, রোড, এলাকা, থানা]
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="doctor-action-buttons">
+
+                                <!-- WhatsApp + Share -->
+                                <div class="row g-3 doctor-bottom-buttons" style="margin-bottom: 15px;">
+
+                                    <!-- WhatsApp -->
+                                    <div class="col-6">
+
+                                        <a href="tel:+8801700000000"
+                                           class="doctor-outline-btn">
+
+                                            <i class="fa fa-phone"></i>
+
+                                            <span>
+                                                Call
+                                            </span>
+
+                                        </a>
+
+                                    </div>
+
+
+                                    <!-- Share -->
+                                    <div class="col-6">
+
+                                        <a href="https://wa.me/8801700000000" target="_blank"
+                                           class="doctor-outline-btn">
+
+                                            <i class="fa fa-whatsapp"></i>
+
+                                            <span>
+                                                WhatsApp
+                                            </span>
+
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Appointment -->
+                                <div class="mb-3">
+
+                                    <a href="{{route('our.law-firm-details')}}"
+                                        class="doctor-btn btn-appointment">
+
+                                        <i class="fa fa-eye"></i>
+
+                                        <span>
+                                            View Details
+                                        </span>
+
+                                    </a>
+
+                                </div>
+                            </div>
+
                         </div>
-
-                        <div class="practice-text">
-
-                            Supreme Court of Bangladesh
-                            <br>
-
-                            <span>
-                                (High Court Division & Appellate Division)
-                            </span>
-
-                            <br>
-
-                            জেলা জজ আদালত
-                            <b>•</b>
-                            সেশন জজ আদালত
-                            <b>•</b>
-                            ম্যাজিস্ট্রেট আদালত
-
-                        </div>
-
                     </div>
-
-
-                    <!-- Specialization -->
-                    <div class="specialization">
-
-                        <div class="specialization-title">
-                            অতিরিক্ত বিশেষজ্ঞতা:
-                        </div>
-
-                        <div class="specialization-text">
-
-                            ফৌজদারী
-                            <b>•</b>
-                            দেওয়ানী
-                            <b>•</b>
-                            পারিবারিক
-                            <b>•</b>
-                            জমি-জমা
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- Divider -->
-                    <div class="firm-divider"></div>
-
-
-                    <!-- Address -->
-                    <div class="firm-address">
-
-                        <div class="address-icon">
-                            <i class="fa fa-map-marker"></i>
-                        </div>
-
-                        <div class="address-content">
-
-                            <strong>
-                                চেম্বারের পূর্ণ ঠিকানা:
-                            </strong>
-
-                            <p>
-                                কিশোরগঞ্জ ২৫০ শয্যা হাসপাতালের পাশে,
-                                <br>
-                                [বাড়ি নং, রোড, এলাকা, থানা]
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- Buttons -->
-                    <div class="firm-actions">
-
-                        <a href="tel:+8801000000000"
-                           class="firm-action-btn">
-
-                            <i class="fa fa-phone"></i>
-
-                            <span>Call</span>
-
-                        </a>
-
-
-                        <a href="https://wa.me/8801000000000"
-                           class="firm-action-btn">
-
-                            <i class="fa fa-whatsapp"></i>
-
-                            <span>WhatsApp</span>
-
-                        </a>
-
-                    </div>
-
-
-                    <!-- Share -->
-                    <a href="{{route('our.law-firm-details')}}" 
-                            class="share-profile-btn">
-
-                        <i class="fa fa-eye"></i>
-
-                        <span>
-                            View Details
-                        </span>
-
-                    </a>
-
                 </div>
 
-            </div>
-
-
-            <!-- ================= CARD 02 ================= -->
-            <div class="col-md-3">
-
-                <div class="law-firm-card">
-
-                    <div class="law-firm-title">
-                        Law Firm Profile
+                <div class="row">
+                    <div class="container mt-3">
+                      <ul class="pagination justify-content-center">
+                        <li class="page-item"><a class="page-link" href="#"><i class="fa fa-arrow-left" aria-hidden="true"></i></a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                        <li class="page-item"><a class="page-link" href="#">5</a></li>
+                        <li class="page-item"><a class="page-link" href="#">6</a></li>
+                        <li class="page-item"><a class="page-link" href="#">7</a></li>
+                        <li class="page-item"><a class="page-link" href="#">8</a></li>
+                        <li class="page-item"><a class="page-link" href="#">9</a></li>
+                        <li class="page-item"><a class="page-link" href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i></a></li>
+                      </ul>
                     </div>
-
-                    <div class="firm-header">
-
-                        <div class="firm-logo">
-                            <i class="fa fa-balance-scale"></i>
-                        </div>
-
-                        <div class="firm-name-area">
-
-                            <h3>
-                                Rahman & Associates
-                            </h3>
-
-                            <p>
-                                Law Firm · Supreme Court of Bangladesh
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="firm-info-line">
-
-                        <i class="fa fa-user"></i>
-
-                        <span>
-                            Led by Adv. Md. Rahman
-                        </span>
-
-                    </div>
-
-
-                    <div class="firm-badges">
-
-                        <span class="badge-registered">
-                            Bar Registered
-                        </span>
-
-                        <span class="badge-established">
-                            Est. 2015
-                        </span>
-
-                    </div>
-
-
-                    <div class="firm-info-line">
-
-                        <i class="fa fa-star"></i>
-
-                        <span>
-                            4.8 (185 reviews) · 5 lawyers
-                        </span>
-
-                    </div>
-
-
-                    <div class="firm-info-line">
-
-                        <i class="fa fa-map-marker"></i>
-
-                        <span>
-                            Motijheel, Dhaka
-                        </span>
-
-                    </div>
-
-
-                    <div class="firm-info-line">
-
-                        <i class="fa fa-briefcase"></i>
-
-                        <span>
-                            Civil · Corporate · Family law
-                        </span>
-
-                    </div>
-
-
-                    <div class="practice-box">
-
-                        <div class="practice-title">
-                            প্র্যাকটিস আদালত:
-                        </div>
-
-                        <div class="practice-text">
-
-                            Supreme Court of Bangladesh
-                            <br>
-
-                            <span>
-                                (High Court Division & Appellate Division)
-                            </span>
-
-                            <br>
-
-                            জেলা জজ আদালত
-                            <b>•</b>
-                            সেশন জজ আদালত
-                            <b>•</b>
-                            ম্যাজিস্ট্রেট আদালত
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="specialization">
-
-                        <div class="specialization-title">
-                            অতিরিক্ত বিশেষজ্ঞতা:
-                        </div>
-
-                        <div class="specialization-text">
-
-                            দেওয়ানী
-                            <b>•</b>
-                            কোম্পানি
-                            <b>•</b>
-                            পারিবারিক
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="firm-divider"></div>
-
-
-                    <div class="firm-address">
-
-                        <div class="address-icon">
-                            <i class="fa fa-map-marker"></i>
-                        </div>
-
-                        <div class="address-content">
-
-                            <strong>
-                                চেম্বারের পূর্ণ ঠিকানা:
-                            </strong>
-
-                            <p>
-                                মতিঝিল, ঢাকা,
-                                <br>
-                                [বাড়ি নং, রোড, এলাকা]
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="firm-actions">
-
-                        <a href="tel:+8801000000000"
-                           class="firm-action-btn">
-
-                            <i class="fa fa-phone"></i>
-                            <span>Call</span>
-
-                        </a>
-
-                        <a href="https://wa.me/8801000000000"
-                           class="firm-action-btn">
-
-                            <i class="fa fa-whatsapp"></i>
-                            <span>WhatsApp</span>
-
-                        </a>
-
-                    </div>
-
-
-                    <a href="{{route('our.law-firm-details')}}" 
-                            class="share-profile-btn">
-
-                        <i class="fa fa-eye"></i>
-
-                        <span>
-                            View Details
-                        </span>
-
-                    </a>
-
                 </div>
-
-            </div>
-
-
-            <!-- ================= CARD 03 ================= -->
-            <div class="col-md-3">
-
-                <div class="law-firm-card">
-
-                    <div class="law-firm-title">
-                        Law Firm Profile
-                    </div>
-
-                    <div class="firm-header">
-
-                        <div class="firm-logo">
-                            <i class="fa fa-balance-scale"></i>
-                        </div>
-
-                        <div class="firm-name-area">
-
-                            <h3>
-                                Ahmed Legal Associates
-                            </h3>
-
-                            <p>
-                                Law Firm · High Court Division
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="firm-info-line">
-
-                        <i class="fa fa-user"></i>
-
-                        <span>
-                            Led by Adv. Md. Ahmed
-                        </span>
-
-                    </div>
-
-
-                    <div class="firm-badges">
-
-                        <span class="badge-registered">
-                            Bar Registered
-                        </span>
-
-                        <span class="badge-established">
-                            Est. 2018
-                        </span>
-
-                    </div>
-
-
-                    <div class="firm-info-line">
-
-                        <i class="fa fa-star"></i>
-
-                        <span>
-                            4.6 (126 reviews) · 4 lawyers
-                        </span>
-
-                    </div>
-
-
-                    <div class="firm-info-line">
-
-                        <i class="fa fa-map-marker"></i>
-
-                        <span>
-                            Dhanmondi, Dhaka
-                        </span>
-
-                    </div>
-
-
-                    <div class="firm-info-line">
-
-                        <i class="fa fa-briefcase"></i>
-
-                        <span>
-                            Criminal · Family · Property law
-                        </span>
-
-                    </div>
-
-
-                    <div class="practice-box">
-
-                        <div class="practice-title">
-                            প্র্যাকটিস আদালত:
-                        </div>
-
-                        <div class="practice-text">
-
-                            Supreme Court of Bangladesh
-                            <br>
-
-                            <span>
-                                High Court Division
-                            </span>
-
-                            <br>
-
-                            জেলা জজ আদালত
-                            <b>•</b>
-                            সেশন জজ আদালত
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="specialization">
-
-                        <div class="specialization-title">
-                            অতিরিক্ত বিশেষজ্ঞতা:
-                        </div>
-
-                        <div class="specialization-text">
-
-                            ফৌজদারী
-                            <b>•</b>
-                            দেওয়ানী
-                            <b>•</b>
-                            জমি-জমা
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="firm-divider"></div>
-
-
-                    <div class="firm-address">
-
-                        <div class="address-icon">
-                            <i class="fa fa-map-marker"></i>
-                        </div>
-
-                        <div class="address-content">
-
-                            <strong>
-                                চেম্বারের পূর্ণ ঠিকানা:
-                            </strong>
-
-                            <p>
-                                ধানমন্ডি, ঢাকা,
-                                <br>
-                                [বাড়ি নং, রোড, এলাকা]
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="firm-actions">
-
-                        <a href="tel:+8801000000000"
-                           class="firm-action-btn">
-
-                            <i class="fa fa-phone"></i>
-                            <span>Call</span>
-
-                        </a>
-
-                        <a href="https://wa.me/8801000000000"
-                           class="firm-action-btn">
-
-                            <i class="fa fa-whatsapp"></i>
-                            <span>WhatsApp</span>
-
-                        </a>
-
-                    </div>
-
-
-                    <a href="{{route('our.law-firm-details')}}" 
-                            class="share-profile-btn">
-
-                        <i class="fa fa-eye"></i>
-
-                        <span>
-                            View Details
-                        </span>
-
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <!-- ================= CARD 04 ================= -->
-            <div class="col-md-3">
-
-                <div class="law-firm-card">
-
-                    <div class="law-firm-title">
-                        Law Firm Profile
-                    </div>
-
-                    <div class="firm-header">
-
-                        <div class="firm-logo">
-                            <i class="fa fa-balance-scale"></i>
-                        </div>
-
-                        <div class="firm-name-area">
-
-                            <h3>
-                                Karim Law Chambers
-                            </h3>
-
-                            <p>
-                                Law Firm · Supreme Court
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="firm-info-line">
-
-                        <i class="fa fa-user"></i>
-
-                        <span>
-                            Led by Adv. Md. Karim
-                        </span>
-
-                    </div>
-
-
-                    <div class="firm-badges">
-
-                        <span class="badge-registered">
-                            Bar Registered
-                        </span>
-
-                        <span class="badge-established">
-                            Est. 2016
-                        </span>
-
-                    </div>
-
-
-                    <div class="firm-info-line">
-
-                        <i class="fa fa-star"></i>
-
-                        <span>
-                            4.7 (210 reviews) · 7 lawyers
-                        </span>
-
-                    </div>
-
-
-                    <div class="firm-info-line">
-
-                        <i class="fa fa-map-marker"></i>
-
-                        <span>
-                            Shahbagh, Dhaka
-                        </span>
-
-                    </div>
-
-
-                    <div class="firm-info-line">
-
-                        <i class="fa fa-briefcase"></i>
-
-                        <span>
-                            Corporate · Civil · Tax law
-                        </span>
-
-                    </div>
-
-
-                    <div class="practice-box">
-
-                        <div class="practice-title">
-                            প্র্যাকটিস আদালত:
-                        </div>
-
-                        <div class="practice-text">
-
-                            Supreme Court of Bangladesh
-                            <br>
-
-                            <span>
-                                High Court Division & Appellate Division
-                            </span>
-
-                            <br>
-
-                            জেলা জজ আদালত
-                            <b>•</b>
-                            সেশন জজ আদালত
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="specialization">
-
-                        <div class="specialization-title">
-                            অতিরিক্ত বিশেষজ্ঞতা:
-                        </div>
-
-                        <div class="specialization-text">
-
-                            কোম্পানি
-                            <b>•</b>
-                            দেওয়ানী
-                            <b>•</b>
-                            কর
-                            <b>•</b>
-                            বাণিজ্যিক
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="firm-divider"></div>
-
-
-                    <div class="firm-address">
-
-                        <div class="address-icon">
-                            <i class="fa fa-map-marker"></i>
-                        </div>
-
-                        <div class="address-content">
-
-                            <strong>
-                                চেম্বারের পূর্ণ ঠিকানা:
-                            </strong>
-
-                            <p>
-                                শাহবাগ, ঢাকা,
-                                <br>
-                                [বাড়ি নং, রোড, এলাকা]
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="firm-actions">
-
-                        <a href="tel:+8801000000000"
-                           class="firm-action-btn">
-
-                            <i class="fa fa-phone"></i>
-                            <span>Call</span>
-
-                        </a>
-
-                        <a href="https://wa.me/8801000000000"
-                           class="firm-action-btn">
-
-                            <i class="fa fa-whatsapp"></i>
-                            <span>WhatsApp</span>
-
-                        </a>
-
-                    </div>
-
-
-                    <a href="{{route('our.law-firm-details')}}" 
-                            class="share-profile-btn">
-
-                        <i class="fa fa-eye"></i>
-
-                        <span>
-                            View Details
-                        </span>
-
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="row">
-            <div class="container mt-3">
-              <ul class="pagination justify-content-center">
-                <li class="page-item"><a class="page-link" href="#"><i class="fa fa-arrow-left" aria-hidden="true"></i></a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                <li class="page-item"><a class="page-link" href="#">6</a></li>
-                <li class="page-item"><a class="page-link" href="#">7</a></li>
-                <li class="page-item"><a class="page-link" href="#">8</a></li>
-                <li class="page-item"><a class="page-link" href="#">9</a></li>
-                <li class="page-item"><a class="page-link" href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i></a></li>
-              </ul>
             </div>
         </div>
-
     </div>
-
-</section>
+</main>
 
 <!-- Legal Articles -->
 <section class="legal-articles-section" style="background-color: #ffffff;padding: 0px 20px 20px;">

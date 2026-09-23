@@ -33,6 +33,10 @@ Route::get('/find-consultant-list','Frontend\FrontenController@findConsultantLis
 Route::get('/law-firm-list','Frontend\FrontenController@lawFirmList')->name('our.law-firm-list');
 Route::get('/find-law-firm-list','Frontend\FrontenController@findLawFirmList')->name('find.our.law-firm-list');
 Route::get('/law-firm-details','Frontend\FrontenController@lawFirmDetails')->name('our.law-firm-details');
+Route::get('/legal-information','Frontend\FrontenController@legalInformation')->name('our.legal-information');
+Route::get('/legal-information/details','Frontend\FrontenController@legalInformationDetails')->name('our.legal-information.details');
+Route::get('/courts','Frontend\FrontenController@courts')->name('our.courts');
+Route::get('/legal-news','Frontend\FrontenController@legalNews')->name('our.legal-news');
 Route::get('/location-wise-list','Frontend\FrontenController@locationWiseList')->name('our.location-wise-list');
 Route::get('/practice-area-wise-list','Frontend\FrontenController@practiceAreaWiseList')->name('our.practice-area-wise-list');
 Route::get('/profile','Frontend\FrontenController@profile')->name('advocate-profile');

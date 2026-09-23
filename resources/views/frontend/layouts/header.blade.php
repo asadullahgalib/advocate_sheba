@@ -51,9 +51,9 @@
                                 <li><a class="{{(@$page_type=='barrister')?'custom_menu':''}}" href="{{route('our.barrister-list')}}">Barristers</a></li>
                                 <li><a class="{{(@$page_type=='consultant')?'custom_menu':''}}" href="{{route('our.consultant-list')}}">Legal Consultants</a></li>
                                 <li><a class="{{(@$page_type=='law_firm')?'custom_menu':''}}" href="{{route('our.law-firm-list')}}">Law Firms</a></li>
-                                <li><a class="" href="#">Legal Information</a></li>
-                                <li><a class="" href="#">Courts</a></li>
-                                <li><a class="" href="#">Legal News</a></li>
+                                <li><a class="{{(@$page_type=='legal_information')?'custom_menu':''}}" href="{{route('our.legal-information')}}">Legal Information</a></li>
+                                <li><a class="{{(@$page_type=='courts')?'custom_menu':''}}" href="{{route('our.courts')}}">Courts</a></li>
+                                <li><a class="{{(@$page_type=='legal_news')?'custom_menu':''}}" href="{{route('our.legal-news')}}">Legal News</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -105,9 +105,9 @@
                         <li><a class="menu-item-has-children" href="{{route('our.barrister-list')}}">Barristers</a></li>
                         <li><a class="menu-item-has-children" href="{{route('our.consultant-list')}}">Legal Consultants</a></li>
                         <li><a class="menu-item-has-children" href="{{route('our.law-firm-list')}}">Law Firms</a></li>
-                        <li><a class="menu-item-has-children" href="#">Legal Information</a></li>
-                        <li><a class="menu-item-has-children" href="#">Courts</a></li>
-                        <li><a class="menu-item-has-children" href="#">Legal News</a></li>
+                        <li><a class="menu-item-has-children" href="{{route('our.legal-information')}}">Legal Information</a></li>
+                        <li><a class="menu-item-has-children" href="{{route('our.courts')}}">Courts</a></li>
+                        <li><a class="menu-item-has-children" href="{{route('our.legal-news')}}">Legal News</a></li>
                     </ul>
                 </nav>
                 <!-- mobile menu end -->
