@@ -55,7 +55,7 @@ class FrontenController extends Controller
         $data['categories']     = Category::all();
         $data['departments']    = Department::orderBy('sort','asc')->get();
         $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
-        $data['page_type'] = 'advocate';
+        $data['page_type'] = 'court';
         return view('frontend.courts.supreme_court',$data);
     }
 
