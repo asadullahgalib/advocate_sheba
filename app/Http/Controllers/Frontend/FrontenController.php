@@ -49,6 +49,44 @@ class FrontenController extends Controller
         return response()->json($doctors);
     }
 
+    // Court & Jurisdictions started
+
+    public function supremecourt(){
+        $data['categories']     = Category::all();
+        $data['departments']    = Department::orderBy('sort','asc')->get();
+        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
+        $data['page_type'] = 'advocate';
+        return view('frontend.courts.supreme_court',$data);
+    }
+
+    public function highcourtdivision(){
+        $data['categories']     = Category::all();
+        $data['departments']    = Department::orderBy('sort','asc')->get();
+        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
+        $data['page_type'] = 'highcourtdivision';
+        return view('frontend.courts.highcourt_division',$data);
+    }
+
+    public function districtcourt(){
+        $data['categories']     = Category::all();
+        $data['departments']    = Department::orderBy('sort','asc')->get();
+        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
+        $data['page_type'] = 'districtcourt';
+        return view('frontend.courts.district_court',$data);
+    }
+
+    public function tribunals(){
+        $data['categories']     = Category::all();
+        $data['departments']    = Department::orderBy('sort','asc')->get();
+        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
+        $data['page_type'] = 'tribunals';
+        return view('frontend.courts.tribunals',$data);
+    }
+
+    // Court & Jurisdictions ends
+
+
+
     public function index(){
         $data['categories']     = Category::all();
         $data['departments']    = Department::orderBy('sort','asc')->get();

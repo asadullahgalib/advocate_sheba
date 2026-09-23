@@ -24,7 +24,7 @@
                 <!-- Card 1 -->
                 <div class="col-6 col-md-3">
 
-                    <a href="#" class="directory-card court-card directory-card2">
+                    <a href="{{route('supreme.court')}}" class="directory-card court-card directory-card2">
 
                         <div class="directory-icon">
                             <i class="bi bi-bank"></i>
@@ -50,7 +50,7 @@
                 <!-- Card 2 -->
                 <div class="col-6 col-md-3">
 
-                    <a href="#" class="directory-card court-card directory-card2">
+                    <a href="{{route('highcourt.division')}}" class="directory-card court-card directory-card2">
 
                         <div class="directory-icon">
                             <i class="bi bi-buildings"></i>
@@ -76,7 +76,7 @@
                 <!-- Card 3 -->
                 <div class="col-6 col-md-3">
 
-                    <a href="#" class="directory-card court-card directory-card2">
+                    <a href="{{route('district.court')}}" class="directory-card court-card directory-card2">
 
                         <div class="directory-icon">
                             <i class="bi bi-bank2"></i>
@@ -102,7 +102,7 @@
                 <!-- Card 4 -->
                 <div class="col-6 col-md-3">
 
-                    <a href="#" class="directory-card court-card directory-card2">
+                    <a href="{{route('tribunals')}}" class="directory-card court-card directory-card2">
 
                         <div class="directory-icon">
                             <i class="bi bi-file-earmark-check"></i>

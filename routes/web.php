@@ -24,6 +24,14 @@ Route::get('/clear-cache', function () {
 });
 
 Route::get('/','Frontend\FrontenController@index');
+
+
+Route::get('/supreme-court','Frontend\FrontenController@supremecourt')->name('supreme.court');
+Route::get('/highcourt-division','Frontend\FrontenController@highcourtdivision')->name('highcourt.division');
+Route::get('/district-court','Frontend\FrontenController@districtcourt')->name('district.court');
+Route::get('/tribunals','Frontend\FrontenController@tribunals')->name('tribunals');
+
+
 Route::get('/advocate-list','Frontend\FrontenController@advocateList')->name('our.advocate-list');
 Route::get('/find-advocate-list','Frontend\FrontenController@findAdvocateList')->name('find.our.advocate-list');
 Route::get('/barrister-list','Frontend\FrontenController@barristerList')->name('our.barrister-list');
