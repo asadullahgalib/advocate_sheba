@@ -102,7 +102,7 @@
                 <!-- Card 4 -->
                 <div class="col-6 col-md-3">
 
-                    <a href="{{route('tribunals')}}" class="directory-card court-card directory-card2">
+                    <a href="{{route('tribunals.courts')}}" class="directory-card court-card directory-card2">
 
                         <div class="directory-icon">
                             <i class="bi bi-file-earmark-check"></i>

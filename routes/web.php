@@ -29,7 +29,7 @@ Route::get('/','Frontend\FrontenController@index');
 Route::get('/supreme-court','Frontend\FrontenController@supremeCourt')->name('supreme.court');
 Route::get('/highcourt-division','Frontend\FrontenController@highcourtDivision')->name('highcourt.division');
 Route::get('/district-court','Frontend\FrontenController@districtCourt')->name('district.court');
-Route::get('/tribunals-court','Frontend\FrontenController@tribunalsCourt')->name('tribunals');
+Route::get('/tribunals-court','Frontend\FrontenController@tribunalsCourt')->name('tribunals.courts');
 // Legal Information
 Route::get('/legal/information/rights','Frontend\FrontenController@legalInformationRights')->name('legal.information.rights');
 Route::get('/legal/information/terms','Frontend\FrontenController@legalInformationTerms')->name('legal.information.terms');
