@@ -24,7 +24,7 @@
                 <!-- Card 1 -->
                 <div class="col-6 col-md-3">
 
-                    <a href="#" class="directory-card legal-card">
+                    <a href="{{route('legal.information.rights')}}" class="directory-card legal-card">
 
                         <div class="directory-icon">
                             <i class="bi bi-book"></i>

@@ -59,6 +59,8 @@ Explore Legal Knowledge by Topic.
 
 
 
+Note: High court er modde village court dukhanu hoyese.
+
 
 
 
