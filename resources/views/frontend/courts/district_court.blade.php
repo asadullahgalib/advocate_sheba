@@ -1,349 +1,1000 @@
 @extends('frontend.layouts.master')
 @section('content')
 
-    <style>
-    /* ==========================================================================
-       ১. গ্লোবাল এবং লেআউট ব্যাকগ্রাউন্ড (Page Wrapper)
-       ========================================================================== */
-    .court-system-wrapper {
-        background-color: #F8F9FA; 
-        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    }
-    
-    .main-display-card {
-        background-color: #F8F9FA; 
-    }
-    
-    .section-label {
-        font-size: 0.72rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        color: #9CA3AF;
-        letter-spacing: 0.8px;
-    }
-    
-    .shadow-xs {
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    }
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    /* ==========================================================================
-       ২. বাম পাশের কার্ড আর্কিটেকচার (OUTER VIEW)
-       ========================================================================== */
-    .outer-view-card {
-        border-radius: 14px;
-        border: 1px solid #E5E7EB;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
-    }
-    
-    .content-title-sm {
-        color: #1F2937;
-        font-size: 0.95rem;
-    }
-    
-    .content-text-sm {
-        font-size: 0.84rem;
-        color: #4B5563 !important;
-    }
-    
-    .guideline-text {
-        font-size: 0.76rem;
-        color: #9CA3AF;
-        font-style: italic;
-    }
+<link rel="stylesheet"
+      href="{{ asset('assets/css/practice-area-modal.css') }}">
 
-    /* ==========================================================================
-       ৩. ইন্টারেক্টিভ বাটন গ্রুপ (Tab Navigation Buttons)
-       ========================================================================== */
-    .court-interactive-btn {
-        border-radius: 10px;
-        border: 1px solid #E5E7EB !important;
-        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        min-height: 100px;
-    }
-    
-    .court-interactive-btn:hover {
-        background-color: #F9FAFB !important;
-        border-color: #D1D5DB !important;
-        transform: translateY(-1px);
-    }
-    
-    .court-interactive-btn .btn-main-title {
-        font-size: 0.88rem;
-    }
-    
-    .court-interactive-btn .btn-action-text {
-        font-size: 0.72rem;
-        font-weight: 500;
-    }
-    
-    .court-interactive-btn.active {
-        background-color: #F0F7FF !important;
-        border-color: #3B82F6 !important;
-        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.08) !important;
-    }
-    
-    .footer-note-text {
-        font-size: 0.74rem;
-        color: #6B7280 !important;
-    }
+<link rel="stylesheet"
+      href="{{ asset('assets/css/court_details.css') }}">
 
-    /* ==========================================================================
-       ৪. ডান পাশের ডার্ক ম্যাট কন্টেইনার (INNER VIEW)
-       ========================================================================== */
-    .inner-view-container {
-        background-color: #F3F4F6 !important; 
-        border: 1px solid #E5E7EB;
-        border-radius: 14px;
-    }
-    
-    .custom-breadcrumb {
-        font-size: 0.72rem;
-    }
-    
-    .custom-breadcrumb .breadcrumb-item + .breadcrumb-item::before {
-        content: ">";
-        color: #9CA3AF;
-    }
 
-    /* ==========================================================================
-       ৫. অ্যাকর্ডিয়ন এবং ড্রপডাউন সূক্ষ্ম টিউনিং (Accordion UI)
-       ========================================================================== */
-    .custom-court-accordion .accordion-item {
-        border-radius: 10px !important;
-    }
-    
-    .border-highlight-green {
-        border: 1px solid #A7F3D0 !important; 
-    }
-    
-    .custom-court-accordion .accordion-button {
-        padding: 12px 16px;
-        font-size: 0.84rem;
-        box-shadow: none !important;
-    }
-    
-    .custom-court-accordion .accordion-button:not(.collapsed) {
-        color: #1F2937;
-    }
-    
-    .custom-court-accordion .accordion-button::after {
-        width: 0.82rem;
-        height: 0.82rem;
-        background-size: 0.82rem;
-    }
-    
-    .court-bullet-list {
-        padding-left: 1rem;
-        font-size: 0.82rem;
-        line-height: 1.6;
-    }
-    
-    .italic-text {
-        font-style: italic;
-        font-size: 0.78rem;
-    }
+<div class="doctors-blog-page">
 
-    /* ==========================================================================
-       ৬. নিচে থাকা অ্যাকশন বাটন (Lawyers Practicing Button)
-       ========================================================================== */
-    .btn-action-lawyer {
-        background-color: #FFFFFF;
-        border: 1px solid #D1D5DB;
-        border-radius: 10px;
-        color: #374151;
-        font-size: 0.84rem;
-        font-weight: 600;
-        transition: all 0.2s ease;
-    }
-    
-    .btn-action-lawyer:hover {
-        background-color: #F9FAFB;
-        border-color: #9CA3AF;
-        color: #111827;
-    }
-</style>
-<main class="main pages" style="background-color: #f5f5f5; border-radius: 15px; margin-bottom: 10px;">
-    <div class="page-content pt-50" style="padding: 20px 0px 10px 0px !important;">
-        <div class="container">
-            <div class="archive-header-2">
-                <div class="court-system-wrapper py-4">
-                    <div class="card main-display-card p-4 border-0">
-                        
-                        <!-- শিরোনাম এরিয়া -->
-                        <div class="d-flex align-items-center mb-4 ps-2">
-                            <div class="me-3 d-flex align-items-center justify-content-center" style="width: 44px; height: 44px; background: #eef2f6; border-radius: 8px;">
-                                <i class="fa-solid fa-building-columns text-secondary fs-4"></i>
-                            </div>
-                            <h3 class="fw-bold m-0 text-dark" style="font-size: 1.6rem; letter-spacing: -0.5px;">District Courts</h3>
-                        </div>
+    <div class="blog-container">
 
-                        <!-- বুটস্ট্র্যাপের মেইন রো (Row) যা দুই অংশকে পাশাপাশি ৬ বাই ৬ করে রাখবে -->
-                        <div class="row g-4">
-                            
-                            <!-- ================= [বাম পাশ - OUTER VIEW (সমান ৫০% চওড়া)] ================= -->
-                            <div class="col-lg-6 col-md-12 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
-                                <div class="section-label mb-2 ps-1">বাহির (OUTER)</div>
-                                <div class="outer-view-card bg-white p-4 h-100 d-flex flex-column justify-content-between">
-                                    <div>
-                                        <!-- Overview Block -->
-                                        <div class="mb-4">
-                                            <h6 class="content-title-sm fw-bold mb-2">Overview</h6>
-                                            <p class="content-text-sm text-secondary lh-lg mb-0">
-                                                জেলা পর্যায়ের বিচার ব্যবস্থা, দেওয়ানি ও ফৌজদারি — দুটি শাখায় বিভক্ত।
-                                            </p>
-                                        </div>
-                                        
-                                        <!-- গাইডলাইন নির্দেশনা টেক্সট -->
-                                        <p class="guideline-text mb-3">
-                                            নিচের যেকোনো একটিতে ট্যাপ করলে ভিতরের পেজটি খুলবে ↓
-                                        </p>
-                                        
-                                        <!-- বাটন গ্রুপ (Bootstrap Nav-Pills) -->
-                                        <div class="nav flex-row row g-3" id="court-tab-system" role="tablist">
-                                            <!-- Civil Courts Button -->
-                                            <div class="col-6">
-                                                <button class="nav-link active w-100 court-interactive-btn p-3 bg-white text-start d-flex flex-column justify-content-between" 
-                                                        id="pill-civil-tab" data-bs-toggle="pill" data-bs-target="#panel-civil" type="button" role="tab" aria-controls="panel-civil" aria-selected="true">
-                                                    <span class="btn-main-title text-dark fw-bold mb-2">Civil Courts</span>
-                                                    <span class="btn-action-text text-primary text-center w-100">View Details <i class="fa-solid fa-angle-right ms-1 small"></i></span>
-                                                </button>
-                                            </div>
-                                            
-                                            <!-- Criminal Courts Button -->
-                                            <div class="col-6">
-                                                <button class="nav-link w-100 court-interactive-btn p-3 bg-white text-start d-flex flex-column justify-content-between" 
-                                                        id="pill-criminal-tab" data-bs-toggle="pill" data-bs-target="#panel-criminal" type="button" role="tab" aria-controls="panel-criminal" aria-selected="false">
-                                                    <span class="btn-main-title text-dark fw-bold mb-2">Criminal Courts</span>
-                                                    <span class="btn-action-text text-primary text-center w-100">View Details <i class="fa-solid fa-angle-right ms-1 small"></i></span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- ফুটার বিশেষ দ্রষ্টব্য নোট -->
-                                    <div class="mt-4 pt-3 border-top border-light-subtle">
-                                        <p class="footer-note-text text-muted mb-0 lh-base">
-                                            <span class="text-danger fw-bold">*</span> ঢাকা/চট্টগ্রামে Criminal Courts এর নাম হবে "Metropolitan Sessions/Magistrate"
-                                        </p>
-                                    </div>
-                                </div>
-                            </div> <!-- বাম পাশ শেষ -->
-                            <!-- ================= [ডান পাশ - INNER VIEW (সমান ৫০% চওড়া)] ================= -->
-                            <div class="col-lg-6 col-md-12">
-                                <div class="section-label mb-2 ps-1">ভিতর (INNER) — CIVIL / CRIMINAL COURTS</div>
-                                <div class="tab-content h-100" id="court-tab-content-system">
-                                    
-                                    <!-- ----------------- কন্টেন্ট প্যানেল ১: Civil Courts ----------------- -->
-                                    <div class="tab-pane fade show active h-100" id="panel-civil" role="tabpanel" aria-labelledby="pill-civil-tab">
-                                        <div class="inner-view-container p-4 h-100 d-flex flex-column">
-                                            <nav aria-label="breadcrumb" class="mb-3">
-                                                <ol class="breadcrumb custom-breadcrumb mb-0">
-                                                    <li class="breadcrumb-item text-muted">District Courts</li>
-                                                    <li class="breadcrumb-item active text-dark fw-semibold" aria-current="page">Civil Courts</li>
-                                                </ol>
-                                            </nav>
-                                            
-                                            <div class="bg-white p-3 rounded-3 shadow-xs border-0 mb-3">
-                                                <h6 class="content-title-sm fw-bold mb-2">Overview</h6>
-                                                <p class="content-text-sm text-secondary mb-0 lh-base">
-                                                    দেওয়ানি মামলার জন্য জেলা পর্যায়ের আদালত ব্যবস্থা।
-                                                </p>
-                                            </div>
 
-                                            <div class="accordion custom-court-accordion" id="accordionCivil">
-                                                <div class="accordion-item mb-2 border-0 shadow-xs rounded-3 overflow-hidden border-highlight-green">
-                                                    <h2 class="accordion-header">
-                                                        <button class="accordion-button fw-bold text-dark bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#drop-civ-jurisdiction" aria-expanded="true">
-                                                            Jurisdiction
-                                                        </button>
-                                                    </h2>
-                                                    <div id="drop-civ-jurisdiction" class="accordion-collapse collapse show" data-bs-parent="#accordionCivil">
-                                                        <div class="accordion-body text-secondary bg-white pt-1 pb-3">
-                                                            <ul class="court-bullet-list mb-0">
-                                                                <li>আর্থিক অংক অনুযায়ী ভাগ <span class="text-muted italic-text">(pecuniary)</span></li>
-                                                                <li>আঞ্চলিক <span class="text-muted italic-text">territorial jurisdiction</span></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="accordion-item mb-2 border-0 shadow-xs rounded-3 overflow-hidden border-highlight-green">
-                                                    <h2 class="accordion-header">
-                                                        <button class="accordion-button fw-bold text-dark bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#drop-civ-casetypes" aria-expanded="true">
-                                                            Case types
-                                                        </button>
-                                                    </h2>
-                                                    <div id="drop-civ-casetypes" class="accordion-collapse collapse show" data-bs-parent="#accordionCivil">
-                                                        <div class="accordion-body text-secondary bg-white pt-1 pb-3">
-                                                            <ul class="court-bullet-list mb-0">
-                                                                <li>সম্পত্তি বিরোধ • চুক্তি সংক্রান্ত মামলা • পারিবারিক সম্পত্তি</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <button class="btn btn-action-lawyer w-100 text-start py-3 px-4 mt-auto shadow-sm">
-                                                <i class="fa-solid fa-gavel text-muted small me-2"></i> Lawyers practicing here
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <!-- ----------------- কন্টেন্ট প্যানেল ২: Criminal Courts ----------------- -->
-                                    <div class="tab-pane fade h-100" id="panel-criminal" role="tabpanel" aria-labelledby="pill-criminal-tab">
-                                        <div class="inner-view-container p-4 h-100 d-flex flex-column">
-                                            <nav aria-label="breadcrumb" class="mb-3">
-                                                <ol class="breadcrumb custom-breadcrumb mb-0">
-                                                    <li class="breadcrumb-item text-muted">District Courts</li>
-                                                    <li class="breadcrumb-item active text-dark fw-semibold" aria-current="page">Criminal Courts</li>
-                                                </ol>
-                                            </nav>
-                                            
-                                            <div class="bg-white p-3 rounded-3 shadow-xs border-0 mb-3">
-                                                <h6 class="content-title-sm fw-bold mb-2">Overview</h6>
-                                                <p class="content-text-sm text-secondary mb-0 lh-base">
-                                                    ফৌজদারি বা অপরাধমূলক মামলার জন্য জেলা পর্যায়ের আদালত ব্যবস্থা।
-                                                </p>
-                                            </div>
-                                            
-                                            <div class="accordion custom-court-accordion" id="accordionCriminal">
-                                                <div class="accordion-item mb-4 border-0 shadow-xs rounded-3 overflow-hidden">
-                                                    <h2 class="accordion-header">
-                                                        <button class="accordion-button fw-bold text-dark bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#drop-crim-jurisdiction" aria-expanded="true">
-                                                            Jurisdiction
-                                                        </button>
-                                                    </h2>
-                                                    <div id="drop-crim-jurisdiction" class="accordion-collapse collapse show" data-bs-parent="#accordionCriminal">
-                                                        <div class="accordion-body text-secondary bg-white pt-1 pb-3">
-                                                            <!-- ২ ভাগে বিভক্ত জুরিসডিকশন কন্টেন্ট -->
-                                                            <div class="row g-2">
-                                                                <div class="col-6 border-end">
-                                                                    <strong>আইনি ক্ষমতা:</strong><br>
-                                                                    শাস্তি দেওয়ার আইনি ক্ষমতা।
-                                                                </div>
-                                                                <div class="col-6 ps-3">
-                                                                    <strong>এক্তিয়ার:</strong><br>
-                                                                    থানা ভিত্তিক মামলার এক্তিয়ার।
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <button class="btn btn-action-lawyer w-100 text-start py-3 px-4 mt-auto shadow-sm">
-                                                <i class="fa-solid fa-gavel text-muted small me-2"></i> Lawyers practicing here
-                                            </button>
-                                        </div>
-                                    </div>
+        <!-- =================================================
+             BLOG HEADER
+        ================================================== -->
 
-                                </div>
-                            </div>
+        <div class="blog-header"
+             style="padding: 15px 0px 0px 0px; margin-bottom: -15px;">
 
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <h1 class="blog-title">
+                <i class="fa fa-bank"></i> District Courts
+            </h1>
+
         </div>
+
+
+        <!-- =================================================
+             OVERVIEW
+        ================================================== -->
+
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <div class="blog-article-content">
+
+                    <h4 style="margin-bottom: 10px;">
+                        Overview
+                    </h4>
+
+                    <p>
+                        District Courts are an important part of the judicial system
+                        where different civil and criminal matters are heard and
+                        determined according to the applicable laws and jurisdiction
+                        of the respective courts.
+                    </p>
+
+                    <p>
+                        Depending on the nature of a dispute or offence, a matter may
+                        fall within the jurisdiction of Civil Courts or Criminal
+                        Courts. Each court deals with cases according to its
+                        prescribed legal authority, procedure and subject matter.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             TAB SYSTEM
+        ================================================== -->
+
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <div class="district-court-tabs">
+
+
+                    <!-- ===============================
+                         TAB BUTTONS
+                    ================================ -->
+
+                    <ul class="nav district-tab-buttons"
+                        id="districtCourtTab"
+                        role="tablist">
+
+
+                        <!-- ===============================
+                             CIVIL COURTS TAB
+                        ================================ -->
+
+                        <li class="nav-item" role="presentation">
+
+                            <button class="nav-link active"
+                                    id="courts-tab"
+                                    data-bs-toggle="tab"
+                                    data-bs-target="#courts-content"
+                                    type="button"
+                                    role="tab"
+                                    aria-controls="courts-content"
+                                    aria-selected="true">
+
+                                Civil Courts
+
+                            </button>
+
+                        </li>
+
+
+                        <!-- ===============================
+                             CRIMINAL COURTS TAB
+                        ================================ -->
+
+                        <li class="nav-item" role="presentation">
+
+                            <button class="nav-link"
+                                    id="criminal-courts-tab"
+                                    data-bs-toggle="tab"
+                                    data-bs-target="#criminal-courts-content"
+                                    type="button"
+                                    role="tab"
+                                    aria-controls="criminal-courts-content"
+                                    aria-selected="false">
+
+                                Criminal Courts
+
+                            </button>
+
+                        </li>
+
+                    </ul>
+
+
+                    <!-- ===============================
+                         TAB CONTENT
+                    ================================ -->
+
+                    <div class="tab-content district-tab-content"
+                         id="districtCourtTabContent">
+
+
+                        <!-- =================================================
+                             CIVIL COURTS CONTENT
+                        ================================================== -->
+
+                        <div class="tab-pane fade show active"
+                             id="courts-content"
+                             role="tabpanel"
+                             aria-labelledby="courts-tab"
+                             tabindex="0">
+
+                            <h4>
+                                Civil Courts — Overview
+                            </h4>
+
+                            <p>
+                                Civil Courts হলো এমন আদালত যেখানে ব্যক্তি, প্রতিষ্ঠান বা সংস্থার মধ্যে
+                                <strong style="font-weight: bold;">
+                                    সম্পত্তি, অর্থ, চুক্তি, অধিকার, পারিবারিক ও অন্যান্য দেওয়ানি বিষয়ক বিরোধ
+                                </strong>
+                                আইন অনুযায়ী নিষ্পত্তি করা হয়। District Courts-এর অধীনে বিভিন্ন ধরনের
+                                দেওয়ানি আদালত তাদের নির্ধারিত এখতিয়ারের মধ্যে এসব মামলা শুনানি ও নিষ্পত্তি করে।
+                            </p>
+
+                            <p>
+                                দেওয়ানি আদালতে সাধারণত কোনো অপরাধের শাস্তি দেওয়ার পরিবর্তে পক্ষগুলোর
+                                <strong style="font-weight: bold;">
+                                    আইনগত অধিকার নির্ধারণ, ক্ষতিপূরণ, পাওনা আদায়, সম্পত্তির অধিকার প্রতিষ্ঠা,
+                                    নিষেধাজ্ঞা (Injunction) এবং অন্যান্য দেওয়ানি প্রতিকার
+                                </strong>
+                                প্রদানের বিষয় বিবেচনা করা হয়।
+                            </p>
+
+                            <p>
+                                একজন ব্যক্তি তার অধিকার বা স্বার্থ ক্ষুণ্ণ হয়েছে মনে করলে প্রযোজ্য আইন ও
+                                আদালতের এখতিয়ারের ভিত্তিতে দেওয়ানি মামলা করতে পারেন। মামলার ধরন ও প্রকৃতির
+                                ওপর ভিত্তি করে আদালত প্রয়োজনীয় নথি, সাক্ষ্য-প্রমাণ ও উভয় পক্ষের বক্তব্য
+                                বিবেচনা করে সিদ্ধান্ত প্রদান করে।
+                            </p>
+
+
+                            <h5>
+                                Civil Courts-এ কী ধরনের মামলা হতে পারে?
+                            </h5>
+
+                            <ul>
+
+                                <li>
+                                    জমি ও সম্পত্তি সংক্রান্ত বিরোধ
+                                </li>
+
+                                <li>
+                                    মালিকানা ও দখল সংক্রান্ত মামলা
+                                </li>
+
+                                <li>
+                                    টাকা-পয়সা বা পাওনা আদায়ের মামলা
+                                </li>
+
+                                <li>
+                                    চুক্তি সংক্রান্ত বিরোধ
+                                </li>
+
+                                <li>
+                                    ক্ষতিপূরণ সংক্রান্ত দাবি
+                                </li>
+
+                                <li>
+                                    স্থায়ী বা অস্থায়ী নিষেধাজ্ঞার আবেদন
+                                </li>
+
+                                <li>
+                                    ঘোষণামূলক মামলা (Declaration Suit)
+                                </li>
+
+                                <li>
+                                    উত্তরাধিকার ও সম্পত্তির অধিকার সংক্রান্ত বিরোধ
+                                </li>
+
+                                <li>
+                                    অন্যান্য দেওয়ানি অধিকার ও স্বার্থ সংক্রান্ত মামলা
+                                </li>
+
+                            </ul>
+
+
+                            <!-- ===============================
+                                 CIVIL FAQ
+                            ================================ -->
+
+                            <div class="faq-card">
+
+                                <div class="faq-accordion"
+                                     id="civilCourtFaq">
+
+
+                                    <!-- CIVIL FAQ 1 -->
+
+                                    <div class="faq-item active">
+
+                                        <button class="faq-question"
+                                                type="button">
+
+                                            <span>
+                                                Jurisdiction
+                                            </span>
+
+                                            <i class="bi bi-chevron-up"></i>
+
+                                        </button>
+
+
+                                        <div class="faq-answer">
+
+                                            <p>
+                                                Civil Courts-এর jurisdiction বা এখতিয়ার নির্ধারণের ক্ষেত্রে
+                                                মামলার বিষয়বস্তু, দাবির ধরন, অর্থের পরিমাণ এবং প্রযোজ্য আইন
+                                                বিবেচনা করা হয়। কোন আদালতে মামলা দায়ের করতে হবে তা সংশ্লিষ্ট
+                                                আইনের বিধান ও আদালতের এখতিয়ারের ওপর নির্ভর করে।
+                                            </p>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- CIVIL FAQ 2 -->
+
+                                    <div class="faq-item">
+
+                                        <button class="faq-question"
+                                                type="button">
+
+                                            <span>
+                                                Case Types
+                                            </span>
+
+                                            <i class="bi bi-chevron-down"></i>
+
+                                        </button>
+
+
+                                        <div class="faq-answer">
+
+                                            <p>
+                                                Civil Courts-এ সম্পত্তি, টাকা-পয়সা, চুক্তি, মালিকানা,
+                                                দখল, ক্ষতিপূরণ, নিষেধাজ্ঞা, ঘোষণা এবং অন্যান্য দেওয়ানি
+                                                অধিকার সংক্রান্ত মামলা হতে পারে।
+                                            </p>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- CIVIL FAQ 3 -->
+
+                                    <div class="faq-item">
+
+                                        <button class="faq-question"
+                                                type="button">
+
+                                            <span>
+                                                Structures
+                                            </span>
+
+                                            <i class="bi bi-chevron-down"></i>
+
+                                        </button>
+
+
+                                        <div class="faq-answer">
+
+                                            <p>
+                                                দেওয়ানি আদালতের বিভিন্ন স্তর ও এখতিয়ার রয়েছে। মামলার
+                                                প্রকৃতি, আর্থিক মূল্য এবং প্রযোজ্য আইন অনুযায়ী সংশ্লিষ্ট
+                                                আদালত মামলাটি শুনানি ও নিষ্পত্তি করে।
+                                            </p>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- ===============================
+                                 CIVIL LAWYER MODAL BUTTON
+                            ================================ -->
+
+                            <div style="margin-top: 15px;">
+
+                                <a href="#"
+                                   class="practice-area-card"
+                                   data-bs-toggle="modal"
+                                   data-bs-target="#districtCivilCourtModal"
+                                   style="color: #fff !important;">
+
+                                    <div class="card-1"
+                                         style="padding: 15px 5px 10px 6px;
+                                                margin-bottom: 5px;
+                                                min-height: 50px;
+                                                max-width: 240px;
+                                                background-color: #000;">
+
+                                        <h6 style="font-size:15px;color: #fff;">
+                                            Lawyers Practicing Area
+                                        </h6>
+
+                                    </div>
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =================================================
+                             CRIMINAL COURTS CONTENT
+                        ================================================== -->
+
+                        <div class="tab-pane fade"
+                             id="criminal-courts-content"
+                             role="tabpanel"
+                             aria-labelledby="criminal-courts-tab"
+                             tabindex="0">
+
+
+                            <h4>
+                                Criminal Courts — Overview
+                            </h4>
+
+
+                            <p>
+                                Criminal Courts হলো এমন আদালত যেখানে
+                                <strong style="font-weight: bold;">
+                                    অপরাধ সংঘটনের অভিযোগ, ফৌজদারি মামলা, অভিযুক্ত ব্যক্তির
+                                    বিচার এবং আইন অনুযায়ী শাস্তি বা অন্যান্য আইনগত প্রতিকার
+                                </strong>
+                                সংক্রান্ত বিষয় শুনানি ও নিষ্পত্তি করা হয়।
+                            </p>
+
+
+                            <p>
+                                কোনো ব্যক্তি বা প্রতিষ্ঠানের বিরুদ্ধে অপরাধ সংঘটনের অভিযোগ
+                                উঠলে প্রযোজ্য আইন ও নির্ধারিত বিচারিক প্রক্রিয়া অনুসরণ করে
+                                মামলাটি Criminal Courts-এর মাধ্যমে পরিচালিত হতে পারে।
+                                আদালত মামলার নথি, সাক্ষ্য-প্রমাণ, সাক্ষীদের বক্তব্য এবং
+                                উভয় পক্ষের আইনগত উপস্থাপনা বিবেচনা করে সিদ্ধান্ত প্রদান করে।
+                            </p>
+
+
+                            <p>
+                                Criminal proceedings-এর ক্ষেত্রে অভিযোগের প্রকৃতি, অপরাধের
+                                ধরন এবং প্রযোজ্য আইনের ওপর ভিত্তি করে সংশ্লিষ্ট আদালতের
+                                jurisdiction নির্ধারিত হয়। মামলার প্রতিটি ধাপে আইনগত
+                                প্রক্রিয়া ও আদালতের নির্দেশনা অনুসরণ করা গুরুত্বপূর্ণ।
+                            </p>
+
+
+                            <h5>
+                                Criminal Courts-এ কী ধরনের মামলা হতে পারে?
+                            </h5>
+
+
+                            <ul>
+
+                                <li>
+                                    চুরি ও ছিনতাই সংক্রান্ত মামলা
+                                </li>
+
+                                <li>
+                                    প্রতারণা ও জালিয়াতি সংক্রান্ত মামলা
+                                </li>
+
+                                <li>
+                                    মারামারি ও আঘাত সংক্রান্ত মামলা
+                                </li>
+
+                                <li>
+                                    হত্যাকাণ্ড সংক্রান্ত মামলা
+                                </li>
+
+                                <li>
+                                    মাদকদ্রব্য সংক্রান্ত মামলা
+                                </li>
+
+                                <li>
+                                    নারী ও শিশু নির্যাতন সংক্রান্ত মামলা
+                                </li>
+
+                                <li>
+                                    ফৌজদারি ষড়যন্ত্র ও অন্যান্য অপরাধ সংক্রান্ত মামলা
+                                </li>
+
+                                <li>
+                                    বিশেষ আইন অনুযায়ী সংঘটিত অপরাধের মামলা
+                                </li>
+
+                                <li>
+                                    অন্যান্য ফৌজদারি অপরাধ সংক্রান্ত মামলা
+                                </li>
+
+                            </ul>
+
+
+                            <!-- ===============================
+                                 CRIMINAL FAQ
+                            ================================ -->
+
+                            <div class="faq-card criminal-faq-card">
+
+                                <div class="faq-accordion"
+                                     id="criminalCourtFaq">
+
+
+                                    <!-- CRIMINAL FAQ 1 -->
+
+                                    <div class="faq-item active">
+
+                                        <button class="faq-question"
+                                                type="button">
+
+                                            <span>
+                                                Jurisdiction
+                                            </span>
+
+                                            <i class="bi bi-chevron-up"></i>
+
+                                        </button>
+
+
+                                        <div class="faq-answer">
+
+                                            <p>
+                                                Criminal Courts-এর jurisdiction নির্ভর করে অপরাধের
+                                                ধরন, প্রযোজ্য আইন এবং সংশ্লিষ্ট আদালতের নির্ধারিত
+                                                এখতিয়ারের ওপর। মামলার প্রকৃতি অনুযায়ী কোন আদালতে
+                                                বিচার হবে তা আইন দ্বারা নির্ধারিত হতে পারে।
+                                            </p>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- CRIMINAL FAQ 2 -->
+
+                                    <div class="faq-item">
+
+                                        <button class="faq-question"
+                                                type="button">
+
+                                            <span>
+                                                Criminal Case Types
+                                            </span>
+
+                                            <i class="bi bi-chevron-down"></i>
+
+                                        </button>
+
+
+                                        <div class="faq-answer">
+
+                                            <p>
+                                                Criminal Courts-এ ব্যক্তি বা প্রতিষ্ঠানের বিরুদ্ধে
+                                                সংঘটিত বিভিন্ন অপরাধের অভিযোগে মামলা হতে পারে।
+                                                অপরাধের প্রকৃতি ও প্রযোজ্য আইনের ভিত্তিতে মামলার
+                                                ধরন এবং বিচারিক প্রক্রিয়া নির্ধারিত হয়।
+                                            </p>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- CRIMINAL FAQ 3 -->
+
+                                    <div class="faq-item">
+
+                                        <button class="faq-question"
+                                                type="button">
+
+                                            <span>
+                                                Criminal Proceedings
+                                            </span>
+
+                                            <i class="bi bi-chevron-down"></i>
+
+                                        </button>
+
+
+                                        <div class="faq-answer">
+
+                                            <p>
+                                                Criminal proceedings-এর বিভিন্ন পর্যায়ে অভিযোগ,
+                                                তদন্ত, সাক্ষ্য-প্রমাণ, শুনানি এবং আদালতের সিদ্ধান্ত
+                                                গুরুত্বপূর্ণ ভূমিকা পালন করে। প্রতিটি ধাপ সংশ্লিষ্ট
+                                                আইন ও আদালতের নির্ধারিত প্রক্রিয়া অনুযায়ী পরিচালিত হয়।
+                                            </p>
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- ===============================
+                                 CRIMINAL LAWYER MODAL BUTTON
+                            ================================ -->
+
+                            <div style="margin-top: 15px;">
+
+                                <a href="#"
+                                   class="practice-area-card"
+                                   data-bs-toggle="modal"
+                                   data-bs-target="#districtCriminalCourtModal"
+                                   style="color: #fff !important;">
+
+                                    <div class="card-1"
+                                         style="padding: 15px 5px 10px 6px;
+                                                margin-bottom: 5px;
+                                                min-height: 50px;
+                                                max-width: 240px;
+                                                background-color: #000;">
+
+                                        <h6 style="font-size:15px;color: #fff;">
+                                            Lawyers Practicing Area
+                                        </h6>
+
+                                    </div>
+
+                                </a>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
     </div>
-</main>
+
+</div>
+
+
+
+<!-- =========================================================
+     CIVIL COURTS MODAL
+========================================================= -->
+
+<div class="modal fade provider-type-modal"
+     id="districtCivilCourtModal"
+     tabindex="-1"
+     aria-labelledby="districtCivilCourtModalLabel"
+     aria-hidden="true">
+
+    <div class="modal-dialog provider-modal-dialog modal-sm">
+
+        <div class="modal-content provider-modal-content">
+
+
+            <!-- CLOSE BUTTON -->
+
+            <button type="button"
+                    class="provider-modal-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close">
+
+                <i class="bi bi-x-lg"></i>
+
+            </button>
+
+
+            <div class="modal-body provider-modal-body">
+
+
+                <!-- TITLE -->
+
+                <h4 class="provider-modal-title"
+                    id="districtCivilCourtModalLabel">
+
+                    Find civil law expert
+
+                </h4>
+
+
+                <!-- SUBTITLE -->
+
+                <p class="provider-modal-subtitle">
+
+                    Select provider type
+
+                </p>
+
+
+                <!-- PROVIDER TYPE BUTTONS -->
+
+                <div class="provider-type-grid">
+
+
+                    <!-- ADVOCATE -->
+
+                    <a href="#"
+                       class="provider-type-btn">
+
+                        Find <br>
+                        Advocate
+
+                    </a>
+
+
+                    <!-- BARRISTER -->
+
+                    <a href="#"
+                       class="provider-type-btn">
+
+                        Find <br>
+                        Barrister
+
+                    </a>
+
+
+                    <!-- LAW FIRM -->
+
+                    <a href="#"
+                       class="provider-type-btn">
+
+                        Find <br>
+                        Law firm
+
+                    </a>
+
+
+                    <!-- LEGAL CONSULTANTS -->
+
+                    <a href="#"
+                       class="provider-type-btn">
+
+                        Legal Find <br>
+                        consultants
+
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     CRIMINAL COURTS MODAL
+========================================================= -->
+
+<div class="modal fade provider-type-modal"
+     id="districtCriminalCourtModal"
+     tabindex="-1"
+     aria-labelledby="districtCriminalCourtModalLabel"
+     aria-hidden="true">
+
+    <div class="modal-dialog provider-modal-dialog modal-sm">
+
+        <div class="modal-content provider-modal-content">
+
+
+            <!-- CLOSE BUTTON -->
+
+            <button type="button"
+                    class="provider-modal-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close">
+
+                <i class="bi bi-x-lg"></i>
+
+            </button>
+
+
+            <div class="modal-body provider-modal-body">
+
+
+                <!-- TITLE -->
+
+                <h4 class="provider-modal-title"
+                    id="districtCriminalCourtModalLabel">
+
+                    Find criminal law expert
+
+                </h4>
+
+
+                <!-- SUBTITLE -->
+
+                <p class="provider-modal-subtitle">
+
+                    Select provider type
+
+                </p>
+
+
+                <!-- PROVIDER TYPE BUTTONS -->
+
+                <div class="provider-type-grid">
+
+
+                    <!-- ADVOCATE -->
+
+                    <a href="#"
+                       class="provider-type-btn">
+
+                        Find <br>
+                        Advocate
+
+                    </a>
+
+
+                    <!-- BARRISTER -->
+
+                    <a href="#"
+                       class="provider-type-btn">
+
+                        Find <br>
+                        Barrister
+
+                    </a>
+
+
+                    <!-- LAW FIRM -->
+
+                    <a href="#"
+                       class="provider-type-btn">
+
+                        Find <br>
+                        Law firm
+
+                    </a>
+
+
+                    <!-- LEGAL CONSULTANTS -->
+
+                    <a href="#"
+                       class="provider-type-btn">
+
+                        Find <br>
+                        consultants
+
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     FAQ JAVASCRIPT
+========================================================= -->
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | CIVIL COURTS FAQ
+    |--------------------------------------------------------------------------
+    */
+
+    const civilFaq = document.getElementById('civilCourtFaq');
+
+    if (civilFaq) {
+
+        const civilQuestions =
+            civilFaq.querySelectorAll('.faq-question');
+
+
+        civilQuestions.forEach(function (question) {
+
+            question.addEventListener('click', function () {
+
+                const currentItem =
+                    this.closest('.faq-item');
+
+                const isActive =
+                    currentItem.classList.contains('active');
+
+
+                /*
+                |--------------------------------------------------------------------------
+                | শুধু Civil FAQ-এর item বন্ধ হবে
+                |--------------------------------------------------------------------------
+                */
+
+                civilFaq.querySelectorAll('.faq-item')
+                    .forEach(function (item) {
+
+                        item.classList.remove('active');
+
+                        const icon =
+                            item.querySelector('.faq-question i');
+
+                        if (icon) {
+
+                            icon.classList.remove('bi-chevron-up');
+
+                            icon.classList.add('bi-chevron-down');
+
+                        }
+
+                    });
+
+
+                /*
+                |--------------------------------------------------------------------------
+                | Current Civil FAQ open
+                |--------------------------------------------------------------------------
+                */
+
+                if (!isActive) {
+
+                    currentItem.classList.add('active');
+
+                    const icon =
+                        currentItem.querySelector('.faq-question i');
+
+                    if (icon) {
+
+                        icon.classList.remove('bi-chevron-down');
+
+                        icon.classList.add('bi-chevron-up');
+
+                    }
+
+                }
+
+            });
+
+        });
+
+    }
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | CRIMINAL COURTS FAQ
+    |--------------------------------------------------------------------------
+    */
+
+    const criminalFaq =
+        document.getElementById('criminalCourtFaq');
+
+
+    if (criminalFaq) {
+
+        const criminalQuestions =
+            criminalFaq.querySelectorAll('.faq-question');
+
+
+        criminalQuestions.forEach(function (question) {
+
+            question.addEventListener('click', function () {
+
+                const currentItem =
+                    this.closest('.faq-item');
+
+                const isActive =
+                    currentItem.classList.contains('active');
+
+
+                /*
+                |--------------------------------------------------------------------------
+                | শুধু Criminal FAQ-এর item বন্ধ হবে
+                |--------------------------------------------------------------------------
+                */
+
+                criminalFaq.querySelectorAll('.faq-item')
+                    .forEach(function (item) {
+
+                        item.classList.remove('active');
+
+                        const icon =
+                            item.querySelector('.faq-question i');
+
+                        if (icon) {
+
+                            icon.classList.remove('bi-chevron-up');
+
+                            icon.classList.add('bi-chevron-down');
+
+                        }
+
+                    });
+
+
+                /*
+                |--------------------------------------------------------------------------
+                | Current Criminal FAQ open
+                |--------------------------------------------------------------------------
+                */
+
+                if (!isActive) {
+
+                    currentItem.classList.add('active');
+
+                    const icon =
+                        currentItem.querySelector('.faq-question i');
+
+                    if (icon) {
+
+                        icon.classList.remove('bi-chevron-down');
+
+                        icon.classList.add('bi-chevron-up');
+
+                    }
+
+                }
+
+            });
+
+        });
+
+    }
+
+
+});
+
+</script>
+
+
 @endsection

@@ -51,7 +51,7 @@ class FrontenController extends Controller
 
     // Court & Jurisdictions started
 
-    public function supremecourt(){
+    public function supremeCourt(){
         $data['categories']     = Category::all();
         $data['departments']    = Department::orderBy('sort','asc')->get();
         $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
@@ -59,7 +59,7 @@ class FrontenController extends Controller
         return view('frontend.courts.supreme_court',$data);
     }
 
-    public function highcourtdivision(){
+    public function highcourtDivision(){
         $data['categories']     = Category::all();
         $data['departments']    = Department::orderBy('sort','asc')->get();
         $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
@@ -67,7 +67,7 @@ class FrontenController extends Controller
         return view('frontend.courts.highcourt_division',$data);
     }
 
-    public function districtcourt(){
+    public function districtCourt(){
         $data['categories']     = Category::all();
         $data['departments']    = Department::orderBy('sort','asc')->get();
         $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
@@ -75,7 +75,7 @@ class FrontenController extends Controller
         return view('frontend.courts.district_court',$data);
     }
 
-    public function tribunals(){
+    public function tribunalsCourt(){
         $data['categories']     = Category::all();
         $data['departments']    = Department::orderBy('sort','asc')->get();
         $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);

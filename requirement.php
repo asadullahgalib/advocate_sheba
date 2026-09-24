@@ -51,7 +51,11 @@ Explore Legal Knowledge by Topic.
 -----------
 1. law firm er page home page er 3 ta box theke je link kora ase tar moto hobe sudu profile er jaigai law firm (songoton) er name gula thakbe.
 2. Ai page e ja ja ase tai hobe law firm er jonno.
-3. 
+
+23/09/2026:
+----------
+1. iner/outer thakbe. overviw->description & niche ta buttton & click korle description show hobe. accordin type.
+2. Lawyers practicing here aikhane click korle home page er find 4 ta box er link hobe.
 
 
 
@@ -63,6 +67,3 @@ Explore Legal Knowledge by Topic.
 
 
 
-Movie:
-======
-https://www.youtube.com/watch?v=mBBuHOt3z7o

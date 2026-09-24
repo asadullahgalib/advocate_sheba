@@ -25,12 +25,16 @@ Route::get('/clear-cache', function () {
 
 Route::get('/','Frontend\FrontenController@index');
 
-
-Route::get('/supreme-court','Frontend\FrontenController@supremecourt')->name('supreme.court');
-Route::get('/highcourt-division','Frontend\FrontenController@highcourtdivision')->name('highcourt.division');
-Route::get('/district-court','Frontend\FrontenController@districtcourt')->name('district.court');
-Route::get('/tribunals','Frontend\FrontenController@tribunals')->name('tribunals');
-
+// Courts
+Route::get('/supreme-court','Frontend\FrontenController@supremeCourt')->name('supreme.court');
+Route::get('/highcourt-division','Frontend\FrontenController@highcourtDivision')->name('highcourt.division');
+Route::get('/district-court','Frontend\FrontenController@districtCourt')->name('district.court');
+Route::get('/tribunals-court','Frontend\FrontenController@tribunalsCourt')->name('tribunals');
+// Legal Information
+Route::get('/legal/information/rights','Frontend\FrontenController@legalInformationRights')->name('legal.information.rights');
+Route::get('/legal/information/terms','Frontend\FrontenController@legalInformationTerms')->name('legal.information.terms');
+Route::get('/legal/information/laws','Frontend\FrontenController@legalInformationLaws')->name('legal.information.laws');
+Route::get('/legal/information/procudures','Frontend\FrontenController@legalInformationProcudures')->name('legal.information.procudures');
 
 Route::get('/advocate-list','Frontend\FrontenController@advocateList')->name('our.advocate-list');
 Route::get('/find-advocate-list','Frontend\FrontenController@findAdvocateList')->name('find.our.advocate-list');
