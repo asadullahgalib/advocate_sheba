@@ -59,12 +59,12 @@ class FrontenController extends Controller
         return view('frontend.courts.supreme_court',$data);
     }
 
-    public function highcourtDivision(){
+    public function villageCourt(){
         $data['categories']     = Category::all();
         $data['departments']    = Department::orderBy('sort','asc')->get();
         $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
-        $data['page_type']      = 'highcourtdivision';
-        return view('frontend.courts.highcourt_division',$data);
+        $data['page_type']      = 'village_court';
+        return view('frontend.courts.village_court',$data);
     }
 
     public function districtCourt(){
@@ -93,6 +93,38 @@ class FrontenController extends Controller
         $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
         $data['page_type']      = 'rights';
         return view('frontend.legal_information.rights',$data);
+    }
+
+    public function legalInformationTerms(){
+        $data['categories']     = Category::all();
+        $data['departments']    = Department::orderBy('sort','asc')->get();
+        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
+        $data['page_type']      = 'terms';
+        return view('frontend.legal_information.terms',$data);
+    }
+
+    public function legalInformationLaws(){
+        $data['categories']     = Category::all();
+        $data['departments']    = Department::orderBy('sort','asc')->get();
+        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
+        $data['page_type']      = 'laws';
+        return view('frontend.legal_information.laws',$data);
+    }
+
+    public function legalInformationProcudures(){
+        $data['categories']     = Category::all();
+        $data['departments']    = Department::orderBy('sort','asc')->get();
+        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
+        $data['page_type']      = 'procedures';
+        return view('frontend.legal_information.procedures',$data);
+    }
+
+    public function lawDetails(){
+        $data['categories']     = Category::all();
+        $data['departments']    = Department::orderBy('sort','asc')->get();
+        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
+        $data['page_type']      = 'law_details';
+        return view('frontend.law.law_details',$data);
     }
 
     // Legal Information ends

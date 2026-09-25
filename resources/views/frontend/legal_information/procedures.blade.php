@@ -30,7 +30,7 @@
              style="padding: 15px 0px 0px 0px; margin-bottom: -15px;">
 
             <h1 class="blog-title">
-                <i class="fa fa-bank"></i> Know Your Rights
+                <i class="fa fa-bank"></i> Legal Procedures
             </h1>
 
         </div>
@@ -47,7 +47,7 @@
                 <div class="blog-article-content">
 
                     <h4 style="margin-bottom: 10px;">
-                        আপনার অধিকার সম্পর্কে জানুন
+                        আইনি প্রক্রিয়া
                     </h4>
                 </div>
 
@@ -73,8 +73,9 @@
                             type="button">
 
                         <span>
-                            মৌলিক অধিকার <br>
-                            Foundamental Rights
+                            <!-- <i class="fa fa-car" aria-hidden="true" style="font-size: 25px;border: 1px solid #b9b9c3;padding: 10px;border-radius: 100%;"></i>  -->
+                            ফৌজদারি প্রক্রিয়া <br>
+                            Criminal Procedures
                         </span>
 
                         <i class="bi bi-chevron-up"></i>
@@ -158,8 +159,9 @@
                             type="button">
 
                         <span>
-                            গ্রেফতার ও আটক অধিকার <br>
-                            Arrest and Detention Rights
+                            <!-- <i class="fa fa-file-pdf-o" aria-hidden="true" style="font-size: 25px;border: 1px solid #b9b9c3;padding: 10px;border-radius: 100%;"></i>  -->
+                            দেওয়ানি প্রক্রিয়া <br>
+                            Civil Procedures
                         </span>
 
                         <i class="bi bi-chevron-down"></i>
@@ -270,8 +272,9 @@
                             type="button">
 
                         <span>
-                            ন্যায় বিচার পাওয়ার অধিকার <br>
-                            Rights to Justice
+                            <!-- <i class="fa fa-users" aria-hidden="true" style="font-size: 25px;border: 1px solid #b9b9c3;padding: 10px;border-radius: 100%;"></i>  -->
+                            পারিবারিক প্রক্রিয়া <br>
+                            Family Procedures
                         </span>
 
                         <i class="bi bi-chevron-down"></i>
@@ -354,8 +357,9 @@
                             type="button">
 
                         <span>
-                            আইনি সহায়তার অধিকার <br>
-                            Legal Aid
+                            <!-- <i class="fa fa-home" aria-hidden="true" style="font-size: 25px;border: 1px solid #b9b9c3;padding: 10px;border-radius: 100%;"></i>  -->
+                            সম্পত্তি ও জমি প্রক্রিয়া <br>
+                            Property Procedures
                         </span>
 
                         <i class="bi bi-chevron-down"></i>
@@ -425,8 +429,9 @@
                             type="button">
 
                         <span>
-                            নারীর অধিকার <br>
-                            Women's Rights
+                            <!-- <i class="fa fa-id-card-o" aria-hidden="true" style="font-size: 25px;border: 1px solid #b9b9c3;padding: 10px;border-radius: 100%;"></i>   -->
+                            নাগরিক সনদ প্রিক্রিয়া <br>
+                            Citizen Certificate Procedures
                         </span>
 
                         <i class="bi bi-chevron-down"></i>

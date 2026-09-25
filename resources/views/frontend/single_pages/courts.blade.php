@@ -46,40 +46,13 @@
 
                 </div>
 
-
                 <!-- Card 2 -->
-                <div class="col-6 col-md-3">
-
-                    <a href="{{route('highcourt.division')}}" class="directory-card court-card directory-card2">
-
-                        <div class="directory-icon">
-                            <i class="bi bi-buildings"></i>
-                        </div>
-
-                        <h3>
-                            High Court<br>
-                            Division
-                        </h3>
-
-                        <div class="title-line"></div>
-
-                        <div class="card-bottom">
-                            <span>View Details</span>
-                            <i class="bi bi-chevron-right"></i>
-                        </div>
-
-                    </a>
-
-                </div>
-
-
-                <!-- Card 3 -->
                 <div class="col-6 col-md-3">
 
                     <a href="{{route('district.court')}}" class="directory-card court-card directory-card2">
 
                         <div class="directory-icon">
-                            <i class="bi bi-bank2"></i>
+                            <i class="bi bi-buildings"></i>
                         </div>
 
                         <h3>
@@ -99,7 +72,7 @@
                 </div>
 
 
-                <!-- Card 4 -->
+                <!-- Card 3 -->
                 <div class="col-6 col-md-3">
 
                     <a href="{{route('tribunals.courts')}}" class="directory-card court-card directory-card2">
@@ -112,6 +85,31 @@
                             Tribunals
                             <br>
                             ....
+                        </h3>
+
+                        <div class="title-line"></div>
+
+                        <div class="card-bottom">
+                            <span>View Details</span>
+                            <i class="bi bi-chevron-right"></i>
+                        </div>
+
+                    </a>
+
+                </div>
+
+                <!-- Card 4 -->
+                <div class="col-6 col-md-3">
+
+                    <a href="{{route('village.court')}}" class="directory-card court-card directory-card2">
+
+                        <div class="directory-icon">
+                            <i class="bi bi-bank"></i>
+                        </div>
+
+                        <h3>
+                            Village<br>
+                            Court
                         </h3>
 
                         <div class="title-line"></div>

@@ -9,6 +9,9 @@
 
 <link rel="stylesheet"
       href="{{ asset('assets/css/court_details.css') }}">
+
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/find_advocate.css')}}">
+
 <style>
     .faq-question{
         min-height: 50px;
@@ -30,7 +33,7 @@
              style="padding: 15px 0px 0px 0px; margin-bottom: -15px;">
 
             <h1 class="blog-title">
-                <i class="fa fa-bank"></i> Know Your Rights
+                <i class="fa fa-balance-scale"></i> Criminal Law
             </h1>
 
         </div>
@@ -46,9 +49,14 @@
 
                 <div class="blog-article-content">
 
-                    <h4 style="margin-bottom: 10px;">
-                        আপনার অধিকার সম্পর্কে জানুন
-                    </h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
                 </div>
 
             </div>
@@ -73,8 +81,7 @@
                             type="button">
 
                         <span>
-                            মৌলিক অধিকার <br>
-                            Foundamental Rights
+                            Bail Application
                         </span>
 
                         <i class="bi bi-chevron-up"></i>
@@ -84,64 +91,60 @@
 
                     <div class="faq-answer">
 
-                        <p style="margin-bottom:15px">
-                            মৌলিক অধিকার হলো সংবিধান কর্তৃক স্বীকৃত
-                            এমন অধিকার যা একজন নাগরিকের স্বাধীনতা,
-                            মর্যাদা, সমতা এবং ন্যায়বিচার নিশ্চিত করার
-                            জন্য গুরুত্বপূর্ণ।
-                        </p>
-
                         <!-- 1 -->
                         <div style="margin-bottom: 12px;">
                             <h6>
-                                সমতার অধিকারঃ
+                                Overview:
                             </h6>
 
                             <p>
-                                আইনের দৃষ্টিতে সকল নাগরিকের
-                                সমান অধিকার এবং সমান সুরক্ষা
-                                পাওয়ার বিষয়টি সমতার অধিকারের
-                                অন্তর্ভুক্ত।
+                                Criminal Law বা ফৌজদারি আইন হলো এমন আইন, যার মাধ্যমে অপরাধ হিসেবে গণ্য কর্মকাণ্ড নির্ধারণ, অপরাধের তদন্ত ও বিচার এবং আইন অনুযায়ী শাস্তির বিধান নির্ধারিত হয়। বাংলাদেশের ফৌজদারি বিচারব্যবস্থায় বিভিন্ন ধরনের অপরাধের বিচার Sessions Courts ও Magistrates’ Courts-এর মাধ্যমে হয়ে থাকে।
                             </p>
+
+                            <p>Criminal Law-এর গুরুত্বপূর্ণ বিষয়সমূহ</p>
                         </div>
 
                         <!-- 2 -->
                         <div style="margin-bottom: 12px;">
                             <h6>
-                                স্বাধীনতার অধিকারঃ
+                                Criminal Offence — ফৌজদারি অপরাধঃ 
                             </h6>
 
                             <p>
-                                আইন দ্বারা নির্ধারিত সীমার
-                                মধ্যে একজন নাগরিকের বিভিন্ন
-                                মৌলিক স্বাধীনতা ও অধিকার
-                                থাকতে পারে।
+                                হত্যা, চুরি, প্রতারণা, মারামারি, জালিয়াতি, অপরাধমূলক ষড়যন্ত্রসহ বিভিন্ন কর্মকাণ্ড আইন অনুযায়ী ফৌজদারি অপরাধ হতে পারে।
                             </p>
                         </div>
 
                         <!-- 3 -->
                         <div style="margin-bottom: 12px;">
                             <h6>
-                                আইনের দৃষ্টিতে সমতাঃ
+                                Investigation — তদন্তঃ
                             </h6>
 
                             <p>
-                                প্রত্যেক ব্যক্তির ক্ষেত্রে
-                                আইন প্রয়োগের সময় সমতার নীতি
-                                গুরুত্বপূর্ণ।
+                                অপরাধের অভিযোগ পাওয়ার পর আইন অনুযায়ী তদন্ত ও প্রমাণ সংগ্রহের প্রক্রিয়া পরিচালিত হয়। তদন্তের ফলাফলের ভিত্তিতে পরবর্তী আইনগত কার্যক্রম এগিয়ে যায়।
                             </p>
                         </div>
 
                         <!-- 4 -->
                         <div style="margin-bottom: 12px;">
                             <h6>
-                                বৈষম্য থেকে সুরক্ষাঃ
+                                Criminal Trial — ফৌজদারি বিচারঃ
                             </h6>
 
                             <p>
-                                আইনগত অধিকার প্রয়োগের ক্ষেত্রে
-                                অন্যায় বৈষম্য থেকে সুরক্ষার
-                                বিষয়টি গুরুত্বপূর্ণ।
+                                আদালত অভিযোগ, সাক্ষ্য-প্রমাণ এবং উভয় পক্ষের বক্তব্য বিবেচনা করে মামলার বিচার পরিচালনা করে। মামলার ধরন ও অপরাধের প্রকৃতি অনুযায়ী সংশ্লিষ্ট আদালতে বিচার হতে পারে।
+                            </p>
+                        </div>
+
+                        <!-- 5 -->
+                        <div style="margin-bottom: 12px;">
+                            <h6>
+                                Bail — জামিনঃ
+                            </h6>
+
+                            <p>
+                                মামলার প্রকৃতি ও প্রযোজ্য আইনের বিধান অনুযায়ী কোনো অভিযুক্ত ব্যক্তি জামিনের আবেদন করতে পারেন। জামিনযোগ্যতা মামলার নির্দিষ্ট আইন ও পরিস্থিতির ওপর নির্ভর করে।
                             </p>
                         </div>
 
@@ -158,8 +161,7 @@
                             type="button">
 
                         <span>
-                            গ্রেফতার ও আটক অধিকার <br>
-                            Arrest and Detention Rights
+                            Fir Assistance
                         </span>
 
                         <i class="bi bi-chevron-down"></i>
@@ -270,8 +272,7 @@
                             type="button">
 
                         <span>
-                            ন্যায় বিচার পাওয়ার অধিকার <br>
-                            Rights to Justice
+                            Trial Representation
                         </span>
 
                         <i class="bi bi-chevron-down"></i>
@@ -354,8 +355,7 @@
                             type="button">
 
                         <span>
-                            আইনি সহায়তার অধিকার <br>
-                            Legal Aid
+                            Cyber Crime Case
                         </span>
 
                         <i class="bi bi-chevron-down"></i>
@@ -417,72 +417,95 @@
 
                 </div>
 
-                <!-- CIVIL FAQ 5 -->
+            </div>
 
-                <div class="faq-item">
+        </div>
 
-                    <button class="faq-question"
-                            type="button">
+    </div>
 
-                        <span>
-                            নারীর অধিকার <br>
-                            Women's Rights
+</div>
+
+<!-- Legal Articles -->
+<section class="legal-articles-section" style="background-color: #ffffff;padding: 10px 20px 20px;">
+
+    <div class="container-fluid">
+
+        <!-- ============================
+             FEATURED ARTICLES HEADER
+        ============================= -->
+
+        <div class="section-heading featured-heading">
+
+            <div class="section-heading-left">
+
+                <div class="featured-star">
+                    <i class="fa-solid fa-star"></i>
+                </div>
+
+                <h3>Related Articles</h3>
+
+            </div>
+
+
+            <a href="#" class="view-all-articles">
+                View All Articles
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </div>
+
+
+        <!-- ============================
+             FEATURED ARTICLES
+        ============================= -->
+
+        <div class="row featured-articles-row">
+
+
+            <!-- Article 1 -->
+
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+
+                <div class="featured-article-card">
+
+                    <div class="article-image">
+
+                        <img src="{{asset('frontend/f1.jpg')}}" alt="Criminal Law">
+
+                        <span class="article-category">
+                            Criminal Law
                         </span>
 
-                        <i class="bi bi-chevron-down"></i>
-
-                    </button>
+                    </div>
 
 
-                    <div class="faq-answer">
+                    <div class="article-content">
 
-                        <p style="margin-bottom:15px">
-                            নারীর অধিকার হলো সমাজ, পরিবার, কর্মক্ষেত্র ও রাষ্ট্রীয় জীবনে নারীর সমান মর্যাদা, নিরাপত্তা, স্বাধীনতা ও আইনগত সুরক্ষা নিশ্চিত করার জন্য স্বীকৃত অধিকারসমূহ। কোনো নারী তার অধিকার লঙ্ঘিত হলে প্রযোজ্য আইন অনুযায়ী প্রতিকার ও আইনগত সহায়তা চাইতে পারেন।
-                        </p>
+                        <h4>
+                            What Are Your Rights
+                            When You Are Arrested?
+                        </h4>
 
-                        <!-- 1 -->
-                        <div style="margin-bottom: 12px;">
-                            <h6>
-                                সমান অধিকার ও মর্যাদাঃ
-                            </h6>
 
-                            <p>
-                                নারী আইন ও সমাজের চোখে সমান মর্যাদা ও অধিকার পাওয়ার অধিকার রাখেন। শিক্ষা, কর্মসংস্থান, সম্পত্তি ও সামাজিক জীবনে বৈষম্যের বিরুদ্ধে আইনগত সুরক্ষা রয়েছে।
-                            </p>
+                        <div class="article-meta">
+
+                            <span>
+                                <i class="fa-regular fa-calendar"></i>
+                                May 4, 2024
+                            </span>
+
+                            <span>
+                                <i class="fa-regular fa-eye"></i>
+                                1.2K Views
+                            </span>
+
                         </div>
 
-                        <!-- 2 -->
-                        <div style="margin-bottom: 12px;">
-                            <h6>
-                                সহিংসতা ও নির্যাতন থেকে সুরক্ষাঃ
-                            </h6>
 
-                            <p>
-                                শারীরিক, মানসিক, যৌন বা পারিবারিক নির্যাতনের শিকার হলে একজন নারী আইনগত প্রতিকার চাইতে পারেন। নির্যাতনের ধরন অনুযায়ী সংশ্লিষ্ট কর্তৃপক্ষ ও আদালতের মাধ্যমে প্রয়োজনীয় ব্যবস্থা নেওয়া যেতে পারে।
-                            </p>
-                        </div>
-
-                        <!-- 3 -->
-                        <div style="margin-bottom: 12px;">
-                            <h6>
-                                সম্পত্তি ও উত্তরাধিকারের অধিকারঃ
-                            </h6>
-
-                            <p>
-                                প্রযোজ্য ব্যক্তিগত আইন ও অন্যান্য সংশ্লিষ্ট আইনের অধীনে নারীর সম্পত্তি ও উত্তরাধিকার সংক্রান্ত অধিকার থাকতে পারে। এসব অধিকার নিয়ে বিরোধ সৃষ্টি হলে আইনগত পরামর্শ ও আদালতের আশ্রয় নেওয়া যায়।
-                            </p>
-                        </div>
-
-                        <!-- 4 -->
-                        <div style="margin-bottom: 12px;">
-                            <h6>
-                                কর্মক্ষেত্রে অধিকার ও নিরাপত্তাঃ
-                            </h6>
-
-                            <p>
-                                নারী কর্মক্ষেত্রে সম্মানজনক ও নিরাপদ পরিবেশে কাজ করার অধিকার রাখেন। যৌন হয়রানি, বৈষম্য বা অন্যান্য অনিয়মের শিকার হলে প্রযোজ্য আইন ও প্রতিষ্ঠানের নির্ধারিত প্রক্রিয়া অনুযায়ী প্রতিকার চাওয়া যেতে পারে।
-                            </p>
-                        </div>
+                        <a href="{{route('legal.article.details')}}" class="read-more">
+                            Read More
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
 
                     </div>
 
@@ -490,7 +513,335 @@
 
             </div>
 
+
+            <!-- Article 2 -->
+
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+
+                <div class="featured-article-card">
+
+                    <div class="article-image">
+
+                        <img src="{{asset('frontend/f2.jpg')}}" alt="Land Law">
+
+                        <span class="article-category">
+                            Land Law
+                        </span>
+
+                    </div>
+
+
+                    <div class="article-content">
+
+                        <h4>
+                            What to Check Before
+                            Buying a Land?
+                        </h4>
+
+
+                        <div class="article-meta">
+
+                            <span>
+                                <i class="fa-regular fa-calendar"></i>
+                                Apr 30, 2024
+                            </span>
+
+                            <span>
+                                <i class="fa-regular fa-eye"></i>
+                                980 Views
+                            </span>
+
+                        </div>
+
+
+                        <a href="{{route('legal.article.details')}}" class="read-more">
+                            Read More
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Article 3 -->
+
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+
+                <div class="featured-article-card">
+
+                    <div class="article-image">
+
+                        <img src="{{asset('frontend/f3.jpg')}}" alt="Family Law">
+
+                        <span class="article-category">
+                            Family Law
+                        </span>
+
+                    </div>
+
+
+                    <div class="article-content">
+
+                        <h4>
+                            What is the Legal Process
+                            of Divorce in Bangladesh?
+                        </h4>
+
+
+                        <div class="article-meta">
+
+                            <span>
+                                <i class="fa-regular fa-calendar"></i>
+                                May 1, 2024
+                            </span>
+
+                            <span>
+                                <i class="fa-regular fa-eye"></i>
+                                1.5K Views
+                            </span>
+
+                        </div>
+
+
+                        <a href="{{route('legal.article.details')}}" class="read-more">
+                            Read More
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Article 4 -->
+
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+
+                <div class="featured-article-card">
+
+                    <div class="article-image">
+
+                        <img src="{{asset('frontend/f4.jpg')}}" alt="Corporate Law">
+
+                        <span class="article-category">
+                            Corporate Law
+                        </span>
+
+                    </div>
+
+
+                    <div class="article-content">
+
+                        <h4>
+                            Steps to Register a Private
+                            Limited Company in Bangladesh
+                        </h4>
+
+
+                        <div class="article-meta">
+
+                            <span>
+                                <i class="fa-regular fa-calendar"></i>
+                                Apr 28, 2024
+                            </span>
+
+                            <span>
+                                <i class="fa-regular fa-eye"></i>
+                                860 Views
+                            </span>
+
+                        </div>
+
+
+                        <a href="{{route('legal.article.details')}}" class="read-more">
+                            Read More
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
         </div>
+
+    </div>
+
+</section>
+
+<!-- Video Gallery -->
+<div class="page-content mb-50" style="padding: 25px 0px 10px 0px;background-color: #f7f8fa;margin-bottom: -20px !important;border-radius: 15px;">
+    <div class="container">
+        <div class="section-title">
+            <div class="title text-center">
+                <h3 style="color: #1B489D;font-size: 23px;text-align: left;">
+                    <i class="bi bi-youtube" aria-hidden="true" style="color:red;"></i> 
+                    Related Video
+                    <br>
+                    <p style="margin-top: 7px;font-size: 13px;">আইন সম্পর্কে জানুন ভিডিও দেখে</p>
+                </h3>
+            </div>
+            <div class="title text-center mobile_view_all">
+                <h3 style="color: #1B489D;font-size: 20px;">
+                    <a href="#">View all <i class="fa fa-arrow-right"></i> </a>
+                </h3>
+            </div>
+        </div>
+        <div class="row">
+
+            <!-- Video 01 -->
+            <article class="col-xl-3 col-lg-4 col-md-6 text-center hover-up mb-30 animated">
+                <div class="post-thumb">
+
+                    <a href="#">
+
+                        <div class="video-thumb">
+
+                            <img 
+                                src="{{asset('frontend/video-1.jpg')}}" 
+                                alt="Cardiologist in Bangladesh"
+                            >
+
+                            <div class="video-overlay">
+                                <div class="youtube-icon">
+                                    <i class="fa fa-play"></i>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+                <div class="entry-content-2">
+                    <h4 class="post-title mb-15" style="font-size:17px;margin-top: 15px;">
+                        <a href="#">
+                            জমি বিক্রির আগে যে বিষয় গুলো জানা দরকার
+                        </a>
+                    </h4>
+                </div>
+            </article>
+
+
+            <!-- Video 02 -->
+            <article class="col-xl-3 col-lg-4 col-md-6 text-center hover-up mb-30 animated">
+                <div class="post-thumb">
+
+                    <a href="#">
+
+                        <div class="video-thumb">
+
+                            <img 
+                                src="{{asset('frontend/video-2.jpg')}}" 
+                                alt="Heart Specialist Doctor"
+                            >
+
+                            <div class="video-overlay">
+                                <div class="youtube-icon">
+                                    <i class="fa fa-play"></i>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+                <div class="entry-content-2">
+                    <h4 class="post-title mb-15" style="font-size:17px;margin-top: 15px;">
+                        <a href="#">
+                            নারীর আইনি অধিকার ও নিরাপত্তা
+                        </a>
+                    </h4>
+                </div>
+            </article>
+
+
+            <!-- Video 03 -->
+            <article class="col-xl-3 col-lg-4 col-md-6 text-center hover-up mb-30 animated">
+                <div class="post-thumb">
+
+                    <a href="#">
+
+                        <div class="video-thumb">
+
+                            <img 
+                                src="{{asset('frontend/video-3.jpg')}}" 
+                                alt="Heart Specialist Doctor"
+                            >
+
+                            <div class="video-overlay">
+                                <div class="youtube-icon">
+                                    <i class="fa fa-play"></i>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+                <div class="entry-content-2">
+                    <h4 class="post-title mb-15" style="font-size:17px;margin-top: 15px;">
+                        <a href="#">
+                            পারিবারিক বিরোধ নিস্পত্তি ও আপোস মীমাংসা
+                        </a>
+                    </h4>
+                </div>
+            </article>
+
+
+            <!-- Video 04 -->
+            <article class="col-xl-3 col-lg-4 col-md-6 text-center hover-up mb-30 animated">
+                <div class="post-thumb">
+
+                    <a href="#">
+
+                        <div class="video-thumb">
+
+                            <img 
+                                src="{{asset('frontend/video-4.jpg')}}" 
+                                alt="Heart Specialist Doctor"
+                            >
+
+                            <div class="video-overlay">
+                                <div class="youtube-icon">
+                                    <i class="fa fa-play"></i>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+                <div class="entry-content-2">
+                    <h4 class="post-title mb-15" style="font-size:17px;margin-top: 15px;">
+                        <a href="#">
+                            আইনি পরামর্শ
+                        </a>
+                    </h4>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</div>
+
+<div class="doctors-blog-page" style="margin-bottom: 20px;margin-top: 40px;">
+
+    <div class="blog-container">
 
         <div class="row" style="margin-top: 15px;">
             <div class="col-md-3">

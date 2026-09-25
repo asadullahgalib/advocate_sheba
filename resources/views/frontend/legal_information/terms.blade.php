@@ -30,7 +30,7 @@
              style="padding: 15px 0px 0px 0px; margin-bottom: -15px;">
 
             <h1 class="blog-title">
-                <i class="fa fa-bank"></i> Know Your Rights
+                <i class="fa fa-bank"></i> Legal Terms
             </h1>
 
         </div>
@@ -47,7 +47,7 @@
                 <div class="blog-article-content">
 
                     <h4 style="margin-bottom: 10px;">
-                        আপনার অধিকার সম্পর্কে জানুন
+                        আইনি পরিভাষা
                     </h4>
                 </div>
 
@@ -73,8 +73,8 @@
                             type="button">
 
                         <span>
-                            মৌলিক অধিকার <br>
-                            Foundamental Rights
+                            আদালত ও মামলা <br>
+                            Court & Cases
                         </span>
 
                         <i class="bi bi-chevron-up"></i>
@@ -158,8 +158,8 @@
                             type="button">
 
                         <span>
-                            গ্রেফতার ও আটক অধিকার <br>
-                            Arrest and Detention Rights
+                            ফৌজদারি আইন <br>
+                            Criminal Law
                         </span>
 
                         <i class="bi bi-chevron-down"></i>
@@ -270,8 +270,8 @@
                             type="button">
 
                         <span>
-                            ন্যায় বিচার পাওয়ার অধিকার <br>
-                            Rights to Justice
+                            দেওয়ানি আইন <br>
+                            Civil Law
                         </span>
 
                         <i class="bi bi-chevron-down"></i>
@@ -354,8 +354,8 @@
                             type="button">
 
                         <span>
-                            আইনি সহায়তার অধিকার <br>
-                            Legal Aid
+                            জামিন ও গ্রেফতার <br>
+                            Bail & Arrest
                         </span>
 
                         <i class="bi bi-chevron-down"></i>
@@ -425,8 +425,8 @@
                             type="button">
 
                         <span>
-                            নারীর অধিকার <br>
-                            Women's Rights
+                            তদন্ত ও প্রমাণ <br>
+                            Investigation & Evidence
                         </span>
 
                         <i class="bi bi-chevron-down"></i>

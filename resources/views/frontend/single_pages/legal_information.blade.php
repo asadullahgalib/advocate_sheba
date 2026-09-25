@@ -53,7 +53,7 @@
                 <!-- Card 2 -->
                 <div class="col-6 col-md-3">
 
-                    <a href="#" class="directory-card legal-card">
+                    <a href="{{route('legal.information.terms')}}" class="directory-card legal-card">
 
                         <div class="directory-icon">
                             <i class="bi bi-book"></i>
@@ -82,7 +82,7 @@
                 <!-- Card 3 -->
                 <div class="col-6 col-md-3">
 
-                    <a href="#" class="directory-card legal-card">
+                    <a href="{{route('legal.information.laws')}}" class="directory-card legal-card">
 
                         <div class="directory-icon">
                             <i class="bi bi-hammer"></i>
@@ -111,7 +111,7 @@
                 <!-- Card 4 -->
                 <div class="col-6 col-md-3">
 
-                    <a href="#" class="directory-card legal-card">
+                    <a href="{{route('legal.information.procudures')}}" class="directory-card legal-card">
 
                         <div class="directory-icon">
                             <i class="bi bi-file-earmark-text"></i>

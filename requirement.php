@@ -57,6 +57,9 @@ Explore Legal Knowledge by Topic.
 1. iner/outer thakbe. overviw->description & niche ta buttton & click korle description show hobe. accordin type.
 2. Lawyers practicing here aikhane click korle home page er find 4 ta box er link hobe.
 
+24/09/2026:
+----------
+high court hobe village court & aita last box e hobe. & find lawyar hobe 4 ta button
 
 
 Note: High court er modde village court dukhanu hoyese.

@@ -77,7 +77,7 @@
                         charges and your rights.
                     </p>
 
-                    <a href="#">
+                    <a href="{{route('law.details')}}">
                         Explore Articles
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -104,7 +104,7 @@
                         disputes and remedies.
                     </p>
 
-                    <a href="#">
+                    <a href="{{route('law.details')}}">
                         Explore Articles
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -131,7 +131,7 @@
                         maintenance and more.
                     </p>
 
-                    <a href="#">
+                    <a href="{{route('law.details')}}">
                         Explore Articles
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -158,7 +158,7 @@
                         ownership and disputes.
                     </p>
 
-                    <a href="#">
+                    <a href="{{route('law.details')}}">
                         Explore Articles
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -185,7 +185,7 @@
                         rights and disputes.
                     </p>
 
-                    <a href="#">
+                    <a href="{{route('law.details')}}">
                         Explore Articles
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -212,7 +212,7 @@
                         contracts and governance.
                     </p>
 
-                    <a href="#">
+                    <a href="{{route('law.details')}}">
                         Explore Articles
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -239,7 +239,7 @@
                         data protection and more.
                     </p>
 
-                    <a href="#">
+                    <a href="{{route('law.details')}}">
                         Explore Articles
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -266,7 +266,7 @@
                         practices and legal remedies.
                     </p>
 
-                    <a href="#">
+                    <a href="{{route('law.details')}}">
                         Explore Articles
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -293,7 +293,7 @@
                         planning and compliance.
                     </p>
 
-                    <a href="#">
+                    <a href="{{route('law.details')}}">
                         Explore Articles
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -320,7 +320,7 @@
                         marriage and other matters.
                     </p>
 
-                    <a href="#">
+                    <a href="{{route('law.details')}}">
                         Explore Articles
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
