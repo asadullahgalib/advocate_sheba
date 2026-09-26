@@ -86,18 +86,18 @@ class FrontenController extends Controller
     // Court & Jurisdictions ends
 
     // Legal Documents & Forms
-        public function legalForm(){
-            $data['categories']     = Category::all();
-            $data['departments']    = Department::orderBy('sort','asc')->get();
-            $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
-            $data['page_type']      = 'legal_form';
-            
-            // PDF ফাইলের পাথ সেট করুন (আপনার ডাটাবেজ বা পাবলিক ফোল্ডার অনুযায়ী পরিবর্তন করতে পারেন)
-            // উদাহরণ: asset('uploads/bail_form.pdf') 
-            $data['pdfUrl']         = asset('pdfs/bail_application_form.pdf'); 
-            
-            return view('frontend.document_forms.legal_form', $data);
-        }
+    public function legalForm(){
+        $data['categories']     = Category::all();
+        $data['departments']    = Department::orderBy('sort','asc')->get();
+        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
+        $data['page_type']      = 'legal_form';
+        $data['pdfUrl']         = asset('pdfs/bail_form.pdf'); 
+        
+        return view('frontend.document_forms.legal_form', $data);
+    }
+
+
+
 
 
     // Legal Information started
