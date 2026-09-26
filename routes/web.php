@@ -150,6 +150,46 @@ Route::group(['middleware'=>['auth','admin']],function(){
 			Route::post('/upazila/update/{id}','Backend\Setup\SetupController@updateUpazila')->name('setup.upazila.update');
 		});
 
+		// Practice Area
+		Route::prefix('practice-area')->group(function(){
+			Route::get('/view','Backend\PracticeAreaController@view')->name('practice-area.view');
+			Route::get('/add','Backend\PracticeAreaController@add')->name('practice-area.add');
+			Route::post('/store','Backend\PracticeAreaController@store')->name('practice-area.store');
+			Route::get('/edit/{id}','Backend\PracticeAreaController@edit')->name('practice-area.edit');
+			Route::post('/update/{id}','Backend\PracticeAreaController@update')->name('practice-area.update');
+			Route::post('/delete','Backend\PracticeAreaController@delete')->name('practice-area.delete');
+		});
+
+		// Practice Area
+		Route::prefix('practice-area')->group(function(){
+			Route::get('/view','Backend\PracticeAreaController@view')->name('practice-area.view');
+			Route::get('/add','Backend\PracticeAreaController@add')->name('practice-area.add');
+			Route::post('/store','Backend\PracticeAreaController@store')->name('practice-area.store');
+			Route::get('/edit/{id}','Backend\PracticeAreaController@edit')->name('practice-area.edit');
+			Route::post('/update/{id}','Backend\PracticeAreaController@update')->name('practice-area.update');
+			Route::post('/delete','Backend\PracticeAreaController@delete')->name('practice-area.delete');
+		});
+
+		// Legal Information
+		Route::prefix('legal-information')->group(function(){
+			Route::get('/view','Backend\LegalInformationController@view')->name('legal-information.view');
+			Route::get('/add','Backend\LegalInformationController@add')->name('legal-information.add');
+			Route::post('/store','Backend\LegalInformationController@store')->name('legal-information.store');
+			Route::get('/edit/{id}','Backend\LegalInformationController@edit')->name('legal-information.edit');
+			Route::post('/update/{id}','Backend\LegalInformationController@update')->name('legal-information.update');
+			Route::post('/delete','Backend\LegalInformationController@delete')->name('legal-information.delete');
+		});
+
+		// Law
+		Route::prefix('laws')->group(function(){
+			Route::get('/view','Backend\LawController@view')->name('laws.view');
+			Route::get('/add','Backend\LawController@add')->name('laws.add');
+			Route::post('/store','Backend\LawController@store')->name('laws.store');
+			Route::get('/edit/{id}','Backend\LawController@edit')->name('laws.edit');
+			Route::post('/update/{id}','Backend\LawController@update')->name('laws.update');
+			Route::post('/delete','Backend\LawController@delete')->name('laws.delete');
+		});
+
 		Route::prefix('setups')->group(function(){
 			//Logo
 			Route::get('/logo/view','Backend\LogoController@view')->name('site-setting.contents.logo.view');
