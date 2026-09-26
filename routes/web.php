@@ -160,16 +160,6 @@ Route::group(['middleware'=>['auth','admin']],function(){
 			Route::post('/delete','Backend\PracticeAreaController@delete')->name('practice-area.delete');
 		});
 
-		// Practice Area
-		Route::prefix('practice-area')->group(function(){
-			Route::get('/view','Backend\PracticeAreaController@view')->name('practice-area.view');
-			Route::get('/add','Backend\PracticeAreaController@add')->name('practice-area.add');
-			Route::post('/store','Backend\PracticeAreaController@store')->name('practice-area.store');
-			Route::get('/edit/{id}','Backend\PracticeAreaController@edit')->name('practice-area.edit');
-			Route::post('/update/{id}','Backend\PracticeAreaController@update')->name('practice-area.update');
-			Route::post('/delete','Backend\PracticeAreaController@delete')->name('practice-area.delete');
-		});
-
 		// Legal Information
 		Route::prefix('legal-information')->group(function(){
 			Route::get('/view','Backend\LegalInformationController@view')->name('legal-information.view');
