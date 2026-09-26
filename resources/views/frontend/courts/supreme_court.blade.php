@@ -324,39 +324,7 @@
                                 </div>
 
                             </div>
-
-
-                            <!-- ===============================
-                                 CIVIL LAWYER MODAL BUTTON
-                            ================================ -->
-
-                            <div style="margin-top: 15px;">
-
-                                <a href="#"
-                                   class="practice-area-card"
-                                   data-bs-toggle="modal"
-                                   data-bs-target="#districtCivilCourtModal"
-                                   style="color: #fff !important;">
-
-                                    <div class="card-1"
-                                         style="padding: 15px 5px 10px 6px;
-                                                margin-bottom: 5px;
-                                                min-height: 50px;
-                                                max-width: 240px;
-                                                background-color: #000;">
-
-                                        <h6 style="font-size:15px;color: #fff;">
-                                            Lawyers Practicing Area
-                                        </h6>
-
-                                    </div>
-
-                                </a>
-
-                            </div>
-
                         </div>
-
 
                         <!-- =================================================
                              CRIMINAL COURTS CONTENT
@@ -550,42 +518,93 @@
                                 </div>
 
                             </div>
-
-
-                            <!-- ===============================
-                                 CRIMINAL LAWYER MODAL BUTTON
-                            ================================ -->
-
-                            <div style="margin-top: 15px;">
-
-                                <a href="#"
-                                   class="practice-area-card"
-                                   data-bs-toggle="modal"
-                                   data-bs-target="#districtCriminalCourtModal"
-                                   style="color: #fff !important;">
-
-                                    <div class="card-1"
-                                         style="padding: 15px 5px 10px 6px;
-                                                margin-bottom: 5px;
-                                                min-height: 50px;
-                                                max-width: 240px;
-                                                background-color: #000;">
-
-                                        <h6 style="font-size:15px;color: #fff;">
-                                            Lawyers Practicing Area
-                                        </h6>
-
-                                    </div>
-
-                                </a>
-
-                            </div>
-
-
                         </div>
 
 
                     </div>
+                <!-- Modal-button-start-here -->
+                <div class="row" style="margin-top: 15px;">
+                    <div class="col-md-3">
+                        <a href="{{route('find.our.advocate-list')}}"
+                           class="practice-area-card" 
+                           style="color: #fff !important;">
+
+                            <div class="card-1"
+                                 style="padding: 15px 5px 10px 6px;
+                                        margin-bottom: 5px;
+                                        min-height: 50px;
+                                        background-color: #000;">
+
+                                <h6 style="font-size:15px;color: #fff;">
+                                    Find Advocates
+                                </h6>
+
+                            </div>
+
+                        </a>
+                    </div>
+
+                    <div class="col-md-3">
+                        <a href="{{route('find.our.barrister-list')}}"
+                           class="practice-area-card" 
+                           style="color: #fff !important;">
+
+                            <div class="card-1"
+                                 style="padding: 15px 5px 10px 6px;
+                                        margin-bottom: 5px;
+                                        min-height: 50px;
+                                        background-color: #000;">
+
+                                <h6 style="font-size:15px;color: #fff;">
+                                    Find Barristers
+                                </h6>
+
+                            </div>
+
+                        </a>
+                    </div>
+
+                    <div class="col-md-3">
+                        <a href="{{route('find.our.consultant-list')}}"
+                           class="practice-area-card" 
+                           style="color: #fff !important;">
+
+                            <div class="card-1"
+                                 style="padding: 15px 5px 10px 6px;
+                                        margin-bottom: 5px;
+                                        min-height: 50px;
+                                        background-color: #000;">
+
+                                <h6 style="font-size:15px;color: #fff;">
+                                    Find Legal Consultants
+                                </h6>
+
+                            </div>
+
+                        </a>
+                    </div>
+
+                    <div class="col-md-3">
+                        <a href="{{route('find.our.law-firm-list')}}"
+                           class="practice-area-card" 
+                           style="color: #fff !important;">
+
+                            <div class="card-1"
+                                 style="padding: 15px 5px 10px 6px;
+                                        margin-bottom: 5px;
+                                        min-height: 50px;
+                                        background-color: #000;">
+
+                                <h6 style="font-size:15px;color: #fff;">
+                                    Find Law Firms
+                                </h6>
+
+                            </div>
+
+                        </a>
+                    </div>
+                </div>
+                <!-- Modal-button-ends-here -->
 
                 </div>
 
@@ -597,229 +616,6 @@
     </div>
 
 </div>
-
-
-
-<!-- =========================================================
-     CIVIL COURTS MODAL
-========================================================= -->
-
-<div class="modal fade provider-type-modal"
-     id="districtCivilCourtModal"
-     tabindex="-1"
-     aria-labelledby="districtCivilCourtModalLabel"
-     aria-hidden="true">
-
-    <div class="modal-dialog provider-modal-dialog modal-sm">
-
-        <div class="modal-content provider-modal-content">
-
-
-            <!-- CLOSE BUTTON -->
-
-            <button type="button"
-                    class="provider-modal-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close">
-
-                <i class="bi bi-x-lg"></i>
-
-            </button>
-
-
-            <div class="modal-body provider-modal-body">
-
-
-                <!-- TITLE -->
-
-                <h4 class="provider-modal-title"
-                    id="districtCivilCourtModalLabel">
-
-                    Find civil law expert
-
-                </h4>
-
-
-                <!-- SUBTITLE -->
-
-                <p class="provider-modal-subtitle">
-
-                    Select provider type
-
-                </p>
-
-
-                <!-- PROVIDER TYPE BUTTONS -->
-
-                <div class="provider-type-grid">
-
-
-                    <!-- ADVOCATE -->
-
-                    <a href="#"
-                       class="provider-type-btn">
-
-                        Find <br>
-                        Advocate
-
-                    </a>
-
-
-                    <!-- BARRISTER -->
-
-                    <a href="#"
-                       class="provider-type-btn">
-
-                        Find <br>
-                        Barrister
-
-                    </a>
-
-
-                    <!-- LAW FIRM -->
-
-                    <a href="#"
-                       class="provider-type-btn">
-
-                        Find <br>
-                        Law firm
-
-                    </a>
-
-
-                    <!-- LEGAL CONSULTANTS -->
-
-                    <a href="#"
-                       class="provider-type-btn">
-
-                        Legal Find <br>
-                        consultants
-
-                    </a>
-
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-
-<!-- =========================================================
-     CRIMINAL COURTS MODAL
-========================================================= -->
-
-<div class="modal fade provider-type-modal"
-     id="districtCriminalCourtModal"
-     tabindex="-1"
-     aria-labelledby="districtCriminalCourtModalLabel"
-     aria-hidden="true">
-
-    <div class="modal-dialog provider-modal-dialog modal-sm">
-
-        <div class="modal-content provider-modal-content">
-
-
-            <!-- CLOSE BUTTON -->
-
-            <button type="button"
-                    class="provider-modal-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close">
-
-                <i class="bi bi-x-lg"></i>
-
-            </button>
-
-
-            <div class="modal-body provider-modal-body">
-
-
-                <!-- TITLE -->
-
-                <h4 class="provider-modal-title"
-                    id="districtCriminalCourtModalLabel">
-
-                    Find criminal law expert
-
-                </h4>
-
-
-                <!-- SUBTITLE -->
-
-                <p class="provider-modal-subtitle">
-
-                    Select provider type
-
-                </p>
-
-
-                <!-- PROVIDER TYPE BUTTONS -->
-
-                <div class="provider-type-grid">
-
-
-                    <!-- ADVOCATE -->
-
-                    <a href="#"
-                       class="provider-type-btn">
-
-                        Find <br>
-                        Advocate
-
-                    </a>
-
-
-                    <!-- BARRISTER -->
-
-                    <a href="#"
-                       class="provider-type-btn">
-
-                        Find <br>
-                        Barrister
-
-                    </a>
-
-
-                    <!-- LAW FIRM -->
-
-                    <a href="#"
-                       class="provider-type-btn">
-
-                        Find <br>
-                        Law firm
-
-                    </a>
-
-
-                    <!-- LEGAL CONSULTANTS -->
-
-                    <a href="#"
-                       class="provider-type-btn">
-
-                        Find <br>
-                        consultants
-
-                    </a>
-
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-
 <!-- =========================================================
      FAQ JAVASCRIPT
 ========================================================= -->
