@@ -30,6 +30,11 @@ Route::get('/supreme-court','Frontend\FrontenController@supremeCourt')->name('su
 Route::get('/district-court','Frontend\FrontenController@districtCourt')->name('district.court');
 Route::get('/tribunals-court','Frontend\FrontenController@tribunalsCourt')->name('tribunals.courts');
 Route::get('/village-court','Frontend\FrontenController@villageCourt')->name('village.court');
+
+//Legal Documents & Forms
+Route::get('/legal/form','Frontend\FrontenController@legalForm')->name('legal.form');
+
+
 // Legal Information
 Route::get('/legal/information/rights','Frontend\FrontenController@legalInformationRights')->name('legal.information.rights');
 Route::get('/legal/information/terms','Frontend\FrontenController@legalInformationTerms')->name('legal.information.terms');

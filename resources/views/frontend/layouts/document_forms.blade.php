@@ -504,14 +504,14 @@
                         <!-- Document 01 -->
                         <article class="col-xl-3 col-lg-3 col-md-3 col-6 document-item">
 
-                            <a href="#" class="document-link">
+                            <a href="{{route('legal.form')}}" class="document-link">
 
                                 <div class="document-icon-box">
                                     <i class="fa fa-file-pdf-o"></i>
                                 </div>
 
                                 <h4 class="document-title">
-                                    <a href="#">
+                                    <a href="{{route('legal.form')}}">
                                         Legal Forms
                                     </a>
                                 </h4>
