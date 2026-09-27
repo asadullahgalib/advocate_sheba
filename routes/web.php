@@ -34,7 +34,6 @@ Route::get('/village-court','Frontend\FrontenController@villageCourt')->name('vi
 //Legal Documents & Forms
 Route::get('/legal/form','Frontend\FrontenController@legalForm')->name('legal.form');
 
-
 // Legal Information
 Route::get('/legal/information/rights','Frontend\FrontenController@legalInformationRights')->name('legal.information.rights');
 Route::get('/legal/information/terms','Frontend\FrontenController@legalInformationTerms')->name('legal.information.terms');
@@ -157,7 +156,7 @@ Route::group(['middleware'=>['auth','admin']],function(){
 			Route::post('/store','Backend\PracticeAreaController@store')->name('practice-area.store');
 			Route::get('/edit/{id}','Backend\PracticeAreaController@edit')->name('practice-area.edit');
 			Route::post('/update/{id}','Backend\PracticeAreaController@update')->name('practice-area.update');
-			Route::post('/delete','Backend\PracticeAreaController@delete')->name('practice-area.delete');
+			Route::get('/delete/{id}', 'Backend\PracticeAreaController@delete')->name('practice-area.delete');
 		});
 
 		// Legal Information
@@ -179,7 +178,7 @@ Route::group(['middleware'=>['auth','admin']],function(){
 			Route::post('/update/{id}','Backend\LawController@update')->name('laws.update');
 			Route::post('/delete','Backend\LawController@delete')->name('laws.delete');
 		});
-
+		
 		Route::prefix('setups')->group(function(){
 			//Logo
 			Route::get('/logo/view','Backend\LogoController@view')->name('site-setting.contents.logo.view');

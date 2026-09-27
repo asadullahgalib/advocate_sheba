@@ -4,8 +4,8 @@
   <div class="col-md-12" style="padding-top:40px;">
     <div class="card">
       <div class="card-header">
-        <h5>District List
-            <a class="btn btn-sm btn-success float-right" href="{{route('setup.district.add')}}"><i class="fa fa-plus-circle"></i> Add District</a>
+        <h5>Practice Area List
+            <a class="btn btn-sm btn-success float-right" href="{{route('practice-area.add')}}"><i class="fa fa-plus-circle"></i> Add Practice Area</a>
           </h5>
       </div>
 
@@ -14,21 +14,18 @@
             <thead>
               <tr>
                 <th>Sl.</th>
-                <th>Image</th>
-                <th>District Name</th>
+                <th>Practice Area Name</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              @foreach($allData as $key => $district)
+              @foreach($allData as $key => $practice)
               <tr class="text-center">
                 <td>{{$key+1}}</td>
+                <td>{{$practice->name}}</td>
                 <td>
-                  <img src="{{ (!empty($district->image)) ? url('upload/district_images/'.$district->image) : url('no_image.jpg') }}" style="width: 50px; height: 50px; border: 1px solid #ddd; object-fit: cover;">
-                </td>
-                <td>{{$district->name}}</td>
-                <td>
-                  <a class="btn btn-sm btn-success" title="Edit" href="{{route('setup.district.edit',$district->id)}}"><i class="fa fa-edit"></i></a>
+                  <a class="btn btn-sm btn-success" title="Edit" href="{{route('practice-area.edit',$practice->id)}}"><i class="fa fa-edit"></i></a>  
+                  <a class="btn btn-sm btn-danger" title="Delete" id="delete" href="{{route('practice-area.delete',$practice->id)}}"><i class="fa fa-trash"></i></a>
                 </td>
               </tr>
               @endforeach
