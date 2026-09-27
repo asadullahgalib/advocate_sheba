@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 21, 2026 at 07:33 AM
+-- Generation Time: Sep 27, 2026 at 05:47 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.4.9
 
@@ -416,6 +416,7 @@ CREATE TABLE IF NOT EXISTS `districts` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `division_id` int(11) NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
   `modified_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -428,72 +429,72 @@ CREATE TABLE IF NOT EXISTS `districts` (
 -- Dumping data for table `districts`
 --
 
-INSERT INTO `districts` (`id`, `division_id`, `name`, `created_by`, `modified_by`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Narsingdi', 1, 11, '2021-02-07 02:08:59', '2026-08-10 23:11:38'),
-(2, 1, 'Gazipur', 1, 1, '2021-02-07 02:12:16', '2021-02-07 02:12:24'),
-(3, 1, 'Shariatpur', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(4, 1, 'Narayanganj', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(5, 1, 'Tangail', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(6, 1, 'Kishoreganj', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(7, 1, 'Manikganj', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(8, 1, 'Dhaka', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(9, 1, 'Munshiganj', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(10, 1, 'Rajbari', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(11, 1, 'Madaripur', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(12, 1, 'Gopalganj', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(13, 1, 'Faridpur', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(14, 2, 'Sherpur', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(15, 2, 'Mymensingh', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(16, 2, 'Jamalpur', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(17, 2, 'Netrokona', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(18, 3, 'Jashore', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(19, 3, 'Satkhira', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(20, 3, 'Meherpur', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(21, 3, 'Narail', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(22, 3, 'Chuadanga', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(23, 3, 'Kushtia', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(24, 3, 'Magura', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(25, 3, 'Khulna', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(26, 3, 'Bagerhat', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(27, 3, 'Jhenaidah', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(28, 4, 'Sirajganj', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(29, 4, 'Pabna', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(30, 4, 'Bogura', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(31, 4, 'Rajshahi', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(32, 4, 'Natore', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(33, 4, 'Joypurhat', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(34, 4, 'Chapainawabganj', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(35, 4, 'Naogaon', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(36, 5, 'Cumilla', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(37, 5, 'Feni', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(38, 5, 'Brahmanbaria', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(39, 5, 'Rangamati', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(40, 5, 'Noakhali', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(41, 5, 'Chandpur', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(42, 5, 'Lakshmipur', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(43, 5, 'Chattogram', 1, 1, '2023-10-24 04:39:18', '2024-06-02 15:32:40'),
-(44, 5, 'Cox\'sbazar', 1, 1, '2023-10-24 04:39:18', '2024-04-27 11:47:42'),
-(45, 5, 'Khagrachhari', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(46, 5, 'Bandarban', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(47, 6, 'Panchagarh', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(48, 6, 'Dinajpur', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(49, 6, 'Lalmonirhat', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(50, 6, 'Nilphamari', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(51, 6, 'Gaibandha', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(52, 6, 'Thakurgaon', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(53, 6, 'Rangpur', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(54, 6, 'Kurigram', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(55, 7, 'Sylhet', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(56, 7, 'Moulvibazar', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(57, 7, 'Habiganj', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(58, 7, 'Sunamganj', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(59, 8, 'Jhalakathi', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(60, 8, 'Patuakhali', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(61, 8, 'Pirojpur', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(62, 8, 'Barishal', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(63, 8, 'Bhola', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(64, 8, 'Barguna', 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
-(65, 1, 'Dhaka City', 1, 1, '2024-05-02 16:33:43', '2024-11-20 07:49:56');
+INSERT INTO `districts` (`id`, `division_id`, `name`, `image`, `created_by`, `modified_by`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Narsingdi', NULL, 1, 11, '2021-02-07 02:08:59', '2026-08-10 23:11:38'),
+(2, 1, 'Gazipur', NULL, 1, 1, '2021-02-07 02:12:16', '2021-02-07 02:12:24'),
+(3, 1, 'Shariatpur', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(4, 1, 'Narayanganj', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(5, 1, 'Tangail', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(6, 1, 'Kishoreganj', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(7, 1, 'Manikganj', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(8, 1, 'Dhaka', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(9, 1, 'Munshiganj', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(10, 1, 'Rajbari', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(11, 1, 'Madaripur', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(12, 1, 'Gopalganj', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(13, 1, 'Faridpur', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(14, 2, 'Sherpur', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(15, 2, 'Mymensingh', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(16, 2, 'Jamalpur', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(17, 2, 'Netrokona', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(18, 3, 'Jashore', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(19, 3, 'Satkhira', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(20, 3, 'Meherpur', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(21, 3, 'Narail', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(22, 3, 'Chuadanga', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(23, 3, 'Kushtia', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(24, 3, 'Magura', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(25, 3, 'Khulna', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(26, 3, 'Bagerhat', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(27, 3, 'Jhenaidah', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(28, 4, 'Sirajganj', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(29, 4, 'Pabna', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(30, 4, 'Bogura', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(31, 4, 'Rajshahi', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(32, 4, 'Natore', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(33, 4, 'Joypurhat', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(34, 4, 'Chapainawabganj', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(35, 4, 'Naogaon', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(36, 5, 'Cumilla', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(37, 5, 'Feni', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(38, 5, 'Brahmanbaria', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(39, 5, 'Rangamati', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(40, 5, 'Noakhali', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(41, 5, 'Chandpur', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(42, 5, 'Lakshmipur', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(43, 5, 'Chattogram', NULL, 1, 1, '2023-10-24 04:39:18', '2024-06-02 15:32:40'),
+(44, 5, 'Cox\'sbazar', NULL, 1, 1, '2023-10-24 04:39:18', '2024-04-27 11:47:42'),
+(45, 5, 'Khagrachhari', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(46, 5, 'Bandarban', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(47, 6, 'Panchagarh', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(48, 6, 'Dinajpur', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(49, 6, 'Lalmonirhat', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(50, 6, 'Nilphamari', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(51, 6, 'Gaibandha', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(52, 6, 'Thakurgaon', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(53, 6, 'Rangpur', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(54, 6, 'Kurigram', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(55, 7, 'Sylhet', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(56, 7, 'Moulvibazar', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(57, 7, 'Habiganj', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(58, 7, 'Sunamganj', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(59, 8, 'Jhalakathi', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(60, 8, 'Patuakhali', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(61, 8, 'Pirojpur', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(62, 8, 'Barishal', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(63, 8, 'Bhola', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(64, 8, 'Barguna', NULL, 1, NULL, '2023-10-24 04:39:18', '2023-10-24 04:39:18'),
+(65, 1, 'Dhaka City', NULL, 1, 1, '2024-05-02 16:33:43', '2024-11-20 07:49:56');
 
 -- --------------------------------------------------------
 
@@ -769,6 +770,42 @@ INSERT INTO `investigation_advice` (`id`, `name`, `created_by`, `updated_by`, `c
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `laws`
+--
+
+DROP TABLE IF EXISTS `laws`;
+CREATE TABLE IF NOT EXISTS `laws` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title_en` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description_en` longtext COLLATE utf8mb4_unicode_ci,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `legal_information`
+--
+
+DROP TABLE IF EXISTS `legal_information`;
+CREATE TABLE IF NOT EXISTS `legal_information` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title_en` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description_en` longtext COLLATE utf8mb4_unicode_ci,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `logos`
 --
 
@@ -838,7 +875,7 @@ CREATE TABLE IF NOT EXISTS `menus` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `menus`
@@ -921,7 +958,16 @@ INSERT INTO `menus` (`id`, `name`, `parent`, `route`, `sort`, `add`, `edit`, `de
 (99, 'Add About', 98, 'human-resource.hrm.about.add', 1, NULL, NULL, NULL, 1, NULL, '2018-06-08 22:57:27', '2020-08-07 15:41:49'),
 (100, 'Slider', 97, 'Slider', 2, NULL, NULL, NULL, 1, NULL, '2018-06-08 22:57:27', '2020-08-07 15:41:49'),
 (101, 'Add Slider', 100, 'human-resource.hrm.slider.add', 1, NULL, NULL, NULL, 1, NULL, '2018-06-08 22:57:27', '2020-08-07 15:41:49'),
-(102, 'Contact Us', 97, 'Contact Us', 3, NULL, NULL, NULL, 1, NULL, '2018-06-08 22:57:27', '2020-08-07 15:41:49');
+(102, 'Contact Us', 97, 'Contact Us', 3, NULL, NULL, NULL, 1, NULL, '2018-06-08 22:57:27', '2020-08-07 15:41:49'),
+(103, 'Practice Area', 97, 'practice-area', 3, NULL, NULL, NULL, 1, NULL, '2018-06-08 22:57:27', '2020-08-07 15:41:49'),
+(104, 'Add Area', 103, 'practice-area.add', 1, NULL, NULL, NULL, 1, NULL, '2018-06-08 22:57:27', '2020-08-07 15:41:49'),
+(105, 'Area List', 103, 'practice-area.view', 2, NULL, NULL, NULL, 1, NULL, '2018-06-08 22:57:27', '2020-08-07 15:41:49'),
+(106, 'Legal Information', 97, 'legal-information', 4, NULL, NULL, NULL, 1, NULL, '2018-06-08 22:57:27', '2020-08-07 15:41:49'),
+(107, 'Add L.Information', 106, 'legal-information.add', 1, NULL, NULL, NULL, 1, NULL, '2018-06-08 22:57:27', '2020-08-07 15:41:49'),
+(108, 'L.Information List', 106, 'legal-information.view', 2, NULL, NULL, NULL, 1, NULL, '2018-06-08 22:57:27', '2020-08-07 15:41:49'),
+(109, 'Laws', 97, 'laws', 5, NULL, NULL, NULL, 1, NULL, '2018-06-08 22:57:27', '2020-08-07 15:41:49'),
+(110, 'Add Law', 109, 'laws.add', 1, NULL, NULL, NULL, 1, NULL, '2018-06-08 22:57:27', '2020-08-07 15:41:49'),
+(111, 'Law List', 109, 'laws.view', 2, NULL, NULL, NULL, 1, NULL, '2018-06-08 22:57:27', '2020-08-07 15:41:49');
 
 -- --------------------------------------------------------
 
@@ -938,7 +984,7 @@ CREATE TABLE IF NOT EXISTS `menu_permissions` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1201 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1279 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `menu_permissions`
@@ -1032,81 +1078,84 @@ INSERT INTO `menu_permissions` (`id`, `menu_id`, `role_id`, `permitted_route`, `
 (1102, 85, 3, 'e-prescription.add', '2026-08-10 22:55:08', '2026-08-10 22:55:08'),
 (1103, 84, 3, 'prescription', '2026-08-10 22:55:08', '2026-08-10 22:55:08'),
 (1104, 86, 3, 'e-prescription.view', '2026-08-10 22:55:08', '2026-08-10 22:55:08'),
-(1126, 6, 1, 'user.role', '2026-08-11 00:55:05', '2026-08-11 00:55:05'),
-(1127, 4, 1, 'user', '2026-08-11 00:55:05', '2026-08-11 00:55:05'),
-(1128, 27, 1, 'user', '2026-08-11 00:55:05', '2026-08-11 00:55:05'),
-(1129, 7, 1, 'user.permission', '2026-08-11 00:55:05', '2026-08-11 00:55:05'),
-(1130, 29, 1, 'profiles.view', '2026-08-11 00:55:05', '2026-08-11 00:55:05'),
-(1131, 28, 1, 'profiles', '2026-08-11 00:55:05', '2026-08-11 00:55:05'),
-(1132, 30, 1, 'profiles.passowrd.view', '2026-08-11 00:55:05', '2026-08-11 00:55:05'),
-(1133, 89, 1, 'setup.division.add', '2026-08-11 00:55:05', '2026-08-11 00:55:05'),
-(1134, 88, 1, 'Division', '2026-08-11 00:55:05', '2026-08-11 00:55:05'),
-(1135, 87, 1, 'address', '2026-08-11 00:55:05', '2026-08-11 00:55:05'),
-(1136, 90, 1, 'setup.division.view', '2026-08-11 00:55:05', '2026-08-11 00:55:05'),
-(1137, 92, 1, 'setup.district.add', '2026-08-11 00:55:05', '2026-08-11 00:55:05'),
-(1138, 91, 1, 'District', '2026-08-11 00:55:05', '2026-08-11 00:55:05'),
-(1139, 93, 1, 'setup.district.view', '2026-08-11 00:55:05', '2026-08-11 00:55:05'),
-(1140, 95, 1, 'setup.upazila.add', '2026-08-11 00:55:05', '2026-08-11 00:55:05'),
-(1141, 94, 1, 'Upazila', '2026-08-11 00:55:05', '2026-08-11 00:55:05'),
-(1142, 96, 1, 'setup.upazila.view', '2026-08-11 00:55:05', '2026-08-11 00:55:05'),
-(1143, 99, 1, 'human-resource.hrm.about.add', '2026-08-11 00:55:05', '2026-08-11 00:55:05'),
-(1144, 98, 1, 'About Us', '2026-08-11 00:55:05', '2026-08-11 00:55:05'),
-(1145, 97, 1, 'Website Settings', '2026-08-11 00:55:05', '2026-08-11 00:55:05'),
-(1146, 62, 1, 'human-resource.hrm.about.view', '2026-08-11 00:55:05', '2026-08-11 00:55:05'),
-(1147, 101, 1, 'human-resource.hrm.slider.add', '2026-08-11 00:55:05', '2026-08-11 00:55:05'),
-(1148, 100, 1, 'Slider', '2026-08-11 00:55:05', '2026-08-11 00:55:05'),
-(1149, 45, 1, 'human-resource.hrm.slider.view', '2026-08-11 00:55:05', '2026-08-11 00:55:05'),
-(1150, 56, 1, 'site-setting.contents.logo.view', '2026-08-11 00:55:05', '2026-08-11 00:55:05'),
-(1151, 102, 1, 'Contact Us', '2026-08-11 00:55:05', '2026-08-11 00:55:05'),
-(1152, 57, 1, 'site-setting.contents.contact.view', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1153, 33, 1, 'human-resource.hrm.designation.view', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1154, 31, 1, 'setups', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1155, 35, 1, 'human-resource.hrm.department.view', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1156, 41, 1, 'human-resource.hrm.time.view', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1157, 42, 1, 'human-resource.hrm.category.view', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1158, 44, 1, 'human-resource.hrm.number.view', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1159, 58, 1, 'human-resource.hrm.sms.view', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1160, 59, 1, 'human-resource.hrm.package.view', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1161, 60, 1, 'human-resource.hrm.ambulance.view', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1162, 61, 1, 'human-resource.hrm.promotion.view', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1163, 37, 1, 'payroll.employee.view.add', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1164, 36, 1, 'doctors', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1165, 38, 1, 'payroll.employee.view', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1166, 39, 1, 'payroll.employee.report', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1167, 52, 1, 'payroll.booking.view', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1168, 53, 1, 'payroll.booking.report', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1169, 51, 1, 'doctor-profile.view.details', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1170, 46, 1, 'doctor-profile', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1171, 47, 1, 'doctor-profile.social.view', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1172, 48, 1, 'doctor-profile.photo.view', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1173, 49, 1, 'doctor-profile.video.view', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1174, 50, 1, 'doctor-profile.news.view', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1175, 54, 1, 'doctor-profile.booking.view', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1176, 55, 1, 'doctor-profile.booking.report', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1177, 65, 1, 'e-prescription.chief.complient.add', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1178, 64, 1, 'chief', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1179, 63, 1, 'e-prescription', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1180, 66, 1, 'e-prescription.chief.complient.view', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1181, 68, 1, 'e-prescription.examination.add', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1182, 67, 1, 'examination', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1183, 69, 1, 'e-prescription.examination.view', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1184, 71, 1, 'e-prescription.diagnosis.add', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1185, 70, 1, 'diagnosis', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1186, 72, 1, 'e-prescription.diagnosis.view', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1187, 74, 1, 'e-prescription.investigation.advice.add', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1188, 73, 1, 'investigation', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1189, 75, 1, 'e-prescription.investigation.advice.view', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1190, 77, 1, 'e-prescription.advice.add', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1191, 76, 1, 'advice', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1192, 78, 1, 'e-prescription.advice.view', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1193, 80, 1, 'e-prescription.medicine.category.add', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1194, 79, 1, 'medicine', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1195, 81, 1, 'e-prescription.medicine.category.view', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1196, 82, 1, 'e-prescription.product.add', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1197, 83, 1, 'e-prescription.product.view', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1198, 85, 1, 'e-prescription.add', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1199, 84, 1, 'prescription', '2026-08-11 00:55:06', '2026-08-11 00:55:06'),
-(1200, 86, 1, 'e-prescription.view', '2026-08-11 00:55:06', '2026-08-11 00:55:06');
+(1201, 6, 1, 'user.role', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1202, 4, 1, 'user', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1203, 27, 1, 'user', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1204, 7, 1, 'user.permission', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1205, 29, 1, 'profiles.view', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1206, 28, 1, 'profiles', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1207, 30, 1, 'profiles.passowrd.view', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1208, 89, 1, 'setup.division.add', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1209, 88, 1, 'Division', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1210, 87, 1, 'address', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1211, 90, 1, 'setup.division.view', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1212, 92, 1, 'setup.district.add', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1213, 91, 1, 'District', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1214, 93, 1, 'setup.district.view', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1215, 95, 1, 'setup.upazila.add', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1216, 94, 1, 'Upazila', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1217, 96, 1, 'setup.upazila.view', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1218, 99, 1, 'human-resource.hrm.about.add', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1219, 98, 1, 'About Us', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1220, 97, 1, 'Website Settings', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1221, 62, 1, 'human-resource.hrm.about.view', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1222, 101, 1, 'human-resource.hrm.slider.add', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1223, 100, 1, 'Slider', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1224, 45, 1, 'human-resource.hrm.slider.view', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1225, 56, 1, 'site-setting.contents.logo.view', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1226, 102, 1, 'Contact Us', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1227, 57, 1, 'site-setting.contents.contact.view', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1228, 33, 1, 'human-resource.hrm.designation.view', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1229, 31, 1, 'setups', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1230, 35, 1, 'human-resource.hrm.department.view', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1231, 41, 1, 'human-resource.hrm.time.view', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1232, 42, 1, 'human-resource.hrm.category.view', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1233, 44, 1, 'human-resource.hrm.number.view', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1234, 58, 1, 'human-resource.hrm.sms.view', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1235, 59, 1, 'human-resource.hrm.package.view', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1236, 60, 1, 'human-resource.hrm.ambulance.view', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1237, 61, 1, 'human-resource.hrm.promotion.view', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1238, 37, 1, 'payroll.employee.view.add', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1239, 36, 1, 'doctors', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1240, 38, 1, 'payroll.employee.view', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1241, 39, 1, 'payroll.employee.report', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1242, 52, 1, 'payroll.booking.view', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1243, 53, 1, 'payroll.booking.report', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1244, 51, 1, 'doctor-profile.view.details', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1245, 46, 1, 'doctor-profile', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1246, 47, 1, 'doctor-profile.social.view', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1247, 48, 1, 'doctor-profile.photo.view', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1248, 49, 1, 'doctor-profile.video.view', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1249, 50, 1, 'doctor-profile.news.view', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1250, 54, 1, 'doctor-profile.booking.view', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1251, 55, 1, 'doctor-profile.booking.report', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1252, 65, 1, 'e-prescription.chief.complient.add', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1253, 64, 1, 'chief', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1254, 63, 1, 'e-prescription', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1255, 66, 1, 'e-prescription.chief.complient.view', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1256, 68, 1, 'e-prescription.examination.add', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1257, 67, 1, 'examination', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1258, 69, 1, 'e-prescription.examination.view', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1259, 71, 1, 'e-prescription.diagnosis.add', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1260, 70, 1, 'diagnosis', '2026-09-25 22:40:57', '2026-09-25 22:40:57'),
+(1261, 72, 1, 'e-prescription.diagnosis.view', '2026-09-25 22:40:58', '2026-09-25 22:40:58'),
+(1262, 74, 1, 'e-prescription.investigation.advice.add', '2026-09-25 22:40:58', '2026-09-25 22:40:58'),
+(1263, 73, 1, 'investigation', '2026-09-25 22:40:58', '2026-09-25 22:40:58'),
+(1264, 75, 1, 'e-prescription.investigation.advice.view', '2026-09-25 22:40:58', '2026-09-25 22:40:58'),
+(1265, 77, 1, 'e-prescription.advice.add', '2026-09-25 22:40:58', '2026-09-25 22:40:58'),
+(1266, 76, 1, 'advice', '2026-09-25 22:40:58', '2026-09-25 22:40:58'),
+(1267, 78, 1, 'e-prescription.advice.view', '2026-09-25 22:40:58', '2026-09-25 22:40:58'),
+(1268, 80, 1, 'e-prescription.medicine.category.add', '2026-09-25 22:40:58', '2026-09-25 22:40:58'),
+(1269, 79, 1, 'medicine', '2026-09-25 22:40:58', '2026-09-25 22:40:58'),
+(1270, 81, 1, 'e-prescription.medicine.category.view', '2026-09-25 22:40:58', '2026-09-25 22:40:58'),
+(1271, 82, 1, 'e-prescription.product.add', '2026-09-25 22:40:58', '2026-09-25 22:40:58'),
+(1272, 83, 1, 'e-prescription.product.view', '2026-09-25 22:40:58', '2026-09-25 22:40:58'),
+(1273, 85, 1, 'e-prescription.add', '2026-09-25 22:40:58', '2026-09-25 22:40:58'),
+(1274, 84, 1, 'prescription', '2026-09-25 22:40:58', '2026-09-25 22:40:58'),
+(1275, 86, 1, 'e-prescription.view', '2026-09-25 22:40:58', '2026-09-25 22:40:58'),
+(1276, 104, 1, 'practice-area.add', '2026-09-25 22:40:58', '2026-09-25 22:40:58'),
+(1277, 103, 1, 'practice-area', '2026-09-25 22:40:58', '2026-09-25 22:40:58'),
+(1278, 105, 1, 'practice-area.view', '2026-09-25 22:40:58', '2026-09-25 22:40:58');
 
 -- --------------------------------------------------------
 
@@ -1120,7 +1169,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=142 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=145 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -1178,7 +1227,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (138, '2024_01_15_094645_create_investigation_advice_table', 68),
 (139, '2024_01_15_094735_create_medicine_categories_table', 68),
 (140, '2024_01_15_094826_create_products_table', 68),
-(141, '2024_01_15_094847_create_advice_table', 68);
+(141, '2024_01_15_094847_create_advice_table', 68),
+(142, '2026_09_26_084501_create_practices_table', 69),
+(143, '2026_09_27_054126_create_legal_information_table', 70),
+(144, '2026_09_27_054457_create_laws_table', 70);
 
 -- --------------------------------------------------------
 
@@ -1315,6 +1367,24 @@ INSERT INTO `photo_galleries` (`id`, `user_id`, `image`, `title`, `created_by`, 
 (5, 9, '202304211044ewre3we.jpeg', NULL, 9, NULL, '2023-04-21 14:44:12', '2023-04-21 14:44:12'),
 (6, 9, '202304211044rewer.jpeg', NULL, 9, NULL, '2023-04-21 14:44:26', '2023-04-21 14:44:26'),
 (7, 9, '202304231041WhatsApp Image 2023-04-23 at 16.12.18.jpg', NULL, 9, 9, '2023-04-21 14:44:47', '2023-04-23 14:41:07');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `practices`
+--
+
+DROP TABLE IF EXISTS `practices`;
+CREATE TABLE IF NOT EXISTS `practices` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `modified_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `practices_name_unique` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1495,7 +1565,7 @@ CREATE TABLE IF NOT EXISTS `sliders` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `sliders`
@@ -2370,7 +2440,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
@@ -2388,7 +2458,8 @@ INSERT INTO `users` (`id`, `role_id`, `usertype`, `employee_type`, `booking_stat
 (11, 1, 'admin', 1, 1, 'Developer', '01928511049', 'Engr. Asadullah Galib', NULL, 'developer@gmail.com', NULL, '$2y$10$6fRVHmehrRM5Rg2CDKvCOOy3XKrmvwy3.xIcb78fnqGqftRcpGqpe', NULL, '01928511049', NULL, NULL, NULL, NULL, 'Male', '', NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '01704344126', NULL, NULL, NULL, NULL, NULL, 1, NULL, '2020-07-23 18:00:00', '2022-12-07 09:14:19'),
 (12, NULL, 'admin', 1, 1, 'nurse', NULL, 'Md. Asadullah khan', NULL, 'afia@gmail.com', NULL, '$2y$10$fR0DoYWilQf/uSlp/2EShOck5A3ku44iqNRhFGRO.3pBh2jEHz5Ly', 'FPC-2038', '01928511049', 'MBBS,FCPS', '5 Years', 'Banani,Dhaka', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '3587121549', '4', NULL, NULL, 53, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '2023-08-01 06:15:49', '2023-08-01 06:16:39'),
 (13, NULL, 'admin', 1, 1, 'nurse', NULL, 'Sakibuzzaman Udoy', NULL, NULL, NULL, '$2y$10$2xeEDvtW02z9fsSC87n7d.XICowARUdJvlf009MuLpjP0wpmJC6uS', 'FPC-2038', '01928511049', 'MBBS,FCPS', NULL, 'Banani,Dhaka', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '4651104032', '4', NULL, NULL, 53, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '2023-11-06 04:40:32', '2023-11-06 04:41:03'),
-(14, NULL, 'admin', 1, 2, 'nurse', NULL, 'Md. Asadullah khan', 'Md. Asadullah khan', 'adseer@gmail.com', NULL, '$2y$10$ZSqWljonZvj0a5gJyISZS.9tV3LKb3jVdxjki8B9mymxHustCwpdC', 'FPC-2038', '01928511049', 'MBBS,FCPS', '5 Years', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '4', '2023-11-06', 15, 53, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1000, 500, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, '2023-11-06 04:54:56', '2023-11-18 23:03:02');
+(14, NULL, 'admin', 1, 2, 'nurse', NULL, 'Md. Asadullah khan', 'Md. Asadullah khan', 'adseer@gmail.com', NULL, '$2y$10$ZSqWljonZvj0a5gJyISZS.9tV3LKb3jVdxjki8B9mymxHustCwpdC', 'FPC-2038', '01928511049', 'MBBS,FCPS', '5 Years', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '4', '2023-11-06', 15, 53, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1000, 500, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, '2023-11-06 04:54:56', '2023-11-18 23:03:02'),
+(15, NULL, 'admin', 1, 1, 'admin', NULL, 'Tamim', NULL, 'tamimtechzone@gmail.com', NULL, '$2y$10$rNOuqyEJZmiraZPPKfupb.EduX5YvQZN2s0241cXVxWm8xeSoP02G', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '2026-09-25 22:37:34', '2026-09-25 22:37:34');
 
 -- --------------------------------------------------------
 
@@ -2405,7 +2476,7 @@ CREATE TABLE IF NOT EXISTS `user_logs` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=159 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=162 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `user_logs`
@@ -2569,7 +2640,10 @@ INSERT INTO `user_logs` (`id`, `user_id`, `access_in_time`, `access_out_time`, `
 (155, 11, '2026-08-11 04:45:25', NULL, '2026-08-10 22:45:25', '2026-08-10 22:45:25'),
 (156, 11, '2026-08-29 15:57:16', NULL, '2026-08-29 09:57:16', '2026-08-29 09:57:16'),
 (157, 11, '2026-08-30 06:26:51', NULL, '2026-08-30 00:26:51', '2026-08-30 00:26:51'),
-(158, 11, '2026-08-30 06:55:19', NULL, '2026-08-30 00:55:19', '2026-08-30 00:55:19');
+(158, 11, '2026-08-30 06:55:19', NULL, '2026-08-30 00:55:19', '2026-08-30 00:55:19'),
+(159, 11, '2026-09-26 05:13:48', NULL, '2026-09-25 21:13:48', '2026-09-25 21:13:48'),
+(160, 11, '2026-09-26 06:36:19', NULL, '2026-09-25 22:36:19', '2026-09-25 22:36:19'),
+(161, 11, '2026-09-27 04:42:48', NULL, '2026-09-26 20:42:48', '2026-09-26 20:42:48');
 
 -- --------------------------------------------------------
 
