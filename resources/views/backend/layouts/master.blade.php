@@ -416,6 +416,9 @@
 
 <script src="{{asset('pike/backend/custom/bcsaa.js')}}"></script>
 
+<script type="text/javascript" src="{{ asset('pike/backend/ckeditor/ckeditor.js') }}"></script>
+<script type="text/javascript" src="{{ asset('pike/backend/ckfinder/ckfinder.js') }}"></script>
+
 <!-- tooltip problem if jquery-ui on --> 
 <!-- <script src="{{asset('pike/backend/plugins/jquery-ui/jquery-ui.js')}}"></script> -->
 <!-- Handle bar -->
