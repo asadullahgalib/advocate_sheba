@@ -524,7 +524,7 @@
                         <!-- Document 02 -->
                         <article class="col-xl-3 col-lg-3 col-md-3 col-6 document-item">
 
-                            <a href="#" class="document-link">
+                            <a href="{{route('legal.form')}}" class="document-link">
 
                                 <div class="document-icon-box">
                                     <i class="fa fa-file-pdf-o"></i>
@@ -544,7 +544,7 @@
                         <!-- Document 03 -->
                         <article class="col-xl-3 col-lg-3 col-md-3 col-6 document-item">
 
-                            <a href="#" class="document-link">
+                            <a href="{{route('legal.form')}}" class="document-link">
 
                                 <div class="document-icon-box">
                                     <i class="fa fa-file-pdf-o"></i>
@@ -564,7 +564,7 @@
                         <!-- Document 04 -->
                         <article class="col-xl-3 col-lg-3 col-md-3 col-6 document-item">
 
-                            <a href="#" class="document-link">
+                            <a href="{{route('legal.form')}}" class="document-link">
 
                                 <div class="document-icon-box">
                                     <i class="fa fa-file-pdf-o"></i>
@@ -584,7 +584,7 @@
                         <!-- Document 05 -->
                         <article class="col-xl-3 col-lg-3 col-md-3 col-6 document-item">
 
-                            <a href="#" class="document-link">
+                            <a href="{{route('legal.form')}}" class="document-link">
 
                                 <div class="document-icon-box">
                                     <i class="fa fa-file-pdf-o"></i>
@@ -604,7 +604,7 @@
                         <!-- Document 06 -->
                         <article class="col-xl-3 col-lg-3 col-md-3 col-6 document-item">
 
-                            <a href="#" class="document-link">
+                            <a href="{{route('legal.form')}}" class="document-link">
 
                                 <div class="document-icon-box">
                                     <i class="fa fa-file-pdf-o"></i>
@@ -624,7 +624,7 @@
                         <!-- Document 07 -->
                         <article class="col-xl-3 col-lg-3 col-md-3 col-6 document-item">
 
-                            <a href="#" class="document-link">
+                            <a href="{{route('legal.form')}}" class="document-link">
 
                                 <div class="document-icon-box">
                                     <i class="fa fa-file-pdf-o"></i>
@@ -644,7 +644,7 @@
                         <!-- Document 08 -->
                         <article class="col-xl-3 col-lg-3 col-md-3 col-6 document-item">
 
-                            <a href="#" class="document-link">
+                            <a href="{{route('legal.form')}}" class="document-link">
 
                                 <div class="document-icon-box">
                                     <i class="fa fa-file-pdf-o"></i>

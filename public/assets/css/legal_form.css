@@ -1,0 +1,20 @@
+.pdf_size{
+    max-width: 750px;
+    width: 100%; 
+    border-radius: 16px; 
+    background-color: #ffffff;
+}
+@media only screen and (min-width:320px) and (max-width:768px){
+    .pdf_size{
+        max-width: 100%;
+        width: 100%; 
+        border-radius: 16px; 
+        background-color: #ffffff;
+    }
+    .fw-semibold{
+        font-size: 11px !important;
+    }
+    .fw-semibold i{
+        font-size: 11px !important;
+    }
+}

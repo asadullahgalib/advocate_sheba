@@ -227,3 +227,84 @@
         line-height: 1.7;
     }
 }
+
+/* =====================================================
+   DISTRICT COURTS TAB BUTTONS - CENTER
+===================================================== */
+
+.district-tab-buttons {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+
+    width: 100%;
+    gap: 8px;
+
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 0;
+    padding-left: 0;
+}
+
+
+/* Tab Button */
+
+.district-tab-buttons .nav-link {
+    border: none !important;
+
+    background: #f3f5f8;
+    color: #555;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    padding: 12px 30px;
+
+    border-radius: 8px 8px 0 0;
+
+    transition: all 0.3s ease;
+}
+
+
+/* Hover */
+
+.district-tab-buttons .nav-link:hover {
+    background: #e9edf5;
+    color: #1B489D;
+}
+
+
+/* Active */
+
+.district-tab-buttons .nav-link.active {
+    background: #1B489D;
+    color: #ffffff;
+}
+
+
+/* Active Hover */
+
+.district-tab-buttons .nav-link.active:hover {
+    background: #1B489D;
+    color: #ffffff;
+}
+
+
+/* =====================================================
+   MOBILE RESPONSIVE
+===================================================== */
+
+@media (max-width: 767px) {
+
+    .district-tab-buttons {
+        justify-content: center !important;
+        gap: 5px;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .district-tab-buttons .nav-link {
+        font-size: 14px;
+        padding: 10px 18px;
+        flex-shrink: 0;
+    }
+}
