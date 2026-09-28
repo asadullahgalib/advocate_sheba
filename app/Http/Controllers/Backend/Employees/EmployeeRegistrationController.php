@@ -153,12 +153,13 @@ class EmployeeRegistrationController extends Controller
         $data['departments'] = Department::all();
         return view('backend.hrm.payroll.payroll_employee_add',$data);
     }
-    public function payrollEmployeeStore(Request $request)
+        public function payrollEmployeeStore(Request $request)
     {
         // dd($request->all());
         $this->validate($request,[
             'email' => 'required|unique:users,email'
         ]);
+        
         $user = new User();
         $user->usertype = 'admin';
         $user->user_category = 'doctor';
@@ -184,19 +185,22 @@ class EmployeeRegistrationController extends Controller
         $user->sort = $request->sort;
         $user->join_date = $request->join_date !== null ? date('Y-m-d', strtotime($request->join_date)) : null;
         $user->password = bcrypt(654321);
-        $img = $request->file('ecard');
-        if ($img) {
-            $imgName = date('YmdHi').$img->getClientOriginalName();
-            $img->move('public/upload/employee_ecard/', $imgName);
-            $img = Image::make(public_path('upload/employee_ecard/').$imgName);
-            $img->resize(1004,1299)->save(public_path('upload/employee_ecard/').$imgName);
-            $user['ecard'] = $imgName;
+        $file = $request->file('ecard');
+        if ($file) {
+            $imgName = date('YmdHi').$file->getClientOriginalName();
+            $file->move(public_path('uploads/employee_ecard'), $imgName);
+            $makeImg = Image::make(public_path('uploads/employee_ecard/' . $imgName));
+            $makeImg->resize(1004, 1299)->save(public_path('uploads/employee_ecard/' . $imgName));
+            $user->ecard = $imgName;
         }
+        
         if($request->department_id=='53'){
             $user->user_category = 'nurse';
             $user->role = '4';
         }
+        
         $user->save();
+        
         return redirect()->route('payroll.employee.view')->with('success','Data inserted successfully!');
     }
 
@@ -230,6 +234,7 @@ class EmployeeRegistrationController extends Controller
         $this->validate($request,[
             'email' => 'required|unique:users,email,'.$user->id
         ]);
+        
         $user->name = $request->name;
         $user->name_bn = $request->name_bn;
         $user->email = $request->email;
@@ -249,31 +254,45 @@ class EmployeeRegistrationController extends Controller
         $user->rocket_number = $request->rocket_number;
         $user->sort = $request->sort;
         $user->join_date = $request->join_date !== null ? date('Y-m-d', strtotime($request->join_date)) : null;
-        $img = $request->file('ecard');
-        if ($img) {
-            @unlink(public_path('upload/employee_ecard/'.$user->ecard));
-            $imgName = date('YmdHi').$img->getClientOriginalName();
-            $img->move('public/upload/employee_ecard/', $imgName);
-            $img = Image::make(public_path('upload/employee_ecard/').$imgName);
-            $img->resize(1004,1299)->save(public_path('upload/employee_ecard/').$imgName);
-            $user['ecard'] = $imgName;
+        
+        // Image update logic fixed safely
+        $file = $request->file('ecard');
+        if ($file) {
+            // 1. Unlink the old file safely using absolute public_path
+            if (!empty($user->ecard) && file_exists(public_path('uploads/employee_ecard/' . $user->ecard))) {
+                @unlink(public_path('uploads/employee_ecard/' . $user->ecard));
+            }
+            
+            $imgName = date('YmdHi').$file->getClientOriginalName();
+            
+            // 2. Move to clean target directory path structure
+            $file->move(public_path('uploads/employee_ecard'), $imgName);
+            
+            // 3. Process with an independent $makeImg object variable to prevent windows path collisions
+            $makeImg = Image::make(public_path('uploads/employee_ecard/' . $imgName));
+            $makeImg->resize(1004, 1299)->save(public_path('uploads/employee_ecard/' . $imgName));
+            
+            // 4. Assigned standard Object property notation instead of array notation
+            $user->ecard = $imgName;
         }
+        
         if($request->department_id=='53'){
             $user->user_category = 'nurse';
             $user->role = '4';
         }
+        
         $user->save();
+        
         return redirect()->route('payroll.employee.view')->with('success','Data updated successfully!');
     }
-
     public function payrollEmployeeDestroy(Request $request){
         // dd('ok');
         $user = User::find($request->id);
-        if (file_exists('public/upload/employee_images/'.$user->image) AND ! empty($user->image)) {
-            unlink('public/upload/employee_images/'.$user->image);
+        if (file_exists('public/uploads/employee_images/'.$user->image) AND ! empty($user->image)) {
+            unlink('public/uploads/employee_images/'.$user->image);
         }
-        if (file_exists('public/upload/employee_ecard/'.$user->ecard) AND ! empty($user->ecard)) {
-            unlink('public/upload/employee_ecard/'.$user->ecard);
+        if (file_exists('public/uploads/employee_ecard/'.$user->ecard) AND ! empty($user->ecard)) {
+            unlink('public/uploads/employee_ecard/'.$user->ecard);
         }
         Education::where('user_id',$user->id)->delete();
         TimeAssign::where('doctor_id',$user->id)->delete();
@@ -287,7 +306,7 @@ class EmployeeRegistrationController extends Controller
         if(!empty($photoImage)){
             foreach ($photoImage as $value) {
                 if(!empty($value)){
-                    unlink('public/upload/photo_images/'.$value['image']);
+                    unlink('public/uploads/photo_images/'.$value['image']);
                 }
             }
         }
@@ -296,7 +315,7 @@ class EmployeeRegistrationController extends Controller
         if(!empty($newsImage)){
             foreach ($newsImage as $value) {
                 if(!empty($value)){
-                    unlink('public/upload/news_images/'.$value['image']);
+                    unlink('public/uploads/news_images/'.$value['image']);
                 }
             }
         }
@@ -305,7 +324,7 @@ class EmployeeRegistrationController extends Controller
         if(!empty($videoImage)){
             foreach ($videoImage as $value) {
                 if(!empty($value)){
-                    unlink('public/upload/video_images/'.$value['image']);
+                    unlink('public/uploads/video_images/'.$value['image']);
                 }
             }
         }

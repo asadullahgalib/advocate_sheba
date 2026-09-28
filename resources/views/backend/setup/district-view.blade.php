@@ -12,7 +12,7 @@
       <div class="card-body">
           <table class="table-sm table-bordered table-striped dt-responsive nowrap" style="width: 100%" id="example1">
             <thead>
-              <tr>
+              <tr class="text-center">
                 <th>Sl.</th>
                 <th>Image</th>
                 <th>District Name</th>
@@ -24,7 +24,7 @@
               <tr class="text-center">
                 <td>{{$key+1}}</td>
                 <td>
-                  <img src="{{ (!empty($district->image)) ? url('upload/district_images/'.$district->image) : url('no_image.jpg') }}" style="width: 50px; height: 50px; border: 1px solid #ddd; object-fit: cover;">
+                  <img src="{{ (!empty($district->image)) ? url('uploads/district_images/'.$district->image) : url('upload/no_image.png') }}" style="width: 60px; height: 40px; border: 1px solid #ddd; object-fit: contain;">
                 </td>
                 <td>{{$district->name}}</td>
                 <td>

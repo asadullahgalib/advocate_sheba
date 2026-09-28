@@ -19,24 +19,22 @@
           <div class="card-body">
             <div class="show_module_more_event">
               <div class="form-row">
-                
-                <!-- ডিস্ট্রিক্ট নেম ইনপুট -->
+                <!-- District Name Field -->
                 <div class="form-group col-md-6">
                   <label class="control-label">District Name</label>
                   <input type="text" name="name" id="name" class="form-control form-control-sm" value="{{@$editData->name}}" placeholder="District Name">
                 </div>
 
-                <!-- ইমেজ আপলোড ইনপুট -->
+                <!-- Image Input Field with Red Size Notice -->
                 <div class="form-group col-md-4">
-                  <label class="control-label">District Image</label>
-                  <input type="file" name="image" id="image" class="form-control form-control-sm">
+                  <label for="image">Image <span style="color:red;">(200px X 90px)</span></label>
+                  <input type="file" name="image" class="form-control form-control-sm" id="image">
                 </div>
 
-                <!-- ইমেজ লাইভ প্রিভিউ বক্স -->
-                <div class="form-group col-md-2" style="padding-top: 5px;">
-                  <img id="showImage" src="{{ (!empty($editData->image)) ? url('upload/district_images/'.$editData->image) : url('no_image.jpg') }}" style="width: 80px; height: 80px; border: 1px solid #ddd; object-fit: cover;">
+                <!-- Image Live Preview Box -->
+                <div class="form-group col-md-2" style="padding-top: 10px;">
+                  <img id="showImage" src="{{(!empty($editData->image)) ? url('public/uploads/district_images/'.$editData->image) : url('public/upload/no_image.png')}}" style="width: 100px; height: 80px; border:1px solid #000;">
                 </div>
-
               </div>
             </div>
               
@@ -48,31 +46,32 @@
     </div>
   </div>
 
-<script type="text/javascript">
+<!-- jQuery Form Validation and Live Image Preview Script -->
+<script>
     $(document).ready(function(){
-      // ফর্ম ভ্যালিডেশন
-      $('#myForm').validate({
-          errorClass:'text-danger',
-          validClass:'text-success',
-          rules : {
-              'name' : {
-                  required : true,
-              }
-          },
-          messages : {
-              'name' : {
-                  required : 'Please enter district name',
-              }
-          }
+      // Live Image Preview function
+      $('#image').change(function(e){
+        var reader = new FileReader();
+        reader.onload = function(e){
+          $('#showImage').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(e.target.files['0']);
       });
 
-      // ইমেজ সিলেক্ট করলে সাথে সাথে লাইভ প্রিভিউ দেখানোর স্ক্রিপ্ট
-      $('#image').change(function(e){
-          var reader = new FileReader();
-          reader.onload = function(e){
-              $('#showImage').attr('src', e.target.result);
-          }
-          reader.readAsDataURL(e.target.files['0']);
+      // Form Validation
+      $('#myForm').validate({
+        errorClass:'text-danger',
+        validClass:'text-success',
+        rules : {
+            'name' : {
+                required : true,
+            },
+        },
+        messages : {
+            'name' : {
+                required : 'Please enter district name',
+            }
+        }
       });
     });
 </script>

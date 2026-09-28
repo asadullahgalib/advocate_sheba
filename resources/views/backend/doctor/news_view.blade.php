@@ -16,7 +16,7 @@
             <tr>
               <th width="8%">SL</th>
               @if(@Auth::user()->user_category=='admin' || @Auth::user()->user_category=='Developer')
-              <th>Docotr/Nurse Name</th>
+              <th>Legal Professional</th>
               @endif
               <th>Title</th>
               <th width="15%">Date</th>
@@ -33,9 +33,15 @@
                 @endif
                 <td>{{ $value->title }}</td>
                 <td>{{ date('d-m-Y',strtotime($value->date)) }}</td>
+                
+                <!-- এখানে পাথের নাম uploads/news_images করা হলো এবং সাইজ লক করা হলো -->
                 <td>
-                  <img src="{{(!empty(@$value->image))?url('public/upload/news_images/'.@$value->image):url('public/upload/no_image.png')}}" width="30%">
+                  <img src="{{(!empty($value->image)) ? url('uploads/news_images/'.$value->image) : url('public/upload/no_image.png')}}" 
+                       width="80" 
+                       height="80" 
+                       style="width: 80px; height: 80px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd;">
                 </td>
+                
                 <td>
                   <a href="{{ route('doctor-profile.news.edit',$value->id) }}" class="btn btn-info btn-sm" title="Edit"><i class="fa fa-edit"></i></a>     
                   <a id="delete" href="{{ route('doctor-profile.news.delete') }}" data-token="{{csrf_token()}}" data-id="{{$value->id}}" class="btn btn-danger btn-sm" title="Delete"><i class="fa fa-trash"></i></a>

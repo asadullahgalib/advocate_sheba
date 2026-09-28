@@ -4,7 +4,7 @@
   <div class="col-md-12" style="padding-top: 40px;">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Photo Gallery List
+        <h3 class="card-title">Legal Professional
           <a href="{{ route('doctor-profile.photo.add') }}" class="btn btn-success float-right btn-sm custom_btn"><i class="fa fa-plus-circle"> Add Photo Gallery</i></a>
         </h3>
       </div>
@@ -16,7 +16,7 @@
             <tr>
               <th width="8%">SL</th>
               @if(@Auth::user()->user_category=='admin' || @Auth::user()->user_category=='Developer')
-              <th>Docotr/Nurse Name</th>
+              <th>Legal Professional</th>
               @endif
               <th>Photo</th>
               <th width="10%">Action</th>
@@ -29,9 +29,12 @@
                 @if(@Auth::user()->user_category=='admin' || @Auth::user()->user_category=='Developer')
                 <td>{{@$value['user']['name']}} - {{@$value['user']['department']['name']}}</td>
                 @endif
+                
+                <!-- এখানে পাথের নাম পরিবর্তন করে uploads/photo_images করা হলো -->
                 <td>
-                  <img src="{{(!empty(@$value->image))?url('public/upload/photo_images/'.@$value->image):url('public/upload/no_image.png')}}" width="20%">
+                  <img src="{{(!empty($value->image)) ? url('uploads/photo_images/'.$value->image) : url('public/upload/no_image.png')}}" width="20%">
                 </td>
+                
                 <td>
                   <a href="{{ route('doctor-profile.photo.edit',$value->id) }}" class="btn btn-info btn-sm" title="Edit"><i class="fa fa-edit"></i></a>     
                   <a id="delete" href="{{ route('doctor-profile.photo.delete') }}" data-token="{{csrf_token()}}" data-id="{{$value->id}}" class="btn btn-danger btn-sm" title="Delete"><i class="fa fa-trash"></i></a>

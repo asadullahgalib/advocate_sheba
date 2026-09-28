@@ -25,8 +25,8 @@
   <div class="col-md-12" style="padding-top: 40px;">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Doctor List
-          <a href="{{ route('payroll.employee.view.add') }}" class="btn btn-warning float-right btn-sm custom_btn"><i class="fa fa-plus-circle"> Doctor Add</i></a>
+        <h3 class="card-title">Legal Professional List
+          <a href="{{ route('payroll.employee.view.add') }}" class="btn btn-warning float-right btn-sm custom_btn"><i class="fa fa-plus-circle"> Legal Professional Add</i></a>
         </h3>
       </div>
 
@@ -38,13 +38,13 @@
               <th width="8%">SL</th>
               <th>Name</th>
               <th>Designation </th>  
-              <th>Department </th>  
+              <!-- <th>Department </th>   -->
               <th>Mobile No</th>
               <th>Email</th>
-              <th>Emp. Type</th>
-              <th>Booking Status</th>
+              <!-- <th>Emp. Type</th> -->
+              <!-- <th>Booking Status</th> -->
               <th>Status</th>
-              <th>Sort</th>
+              <!-- <th>Sort</th> -->
               <th width="12%">Action</th>
             </tr>
             </thead>
@@ -57,24 +57,24 @@
                 <td>{{ $key + 1 }}</td>
                 <td>{{ $value->name }}</td>
                 <td>{{ @$value['designation']['name'] }}</td>
-                <td>{{ @$value['department']['name'] }}</td>
+                <!-- <td>{{ @$value['department']['name'] }}</td> -->
                 <td>{{ $value->mobile }}</td>
                 <td>{{ $value->email }}</td>
-                @if(Auth::user()->role=='1')
+               <!--  @if(Auth::user()->role=='1')
                 <td>
                   @if($value->employee_type=='1')
                   Internal
                   @elseif($value->employee_type=='2')
                   External
                   @endif
-                </td>
-                <td>
+                </td> -->
+                <!-- <td>
                   @if($value->booking_status=='1')
                   Yes
                   @elseif($value->booking_status=='2')
                   No
                   @endif
-                </td>
+                </td> -->
                 <td>
                   @if($value->status=='1')
                   <span style="background: #FF0099;color: #fff;padding: 5px;">Active</span>
@@ -83,7 +83,7 @@
                   @endif
                 </td>
                 @endif
-                <td>{{$value->sort}}</td>
+                <!-- <td>{{$value->sort}}</td> -->
                 <td>
                   <div class="btn-group">
                     <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

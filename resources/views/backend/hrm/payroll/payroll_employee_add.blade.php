@@ -6,11 +6,11 @@
       <div class="card-header">
         <h3 class="card-title">
           @if(isset($editData))
-            Doctor Update
+            Legal Professional Update
           @else
-            Doctor Add
+            Legal Professional Add
           @endif
-          <a href="{{ route('payroll.employee.view') }}" class="btn btn-success float-right btn-sm custom_btn"><i class="fa fa-list"> Doctor List</i></a>
+          <a href="{{ route('payroll.employee.view') }}" class="btn btn-success float-right btn-sm custom_btn"><i class="fa fa-list"> Legal Professional List</i></a>
         </h3>
       </div>
 
@@ -39,13 +39,13 @@
                   {{($errors->has('mobile'))?($errors->first('mobile')):''}} 
                 </font>                 
               </div>
-              <div class="form-group col-md-12">
+              <!-- <div class="form-group col-md-12">
                 <label for="name">Qualification <span style="color:red">*</span></label>
                 <input type="text" name="qualification" class="form-control form-control-sm" value="{{@$editData->qualification}}"> 
                 <font style="color: red"> 
                   {{($errors->has('qualification'))?($errors->first('qualification')):''}} 
                 </font>                 
-              </div>
+              </div> -->
               <div class="form-group col-md-3">
                 <label for="designation_id">Designation <span style="color:red">*</span></label>
                 <select name="designation_id" class="form-control form-control-sm select2">
@@ -65,7 +65,7 @@
                   {{($errors->has('email'))?($errors->first('email')):''}} 
                 </font>                 
               </div>
-              <div class="form-group col-md-3">
+              <!-- <div class="form-group col-md-3">
                 <label>Department <span style="color:red">*</span></label>
                 <select name="department_id" class="form-control select2">
                   <option value="">Select Department</option>
@@ -76,26 +76,26 @@
                 <font style="color: red"> 
                   {{($errors->has('department_id'))?($errors->first('department_id')):''}} 
                 </font>                 
-              </div>
-              <div class="form-group col-md-3">
+              </div> -->
+              <!-- <div class="form-group col-md-3">
                 <label for="join_date">Join Date </label>
                 <input type="text" name="join_date" class="form-control form-control-sm singledatepicker" placeholder="DD-MM-YYYY" value="{{ @$editData->join_date }}" autocomplete="off"> 
                 <font style="color: red"> 
                   {{($errors->has('join_date'))?($errors->first('join_date')):''}} 
                 </font>                 
-              </div>
-              <div class="form-group col-md-3">
+              </div> -->
+              <!-- <div class="form-group col-md-3">
                 <label>BMDC No <span style="color:red">*</span></label>
                 <input type="text" name="mbbs_fcp" class="form-control form-control-sm" value="{{ @$editData->mbbs_fcp }}"> 
-              </div>
-              <div class="form-group col-md-2">
+              </div> -->
+              <!-- <div class="form-group col-md-2">
                 <label>Consultation Fee <span style="color:red">*</span></label>
                 <input type="text" name="consultation_fee" class="form-control form-control-sm" value="{{ @$editData->consultation_fee }}"> 
-              </div>
-              <div class="form-group col-md-2">
+              </div> -->
+              <!-- <div class="form-group col-md-2">
                 <label>Follow-up Fee <span style="color:red">*</span></label>
                 <input type="text" name="follow_up_fee" class="form-control form-control-sm" value="{{ @$editData->follow_up_fee }}"> 
-              </div>
+              </div> -->
               <div class="form-group col-md-5">
                 <label>Total Experience <span style="color:red">*</span></label>
                 <input type="text" name="experience" class="form-control form-control-sm" value="{{ @$editData->experience }}"> 
@@ -104,7 +104,7 @@
                 <label>IMO/What's App </label>
                 <input type="text" name="appointment_contact" class="form-control form-control-sm" value="{{ @$editData->appointment_contact }}" placeholder="Contact No"> 
               </div>
-              @if(@Auth::user()->role=='1')
+              <!-- @if(@Auth::user()->role=='1')
               <div class="form-group col-md-3">
                 <label for="name">Employee Type <span style="color:red">*</span></label>
                 <select name="employee_type" class="form-control form-control-sm">
@@ -112,51 +112,61 @@
                   <option value="1" {{(@$editData->employee_type == "1")?"selected":""}}>Internal</option>
                   <option value="2" {{(@$editData->employee_type == "2")?"selected":""}}>External</option>
                 </select>
-              </div>
-              <div class="form-group col-md-3">
+              </div> -->
+              <!-- <div class="form-group col-md-3">
                 <label for="name">Booking Status <span style="color:red">*</span></label>
                 <select name="booking_status" class="form-control form-control-sm">
                   <option value="">Select Type</option>
                   <option value="1" {{(@$editData->booking_status == "1")?"selected":""}}>Yes</option>
                   <option value="2" {{(@$editData->booking_status == "2")?"selected":""}}>No</option>
                 </select>
-              </div>
-              <div class="form-group col-md-3">
+              </div> -->
+              <!-- <div class="form-group col-md-3">
                 <label>Bkash No </label>
                 <input type="text" name="bkash_number" class="form-control form-control-sm" value="{{ @$editData->bkash_number }}"> 
-              </div>
-              <div class="form-group col-md-3">
+              </div> -->
+              <!-- <div class="form-group col-md-3">
                 <label>Nagad No </label>
                 <input type="text" name="nagad_number" class="form-control form-control-sm" value="{{ @$editData->nagad_number }}"> 
-              </div>
-              <div class="form-group col-md-3">
+              </div> -->
+              <!-- <div class="form-group col-md-3">
                 <label>Rocket No </label>
                 <input type="text" name="rocket_number" class="form-control form-control-sm" value="{{ @$editData->rocket_number }}"> 
-              </div>
-              <div class="form-group col-md-3">
+              </div> -->
+              <!-- <div class="form-group col-md-3">
                 <label>Sort Order </label>
                 <input type="number" name="sort" class="form-control form-control-sm" value="{{ @$editData->sort }}" required> 
-              </div>
+              </div> -->
+              
               <div class="form-group col-sm-3">
                 <label>E-Card <span style="color:red">(1004px X 1299px)</span></label>
                 <input type="file" name="ecard" id="image" class="form-control form-control-sm">
               </div>
               <div class="form-group col-sm-3" style="z-index: 100;">
-                <img id="showImage" src="{{(!empty($editData->ecard))?url('public/upload/employee_ecard/'.$editData->ecard):url('public/upload/no_image.png')}}" style="width: 150px; height: 150px" class="form-control">
+                <img id="showImage" src="{{(!empty($editData->ecard)) ? url('uploads/employee_ecard/'.$editData->ecard) : url('uploads/no_image.png')}}" style="width: 150px; height: 150px; object-fit: cover;" class="form-control">
               </div>
               @endif
+              
               <div class="form-group col-md-8">
                 <button type="submit" class="btn btn-primary btn-sm">@if(isset($editData)) Update @else Submit @endif</button>
               </div>
             </div>
           </div>
-        </form>
+      </form>
 
     </div>
   </div>
 
 <script type="text/javascript">
   $(document).ready(function () {  
+    $('#image').change(function(e){
+      var reader = new FileReader();
+      reader.onload = function(e){
+        $('#showImage').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(e.target.files['0']);
+    });
+
     $('#MyForm').validate({
       rules:{
         name:{

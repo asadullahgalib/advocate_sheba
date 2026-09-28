@@ -211,84 +211,109 @@ class ContactController extends Controller
     }
 
     // Video Gallery
-
-    public function videoView(){
-        if(@Auth::user()->user_category=='admin' || @Auth::user()->user_category=='Developer'){
-            $data['allData'] = VideoGallery::orderBy('id','desc')->get();
-        }if(@Auth::user()->user_category=='doctor' || @Auth::user()->user_category=='nurse'){
-            $data['allData'] = VideoGallery::where('user_id',@Auth::user()->id)->orderBy('id','desc')->get();
+    public function videoView()
+    {
+        if (@Auth::user()->user_category == 'admin' || @Auth::user()->user_category == 'Developer') {
+            $data['allData'] = VideoGallery::orderBy('id', 'desc')->get();
         }
-        return view('backend.doctor.video_view',$data);
+        if (@Auth::user()->user_category == 'doctor' || @Auth::user()->user_category == 'nurse') {
+            $data['allData'] = VideoGallery::where('user_id', @Auth::user()->id)->orderBy('id', 'desc')->get();
+        }
+        return view('backend.doctor.video_view', $data);
     }
 
-    public function videoAdd(){
-        $data['employees'] = User::whereIn('user_category',['doctor','nurse'])->where('status','1')->get();
-        return view('backend.doctor.video_add',$data);
+    public function videoAdd()
+    {
+        $data['employees'] = User::whereIn('user_category', ['doctor', 'nurse'])->where('status', '1')->get();
+        return view('backend.doctor.video_add', $data);
     }
 
-    public function videoStore(Request $request){
+    public function videoStore(Request $request)
+    {
         $data = new VideoGallery();
         $data->link = $request->link;
-        if(@Auth::user()->user_category=='admin' || @Auth::user()->user_category=='Developer'){
+        
+        if (@Auth::user()->user_category == 'admin' || @Auth::user()->user_category == 'Developer') {
             $user_id = $request->user_id;
-        }if(@Auth::user()->user_category=='doctor' || @Auth::user()->user_category=='nurse'){
+        }
+        if (@Auth::user()->user_category == 'doctor' || @Auth::user()->user_category == 'nurse') {
             $user_id = Auth::user()->id;
         }
         $data->user_id = $user_id;
-        if ($request->file('image')){
+
+        if ($request->file('image')) {
             $file = $request->file('image');
-            $filename =date('YmdHi').$file->getClientOriginalName();
-            $file->move(public_path('upload/video_images'), $filename);
-            $file = Image::make(public_path('upload/video_images/').$filename);
-            $file->resize(300,200)->save(public_path('upload/video_images/').$filename);
-            $data['image']= $filename;
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('uploads/video_images'), $filename);
+            $img = Image::make(public_path('uploads/video_images/' . $filename));
+            $img->resize(300, 200)->save(public_path('uploads/video_images/' . $filename));
+            
+            $data->image = $filename;
         }
+        
         $data->created_by = Auth::user()->id;
         $data->save();
-        return redirect()->route('doctor-profile.video.view')->with('success','Data Inserted successfully');
+        
+        return redirect()->route('doctor-profile.video.view')->with('success', 'Data Inserted successfully');
     }
 
-    public function videoEdit($id){
-        if(@Auth::user()->user_category=='admin' || @Auth::user()->user_category=='Developer'){
-            $data['editData'] = VideoGallery::where('id',$id)->first();
-        }if(@Auth::user()->user_category=='doctor' || @Auth::user()->user_category=='nurse'){
-            $user_id = Auth::user()->id;
-            $data['editData'] = VideoGallery::where('user_id',@Auth::user()->id)->where('id',$id)->first();
+    public function videoEdit($id)
+    {
+        if (@Auth::user()->user_category == 'admin' || @Auth::user()->user_category == 'Developer') {
+            $data['editData'] = VideoGallery::where('id', $id)->first();
         }
-        $data['employees'] = User::whereIn('user_category',['doctor','nurse'])->where('status','1')->get();
-        return view('backend.doctor.video_add',$data);
+        if (@Auth::user()->user_category == 'doctor' || @Auth::user()->user_category == 'nurse') {
+            $user_id = Auth::user()->id;
+            $data['editData'] = VideoGallery::where('user_id', @Auth::user()->id)->where('id', $id)->first();
+        }
+        $data['employees'] = User::whereIn('user_category', ['doctor', 'nurse'])->where('status', '1')->get();
+        return view('backend.doctor.video_add', $data);
     }
 
-    public function videoUpdate(Request $request,$id){
+    public function videoUpdate(Request $request, $id)
+    {
         $data = VideoGallery::find($id);
         $data->link = $request->link;
-        if(@Auth::user()->user_category=='admin' || @Auth::user()->user_category=='Developer'){
+        
+        if (@Auth::user()->user_category == 'admin' || @Auth::user()->user_category == 'Developer') {
             $user_id = $request->user_id;
-        }if(@Auth::user()->user_category=='doctor' || @Auth::user()->user_category=='nurse'){
+        }
+        if (@Auth::user()->user_category == 'doctor' || @Auth::user()->user_category == 'nurse') {
             $user_id = Auth::user()->id;
         }
         $data->user_id = $user_id;
-        if ($request->file('image')){
+
+        if ($request->file('image')) {
             $file = $request->file('image');
-            @unlink(public_path('upload/video_images/'.$data->image));
-            $filename =date('YmdHi').$file->getClientOriginalName();
-            $file->move(public_path('upload/video_images'), $filename);
-            $file = Image::make(public_path('upload/video_images/').$filename);
-            $file->resize(300,200)->save(public_path('upload/video_images/').$filename);
-            $data['image']= $filename;
+            if (!empty($data->image) && file_exists(public_path('uploads/video_images/' . $data->image))) {
+                @unlink(public_path('uploads/video_images/' . $data->image));
+            }
+            
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('uploads/video_images'), $filename);
+            
+            $img = Image::make(public_path('uploads/video_images/' . $filename));
+            $img->resize(300, 200)->save(public_path('uploads/video_images/' . $filename));
+            
+            $data->image = $filename;
         }
+        
         $data->updated_by = Auth::user()->id;
         $data->save();
-        return redirect()->route('doctor-profile.video.view')->with('success','Data updated successfully');
+        
+        return redirect()->route('doctor-profile.video.view')->with('success', 'Data updated successfully');
     }
-
-    public function videoDelete(Request $request){
+    public function videoDelete(Request $request)
+    {
         $data = VideoGallery::find($request->id);
-        if (file_exists('public/upload/video_images/' . $data->image) AND ! empty($data->image)) {
-            unlink('public/upload/video_images/' . $data->image);
+        
+        if (!empty($data->image) && file_exists(public_path('uploads/video_images/' . $data->image))) {
+            @unlink(public_path('uploads/video_images/' . $data->image));
         }
+        
         $data->delete();
-        return redirect()->route('doctor-profile.video.view')->with('success','Data Deleted successfully');
+        
+        return redirect()->route('doctor-profile.video.view')->with('success', 'Data Deleted successfully');
     }
 
     // Photo Gallery
@@ -315,13 +340,14 @@ class ContactController extends Controller
             $user_id = Auth::user()->id;
         }
         $data->user_id = $user_id;
+        
         if ($request->file('image')){
             $file = $request->file('image');
-            $filename =date('YmdHi').$file->getClientOriginalName();
-            $file->move(public_path('upload/photo_images'), $filename);
-            $file = Image::make(public_path('upload/photo_images/').$filename);
-            $file->resize(700,500)->save(public_path('upload/photo_images/').$filename);
-            $data['image']= $filename;
+            $filename = date('YmdHi').$file->getClientOriginalName();
+            $file->move(public_path('uploads/photo_images'), $filename);
+            $file = Image::make(public_path('uploads/photo_images/').$filename);
+            $file->resize(700,500)->save(public_path('uploads/photo_images/').$filename);
+            $data->image = $filename;
         }
         $data->created_by = Auth::user()->id;
         $data->save();
@@ -347,14 +373,18 @@ class ContactController extends Controller
             $user_id = Auth::user()->id;
         }
         $data->user_id = $user_id;
+        
         if ($request->file('image')){
             $file = $request->file('image');
-            @unlink(public_path('upload/photo_images/'.$data->image));
-            $filename =date('YmdHi').$file->getClientOriginalName();
-            $file->move(public_path('upload/photo_images'), $filename);
-            $file = Image::make(public_path('upload/photo_images/').$filename);
-            $file->resize(700,500)->save(public_path('upload/photo_images/').$filename);
-            $data['image']= $filename;
+            if (!empty($data->image) && file_exists(public_path('uploads/photo_images/'.$data->image))) {
+                @unlink(public_path('uploads/photo_images/'.$data->image));
+            }
+            
+            $filename = date('YmdHi').$file->getClientOriginalName();
+            $file->move(public_path('uploads/photo_images'), $filename);
+            $file = Image::make(public_path('uploads/photo_images/').$filename);
+            $file->resize(700,500)->save(public_path('uploads/photo_images/').$filename);
+            $data->image = $filename;
         }
         $data->updated_by = Auth::user()->id;
         $data->save();
@@ -363,16 +393,17 @@ class ContactController extends Controller
 
     public function photoDelete(Request $request){
         $data = PhotoGallery::find($request->id);
-        if (file_exists('public/upload/photo_images/' . $data->image) AND ! empty($data->image)) {
-            unlink('public/upload/photo_images/' . $data->image);
+        if (!empty($data->image) && file_exists(public_path('uploads/photo_images/' . $data->image))) {
+            @unlink(public_path('uploads/photo_images/' . $data->image));
         }
         $data->delete();
         return redirect()->route('doctor-profile.photo.view')->with('success','Data Deleted successfully');
     }
 
+
     // News & Events
 
-    public function newsView(){
+        public function newsView(){
         if(@Auth::user()->user_category=='admin' || @Auth::user()->user_category=='Developer'){
             $data['allData'] = NewsEvent::orderBy('id','desc')->get();
         }if(@Auth::user()->user_category=='doctor' || @Auth::user()->user_category=='nurse'){
@@ -390,20 +421,21 @@ class ContactController extends Controller
         $data = new NewsEvent();
         $data->title = $request->title;
         $data->date = date('Y-m-d',strtotime($request->date));
-        $data->editor1 = $request->editor1;
+        $data->description_en = $request->description_en;
         if(@Auth::user()->user_category=='admin' || @Auth::user()->user_category=='Developer'){
             $user_id = $request->user_id;
         }if(@Auth::user()->user_category=='doctor' || @Auth::user()->user_category=='nurse'){
             $user_id = Auth::user()->id;
         }
         $data->user_id = $user_id;
+        
         if ($request->file('image')){
             $file = $request->file('image');
-            $filename =date('YmdHi').$file->getClientOriginalName();
-            $file->move(public_path('upload/news_images'), $filename);
-            $file = Image::make(public_path('upload/news_images/').$filename);
-            $file->resize(700,500)->save(public_path('upload/news_images/').$filename);
-            $data['image']= $filename;
+            $filename = date('YmdHi').$file->getClientOriginalName();
+            $file->move(public_path('uploads/news_images'), $filename);
+            $file = Image::make(public_path('uploads/news_images/').$filename);
+            $file->resize(700,500)->save(public_path('uploads/news_images/').$filename);
+            $data->image = $filename;
         }
         $data->created_by = Auth::user()->id;
         $data->save();
@@ -425,21 +457,26 @@ class ContactController extends Controller
         $data = NewsEvent::find($id);
         $data->title = $request->title;
         $data->date = date('Y-m-d',strtotime($request->date));
-        $data->editor1 = $request->editor1;
+        $data->description_en = $request->description_en;
         if(@Auth::user()->user_category=='admin' || @Auth::user()->user_category=='Developer'){
             $user_id = $request->user_id;
         }if(@Auth::user()->user_category=='doctor' || @Auth::user()->user_category=='nurse'){
             $user_id = Auth::user()->id;
         }
         $data->user_id = $user_id;
+        
         if ($request->file('image')){
             $file = $request->file('image');
-            @unlink(public_path('upload/news_images/'.$data->image));
-            $filename =date('YmdHi').$file->getClientOriginalName();
-            $file->move(public_path('upload/news_images'), $filename);
-            $file = Image::make(public_path('upload/news_images/').$filename);
-            $file->resize(700,500)->save(public_path('upload/news_images/').$filename);
-            $data['image']= $filename;
+            if (!empty($data->image) && file_exists(public_path('uploads/news_images/'.$data->image))) {
+                @unlink(public_path('uploads/news_images/'.$data->image));
+            }
+            
+            $filename = date('YmdHi').$file->getClientOriginalName();
+            $file->move(public_path('uploads/news_images'), $filename);
+            $file = Image::make(public_path('uploads/news_images/').$filename);
+            $file->resize(700,500)->save(public_path('uploads/news_images/').$filename);
+            
+            $data->image = $filename;
         }
         $data->updated_by = Auth::user()->id;
         $data->save();
@@ -448,8 +485,8 @@ class ContactController extends Controller
 
     public function newsDelete(Request $request){
         $data = NewsEvent::find($request->id);
-        if (file_exists('public/upload/news_images/' . $data->image) AND ! empty($data->image)) {
-            unlink('public/upload/news_images/' . $data->image);
+        if (!empty($data->image) && file_exists(public_path('uploads/news_images/' . $data->image))) {
+            @unlink(public_path('uploads/news_images/' . $data->image));
         }
         $data->delete();
         return redirect()->route('doctor-profile.news.view')->with('success','Data Deleted successfully');

@@ -4,8 +4,8 @@
   <div class="col-md-12" style="padding-top: 40px;">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Gideo Gallery List
-          <a href="{{ route('doctor-profile.video.add') }}" class="btn btn-success float-right btn-sm custom_btn"><i class="fa fa-plus-circle"> Add Gideo Gallery</i></a>
+        <h3 class="card-title">Video Gallery List
+          <a href="{{ route('doctor-profile.video.add') }}" class="btn btn-success float-right btn-sm custom_btn"><i class="fa fa-plus-circle"> Add Video Gallery</i></a>
         </h3>
       </div>
 
@@ -16,7 +16,7 @@
             <tr>
               <th width="8%">SL</th>
               @if(@Auth::user()->user_category=='admin' || @Auth::user()->user_category=='Developer')
-              <th>Docotr/Nurse Name</th>
+              <th>Legal Professional</th>
               @endif
               <th>Thumbnail</th>
               <th>Link</th>
@@ -30,9 +30,15 @@
                 @if(@Auth::user()->user_category=='admin' || @Auth::user()->user_category=='Developer')
                 <td>{{@$value['user']['name']}} - {{@$value['user']['department']['name']}}</td>
                 @endif
+                
+                <!-- এখানে পাথের নাম পরিবর্তন করে uploads এবং সাইজ ফিক্সড করা হলো -->
                 <td>
-                  <img src="{{(!empty(@$value->image))?url('public/upload/video_images/'.@$value->image):url('public/upload/no_image.png')}}" width="30%">
+                  <img src="{{(!empty($value->image)) ? url('uploads/video_images/'.$value->image) : url('uploads/no_image.jpg')}}" 
+                       width="100" 
+                       height="70" 
+                       style="width: 100px; height: 70px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd;">
                 </td>
+                
                 <td>{{ $value->link }}</td>
                 <td>
                   <a href="{{ route('doctor-profile.video.edit',$value->id) }}" class="btn btn-info btn-sm" title="Edit"><i class="fa fa-edit"></i></a>     

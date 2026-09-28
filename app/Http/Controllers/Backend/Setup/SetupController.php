@@ -10,17 +10,20 @@ use Image;
 
 class SetupController extends Controller
 {
+    // ১. View District List
     public function viewDistrict()
     {
         $allData = District::all();
         return view('backend.setup.district-view', compact('allData'));
     }
 
+    // ২. Add District Form
     public function addDistrict()
     {
         return view('backend.setup.district-add');
     }
 
+    // ৩. Store District Data
     public function storeDistrict(Request $request)
     {
         $this->validate($request, [
@@ -30,13 +33,14 @@ class SetupController extends Controller
 
         $district = new District();
         $district->name = $request->name;
+        // $district->division_id = 1; 
 
         if ($request->file('image')) {
             $file = $request->file('image');
             $filename = date('YmdHi') . $file->getClientOriginalName();
-            $file->move(public_path('upload/district_images'), $filename);
-            $img = Image::make(public_path('upload/district_images/' . $filename));
-            $img->resize(1080, 1080)->save(public_path('upload/district_images/' . $filename));
+            $file->move(public_path('uploads/district_images'), $filename);
+            $img = Image::make(public_path('uploads/district_images/' . $filename));
+            $img->resize(200, 90)->save(public_path('uploads/district_images/' . $filename));
             
             $district->image = $filename;
         }
@@ -47,12 +51,14 @@ class SetupController extends Controller
         return redirect()->route('setup.district.view')->with('success', 'Successfully Inserted');
     }
 
+    // ৪. Edit District Form
     public function editDistrict($id)
     {
         $editData = District::find($id);
         return view('backend.setup.district-add', compact('editData'));
     }
 
+    // ৫. Update District Data
     public function updateDistrict(Request $request, $id)
     {
         $this->validate($request, [
@@ -62,16 +68,18 @@ class SetupController extends Controller
 
         $district = District::find($id);
         $district->name = $request->name;
+        // $district->division_id = 1; 
+        
         if ($request->file('image')) {
             $file = $request->file('image');
-            if (!empty($district->image) && file_exists(public_path('upload/district_images/' . $district->image))) {
-                @unlink(public_path('upload/district_images/' . $district->image));
+            if (!empty($district->image) && file_exists(public_path('uploads/district_images/' . $district->image))) {
+                @unlink(public_path('uploads/district_images/' . $district->image));
             }
             
             $filename = date('YmdHi') . $file->getClientOriginalName();
-            $file->move(public_path('upload/district_images'), $filename);
-            $img = Image::make(public_path('upload/district_images/' . $filename));
-            $img->resize(1080, 1080)->save(public_path('upload/district_images/' . $filename));
+            $file->move(public_path('uploads/district_images'), $filename);
+            $img = Image::make(public_path('uploads/district_images/' . $filename));
+            $img->resize(200, 90)->save(public_path('uploads/district_images/' . $filename));
             
             $district->image = $filename;
         }
