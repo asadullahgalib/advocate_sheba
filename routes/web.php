@@ -300,15 +300,31 @@ Route::group(['middleware'=>['auth','admin']],function(){
 			Route::get('/edit/{id}','Backend\Advocate\AdvocateController@edit')->name('advocates.edit');
 			Route::post('/update/{id}','Backend\Advocate\AdvocateController@update')->name('advocates.update');
 			Route::get('/details/{id}','Backend\Advocate\AdvocateController@details')->name('advocates.details');
-			Route::get('/official/details/{id}','Backend\Advocate\AdvocateController@officialDetails')->name('advocates.official.details');
-			Route::post('/official/details/store/{id}','Backend\Advocate\AdvocateController@officialDetailsStore')->name('advocates.official.details.store');
-			Route::get('/about/details/{id}','Backend\Advocate\AdvocateController@aboutDetails')->name('advocates.abouts.details');
-			Route::get('/education/details/{id}','Backend\Advocate\AdvocateController@educationDetails')->name('advocates.education.details');
-			Route::get('/training/details/{id}','Backend\Advocate\AdvocateController@trainingDetails')->name('advocates.training.details');
-			Route::get('/membership/details/{id}','Backend\Advocate\AdvocateController@membershipDetails')->name('advocates.membership.details');
-			Route::get('/engagement/details/{id}','Backend\Advocate\AdvocateController@engagementDetails')->name('advocates.engagement.details');
-			Route::get('/chamber/details/{id}','Backend\Advocate\AdvocateController@chamberDetails')->name('advocates.chamber.details');
-			Route::get('/map/details/{id}','Backend\Advocate\AdvocateController@mapDetails')->name('advocates.map.details');
+			Route::get('/official/details/{id}', 'Backend\Advocate\AdvocateController@officialDetails')->name('advocates.official.details');
+			Route::post('/official/details/store/{id}', 'Backend\Advocate\AdvocateController@officialDetailsStore')->name('advocates.official.details.store');
+
+			Route::get('/about/details/{id}', 'Backend\Advocate\AdvocateController@aboutDetails')->name('advocates.abouts.details');
+			Route::post('/about/details/store/{id}', 'Backend\Advocate\AdvocateController@aboutDetailsStore')->name('advocates.about.details.store');
+
+			Route::get('/education/details/{id}', 'Backend\Advocate\AdvocateController@educationDetails')->name('advocates.education.details');
+			Route::post('/education/details/store/{id}', 'Backend\Advocate\AdvocateController@educationDetailsStore')->name('advocates.education.details.store');
+
+			Route::get('/training/details/{id}', 'Backend\Advocate\AdvocateController@trainingDetails')->name('advocates.training.details');
+			Route::post('/training/details/store/{id}', 'Backend\Advocate\AdvocateController@trainingDetailsStore')->name('advocates.training.details.store');
+
+			Route::get('/membership/details/{id}', 'Backend\Advocate\AdvocateController@membershipDetails')->name('advocates.membership.details');
+			Route::post('/membership/details/store/{id}', 'Backend\Advocate\AdvocateController@membershipDetailsStore')->name('advocates.membership.details.store');
+
+			Route::get('/engagement/details/{id}', 'Backend\Advocate\AdvocateController@engagementDetails')->name('advocates.engagement.details');
+			Route::post('/engagement/details/store/{id}', 'Backend\Advocate\AdvocateController@engagementDetailsStore')->name('advocates.engagement.details.store');
+
+			Route::get('/chamber/details/{id}', 'Backend\Advocate\AdvocateController@chamberDetails')->name('advocates.chamber.details');
+			Route::post('/chamber/details/store/{id}', 'Backend\Advocate\AdvocateController@chamberDetailsStore')->name('advocates.chamber.details.store');
+
+			Route::get('/map/details/{id}', 'Backend\Advocate\AdvocateController@mapDetails')->name('advocates.map.details');
+			Route::post('/map/details/store/{id}', 'Backend\Advocate\AdvocateController@mapDetailsStore')->name('advocates.map.details.store');
+
+
 
 			Route::get('/passowrd/{id}','Backend\Advocate\AdvocateController@payrollEmployeeEditPassword')->name('payroll.employee.view.edit.passowrd');
 			Route::post('/passowrd/{id}','Backend\Advocate\AdvocateController@payrollEmployeeUpdatePassword')->name('payroll.employee.view.update.passowrd');

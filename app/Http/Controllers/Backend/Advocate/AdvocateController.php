@@ -37,13 +37,14 @@ use Image;
 
 class AdvocateController extends Controller
 {
+    // ১. View Advocate List
     public function view()
     {
         $data['allData'] = User::where('user_category','advocate')->orderBy('id','desc')->get();
-
         return view('backend.advocate.advocate_view',$data);
     }
 
+    // ২. Add Form
     public function add()
     {       
         $data['designations'] = Designation::all();
@@ -51,9 +52,9 @@ class AdvocateController extends Controller
         return view('backend.advocate.advocate_add',$data);
     }
     
+    // ৩. Store Data
     public function store(Request $request)
     {
-        // dd($request->all());
         $this->validate($request,[
             'email' => 'required|unique:users,email'
         ]);
@@ -83,21 +84,21 @@ class AdvocateController extends Controller
         $user->sort = $request->sort;
         $user->join_date = $request->join_date !== null ? date('Y-m-d', strtotime($request->join_date)) : null;
         $user->password = bcrypt(654321);
-
         $user->save();
         
         return redirect()->route('advocates.view')->with('success','Data inserted successfully!');
     }
 
+    // ৪. Edit Form
     public function edit($id)
     {
         $data['editData'] = User::find($id);
         $data['designations'] = Designation::all();
         $data['departments'] = Department::all();
-
         return view('backend.advocate.advocate_add',$data);
     }
 
+    // ৫. Update Data
     public function update(Request $request, $id)
     {
         $user = User::find($id);
@@ -124,12 +125,12 @@ class AdvocateController extends Controller
         $user->rocket_number = $request->rocket_number;
         $user->sort = $request->sort;
         $user->join_date = $request->join_date !== null ? date('Y-m-d', strtotime($request->join_date)) : null;
-        
         $user->save();
         
         return redirect()->route('advocates.view')->with('success','Data updated successfully!');
     }
 
+    // ৬. Main Details / Statement
     public function details($id) 
     {
         $data['details'] = User::find($id);
@@ -137,11 +138,12 @@ class AdvocateController extends Controller
         return view('backend.advocate.advocate_details',$data);
     }
 
+    // ৭. Official Details
     public function officialDetails($id) 
     {
         $data['details'] = User::find($id);
         $data['page_title'] = 'official';
-        return view('backend.advocate.official_details',$data);
+        return view('backend.advocate.official_details', $data);
     }
 
     public function officialDetailsStore(Request $request, $id) 
@@ -149,7 +151,118 @@ class AdvocateController extends Controller
         $data = User::find($id);
         $data->abouts = $request->abouts;
         $data->save();
+        return redirect()->back()->with('success', 'Official details updated successfully');
+    }
 
-        return redirect()->back()->with('success','Data updated successfully');
+    // ৮. About Details
+    public function aboutDetails($id) 
+    {
+        $data['details'] = User::find($id);
+        $data['page_title'] = 'abouts';
+        return view('backend.advocate.about_details', $data);
+    }
+
+    public function aboutDetailsStore(Request $request, $id) 
+    {
+        $data = User::find($id);
+        $data->abouts = $request->abouts;
+        $data->save();
+        return redirect()->back()->with('success', 'About details updated successfully');
+    }
+
+        // ৯. Qualification Details
+    public function educationDetails($id) 
+    {
+        $data['details'] = User::find($id);
+        $data['page_title'] = 'education';
+        return view('backend.advocate.education_details', $data);
+    }
+
+    public function educationDetailsStore(Request $request, $id) 
+    {
+        $data = User::find($id);
+        $data->qualification = $request->qualification; // ডাটাবেজ কলাম qualification
+        $data->save();
+        return redirect()->back()->with('success', 'Qualification details updated successfully');
+    }
+
+    // ১০. Training Details
+    public function trainingDetails($id) 
+    {
+        $data['details'] = User::find($id);
+        $data['page_title'] = 'training';
+        return view('backend.advocate.training_details', $data);
+    }
+
+    public function trainingDetailsStore(Request $request, $id) 
+    {
+        $data = User::find($id);
+        $data->training = $request->training;
+        $data->save();
+        return redirect()->back()->with('success', 'Training details updated successfully');
+    }
+
+        // ১১. Membership Details
+    public function membershipDetails($id) 
+    {
+        $data['details'] = User::find($id);
+        $data['page_title'] = 'membership';
+        return view('backend.advocate.membership_details', $data);
+    }
+
+    public function membershipDetailsStore(Request $request, $id) 
+    {
+        $data = User::find($id);
+        $data->membership = $request->membership;
+        $data->save();
+        return redirect()->back()->with('success', 'Membership details updated successfully');
+    }
+
+    // ১২. Engagement Details
+    public function engagementDetails($id) 
+    {
+        $data['details'] = User::find($id);
+        $data['page_title'] = 'engagement';
+        return view('backend.advocate.engagement_details', $data);
+    }
+
+    public function engagementDetailsStore(Request $request, $id)
+    {
+        $data = User::find($id);
+        $data->social = $request->social;
+        $data->save();
+        return redirect()->back()->with('success', 'Engagement details updated successfully!');
+    }
+
+    // ১৩. Chamber Details
+    public function chamberDetails($id) 
+    {
+        $data['details'] = User::find($id);
+        $data['page_title'] = 'chamber';
+        return view('backend.advocate.chamber_details', $data);
+    }
+
+    public function chamberDetailsStore(Request $request, $id)
+    {
+        $data = User::find($id);
+        $data->chamber = $request->chamber;
+        $data->save();
+        return redirect()->back()->with('success', 'Chamber details updated successfully!');
+    }
+
+    // ১৪. Map Details
+    public function mapDetails($id) 
+    {
+        $data['details'] = User::find($id);
+        $data['page_title'] = 'map';
+        return view('backend.advocate.map_details', $data);
+    }
+
+    public function mapDetailsStore(Request $request, $id)
+    {
+        $data = User::find($id);
+        $data->map = $request->map;
+        $data->save();
+        return redirect()->back()->with('success', 'Map details updated successfully!');
     }
 }
