@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Employees;
+namespace App\Http\Controllers\Backend\Advocate;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -35,125 +35,23 @@ use Auth;
 use DateTime;
 use Image;
 
-class EmployeeRegistrationController extends Controller
+class AdvocateController extends Controller
 {
-    public function payrollEmployee()
+    public function view()
     {
-        $date = '2023-03-21';
-        $nameOfDay = date('D', strtotime($date));
-        $data['allData'] = User::whereIn('user_category',['doctor','nurse'])->orWhere('user_category','nursing')->orderBy('id','desc')->get();
-        return view('backend.hrm.payroll.payroll_employee_view',$data);
+        $data['allData'] = User::where('user_category','advocate')->orderBy('id','desc')->get();
+
+        return view('backend.advocate.advocate_view',$data);
     }
 
-    public function employeeInactive($id){
-        DB::table('users')
-                ->where('id', $id)
-                ->update(['status' => 0]);
-        return redirect()->route('payroll.employee.view')->with('success','Well done! status updated');
-    }
-
-    public function employeeActive($id){
-        $data = User::find($id);
-        $data->status = '1';
-        $data->save();
-        
-        $to  = $data->mobile.','.'01315225563'.','.'01317608200';
-        $sms_msg = SmsMessage::first();
-        $msg = $sms_msg->doctor_approve_msg;
-
-        $url = "https://msg.elitbuzz-bd.com/smsapi";
-        $data = [
-            "api_key" => "C200855063e9f797848fc3.95507997",
-            "type" => "text",
-            "contacts" => "$to",
-            "senderid" => "8809601011020",
-            "msg" => "$msg",
-        ];
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        $response = curl_exec($ch);
-        curl_close($ch);
-
-        return redirect()->route('payroll.employee.view')->with('success','Well done! status updated');
-    }
-
-    public function employeeReport(){
-        $data['designations'] = Designation::all();
-        $data['departments'] = Department::all();
-        return view('backend.hrm.payroll.payroll_employee_report',$data);
-    }
-
-    public function employeeReportHandlebar(Request $request){
-        $where=[];
-        $department_id = $request->department_id;
-        if($department_id !=''){
-            $where[] = ['department_id',$department_id];
-        }
-        $designation_id = $request->designation_id;
-        if($designation_id !=''){
-            $where[] = ['designation_id',$designation_id];
-        }
-
-        $data = User::where($where)->where('user_category','doctor')->get();
-        $html['tdsource']  = '';
-        $html['thsource'] = '<th width="5%">Sl.</th>';
-        $html['thsource'] .= '<th>Name</th>';
-        $html['thsource'] .= '<th>Designation</th>';
-        $html['thsource'] .= '<th>Department</th>';
-        $html['thsource'] .= '<th>Mobile</th>';
-        $html['thsource'] .= '<th>Join Date</th>';
-        $html['thsource'] .= '<th>Email</th>';
-        $html['tdsource'] .= '</tr>';
-        foreach ($data as $key => $v) {
-            $html['tdsource'] .= '<tr>';
-            $html['tdsource'] .= '<td>'.($key+1).'</td>';
-            $html['tdsource'] .= '<td>'.@$v->name.'</td>';
-            $html['tdsource'] .= '<td>'.@$v['designation']['name'].'</td>';
-            $html['tdsource'] .= '<td>'.@$v['department']['name'].'</td>';
-            $html['tdsource'] .= '<td>'.@$v->mobile.'</td>';
-            $html['tdsource'] .= '<td>'.date('d-m-Y',strtotime(@$v->join_date)).'</td>';
-            $html['tdsource'] .= '<td>'.@$v->email.'</td>';
-            $html['tdsource'] .= '</tr>';
-        }
-        return response()->json(@$html);
-    }
-
-    public function employeeReportPdf(Request $request)
-    {
-        // dd($request->all());
-        $where=[];
-        $department_id = $request->department_id;
-        if($department_id !=''){
-            $where[] = ['department_id',$department_id];
-        }
-        $designation_id = $request->designation_id;
-        if($designation_id !=''){
-            $where[] = ['designation_id',$designation_id];
-        }
-        if($request->button=="pdf"){
-            $data['allData'] = User::where($where)->where('user_category','doctor')->get();
-            $data['school'] = Contact::first();
-            $data['logo'] = Logo::first();
-            $pdf = PDF::loadView('backend.hrm.payroll.pdf.emp_report_pdf', $data);
-            $pdf->SetProtection(['copy', 'print'], '', 'pass');
-            return $pdf->stream('document.pdf');
-        }elseif($request->button=="excel"){
-            $pdata = User::where($where)->where('user_category','doctor')->get()->toArray();
-            return Excel::download(new EmployeeExport($pdata), 'employee_list.xlsx');
-        }
-    }
-
-    public function payrollEmployeeAdd()
+    public function add()
     {       
         $data['designations'] = Designation::all();
         $data['departments'] = Department::all();
-        return view('backend.hrm.payroll.payroll_employee_add',$data);
+        return view('backend.advocate.advocate_add',$data);
     }
-        public function payrollEmployeeStore(Request $request)
+    
+    public function store(Request $request)
     {
         // dd($request->all());
         $this->validate($request,[
@@ -162,7 +60,7 @@ class EmployeeRegistrationController extends Controller
         
         $user = new User();
         $user->usertype = 'admin';
-        $user->user_category = 'doctor';
+        $user->user_category = 'advocate';
         $user->status = '1';
         $user->role = '2';
         $user->name = $request->name;
@@ -193,42 +91,22 @@ class EmployeeRegistrationController extends Controller
             $makeImg->resize(1004, 1299)->save(public_path('uploads/employee_ecard/' . $imgName));
             $user->ecard = $imgName;
         }
-        
-        if($request->department_id=='53'){
-            $user->user_category = 'nurse';
-            $user->role = '4';
-        }
-        
+
         $user->save();
         
-        return redirect()->route('payroll.employee.view')->with('success','Data inserted successfully!');
+        return redirect()->route('advocates.view')->with('success','Data inserted successfully!');
     }
 
-    public function payrollEmployeeEditPassword($id)
+    public function edit($id)
     {
         $data['editData'] = User::find($id);
         $data['designations'] = Designation::all();
         $data['departments'] = Department::all();
-        return view('backend.hrm.payroll.payroll_employee_password',$data);
+
+        return view('backend.advocate.advocate_add',$data);
     }
 
-    public function payrollEmployeeUpdatePassword(Request $request, $id)
-    {
-        $user = User::find($id);
-        $user->password = bcrypt($request->password);
-        $user->save();
-        return redirect()->route('payroll.employee.view')->with('success','Password updated successfully!');
-    }
-
-    public function payrollEmployeeEdit($id)
-    {
-        $data['editData'] = User::find($id);
-        $data['designations'] = Designation::all();
-        $data['departments'] = Department::all();
-        return view('backend.hrm.payroll.payroll_employee_add',$data);
-    }
-
-    public function payrollEmployeeUpdate(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $user = User::find($id);
         $this->validate($request,[
@@ -276,14 +154,9 @@ class EmployeeRegistrationController extends Controller
             $user->ecard = $imgName;
         }
         
-        if($request->department_id=='53'){
-            $user->user_category = 'nurse';
-            $user->role = '4';
-        }
-        
         $user->save();
         
-        return redirect()->route('payroll.employee.view')->with('success','Data updated successfully!');
+        return redirect()->route('advocates.view')->with('success','Data updated successfully!');
     }
     public function payrollEmployeeDestroy(Request $request){
         // dd('ok');
@@ -332,6 +205,60 @@ class EmployeeRegistrationController extends Controller
         $user->delete();
         return redirect()->route('payroll.employee.view')->with('success','Data deleted successfully!');
     }
+
+    public function employeeInactive($id){
+        DB::table('users')
+                ->where('id', $id)
+                ->update(['status' => 0]);
+        return redirect()->route('payroll.employee.view')->with('success','Well done! status updated');
+    }
+
+    public function employeeActive($id){
+        $data = User::find($id);
+        $data->status = '1';
+        $data->save();
+        
+        $to  = $data->mobile.','.'01315225563'.','.'01317608200';
+        $sms_msg = SmsMessage::first();
+        $msg = $sms_msg->doctor_approve_msg;
+
+        $url = "https://msg.elitbuzz-bd.com/smsapi";
+        $data = [
+            "api_key" => "C200855063e9f797848fc3.95507997",
+            "type" => "text",
+            "contacts" => "$to",
+            "senderid" => "8809601011020",
+            "msg" => "$msg",
+        ];
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $response = curl_exec($ch);
+        curl_close($ch);
+
+        return redirect()->route('payroll.employee.view')->with('success','Well done! status updated');
+    }
+
+    public function payrollEmployeeEditPassword($id)
+    {
+        $data['editData'] = User::find($id);
+        $data['designations'] = Designation::all();
+        $data['departments'] = Department::all();
+        return view('backend.hrm.payroll.payroll_employee_password',$data);
+    }
+
+    public function payrollEmployeeUpdatePassword(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user->password = bcrypt($request->password);
+        $user->save();
+        return redirect()->route('payroll.employee.view')->with('success','Password updated successfully!');
+    }
+
+    
 
     public function payrollEmployeeDetails($id) 
     {
