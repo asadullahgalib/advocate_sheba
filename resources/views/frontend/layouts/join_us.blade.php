@@ -4,581 +4,163 @@
 
     <div class="container position-relative">
 
-        <!-- Top Justice Icon -->
-        <div class="justice-heading">
+        <!-- Top Justice Icon Section -->
+<div class="row" style="margin-top: 20px; margin-bottom: 25px;">
+    <div class="col-md-12 text-center" style="position: relative; display: flex; align-items: center; justify-content: center;">
+        
+        <!-- Background Horizontal Divider Line (Optional - can be styled or kept clean) -->
+        <div class="heading-line" style="position: absolute; width: 80%; height: 1px; background-color: rgba(0, 32, 91, 0.1); z-index: 1;"></div>
+        
+        <!-- Circular Justice Icon Wrapper (Exact match to image) -->
+        <div class="justice-icon" 
+             style="width: 140px; 
+                    height: 140px; 
+                    background-color: #000; 
+                    border-radius: 50%; 
+                    display: flex; 
+                    align-items: center; 
+                    justify-content: center; 
+                    box-shadow: 0 6px 20px rgba(0, 32, 91, 0.25); 
+                    z-index: 2;
+                    border: 4px solid #ffffff;">
+            
+            <!-- FontAwesome Balance Scale Icon -->
+            <i class="fa fa-balance-scale" style="color: #ffffff; font-size: 55px;"></i>
+        </div>
+        
+    </div>
+</div>
 
-            <div class="heading-line"></div>
+<!-- Main Heading Section (12 Column Full Box Width) -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="join-professional-title"
+             style="padding: 25px 20px;
+                    margin-bottom: 25px;
+                    background: #000;
+                    border-radius: 16px;
+                    box-shadow: 0 4px 15px rgba(0, 32, 91, 0.2);
+                    text-align: center;
+                    border: 1px solid rgba(255, 255, 255, 0.1);">
+            
+            <!-- Main Large Title -->
+            <h2 style="color: #ffffff; font-family: 'Georgia', serif; font-size: 32px; font-weight: bold; margin: 0 0 8px 0; letter-spacing: 0.5px;">
+                Join as a Legal Professionals
+            </h2>
+            
+            <!-- Subtitle Text from Image -->
+            <p style="color: #dddddd; font-family: 'Arial', sans-serif; font-size: 14px; margin: 0; font-weight: normal; opacity: 0.9;">
+                Choose your professional category to get started
+            </p>
 
-            <div class="justice-icon">
-                <i class="fa fa-balance-scale"></i>
+        </div>
+    </div>
+</div>
+
+<!-- Legal Category Cards Section (4 Columns Each) -->
+<div class="row" style="margin-top: 5px;">
+    <!-- Card 1: Advocate -->
+    <div class="col-md-3">
+        <a href="#" class="practice-area-card" style="text-decoration: none !important;">
+            <div class="card-1"
+                 style="padding: 18px 20px;
+                        margin-bottom: 15px;
+                        min-height: 60px;
+                        background: #000;
+                        border-radius: 12px;
+                        box-shadow: 0 4px 15px rgba(0, 32, 91, 0.2);
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        transition: all 0.3s ease;
+                        border: 1px solid rgba(255, 255, 255, 0.1);"
+                 onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0, 32, 91, 0.35)';"
+                 onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0, 32, 91, 0.2)';">
+                
+                <h6 style="font-size: 16px; color: #fff; font-family: 'Georgia', serif; font-weight: 500; margin: 0; letter-spacing: 0.5px;">
+                    Join as Advocate
+                </h6>
+                <span style="color: #fff; font-size: 20px; font-weight: bold; line-height: 1;">&rarr;</span>
             </div>
-
-            <div class="heading-line"></div>
-
-        </div>
-
-
-        <!-- Main Heading -->
-        <div class="join-professional-title">
-
-            <span class="join-text">
-                Join as a
-            </span>
-
-            <span class="professional-text">
-                <a href="#" style="color:#0d2742">Legal Professional</a>
-            </span>
-
-            <span class="title-arrow">
-                <a href="#"><i class="fa fa-arrow-right" style="color:#b88a2d"></i></a>
-            </span>
-
-        </div>
-
-
-        <!-- Decorative Divider -->
-        <div class="title-divider">
-
-            <span></span>
-
-            <i class="fa fa-diamond"></i>
-
-            <span></span>
-
-        </div>
-
-
-        <!-- Dynamic Links -->
-        <div class="professional-links">
-
-            <a href="#">
-                Advocate
-            </a>
-
-            <span class="link-dot"></span>
-
-
-            <a href="#">
-                Barrister
-            </a>
-
-            <span class="link-dot"></span>
-
-
-            <a href="#">
-                Legal Consultant
-            </a>
-
-            <span class="link-dot"></span>
-
-
-            <a href="#">
-                Law Firm/Chamber
-            </a>
-
-        </div>
-
+        </a>
     </div>
 
+    <!-- Card 2: Barrister -->
+    <div class="col-md-3">
+        <a href="#" class="practice-area-card" style="text-decoration: none !important;">
+            <div class="card-1"
+                 style="padding: 18px 20px;
+                        margin-bottom: 15px;
+                        min-height: 60px;
+                        background: #000;
+                        border-radius: 12px;
+                        box-shadow: 0 4px 15px rgba(0, 32, 91, 0.2);
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        transition: all 0.3s ease;
+                        border: 1px solid rgba(255, 255, 255, 0.1);"
+                 onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0, 32, 91, 0.35)';"
+                 onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0, 32, 91, 0.2)';">
+                
+                <h6 style="font-size: 16px; color: #fff; font-family: 'Georgia', serif; font-weight: 500; margin: 0; letter-spacing: 0.5px;">
+                    Join as Barrister
+                </h6>
+                <span style="color: #fff; font-size: 20px; font-weight: bold; line-height: 1;">&rarr;</span>
+            </div>
+        </a>
+    </div>
+
+    <!-- Card 3: Legal Consultant -->
+    <div class="col-md-3">
+        <a href="#" class="practice-area-card" style="text-decoration: none !important;">
+            <div class="card-1"
+                 style="padding: 18px 20px;
+                        margin-bottom: 15px;
+                        min-height: 60px;
+                        background: #000;
+                        border-radius: 12px;
+                        box-shadow: 0 4px 15px rgba(0, 32, 91, 0.2);
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        transition: all 0.3s ease;
+                        border: 1px solid rgba(255, 255, 255, 0.1);"
+                 onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0, 32, 91, 0.35)';"
+                 onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0, 32, 91, 0.2)';">
+                
+                <h6 style="font-size: 16px; color: #fff; font-family: 'Georgia', serif; font-weight: 500; margin: 0; letter-spacing: 0.5px;">
+                    Join as Legal Consultant
+                </h6>
+                <span style="color: #fff; font-size: 20px; font-weight: bold; line-height: 1;">&rarr;</span>
+            </div>
+        </a>
+    </div>
+
+    <!-- Card 4: Law Firm -->
+    <div class="col-md-3">
+        <a href="#" class="practice-area-card" style="text-decoration: none !important;">
+            <div class="card-1"
+                 style="padding: 18px 20px;
+                        margin-bottom: 15px;
+                        min-height: 60px;
+                        background: #000;
+                        border-radius: 12px;
+                        box-shadow: 0 4px 15px rgba(0, 32, 91, 0.2);
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        transition: all 0.3s ease;
+                        border: 1px solid rgba(255, 255, 255, 0.1);"
+                 onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0, 32, 91, 0.35)';"
+                 onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0, 32, 91, 0.2)';">
+                
+                <h6 style="font-size: 16px; color: #fff; font-family: 'Georgia', serif; font-weight: 500; margin: 0; letter-spacing: 0.5px;">
+                    Join as Law Firm
+                </h6>
+                <span style="color: #fff; font-size: 20px; font-weight: bold; line-height: 1;">&rarr;</span>
+            </div>
+        </a>
+    </div>
+</div>
 </section>
-
-<style>
-    /* ==========================================
-       JOIN AS LEGAL PROFESSIONAL SECTION
-    ========================================== */
-
-    .join-professional-section {
-        position: relative;
-        overflow: hidden;
-
-        padding: 15px 0 28px;
-
-        background:
-            linear-gradient(
-                90deg,
-                rgba(247, 245, 241, 0.92),
-                rgba(255, 255, 255, 0.96)
-            ),
-            #f8f6f1;
-    }
-
-
-    /* ==========================================
-       LEFT TOP DARK DECORATION
-    ========================================== */
-
-    .join-professional-section::before {
-        content: "";
-
-        position: absolute;
-
-        top: 0;
-        left: 0;
-
-        width: 220px;
-        height: 120px;
-
-        background: #06182b;
-
-        clip-path: polygon(
-            0 0,
-            100% 0,
-            0 100%
-        );
-
-        opacity: 1;
-    }
-
-
-    /* ==========================================
-       GOLDEN DIAGONAL LINE
-    ========================================== */
-
-    .join-professional-section::after {
-        content: "";
-
-        position: absolute;
-
-        top: 0;
-        left: 0;
-
-        width: 255px;
-        height: 2px;
-
-        background: #b88a2d;
-
-        transform:
-            rotate(-27deg);
-
-        transform-origin:
-            left top;
-    }
-
-
-    /* ==========================================
-       TOP ICON AREA
-    ========================================== */
-
-    .justice-heading {
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-        width: 100%;
-
-        max-width: 500px;
-
-        margin: 0 auto 2px;
-    }
-
-
-    /* Horizontal Line */
-
-    .heading-line {
-        height: 1px;
-
-        flex: 1;
-
-        background:
-            linear-gradient(
-                to right,
-                transparent,
-                rgba(184, 138, 45, 0.8)
-            );
-    }
-
-
-    .heading-line:last-child {
-        background:
-            linear-gradient(
-                to left,
-                transparent,
-                rgba(184, 138, 45, 0.8)
-            );
-    }
-
-
-    /* Justice Circle */
-
-    .justice-icon {
-        width: 78px;
-        height: 78px;
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-        border-radius: 50%;
-
-        border: 1px solid
-            rgba(184, 138, 45, 0.55);
-
-        color: #0d2742;
-
-        font-size: 38px;
-
-        position: relative;
-
-        background:
-            rgba(255,255,255,0.35);
-    }
-
-
-    /* Small Golden Dot */
-
-    .justice-icon::after {
-        content: "";
-
-        position: absolute;
-
-        width: 10px;
-        height: 10px;
-
-        bottom: -6px;
-
-        left: 50%;
-
-        transform: translateX(-50%);
-
-        background: #b88a2d;
-
-        border-radius: 50%;
-    }
-
-
-    /* ==========================================
-       MAIN TITLE
-    ========================================== */
-
-    .join-professional-title {
-        position: relative;
-
-        display: flex;
-
-        flex-direction: column;
-
-        align-items: center;
-
-        justify-content: center;
-
-        text-align: center;
-
-        color: #0d2742;
-
-        line-height: 1;
-
-    }
-
-
-    .join-text {
-        display: block;
-
-        font-family:
-            Georgia,
-            "Times New Roman",
-            serif;
-
-        font-size: 70px;
-
-        font-weight: 500;
-
-        letter-spacing: 1px;
-
-    }
-
-
-    .professional-text {
-        display: block;
-
-        font-family:
-            Georgia,
-            "Times New Roman",
-            serif;
-
-        font-size: 92px;
-
-        font-weight: 700;
-
-        letter-spacing: -2px;
-
-    }
-
-
-    /* ==========================================
-       GOLDEN ARROW
-    ========================================== */
-
-    .title-arrow {
-        position: absolute;
-
-        right: 15%;
-
-        top: 72%;
-
-        transform: translateY(-50%);
-
-        color: #b88a2d;
-
-        font-size: 65px;
-
-    }
-
-
-    .title-arrow i {
-        font-weight: 300;
-    }
-
-
-    /* ==========================================
-       DECORATIVE DIVIDER
-    ========================================== */
-
-    .title-divider {
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-        gap: 12px;
-
-        max-width: 620px;
-
-        margin: 10px auto 15px;
-    }
-
-
-    .title-divider span {
-        display: block;
-
-        height: 1px;
-
-        width: 100%;
-
-        background:
-            linear-gradient(
-                to right,
-                transparent,
-                rgba(184, 138, 45, 0.75)
-            );
-    }
-
-
-    .title-divider span:last-child {
-        background:
-            linear-gradient(
-                to left,
-                transparent,
-                rgba(184, 138, 45, 0.75)
-            );
-    }
-
-
-    .title-divider i {
-        color: #b88a2d;
-
-        font-size: 18px;
-
-        transform: rotate(45deg);
-    }
-
-
-    /* ==========================================
-       LINKS
-    ========================================== */
-
-    .professional-links {
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-        flex-wrap: wrap;
-
-        gap: 24px;
-
-    }
-
-
-    .professional-links a {
-        color: #132b46;
-
-        text-decoration: none;
-
-        font-size: 32px;
-
-        font-weight: 600;
-
-        transition: all 0.25s ease;
-    }
-
-
-    .professional-links a:hover {
-        color: #b88a2d;
-
-        transform: translateY(-2px);
-    }
-
-
-    /* Golden Dot */
-
-    .link-dot {
-        width: 9px;
-        height: 9px;
-
-        border-radius: 50%;
-
-        background: #b88a2d;
-
-        flex-shrink: 0;
-    }
-
-
-    /* ==========================================
-       LARGE DESKTOP
-    ========================================== */
-
-    @media (min-width: 1400px) {
-
-        .join-text {
-            font-size: 72px;
-        }
-
-        .professional-text {
-            font-size: 100px;
-        }
-
-    }
-
-    @media (max-width: 991px) {
-
-        .join-professional-section {
-            padding: 18px 0 25px;
-        }
-
-
-        .justice-icon {
-            width: 65px;
-            height: 65px;
-
-            font-size: 32px;
-        }
-
-
-        .join-text {
-            font-size: 52px;
-        }
-
-
-        .professional-text {
-            font-size: 68px;
-        }
-
-
-        .title-arrow {
-            right: 5%;
-
-            font-size: 48px;
-        }
-
-
-        .professional-links {
-            gap: 15px;
-        }
-
-
-        .professional-links a {
-            font-size: 24px;
-        }
-
-    }
-
-    @media (max-width: 767px) {
-
-        .join-professional-section {
-            padding: 18px 10px 25px;
-        }
-
-
-        /* Left design smaller */
-
-        .join-professional-section::before {
-            width: 120px;
-            height: 75px;
-        }
-
-
-        .join-professional-section::after {
-            width: 150px;
-        }
-
-
-        .justice-heading {
-            max-width: 300px;
-        }
-
-
-        .justice-icon {
-            width: 52px;
-            height: 52px;
-
-            font-size: 25px;
-        }
-
-
-        .justice-icon::after {
-            width: 7px;
-            height: 7px;
-
-            bottom: -4px;
-        }
-
-
-        .join-text {
-            font-size: 34px;
-
-            margin-top: 8px;
-        }
-
-
-        .professional-text {
-            font-size: 43px;
-
-            letter-spacing: -1px;
-        }
-
-
-        .title-arrow {
-            display: none;
-        }
-
-
-        .title-divider {
-            max-width: 300px;
-
-            margin: 10px auto 15px;
-        }
-
-
-        .professional-links {
-            gap: 10px 13px;
-        }
-
-
-        .professional-links a {
-            font-size: 16px;
-        }
-
-
-        .link-dot {
-            width: 6px;
-            height: 6px;
-        }
-
-    }
-</style>
