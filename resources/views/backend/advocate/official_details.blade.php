@@ -48,7 +48,7 @@
           <div class="col-md-4 col-xs-6">
             <div class="profile-sidebar">
             <div class="profile-userpic text-center">
-              <img src="{{(!empty(@$details->image))?url('public/upload/employee_images/'.@$details->image):url('public/upload/no_image.png')}}" class="img-responsive" alt="">
+              <img src="{{(!empty(@$details->image))?url('uploads/advocates_images/'.@$details->image):url('uploads/no_image.png')}}" class="img-responsive" alt="">
             </div>
           </div>
           </div>
@@ -58,6 +58,7 @@
     <div class="card-body">
       <div class="row">
         <div class="col-md-12">
+          <!-- ফর্ম ট্যাগে সঠিক অ্যাকশন রুট এবং enctype সেট করা আছে -->
           <form role="form" action="{{ route('advocates.official.details.store', $details->id) }}" method="POST" enctype="multipart/form-data" id="MyForm">
         @csrf
           <div class="card-body">
@@ -112,7 +113,18 @@
                 <label>IMO/What's App </label>
                 <input type="text" name="appointment_contact" class="form-control form-control-sm" value="{{ @$editData->appointment_contact }}" placeholder="Contact No"> 
               </div>
+
+              <!-- মেইন প্রোফাইলের মতো ইমেজ আপলোড অপশন -->
+              <div class="form-group col-sm-4">
+                <label>Image <span style="color:red;">(300px X 300px)</span></label>
+                <input type="file" name="image" id="image" class="form-control form-control-sm">
+              </div>
               
+              <!-- স্কয়ার ৩০০x৩০০ রেশিওর লাইভ ইমেজ প্রিভিউ বক্স -->
+              <div class="form-group col-sm-2" style="z-index: 100;">
+                <img id="showImage" src="{{(!empty($editData->image)) ? url('uploads/advocates_images/'.$editData->image) : url('uploads/no_image.png')}}" style="width: 100px; height: 100px; aspect-ratio: 1/1; object-fit: cover; border:1px solid #000;" class="form-control">
+              </div>
+              <!-- ১০. ফর্ম সাবমিট ও আপডেট বাটন সেকশন -->
               <div class="form-group col-md-12" style="padding-top: 15px;">
                 <button type="submit" class="btn btn-primary btn-sm">@if(isset($editData)) Update @else Submit @endif</button>
               </div>
@@ -126,8 +138,11 @@
     </div>
   </div>
 
+<!-- জাভাস্ক্রিপ্ট এবং লাইভ ইমেজ প্রিভিউ স্ক্রিপ্ট -->
 <script type="text/javascript">
   $(document).ready(function () {  
+    
+    // ছবি সিলেক্ট করার সাথে সাথে চারকোনা বক্সে লাইভ থাম্বনেইল চেঞ্জ করার ফাংশন
     $('#image').change(function(e){
       var reader = new FileReader();
       reader.onload = function(e){
@@ -136,6 +151,7 @@
       reader.readAsDataURL(e.target.files['0']);
     });
 
+    // jQuery Validation স্ক্রিপ্ট
     $('#MyForm').validate({
       rules:{
         name:{

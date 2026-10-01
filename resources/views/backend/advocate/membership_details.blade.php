@@ -48,7 +48,7 @@
           <div class="col-md-4 col-xs-6">
             <div class="profile-sidebar">
             <div class="profile-userpic text-center">
-              <img src="{{(!empty(@$details->image))?url('public/upload/employee_images/'.@$details->image):url('public/upload/no_image.png')}}" class="img-responsive" alt="">
+              <img src="{{(!empty(@$details->image))?url('uploads/advocates_images/'.@$details->image):url('uploads/no_image.png')}}" class="img-responsive" alt="">
             </div>
           </div>
           </div>

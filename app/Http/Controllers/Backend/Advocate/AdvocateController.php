@@ -44,18 +44,26 @@ class AdvocateController extends Controller
         return view('backend.advocate.advocate_view',$data);
     }
 
-    // ২. Add Form
     public function add()
     {       
         $data['designations'] = Designation::all();
         $data['departments'] = Department::all();
-        return view('backend.advocate.advocate_add',$data);
+        return view('backend.advocate.advocate_add', $data);
+    }
+
+    // ৪. Edit Form
+    public function edit($id)
+    {
+        $data['editData'] = User::find($id);
+        $data['designations'] = Designation::all();
+        $data['departments'] = Department::all();
+        return view('backend.advocate.advocate_add', $data);
     }
     
     // ৩. Store Data
     public function store(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'email' => 'required|unique:users,email'
         ]);
         
@@ -84,26 +92,29 @@ class AdvocateController extends Controller
         $user->sort = $request->sort;
         $user->join_date = $request->join_date !== null ? date('Y-m-d', strtotime($request->join_date)) : null;
         $user->password = bcrypt(654321);
+        if ($request->file('image')) {
+            $file = $request->file('image');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('uploads/advocates_images'), $filename);
+            $file = Image::make(public_path('uploads/advocates_images/').$filename);
+            $file->resize(300, 300)->save(public_path('uploads/advocates_images/').$filename);
+            
+            $user->image = $filename;
+        } else {
+            $user->image = 'no_image.png';
+        }
+        
         $user->save();
         
         return redirect()->route('advocates.view')->with('success','Data inserted successfully!');
-    }
-
-    // ৪. Edit Form
-    public function edit($id)
-    {
-        $data['editData'] = User::find($id);
-        $data['designations'] = Designation::all();
-        $data['departments'] = Department::all();
-        return view('backend.advocate.advocate_add',$data);
     }
 
     // ৫. Update Data
     public function update(Request $request, $id)
     {
         $user = User::find($id);
-        $this->validate($request,[
-            'email' => 'required|unique:users,email,'.$user->id
+        $this->validate($request, [
+            'email' => 'required|unique:users,email,' . $user->id
         ]);
         
         $user->name = $request->name;
@@ -125,6 +136,23 @@ class AdvocateController extends Controller
         $user->rocket_number = $request->rocket_number;
         $user->sort = $request->sort;
         $user->join_date = $request->join_date !== null ? date('Y-m-d', strtotime($request->join_date)) : null;
+
+        if ($request->file('image')) {
+            $file = $request->file('image');
+            
+            if (!empty($user->image) && $user->image != 'no_image.png' && file_exists(public_path('uploads/advocates_images/'.$user->image))) {
+                @unlink(public_path('uploads/advocates_images/'.$user->image));
+            }
+            
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('uploads/advocates_images'), $filename);
+        
+            $file = Image::make(public_path('uploads/advocates_images/').$filename);
+            $file->resize(300, 300)->save(public_path('uploads/advocates_images/').$filename);
+            
+            $user->image = $filename;
+        }
+
         $user->save();
         
         return redirect()->route('advocates.view')->with('success','Data updated successfully!');
@@ -135,14 +163,13 @@ class AdvocateController extends Controller
     {
         $data['details'] = User::find($id);
         $data['page_title'] = 'statement';
-        return view('backend.advocate.advocate_details',$data);
+        return view('backend.advocate.advocate_details', $data);
     }
 
-           // ৭. Official Details (GET)
+        // ৭. Official Details (GET)
     public function officialDetails($id) 
     {
         $data['details'] = User::find($id);
-        // ফর্মে ডাটা শো করানোর জন্য $editData ভ্যারিয়েবলে ডাটা পাঠানো হলো
         $data['editData'] = User::find($id); 
         $data['designations'] = Designation::all();
         $data['departments'] = Department::all();
@@ -154,8 +181,6 @@ class AdvocateController extends Controller
     public function officialDetailsStore(Request $request, $id) 
     {
         $user = User::find($id);
-        
-        // ফর্মে থাকা ইনপুটগুলো ডাটাবেজে আপডেট হবে
         $user->name = $request->name;
         $user->name_bn = $request->name_bn;
         $user->mobile = $request->mobile;
@@ -164,10 +189,25 @@ class AdvocateController extends Controller
         $user->experience = $request->experience;
         $user->appointment_contact = $request->appointment_contact;
         
+        if ($request->file('image')) {
+            $file = $request->file('image');
+            
+            if (!empty($user->image) && $user->image != 'no_image.png' && file_exists(public_path('uploads/advocates_images/'.$user->image))) {
+                @unlink(public_path('uploads/advocates_images/'.$user->image));
+            }
+            
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('uploads/advocates_images'), $filename);
+            
+            $file = Image::make(public_path('uploads/advocates_images/').$filename);
+            $file->resize(300, 300)->save(public_path('uploads/advocates_images/').$filename);
+            
+            $user->image = $filename;
+        }
+        
         $user->save();
         
-        // আপডেট হওয়ার পর অন্য কোথাও না গিয়ে এই অফিশিয়াল পেজেই রাখবে
-        return redirect()->back()->with('success', 'Official details updated successfully');
+        return redirect()->back()->with('success', 'Official details and image updated successfully!');
     }
 
     // ৮. About Details

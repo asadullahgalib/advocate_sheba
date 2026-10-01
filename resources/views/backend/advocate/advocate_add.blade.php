@@ -65,6 +65,15 @@
                   {{($errors->has('email'))?($errors->first('email')):''}} 
                 </font>                 
               </div>
+
+              <div class="form-group col-sm-4">
+                <label>Image <span style="color:red;">(300px X 300px)</span></label>
+                <input type="file" name="image" id="image" class="form-control form-control-sm">
+              </div>
+              
+              <div class="form-group col-sm-2" style="z-index: 100;">
+                <img id="showImage" src="{{(!empty($editData->image)) ? url('uploads/advocates_images/'.$editData->image) : url('uploads/no_image.png')}}" style="width: 100px; height: 80px; object-fit: cover; border:1px solid #000;" class="form-control">
+              </div>
               <!-- <div class="form-group col-md-3">
                 <label>Department <span style="color:red">*</span></label>
                 <select name="department_id" class="form-control select2">
