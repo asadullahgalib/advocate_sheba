@@ -138,19 +138,35 @@ class AdvocateController extends Controller
         return view('backend.advocate.advocate_details',$data);
     }
 
-    // ৭. Official Details
+           // ৭. Official Details (GET)
     public function officialDetails($id) 
     {
         $data['details'] = User::find($id);
+        // ফর্মে ডাটা শো করানোর জন্য $editData ভ্যারিয়েবলে ডাটা পাঠানো হলো
+        $data['editData'] = User::find($id); 
+        $data['designations'] = Designation::all();
+        $data['departments'] = Department::all();
         $data['page_title'] = 'official';
         return view('backend.advocate.official_details', $data);
     }
 
+    // ৭.২ Official Details Store (POST)
     public function officialDetailsStore(Request $request, $id) 
     {
-        $data = User::find($id);
-        $data->abouts = $request->abouts;
-        $data->save();
+        $user = User::find($id);
+        
+        // ফর্মে থাকা ইনপুটগুলো ডাটাবেজে আপডেট হবে
+        $user->name = $request->name;
+        $user->name_bn = $request->name_bn;
+        $user->mobile = $request->mobile;
+        $user->designation_id = $request->designation_id;
+        $user->email = $request->email;
+        $user->experience = $request->experience;
+        $user->appointment_contact = $request->appointment_contact;
+        
+        $user->save();
+        
+        // আপডেট হওয়ার পর অন্য কোথাও না গিয়ে এই অফিশিয়াল পেজেই রাখবে
         return redirect()->back()->with('success', 'Official details updated successfully');
     }
 

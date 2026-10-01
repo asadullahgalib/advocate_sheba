@@ -58,7 +58,7 @@
     <div class="card-body">
       <div class="row">
         <div class="col-md-12">
-          <form role="form" action="{{(@$editData)?route('advocates.update',$editData->id):route('advocates.store')}}" method="POST" enctype="multipart/form-data" id="MyForm">
+          <form role="form" action="{{ route('advocates.official.details.store', $details->id) }}" method="POST" enctype="multipart/form-data" id="MyForm">
         @csrf
           <div class="card-body">
             <div class="form-row">                   
@@ -83,14 +83,8 @@
                   {{($errors->has('mobile'))?($errors->first('mobile')):''}} 
                 </font>                 
               </div>
-              <!-- <div class="form-group col-md-12">
-                <label for="name">Qualification <span style="color:red">*</span></label>
-                <input type="text" name="qualification" class="form-control form-control-sm" value="{{@$editData->qualification}}"> 
-                <font style="color: red"> 
-                  {{($errors->has('qualification'))?($errors->first('qualification')):''}} 
-                </font>                 
-              </div> -->
-              <div class="form-group col-md-3">
+              
+              <div class="form-group col-md-4">
                 <label for="designation_id">Designation <span style="color:red">*</span></label>
                 <select name="designation_id" class="form-control form-control-sm select2">
                   <option value="">Select Designation</option>
@@ -102,89 +96,24 @@
                   {{($errors->has('designation_id'))?($errors->first('designation_id')):''}} 
                 </font>                 
               </div>
-              <div class="form-group col-md-3">
+              <div class="form-group col-md-4">
                 <label for="email">Email <span style="color:red">*</span></label>
                 <input type="email" name="email" class="form-control form-control-sm" placeholder="Enter Email Address" value="{{ @$editData->email }}"> 
                 <font style="color: red"> 
                   {{($errors->has('email'))?($errors->first('email')):''}} 
                 </font>                 
               </div>
-              <!-- <div class="form-group col-md-3">
-                <label>Department <span style="color:red">*</span></label>
-                <select name="department_id" class="form-control select2">
-                  <option value="">Select Department</option>
-                  @foreach($departments as $department)
-                    <option value="{{ $department->id }}" {{(@$editData->department_id == $department->id)?"selected":""}}>{{ $department->name }}</option>
-                  @endforeach
-                </select> 
-                <font style="color: red"> 
-                  {{($errors->has('department_id'))?($errors->first('department_id')):''}} 
-                </font>                 
-              </div> -->
-              <!-- <div class="form-group col-md-3">
-                <label for="join_date">Join Date </label>
-                <input type="text" name="join_date" class="form-control form-control-sm singledatepicker" placeholder="DD-MM-YYYY" value="{{ @$editData->join_date }}" autocomplete="off"> 
-                <font style="color: red"> 
-                  {{($errors->has('join_date'))?($errors->first('join_date')):''}} 
-                </font>                 
-              </div> -->
-              <!-- <div class="form-group col-md-3">
-                <label>BMDC No <span style="color:red">*</span></label>
-                <input type="text" name="mbbs_fcp" class="form-control form-control-sm" value="{{ @$editData->mbbs_fcp }}"> 
-              </div> -->
-              <!-- <div class="form-group col-md-2">
-                <label>Consultation Fee <span style="color:red">*</span></label>
-                <input type="text" name="consultation_fee" class="form-control form-control-sm" value="{{ @$editData->consultation_fee }}"> 
-              </div> -->
-              <!-- <div class="form-group col-md-2">
-                <label>Follow-up Fee <span style="color:red">*</span></label>
-                <input type="text" name="follow_up_fee" class="form-control form-control-sm" value="{{ @$editData->follow_up_fee }}"> 
-              </div> -->
-              <div class="form-group col-md-5">
+              <div class="form-group col-md-4">
                 <label>Total Experience <span style="color:red">*</span></label>
                 <input type="text" name="experience" class="form-control form-control-sm" value="{{ @$editData->experience }}"> 
               </div>
-              <div class="form-group col-md-6">
+              
+              <div class="form-group col-md-4">
                 <label>IMO/What's App </label>
                 <input type="text" name="appointment_contact" class="form-control form-control-sm" value="{{ @$editData->appointment_contact }}" placeholder="Contact No"> 
               </div>
-              <!-- @if(@Auth::user()->role=='1')
-              <div class="form-group col-md-3">
-                <label for="name">Employee Type <span style="color:red">*</span></label>
-                <select name="employee_type" class="form-control form-control-sm">
-                  <option value="">Select Type</option>
-                  <option value="1" {{(@$editData->employee_type == "1")?"selected":""}}>Internal</option>
-                  <option value="2" {{(@$editData->employee_type == "2")?"selected":""}}>External</option>
-                </select>
-              </div> -->
-              <!-- <div class="form-group col-md-3">
-                <label for="name">Booking Status <span style="color:red">*</span></label>
-                <select name="booking_status" class="form-control form-control-sm">
-                  <option value="">Select Type</option>
-                  <option value="1" {{(@$editData->booking_status == "1")?"selected":""}}>Yes</option>
-                  <option value="2" {{(@$editData->booking_status == "2")?"selected":""}}>No</option>
-                </select>
-              </div> -->
-              <!-- <div class="form-group col-md-3">
-                <label>Bkash No </label>
-                <input type="text" name="bkash_number" class="form-control form-control-sm" value="{{ @$editData->bkash_number }}"> 
-              </div> -->
-              <!-- <div class="form-group col-md-3">
-                <label>Nagad No </label>
-                <input type="text" name="nagad_number" class="form-control form-control-sm" value="{{ @$editData->nagad_number }}"> 
-              </div> -->
-              <!-- <div class="form-group col-md-3">
-                <label>Rocket No </label>
-                <input type="text" name="rocket_number" class="form-control form-control-sm" value="{{ @$editData->rocket_number }}"> 
-              </div> -->
-              <!-- <div class="form-group col-md-3">
-                <label>Sort Order </label>
-                <input type="number" name="sort" class="form-control form-control-sm" value="{{ @$editData->sort }}" required> 
-              </div> -->
               
-              @endif
-              
-              <div class="form-group col-md-8">
+              <div class="form-group col-md-12" style="padding-top: 15px;">
                 <button type="submit" class="btn btn-primary btn-sm">@if(isset($editData)) Update @else Submit @endif</button>
               </div>
             </div>
@@ -212,44 +141,26 @@
         name:{
           required:true
         },
-        department_id:{
+        name_bn:{
           required:true
         },
         designation_id:{
           required:true
         },
         email:{
-          required:true
-        },
-        mbbs_fcp:{
-          required:true
-        },
-        employee_type:{
-          required:true
-        },
-        booking_status:{
-          required:true
-        },
-        consultation_fee:{
-          required:true
-        },
-        follow_up_fee:{
-          required:true
-        },
-        qualification:{
-          required:true
+          required:true,
+          email:true
         },
         experience:{
-          required:true
-        },
-        sort:{
-          required:true
-        },
-        work_place:{
           required:true
         }
       },
       messages: {      
+        name: { required: "Please enter English name" },
+        name_bn: { required: "Please enter Bangla name" },
+        designation_id: { required: "Please select a designation" },
+        email: { required: "Please enter email address", email: "Please enter a valid email" },
+        experience: { required: "Please enter total experience" }
       },
       errorElement: 'span',
       errorPlacement: function (error, element) {

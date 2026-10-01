@@ -55,22 +55,22 @@
           @include('backend.advocate.advocate_tab')
         </div>
     </div>
+    
     <div class="card-body">
       <div class="row">
         <div class="col-md-12">
-          <!-- ফর্ম অ্যাকশন রুটটি aboutDetailsStore মেথড অনুযায়ী ঠিক করা হলো -->
-          <form method="post" action="{{route('advocates.about.details.store',$details->id)}}" id="myForm">
+          <!-- ফর্ম অ্যাকশন রুটের নাম ম্যাপ স্টোর অনুযায়ী সেট করা হলো -->
+          <form method="post" action="{{route('advocates.map.details.store',$details->id)}}">
             @csrf
             <div class="form-row">
               
               <div class="form-group col-md-12">
-                <label for="abouts">Description <span style="color:red;">*</span></label>
-                <!-- ডাটাবেজের abouts কলাম থেকে আনএসকেপড ব্লেড সিনট্যাক্সে ডাটা শো করানো হলো -->
-                <textarea name="abouts" id="abouts" class="form-control" rows="5">{!! @$details->abouts !!}</textarea>
+                <label for="map">Map Link / Location <span style="color:red;">*</span></label>
+                <textarea name="map" id="map" class="form-control" rows="5" required>{{ @$details->map }}</textarea>
               </div>
 
               <div class="form-group col-md-3">
-                <button type="submit" class="btn btn-primary btn-sm">Update</button>
+                <button type="submit" class="btn btn-primary btn-sm">Update Map</button>
               </div>
             </div>
           </form>
@@ -80,52 +80,4 @@
 
     </div>
   </div>
-
-  <script type="text/javascript">
-  $(document).ready(function(){
-    // CKEDITOR আইডি 'abouts' এ বাইন্ড করা হলো
-    var editor2 = CKEDITOR.replace('abouts');
-    CKFinder.setupCKEditor(editor2, '/ckfinder/');
-    
-    editor2.on('change', function() {
-        editor2.updateElement();
-        $('#myForm').validate().element('#abouts');
-    });
-  });
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-      $('textarea[name="abouts"]').each(function(){
-          $(this).val($(this).val().trim());
-      });
-
-      $('#myForm').validate({
-        ignore : [],
-        debug : false,
-        rules: {
-          abouts: {
-            required: true,
-          }
-        },
-        messages: {
-          abouts: {
-            required: "Please enter the description",
-          }
-        },
-        errorElement: 'span',
-        errorPlacement: function (error, element) {
-          error.addClass('invalid-feedback');
-          element.closest('.form-group').append(error);
-        },
-        highlight: function (element, errorClass, validClass) {
-          $(element).addClass('is-invalid');
-        },
-        unhighlight: function (element, errorClass, validClass) {
-          $(element).removeClass('is-invalid');
-        }
-      });
-    });
-</script>
-
 @endsection
