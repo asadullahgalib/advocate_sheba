@@ -13,7 +13,7 @@ class SetupController extends Controller
     // ১. View District List
     public function viewDistrict()
     {
-        $allData = District::all();
+        $allData = District::orderBy('id','desc')->get();
         return view('backend.setup.district-view', compact('allData'));
     }
 
@@ -35,14 +35,26 @@ class SetupController extends Controller
         $district->name = $request->name;
         // $district->division_id = 1; 
 
-        if ($request->file('image')) {
-            $file = $request->file('image');
-            $filename = date('YmdHi') . $file->getClientOriginalName();
-            $file->move(public_path('uploads/district_images'), $filename);
-            $img = Image::make(public_path('uploads/district_images/' . $filename));
-            $img->resize(200, 90)->save(public_path('uploads/district_images/' . $filename));
-            
-            $district->image = $filename;
+        $imageName = null;
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time().'.'.$image->getClientOriginalExtension();
+
+            $destinationPath = public_path('uploads/district_images/');
+
+            // Folder না থাকলে create হবে
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0777, true);
+            }
+
+            // Resize + Save
+            Image::make($image)
+                ->resize(200, 90)
+                ->save($destinationPath.$imageName);
+
+            // DB তে image name save
+            $district->image = $imageName;
         }
 
         $district->created_by = Auth::id();
@@ -69,19 +81,42 @@ class SetupController extends Controller
         $district = District::find($id);
         $district->name = $request->name;
         // $district->division_id = 1; 
-        
-        if ($request->file('image')) {
-            $file = $request->file('image');
-            if (!empty($district->image) && file_exists(public_path('uploads/district_images/' . $district->image))) {
-                @unlink(public_path('uploads/district_images/' . $district->image));
+
+        if ($request->hasFile('image')) {
+
+            /*
+            |--------------------------------------------------------------------------
+            | Old Image Delete
+            |--------------------------------------------------------------------------
+            | শুধু তখনই unlink হবে যখন database-এ পুরাতন image-এর নাম আছে
+            */
+            if (!empty($data->image)) {
+
+                $oldImage = public_path('uploads/district_images/' . $data->image);
+
+                if (file_exists($oldImage) && is_file($oldImage)) {
+                    unlink($oldImage);
+                }
             }
-            
-            $filename = date('YmdHi') . $file->getClientOriginalName();
-            $file->move(public_path('uploads/district_images'), $filename);
-            $img = Image::make(public_path('uploads/district_images/' . $filename));
-            $img->resize(200, 90)->save(public_path('uploads/district_images/' . $filename));
-            
-            $district->image = $filename;
+
+            /*
+            |--------------------------------------------------------------------------
+            | New Image Upload
+            |--------------------------------------------------------------------------
+            */
+            $image = $request->file('image');
+
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+
+            $destinationPath = public_path('uploads/district_images/');
+
+            // Resize + Save
+            Image::make($image)
+                ->resize(200, 90)
+                ->save($destinationPath . $imageName);
+
+            // DB তে নতুন image name save
+            $district->image = $imageName;
         }
 
         $district->modified_by = Auth::id();

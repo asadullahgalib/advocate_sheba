@@ -92,16 +92,27 @@ class AdvocateController extends Controller
         $user->sort = $request->sort;
         $user->join_date = $request->join_date !== null ? date('Y-m-d', strtotime($request->join_date)) : null;
         $user->password = bcrypt(654321);
-        if ($request->file('image')) {
-            $file = $request->file('image');
-            $filename = date('YmdHi') . $file->getClientOriginalName();
-            $file->move(public_path('uploads/advocates_images'), $filename);
-            $file = Image::make(public_path('uploads/advocates_images/').$filename);
-            $file->resize(300, 300)->save(public_path('uploads/advocates_images/').$filename);
-            
-            $user->image = $filename;
-        } else {
-            $user->image = 'no_image.png';
+
+        $imageName = null;
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time().'.'.$image->getClientOriginalExtension();
+
+            $destinationPath = public_path('uploads/advocates_images/');
+
+            // Folder না থাকলে create হবে
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0777, true);
+            }
+
+            // Resize + Save
+            Image::make($image)
+                ->resize(300, 300)
+                ->save($destinationPath.$imageName);
+
+            // DB তে image name save
+            $user->image = $imageName;
         }
         
         $user->save();
@@ -137,20 +148,41 @@ class AdvocateController extends Controller
         $user->sort = $request->sort;
         $user->join_date = $request->join_date !== null ? date('Y-m-d', strtotime($request->join_date)) : null;
 
-        if ($request->file('image')) {
-            $file = $request->file('image');
-            
-            if (!empty($user->image) && $user->image != 'no_image.png' && file_exists(public_path('uploads/advocates_images/'.$user->image))) {
-                @unlink(public_path('uploads/advocates_images/'.$user->image));
+        if ($request->hasFile('image')) {
+
+            /*
+            |--------------------------------------------------------------------------
+            | Old Image Delete
+            |--------------------------------------------------------------------------
+            | শুধু তখনই unlink হবে যখন database-এ পুরাতন image-এর নাম আছে
+            */
+            if (!empty($user->image)) {
+
+                $oldImage = public_path('uploads/advocates_images/' . $user->image);
+
+                if (file_exists($oldImage) && is_file($oldImage)) {
+                    unlink($oldImage);
+                }
             }
-            
-            $filename = date('YmdHi') . $file->getClientOriginalName();
-            $file->move(public_path('uploads/advocates_images'), $filename);
-        
-            $file = Image::make(public_path('uploads/advocates_images/').$filename);
-            $file->resize(300, 300)->save(public_path('uploads/advocates_images/').$filename);
-            
-            $user->image = $filename;
+
+            /*
+            |--------------------------------------------------------------------------
+            | New Image Upload
+            |--------------------------------------------------------------------------
+            */
+            $image = $request->file('image');
+
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+
+            $destinationPath = public_path('uploads/advocates_images/');
+
+            // Resize + Save
+            Image::make($image)
+                ->resize(300, 300)
+                ->save($destinationPath . $imageName);
+
+            // DB তে নতুন image name save
+            $user->image = $imageName;
         }
 
         $user->save();
@@ -188,21 +220,42 @@ class AdvocateController extends Controller
         $user->email = $request->email;
         $user->experience = $request->experience;
         $user->appointment_contact = $request->appointment_contact;
-        
-        if ($request->file('image')) {
-            $file = $request->file('image');
-            
-            if (!empty($user->image) && $user->image != 'no_image.png' && file_exists(public_path('uploads/advocates_images/'.$user->image))) {
-                @unlink(public_path('uploads/advocates_images/'.$user->image));
+
+        if ($request->hasFile('image')) {
+
+            /*
+            |--------------------------------------------------------------------------
+            | Old Image Delete
+            |--------------------------------------------------------------------------
+            | শুধু তখনই unlink হবে যখন database-এ পুরাতন image-এর নাম আছে
+            */
+            if (!empty($user->image)) {
+
+                $oldImage = public_path('uploads/advocates_images/' . $user->image);
+
+                if (file_exists($oldImage) && is_file($oldImage)) {
+                    unlink($oldImage);
+                }
             }
-            
-            $filename = date('YmdHi') . $file->getClientOriginalName();
-            $file->move(public_path('uploads/advocates_images'), $filename);
-            
-            $file = Image::make(public_path('uploads/advocates_images/').$filename);
-            $file->resize(300, 300)->save(public_path('uploads/advocates_images/').$filename);
-            
-            $user->image = $filename;
+
+            /*
+            |--------------------------------------------------------------------------
+            | New Image Upload
+            |--------------------------------------------------------------------------
+            */
+            $image = $request->file('image');
+
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+
+            $destinationPath = public_path('uploads/advocates_images/');
+
+            // Resize + Save
+            Image::make($image)
+                ->resize(300, 300)
+                ->save($destinationPath . $imageName);
+
+            // DB তে নতুন image name save
+            $user->image = $imageName;
         }
         
         $user->save();

@@ -24,7 +24,7 @@
               <tr class="text-center">
                 <td>{{$key+1}}</td>
                 <td>
-                  <img src="{{ (!empty($district->image)) ? url('uploads/district_images/'.$district->image) : url('upload/no_image.png') }}" style="width: 60px; height: 40px; border: 1px solid #ddd; object-fit: contain;">
+                  <img src="{{ (!empty($district->image)) ? url('uploads/district_images/'.$district->image) : url('uploads/no_image.png') }}" style="width: 60px; height: 40px; border: 1px solid #ddd; object-fit: contain;">
                 </td>
                 <td>{{$district->name}}</td>
                 <td>
