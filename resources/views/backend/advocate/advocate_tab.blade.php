@@ -7,5 +7,7 @@
     <a href="{{route('advocates.membership.details',@$details->id)}}" class="btn btn-primary btn-sm {{(@$page_title=='membership')?'btn_active':''}}" title="Membership"> Membership</a>
     <a href="{{route('advocates.engagement.details',@$details->id)}}" class="btn btn-primary btn-sm {{(@$page_title=='engagement')?'btn_active':''}}" title="Engagement"> Social Engagement</a>
     <a href="{{route('advocates.chamber.details',@$details->id)}}" class="btn btn-primary btn-sm {{(@$page_title=='chamber')?'btn_active':''}}" title="Chamber"> Chamber</a>
-    <a href="{{route('advocates.map.details',@$details->id)}}" class="btn btn-primary btn-sm {{(@$page_title=='map')?'btn_active':''}}" title="Map"> Google Map</a>
+    <a href="{{ route('advocates.map.details', @$details->id) }}" class="btn btn-primary btn-sm {{ (@$page_title == 'map') ? 'btn_active' : '' }}" title="Map"> Google Map</a>
+    <a href="{{ route('advocates.gallery.details', @$details->id) }}" class="btn btn-primary btn-sm {{ (@$page_title == 'gallery') ? 'btn_active' : '' }}" title="gallery"> Photo gallery</a>
+
 </div>

@@ -324,6 +324,12 @@ Route::group(['middleware'=>['auth','admin']],function(){
 			Route::get('/map/details/{id}', 'Backend\Advocate\AdvocateController@mapDetails')->name('advocates.map.details');
 			Route::post('/map/details/store/{id}', 'Backend\Advocate\AdvocateController@mapDetailsStore')->name('advocates.map.details.store');
 
+			// Photo Gallery Routes
+			Route::get('/gallery/details/{id}', 'Backend\Advocate\AdvocateController@galleryDetails')->name('advocates.gallery.details');
+			Route::post('/gallery/details/store/{id}', 'Backend\Advocate\AdvocateController@galleryDetailsStore')->name('advocates.gallery.details.store');
+			Route::post('/gallery/details/delete', 'Backend\Advocate\AdvocateController@galleryDetailsDelete')->name('advocates.gallery.details.delete');
+
+
 
 
 			Route::get('/passowrd/{id}','Backend\Advocate\AdvocateController@payrollEmployeeEditPassword')->name('payroll.employee.view.edit.passowrd');

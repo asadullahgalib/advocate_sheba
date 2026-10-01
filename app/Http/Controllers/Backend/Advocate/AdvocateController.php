@@ -374,4 +374,54 @@ class AdvocateController extends Controller
         $data->save();
         return redirect()->back()->with('success', 'Map details updated successfully!');
     }
+
+        // ১৫. Photo Gallery Details (GET)
+    public function galleryDetails($id)
+    {
+        $data['details'] = User::find($id);
+        $data['gallery_details'] = \App\Model\PhotoGallery::where('user_id', $id)->orderBy('id', 'asc')->get();
+        $data['page_title'] = 'gallery';
+        return view('backend.advocate.gallery_details', $data);
+    }
+ 
+    // ১৫.২ Photo Gallery Details Store (POST)
+    public function galleryDetailsStore(Request $request, $id)
+    {
+        $this->validate($request, [
+            'image' => 'required|image|mimes:jpeg,png,jpg,webp'
+        ]);
+
+        $data = new \App\Model\PhotoGallery();
+        $data->user_id = $id;
+        $data->title = $request->caption;
+        $data->created_by = Auth::user()->id;
+
+        if ($request->file('image')) {
+            $file = $request->file('image');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('uploads/gallery_images'), $filename);
+            
+            $file = Image::make(public_path('uploads/gallery_images/').$filename);
+            $file->resize(600, 400)->save(public_path('uploads/gallery_images/').$filename);
+            
+            $data->image = $filename;
+        } else {
+            $data->image = 'no_image.png';
+        }
+        
+        $data->save();
+        return redirect()->back()->with('success', 'Gallery image uploaded successfully');
+    }
+
+    // ১৫.৩ Photo Gallery Details Delete (POST)
+    public function galleryDetailsDelete(Request $request)
+    {
+        $gallery = \App\Model\PhotoGallery::find($request->id);
+        if (!empty($gallery->image) && $gallery->image != 'no_image.png' && file_exists(public_path('uploads/gallery_images/' . $gallery->image))) {
+            @unlink(public_path('uploads/gallery_images/' . $gallery->image));
+        }
+        $gallery->delete();
+        return redirect()->back()->with('success', 'Image deleted successfully!');
+    }
+
 }
