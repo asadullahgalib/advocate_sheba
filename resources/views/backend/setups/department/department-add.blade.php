@@ -34,7 +34,7 @@
                 <input type="file" name="image" id="image" class="form-control form-control-sm">
               </div>
               <div class="form-group col-sm-2" style="z-index: 100;">
-                <img id="showImage" src="{{(!empty($editData->image))?url('public/upload/department_images/'.$editData->image):url('public/upload/no_image.png')}}" style="width: 150px; height: 150px" class="form-control">
+                <img id="showImage" src="{{(!empty($editData->image))?url('uploads/department_images/'.$editData->image):url('uploads/no_image.png')}}" style="width: 150px; height: 150px" class="form-control">
               </div>
               <div class="form-group col-md-6">
                 <button type="submit" class="btn btn-primary btn-sm">@if(isset($editData)) Update @else Submit @endif</button>
