@@ -188,6 +188,16 @@ Route::group(['middleware'=>['auth','admin']],function(){
 			Route::post('/update/{id}','Backend\FaqController@update')->name('faqs.update');
 			Route::post('/delete','Backend\FaqController@delete')->name('faqs.delete');
 		});
+
+		// Terms & Condition
+		Route::prefix('terms')->group(function(){
+			Route::get('/view','Backend\TermsController@view')->name('terms.view');
+			Route::get('/add','Backend\TermsController@add')->name('terms.add');
+			Route::post('/store','Backend\TermsController@store')->name('terms.store');
+			Route::get('/edit/{id}','Backend\TermsController@edit')->name('terms.edit');
+			Route::post('/update/{id}','Backend\TermsController@update')->name('terms.update');
+			Route::post('/delete','Backend\TermsController@delete')->name('terms.delete');
+		});
 		
 		Route::prefix('setups')->group(function(){
 			//Logo

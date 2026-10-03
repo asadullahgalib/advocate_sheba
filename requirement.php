@@ -96,3 +96,11 @@ Legal Advocates part ta chole asbe & design ta jeno barristers er moto hoi carro
 
 
 Note: Text color onek jaigai holod er moto jeita choklate.
+
+
+Legal Articles, advocate er sathe somporko nai.
+Latest Video, advocate er sathe somporko nai.
+Professional Philosophy, advocate er sathe somporko nai.
+Frequently Asked Questions (FAQ) aita advocate er jonno thakbe na.
+
+#103C6D
