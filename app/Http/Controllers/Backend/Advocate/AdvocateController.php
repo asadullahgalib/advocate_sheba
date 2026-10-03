@@ -379,7 +379,7 @@ class AdvocateController extends Controller
     public function galleryDetails($id)
     {
         $data['details'] = User::find($id);
-        $data['gallery_details'] = \App\Model\PhotoGallery::where('user_id', $id)->orderBy('id', 'asc')->get();
+        $data['gallery_details'] = PhotoGallery::where('user_id', $id)->orderBy('id', 'asc')->get();
         $data['page_title'] = 'gallery';
         return view('backend.advocate.gallery_details', $data);
     }

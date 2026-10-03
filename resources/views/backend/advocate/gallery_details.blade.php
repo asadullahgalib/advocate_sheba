@@ -54,41 +54,69 @@
           </div>
           @include('backend.advocate.advocate_tab')
         </div>
-    </div>
+      </div>
+
+      <div class="card-body">
+        <table class="table table-bordered table-sm">
+          <thead>
+          <tr>
+            <th width="8%">SL</th>
+            <th>Title</th>
+            <th>Image</th>
+            <th width="13%">Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          @foreach($gallery_details as $key=> $value)
+            <tr class="text-center">
+              <td>{{ $key + 1 }}</td>
+              <td>{{ $value->title }}</td>
+              <td>
+                <img src="{{(!empty(@$value->image))?url('uploads/gallery_images/'.@$value->image):url('uploads/no_image.png')}}" width="50%">
+              </td>
+              <td>
+                <a href="{{ route('human-resource.hrm.slider.edit',$value->id) }}" class="btn btn-info btn-sm" title="Edit"><i class="fa fa-edit"></i></a>     
+                <a id="delete" href="{{ route('human-resource.hrm.slider.delete') }}" data-token="{{csrf_token()}}" data-id="{{$value->id}}" class="btn btn-danger btn-sm" title="Delete"><i class="fa fa-trash"></i></a>
+              </td>
+            </tr> 
+          @endforeach               
+          </tbody>
+        </table>
+      </div>
     
-    <!-- নতুন ছবি আপলোড করার ফর্ম -->
-    <div class="card-body">
-      <div class="row">
-        <div class="col-md-12">
-          <form method="post" action="{{ route('advocates.gallery.details.store', $details->id) }}" id="myForm" enctype="multipart/form-data">
-            @csrf
-            <div class="form-row">
+      <!-- নতুন ছবি আপলোড করার ফর্ম -->
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12" style="border: 1px solid #cac9c9;">
+            <form method="post" action="{{ route('advocates.gallery.details.store', $details->id) }}" id="myForm" enctype="multipart/form-data">
+              @csrf
+              <div class="form-row">
 
-              <div class="form-group col-md-6">
-                <label for="caption">Caption/Title</label>
-                <input type="text" name="caption" id="caption" class="form-control form-control-sm" placeholder="Enter Photo Caption">
-              </div>
+                <div class="form-group col-md-6">
+                  <label for="caption">Caption/Title</label>
+                  <input type="text" name="caption" id="caption" class="form-control form-control-sm" placeholder="Enter Photo Caption">
+                </div>
 
-              <div class="form-group col-md-4">
-                <label for="image">Upload Gallery Photo <span style="color:red;">*</span></label>
-                <input type="file" name="image" id="image" class="form-control form-control-sm" required>
-              </div>
+                <div class="form-group col-md-4">
+                  <label for="image">Upload Gallery Photo <span style="color:red;">*</span></label>
+                  <input type="file" name="image" id="image" class="form-control form-control-sm" required>
+                </div>
 
-              <div class="form-group col-md-2 text-center" style="z-index: 100;">
-                <label>Preview</label>
-                <div>
-                  <img id="showImage" src="{{ url('uploads/no_image.png') }}" style="width: 80px; height: 60px; object-fit: cover; border:1px solid #000;">
+                <div class="form-group col-md-2 text-center" style="z-index: 100;">
+                  <label>Preview</label>
+                  <div>
+                    <img id="showImage" src="{{ url('uploads/no_image.png') }}" style="width: 80px; height: 60px; object-fit: cover; border:1px solid #000;">
+                  </div>
+                </div>
+
+                <div class="form-group col-md-3" style="padding-top: 10px;">
+                  <button type="submit" class="btn btn-primary btn-sm">Add Image</button>
                 </div>
               </div>
-
-              <div class="form-group col-md-3" style="padding-top: 10px;">
-                <button type="submit" class="btn btn-primary btn-sm">Add Image</button>
-              </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
 
     <!-- গ্যালারির ছবিগুলো দেখানোর সেকশন -->
     <div class="card-body">
