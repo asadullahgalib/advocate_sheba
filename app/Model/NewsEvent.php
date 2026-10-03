@@ -11,4 +11,9 @@ class NewsEvent extends Model
     {
         return $this->belongsTo(User::class,'user_id','id');
     }
+
+    public function law()
+    {
+        return $this->belongsTo(Law::class,'law_id','id');
+    }
 }

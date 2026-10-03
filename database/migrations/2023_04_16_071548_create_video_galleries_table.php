@@ -16,6 +16,7 @@ class CreateVideoGalleriesTable extends Migration
         Schema::create('video_galleries', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id')->nullable();
+            $table->string('title')->nullable();
             $table->longText('link')->nullable();
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();

@@ -16,6 +16,7 @@ class CreateNewsEventsTable extends Migration
         Schema::create('news_events', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id')->nullable();
+            $table->integer('law_id')->nullable();
             $table->string('image')->nullable();
             $table->string('title')->nullable();
             $table->date('date')->nullable();
