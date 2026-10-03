@@ -4,20 +4,18 @@
   <div class="col-md-12" style="padding-top: 40px;">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">News & Events List
-          <a href="{{ route('doctor-profile.news.add') }}" class="btn btn-success float-right btn-sm custom_btn"><i class="fa fa-plus-circle"> Add News & Events</i></a>
+        <h3 class="card-title">Article List
+          <a href="{{ route('doctor-profile.news.add') }}" class="btn btn-success float-right btn-sm custom_btn"><i class="fa fa-plus-circle"> Add Article</i></a>
         </h3>
       </div>
 
       <div class="card-body">
         <div class="table table-responsive">
-          <table id="example1" class="table table-bordered table-sm">
+          <table id="example1" class="table table-bordered table-sm table-striped">
             <thead>
             <tr>
               <th width="8%">SL</th>
-              @if(@Auth::user()->user_category=='admin' || @Auth::user()->user_category=='Developer')
-              <th>Legal Professional</th>
-              @endif
+              <th>Law Title</th> 
               <th>Title</th>
               <th width="15%">Date</th>
               <th>Image</th>
@@ -27,22 +25,21 @@
             <tbody>
             @foreach($allData as $key=> $value)
               <tr class="text-center">
-                <td>{{ $key + 1 }}</td>
-                @if(@Auth::user()->user_category=='admin' || @Auth::user()->user_category=='Developer')
-                <td>{{@$value['user']['name']}} - {{@$value['user']['department']['name']}}</td>
-                @endif
-                <td>{{ $value->title }}</td>
-                <td>{{ date('d-m-Y',strtotime($value->date)) }}</td>
+                <td style="vertical-align: middle;">{{ $key + 1 }}</td>
                 
-                <!-- এখানে পাথের নাম uploads/news_images করা হলো এবং সাইজ লক করা হলো -->
-                <td>
+                <td style="vertical-align: middle;">{{ @$value->law->title_en }}</td> 
+                
+                <td style="vertical-align: middle;">{{ $value->title }}</td>
+                <td style="vertical-align: middle;">{{ date('d-m-Y',strtotime($value->date)) }}</td>
+                
+                <td style="vertical-align: middle;">
                   <img src="{{(!empty($value->image)) ? url('uploads/news_images/'.$value->image) : url('public/upload/no_image.png')}}" 
                        width="80" 
                        height="80" 
                        style="width: 80px; height: 80px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd;">
                 </td>
                 
-                <td>
+                <td style="vertical-align: middle;">
                   <a href="{{ route('doctor-profile.news.edit',$value->id) }}" class="btn btn-info btn-sm" title="Edit"><i class="fa fa-edit"></i></a>     
                   <a id="delete" href="{{ route('doctor-profile.news.delete') }}" data-token="{{csrf_token()}}" data-id="{{$value->id}}" class="btn btn-danger btn-sm" title="Delete"><i class="fa fa-trash"></i></a>
                 </td>

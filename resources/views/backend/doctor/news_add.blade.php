@@ -7,11 +7,11 @@
       <div class="card-header">
         <h3 class="card-title">
           @if(isset($editData))
-            News & Events Update
+            Article Update
           @else
-            News & Events Add
+            Article Add
           @endif
-          <a href="{{ route('doctor-profile.news.view') }}" class="btn btn-success float-right btn-sm custom_btn"><i class="fa fa-list"> News & Events List</i></a>
+          <a href="{{ route('doctor-profile.news.view') }}" class="btn btn-success float-right btn-sm custom_btn"><i class="fa fa-list"> Article List</i></a>
         </h3>
       </div>
 
@@ -19,22 +19,20 @@
         @csrf
           <div class="card-body">
             <div class="form-row">
-              
-              @if(@Auth::user()->user_category=='admin' || @Auth::user()->user_category=='Developer')
+
               <div class="form-group col-md-12">
-                <label for="name">Legal Professional <span style="color:red">*</span> </label>
-                <select name="user_id" id="user_id" class="form-control form-control-sm select2">
-                  <option value="">Legal Professional</option>
-                  @foreach($employees as $emp)
-                  <option value="{{$emp->id}}" {{(@$editData->user_id==$emp->id)?"selected":""}}>{{$emp->name}} - {{@$emp['department']['name']}}</option>
-                  @endforeach
-                </select>
-              </div>
-              @endif                       
-              
-              <div class="form-group col-md-4">
                 <label for="title">Title <span style="color:red">*</span> </label>
                 <input type="text" name="title" id="title" class="form-control form-control-sm" value="{{ @$editData->title }}" placeholder="Enter Title"> 
+              </div>
+
+              <div class="form-group col-md-4">
+                <label for="law_id">Select Law <span style="color:red">*</span> </label>
+                <select name="law_id" id="law_id" class="form-control form-control-sm select2">
+                  <option value="">Select Law</option>
+                  @foreach($laws as $law)
+                  <option value="{{$law->id}}" {{(@$editData->law_id==$law->id)?"selected":""}}>{{$law->title_en}}</option> 
+                  @endforeach
+                </select>
               </div>
               
               <div class="form-group col-md-3">
@@ -65,7 +63,7 @@
     </div>
   </div>
 
-<!-- CKEditor Setup - Exact Copy from your Reference -->
+<!-- CKEditor Setup -->
 <script type="text/javascript">
   $(document).ready(function(){
     var editor2 = CKEDITOR.replace('description_en');
@@ -78,7 +76,7 @@
   });
 </script>
 
-<!-- jQuery Validation Script - Exact Copy from your Reference Layout -->
+<!-- jQuery Validation Script -->
 <script type="text/javascript">
     $(document).ready(function () {
       // Live Image Preview Function
@@ -98,7 +96,7 @@
         ignore : [],
         debug : false,
         rules: {
-          user_id: {
+          law_id: {
             required: true,
           },
           title: {
@@ -112,8 +110,8 @@
           }
         },
         messages: {
-          user_id: {
-            required: "Please select doctor/nurse name",
+          law_id: {
+            required: "Please select law name",
           },
           title: {
             required: "Please enter the title",
