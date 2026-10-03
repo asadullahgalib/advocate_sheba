@@ -8,6 +8,6 @@ class Promotion extends Model
 {
     public function position()
     {
-        return $this->belongsTo(AddPosition::class, 'position_id', 'id');
+        return $this->belongsTo(AddPosition::class, 'add_position_id', 'id');
     }
 }

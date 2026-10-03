@@ -20,12 +20,13 @@
           <div class="card-body">
             <div class="form-row">                   
               
+              <!-- ড্রপডাউনের নাম এবং আইডি position_id থেকে পরিবর্তন করে add_position_id করা হলো -->
               <div class="form-group col-md-4">
-                <label for="position_id">Adds Position <span style="color:red">*</span></label>
-                <select name="position_id" id="position_id" class="form-control form-control-sm">
+                <label for="add_position_id">Adds Position <span style="color:red">*</span></label>
+                <select name="add_position_id" id="add_position_id" class="form-control form-control-sm">
                   <option value="">Select Position</option>
                   @foreach($positions as $pos)
-                    <option value="{{ $pos->id }}" {{ (@$editData->position_id == $pos->id) ? 'selected' : '' }}>
+                    <option value="{{ $pos->id }}" {{ (@$editData->add_position_id == $pos->id) ? 'selected' : '' }}>
                       {{ $pos->name }}
                     </option>
                   @endforeach
@@ -62,8 +63,8 @@
     $('#MyForm').validate({
       ignore:[],
       rules: {          
-        position_id: {
-          required: true, // ড্রপডাউনটি বাধ্যতামূলক করা হলো
+        add_position_id: { // ভ্যালিডেশন রুলস আপডেট করা হলো
+          required: true, 
         },
         title: {
           required: true,
@@ -73,8 +74,8 @@
         }, 
       },
       messages: { 
-        position_id: {
-          required: "Please select a designation",
+        add_position_id: { // ভ্যালিডেশন মেসেজ আপডেট করা হলো
+          required: "Please select a position",
         }
       },
       errorElement: 'span',

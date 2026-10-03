@@ -15,6 +15,7 @@ use App\Model\Package;
 use App\Model\Ambulance;
 use App\Model\Promotion;
 use App\Model\Support;
+use App\Model\Law;
 use App\Model\AddPosition;
 use App\User;
 use Image;
@@ -389,28 +390,31 @@ class ContactController extends Controller
         return redirect()->route('doctor-profile.photo.view')->with('success','Data Deleted successfully');
     }
 
-
-    // News & Events
-
-        public function newsView(){
-        if(@Auth::user()->user_category=='admin' || @Auth::user()->user_category=='Developer'){
-            $data['allData'] = NewsEvent::orderBy('id','desc')->get();
-        }if(@Auth::user()->user_category=='doctor' || @Auth::user()->user_category=='nurse'){
-            $data['allData'] = NewsEvent::where('user_id',@Auth::user()->id)->orderBy('id','desc')->get();
-        }
-        return view('backend.doctor.news_view',$data);
+    // news and event
+    public function newsView(){
+    if(@Auth::user()->user_category=='admin' || @Auth::user()->user_category=='Developer'){
+        $data['allData'] = NewsEvent::orderBy('id','desc')->get();
+    }if(@Auth::user()->user_category=='doctor' || @Auth::user()->user_category=='nurse'){
+        $data['allData'] = NewsEvent::where('user_id',@Auth::user()->id)->orderBy('id','desc')->get();
+    }
+    return view('backend.doctor.news_view',$data);
     }
 
     public function newsAdd(){
         $data['employees'] = User::whereIn('user_category',['doctor','nurse'])->where('status','1')->get();
+        $data['laws'] = Law::all(); 
         return view('backend.doctor.news_add',$data);
     }
 
     public function newsStore(Request $request){
         $data = new NewsEvent();
         $data->title = $request->title;
+        
+        $data->law_id = $request->law_id; 
+        
         $data->date = date('Y-m-d',strtotime($request->date));
         $data->description_en = $request->description_en;
+        
         if(@Auth::user()->user_category=='admin' || @Auth::user()->user_category=='Developer'){
             $user_id = $request->user_id;
         }if(@Auth::user()->user_category=='doctor' || @Auth::user()->user_category=='nurse'){
@@ -428,6 +432,7 @@ class ContactController extends Controller
         }
         $data->created_by = Auth::user()->id;
         $data->save();
+        
         return redirect()->route('doctor-profile.news.view')->with('success','Data Inserted successfully');
     }
 
@@ -439,14 +444,18 @@ class ContactController extends Controller
             $data['editData'] = NewsEvent::where('user_id',@Auth::user()->id)->where('id',$id)->first();
         }
         $data['employees'] = User::whereIn('user_category',['doctor','nurse'])->where('status','1')->get();
+        $data['laws'] = Law::all(); 
         return view('backend.doctor.news_add',$data);
     }
 
     public function newsUpdate(Request $request,$id){
         $data = NewsEvent::find($id);
         $data->title = $request->title;
+        $data->law_id = $request->law_id; 
+        
         $data->date = date('Y-m-d',strtotime($request->date));
         $data->description_en = $request->description_en;
+        
         if(@Auth::user()->user_category=='admin' || @Auth::user()->user_category=='Developer'){
             $user_id = $request->user_id;
         }if(@Auth::user()->user_category=='doctor' || @Auth::user()->user_category=='nurse'){
@@ -480,7 +489,6 @@ class ContactController extends Controller
         $data->delete();
         return redirect()->route('doctor-profile.news.view')->with('success','Data Deleted successfully');
     }
-
     // Package
 
     public function packageView(){
@@ -622,7 +630,7 @@ class ContactController extends Controller
         $data->title = $request->title;
         $data->sort = $request->sort;
         
-        $data->position_id = $request->position_id; 
+        $data->add_position_id = $request->add_position_id; 
 
         if ($request->file('image')){
             $file = $request->file('image');
@@ -649,7 +657,7 @@ class ContactController extends Controller
         $data = Promotion::find($id);
         $data->title = $request->title;
         $data->sort = $request->sort;
-        $data->position_id = $request->position_id; 
+        $data->add_position_id = $request->add_position_id; 
 
         if ($request->file('image')){
             $file = $request->file('image');
