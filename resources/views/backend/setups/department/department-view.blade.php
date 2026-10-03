@@ -30,7 +30,7 @@
               <td>{{ $key + 1 }}</td>
               <td>{{ $value->name }}</td>
               <td>
-                <img src="{{(!empty(@$value->image))?url('public/upload/department_images/'.@$value->image):url('public/upload/no_image.png')}}">
+                <img src="{{(!empty(@$value->image))?url('uploads/department_images/'.@$value->image):url('uploads/no_image.png')}}">
               </td>
               <td>{{ $value->sort }}</td>
               <td>

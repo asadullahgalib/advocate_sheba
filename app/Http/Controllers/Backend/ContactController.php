@@ -15,95 +15,84 @@ use App\Model\Package;
 use App\Model\Ambulance;
 use App\Model\Promotion;
 use App\Model\Support;
+use App\Model\AddPosition;
 use App\User;
 use Image;
 
 class ContactController extends Controller
 {
     public function view(){
-        $data['countContact'] = Contact::count();
-    	$data['allData'] = Contact::all();
-    	return view('backend.contact.view-contact',$data);
+    $data['countContact'] = Contact::count();
+    $data['allData'] = Contact::all();
+    return view('backend.contact.view-contact', $data);
     }
 
     public function add(){
-    	return view('backend.contact.add-contact');
+        return view('backend.contact.add-contact');
     }
 
     public function store(Request $request){
-    	$data = new Contact();
-    	$data->address = $request->address;
-        $data->name = $request->name;
-    	$data->mobile_no = $request->mobile_no;
-    	$data->email = $request->email;
-    	if ($request->file('image')){
-            $file = $request->file('image');
-            $filename =date('YmdHi').$file->getClientOriginalName();
-            $file->move(public_path('upload/logo_images'), $filename);
-            $file = Image::make(public_path('upload/logo_images/').$filename);
-            $file->resize(240,240)->save(public_path('upload/logo_images/').$filename);
-            $data['image']= $filename;
-        }
-    	$data->created_by = Auth::user()->id;
-    	$data->save();
-    	return redirect()->route('site-setting.contents.contact.view')->with('success','Data Inserted successfully');
+        $data = new Contact();
+        $data->name = $request->name; // সরাসরি ডাটাবেজের name কলামে যাবে
+        $data->address = $request->address;
+        $data->mobile_no = $request->mobile_no;
+        $data->email = $request->email;
+        $data->facebook = $request->facebook;
+        $data->twitter = $request->twitter;
+        $data->instagram = $request->instagram;
+        $data->linkedin = $request->linkedin;
+        $data->youtube = $request->youtube;
+
+        // if ($request->file('image')){
+        //     $file = $request->file('image');
+        //     $filename =date('YmdHi').$file->getClientOriginalName();
+        //     $file->move(public_path('upload/logo_images'), $filename);
+        //     $file = Image::make(public_path('upload/logo_images/').$filename);
+        //     $file->resize(240,240)->save(public_path('upload/logo_images/').$filename);
+        //     $data['image']= $filename;
+        // }
+        
+        $data->created_by = Auth::user()->id;
+        $data->save();
+        return redirect()->route('site-setting.contents.contact.view')->with('success','Data Inserted successfully');
     }
 
     public function edit($id){
         $editData = Contact::find($id);
-        return view('backend.contact.edit-contact',compact('editData'));
+        return view('backend.contact.edit-contact', compact('editData'));
     }
 
-    public function update(Request $request,$id){
+    public function update(Request $request, $id){
         // dd($request->all());
         $data = Contact::find($id);
+
         $data->name = $request->name;
+        $data->address = $request->address; 
         $data->mobile_no = $request->mobile_no;
+        $data->email = $request->email;
+        
         $data->facebook = $request->facebook;
-    	$data->youtube = $request->youtube;
+        $data->youtube = $request->youtube;
         $data->twitter = $request->twitter;
         $data->instagram = $request->instagram;
         $data->linkedin = $request->linkedin;
 
-        if ($request->hasFile('image')) {
-
-            /*
-            |--------------------------------------------------------------------------
-            | Old Image Delete
-            |--------------------------------------------------------------------------
-            | শুধু তখনই unlink হবে যখন database-এ পুরাতন image-এর নাম আছে
-            */
-            if (!empty($data->image)) {
-
-                $oldImage = public_path('uploads/profile_images/' . $data->image);
-
-                if (file_exists($oldImage) && is_file($oldImage)) {
-                    unlink($oldImage);
-                }
-            }
-
-            /*
-            |--------------------------------------------------------------------------
-            | New Image Upload
-            |--------------------------------------------------------------------------
-            */
-            $image = $request->file('image');
-
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-
-            $destinationPath = public_path('uploads/profile_images/');
-
-            // Resize + Save
-            Image::make($image)
-                ->resize(1920, 320)
-                ->save($destinationPath . $imageName);
-
-            // DB তে নতুন image name save
-            $data->image = $imageName;
-        }
+        // if ($request->hasFile('image')) {
+        //     if (!empty($data->image)) {
+        //         $oldImage = public_path('uploads/profile_images/' . $data->image);
+        //         if (file_exists($oldImage) && is_file($oldImage)) {
+        //             unlink($oldImage);
+        //         }
+        //     }
+        //     $image = $request->file('image');
+        //     $imageName = time() . '.' . $image->getClientOriginalExtension();
+        //     $destinationPath = public_path('uploads/profile_images/');
+        //     Image::make($image)->resize(1920, 320)->save($destinationPath . $imageName);
+        //     $data->image = $imageName;
+        // }
 
         $data->updated_by = Auth::user()->id;
-    	$data->save();
+        $data->save();
 
         return redirect()->route('site-setting.contents.contact.view')->with('success','Data updated successfully');
     }
@@ -624,28 +613,35 @@ class ContactController extends Controller
     }
 
     public function promotionAdd(){
-        return view('backend.setups.department.promotion_add');
+        $data['positions'] = AddPosition::all();
+        return view('backend.setups.department.promotion_add', $data);
     }
 
     public function promotionStore(Request $request){
         $data = new Promotion();
         $data->title = $request->title;
         $data->sort = $request->sort;
+        
+        $data->position_id = $request->position_id; 
+
         if ($request->file('image')){
             $file = $request->file('image');
             $filename =date('YmdHi').$file->getClientOriginalName();
-            $file->move(public_path('upload/promotion_images'), $filename);
-            $file = Image::make(public_path('upload/promotion_images/').$filename);
-            $file->resize(500,500)->save(public_path('upload/promotion_images/').$filename);
+            $file->move(public_path('uploads/promotion_images'), $filename);
+            $file = Image::make(public_path('uploads/promotion_images/').$filename);
+            $file->resize(500,500)->save(public_path('uploads/promotion_images/').$filename);
             $data['image']= $filename;
         }
+        
         $data->created_by = Auth::user()->id;
         $data->save();
+        
         return redirect()->route('human-resource.hrm.promotion.view')->with('success','Data Inserted successfully');
     }
 
     public function promotionEdit($id){
         $data['editData'] = Promotion::find($id);
+        $data['positions'] = AddPosition::all();
         return view('backend.setups.department.promotion_add',$data);
     }
 
@@ -653,13 +649,15 @@ class ContactController extends Controller
         $data = Promotion::find($id);
         $data->title = $request->title;
         $data->sort = $request->sort;
+        $data->position_id = $request->position_id; 
+
         if ($request->file('image')){
             $file = $request->file('image');
-            @unlink(public_path('upload/promotion_images/'.$data->image));
+            @unlink(public_path('uploads/promotion_images/'.$data->image));
             $filename =date('YmdHi').$file->getClientOriginalName();
-            $file->move(public_path('upload/promotion_images'), $filename);
-            $file = Image::make(public_path('upload/promotion_images/').$filename);
-            $file->resize(500,500)->save(public_path('upload/promotion_images/').$filename);
+            $file->move(public_path('uploads/promotion_images'), $filename);
+            $file = Image::make(public_path('uploads/promotion_images/').$filename);
+            $file->resize(500,500)->save(public_path('uploads/promotion_images/').$filename);
             $data['image']= $filename;
         }
         $data->updated_by = Auth::user()->id;
@@ -669,13 +667,12 @@ class ContactController extends Controller
 
     public function promotionDelete(Request $request){
         $data = Promotion::find($request->id);
-        if (file_exists('public/upload/promotion_images/' . $data->image) AND ! empty($data->image)) {
-            unlink('public/upload/promotion_images/' . $data->image);
+        if (file_exists('public/uploads/promotion_images/' . $data->image) AND ! empty($data->image)) {
+            unlink('public/uploads/promotion_images/' . $data->image);
         }
         $data->delete();
         return redirect()->route('human-resource.hrm.promotion.view')->with('success','Data Deleted successfully');
     }
-
     // About Us
 
     public function aboutView(){
