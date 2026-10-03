@@ -18,7 +18,7 @@
                                 </a> 
                             </li>
                             <li class="mobile_top_login"> 
-                                <a href="#">
+                                <a href="{{route('login')}}">
                                     <i class="fa fa-user" aria-hidden="true"></i> Login
                                 </a> 
                             </li>

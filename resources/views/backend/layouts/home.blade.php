@@ -112,7 +112,7 @@
             </div>
         </div>
 
-        <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12" style="margin-bottom:30px;">
+        <!-- <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12" style="margin-bottom:30px;">
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Booking List:</h3>
@@ -177,7 +177,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
     </div>
 
