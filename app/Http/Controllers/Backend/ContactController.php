@@ -397,13 +397,13 @@ class ContactController extends Controller
     }if(@Auth::user()->user_category=='doctor' || @Auth::user()->user_category=='nurse'){
         $data['allData'] = NewsEvent::where('user_id',@Auth::user()->id)->orderBy('id','desc')->get();
     }
-    return view('backend.doctor.news_view',$data);
+    return view('backend.doctor.article_view',$data);
     }
 
     public function newsAdd(){
         $data['employees'] = User::whereIn('user_category',['doctor','nurse'])->where('status','1')->get();
         $data['laws'] = Law::all(); 
-        return view('backend.doctor.news_add',$data);
+        return view('backend.doctor.article_add',$data);
     }
 
     public function newsStore(Request $request){
@@ -445,7 +445,7 @@ class ContactController extends Controller
         }
         $data['employees'] = User::whereIn('user_category',['doctor','nurse'])->where('status','1')->get();
         $data['laws'] = Law::all(); 
-        return view('backend.doctor.news_add',$data);
+        return view('backend.doctor.article_add',$data);
     }
 
     public function newsUpdate(Request $request,$id){
