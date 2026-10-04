@@ -3,21 +3,31 @@
 
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/legal_information.css')}}">
 
+<link rel="stylesheet"
+      href="{{ asset('assets/css/legal_information.css') }}">
 <section class="legal-directory-section">
 
-    <div class="container">
+    <div class="container mobile_container_for_legal_information">
+
+        <div class="flex justify-between items-center mt-2">
+          <div class="my-4">
+            <h2
+              id="hospitals-by-location"
+              class="text-lg md:text-xl font-semibold text-gray-800 dark:text-gray-100"
+            >
+              Legal Information
+            </h2>
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+              Explore Our Legal Information
+            </p>
+          </div>
+        </div>
 
         <!-- =====================================
              LEGAL INFORMATION
         ====================================== -->
 
         <div class="directory-box legal-info-box">
-
-            <div class="section-heading legal-heading">
-                <h2> Legal Information </h2>
-                <span></span>
-            </div>
-
 
             <div class="row justify-content-center">
 
@@ -27,7 +37,7 @@
                     <a href="{{route('legal.information.rights')}}" class="directory-card legal-card">
 
                         <div class="directory-icon">
-                            <i class="bi bi-book"></i>
+                            <i class="fa fa-book"></i>
                         </div>
 
                         <h3>
@@ -42,7 +52,7 @@
 
                         <div class="card-bottom">
                             <span>View Details</span>
-                            <i class="bi bi-chevron-right"></i>
+                            <i class="fa fa-chevron-right"></i>
                         </div>
 
                     </a>
@@ -56,7 +66,7 @@
                     <a href="{{route('legal.information.terms')}}" class="directory-card legal-card">
 
                         <div class="directory-icon">
-                            <i class="bi bi-book"></i>
+                            <i class="fa fa-book"></i>
                         </div>
 
                         <h3>
@@ -71,7 +81,7 @@
 
                         <div class="card-bottom">
                             <span>View Details</span>
-                            <i class="bi bi-chevron-right"></i>
+                            <i class="fa fa-chevron-right"></i>
                         </div>
 
                     </a>
@@ -85,7 +95,7 @@
                     <a href="{{route('legal.information.laws')}}" class="directory-card legal-card">
 
                         <div class="directory-icon">
-                            <i class="bi bi-hammer"></i>
+                            <i class="fa fa-hammer"></i>
                         </div>
 
                         <h3>
@@ -100,7 +110,7 @@
 
                         <div class="card-bottom">
                             <span>View Details</span>
-                            <i class="bi bi-chevron-right"></i>
+                            <i class="fa fa-chevron-right"></i>
                         </div>
 
                     </a>
@@ -114,7 +124,7 @@
                     <a href="{{route('legal.information.procudures')}}" class="directory-card legal-card">
 
                         <div class="directory-icon">
-                            <i class="bi bi-file-earmark-text"></i>
+                            <i class="fa fa-file"></i>
                         </div>
 
                         <h3>
@@ -129,7 +139,7 @@
 
                         <div class="card-bottom">
                             <span>View Details</span>
-                            <i class="bi bi-chevron-right"></i>
+                            <i class="fa fa-chevron-right"></i>
                         </div>
 
                     </a>
@@ -150,54 +160,43 @@
 
 <section class="legal-articles-section">
 
-    <div class="container-fluid">
+        <div class="container-fluid">
 
-        <!-- ============================
-             LEGAL ARTICLES HEADER
-        ============================= -->
-
-        <div class="legal-main-header">
-
-            <div class="legal-title-area">
-
-                <div class="legal-main-icon">
-                    <i class="fa-solid fa-scale-balanced"></i>
-                </div>
-
-                <div>
-                    <h2>Legal Services</h2>
-                    <p>Explore Legal Knowledge by Topic</p>
-                </div>
-
-            </div>
-
+        <div class="flex justify-between items-center mt-2">
+          <div class="my-4">
+            <h2
+              id="hospitals-by-location"
+              class="text-lg md:text-xl font-semibold text-gray-800 dark:text-gray-100"
+            >
+              Legal Services
+            </h2>
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+              Explore Legal Knowledge by Topic
+            </p>
+          </div>
+          <a
+            href="#"
+            aria-label=""
+            class="flex items-center gap-1 text-[#008080] text-sm font-semibold hover:underline transition"
+          >
+            View All
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-chevron-right"
+              aria-hidden="true"
+            >
+              <path d="m9 18 6-6-6-6"></path>
+            </svg>
+          </a>
         </div>
-
-
-        <!-- ============================
-             LEGAL TOPICS HEADER
-        ============================= -->
-
-        <div class="section-heading d-flex justify-content-between align-items-center">
-
-            <div class="section-heading-left">
-
-                <div class="section-small-icon">
-                    <i class="fa-solid fa-book"></i>
-                </div>
-
-                <h3>Legal Topics</h3>
-
-            </div>
-
-
-            <a href="#" class="view-all-btn">
-                View All Topics
-                <i class="fa-solid fa-arrow-right"></i>
-            </a>
-
-        </div>
-
 
         <!-- ============================
              LEGAL TOPICS CARDS
@@ -223,7 +222,7 @@
                         charges and your rights.
                     </p>
 
-                    <a href="#">
+                    <a href="{{route('law.details')}}">
                         Explore Articles
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -250,7 +249,7 @@
                         disputes and remedies.
                     </p>
 
-                    <a href="#">
+                    <a href="{{route('law.details')}}">
                         Explore Articles
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -277,7 +276,7 @@
                         maintenance and more.
                     </p>
 
-                    <a href="#">
+                    <a href="{{route('law.details')}}">
                         Explore Articles
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -304,7 +303,7 @@
                         ownership and disputes.
                     </p>
 
-                    <a href="#">
+                    <a href="{{route('law.details')}}">
                         Explore Articles
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -331,7 +330,7 @@
                         rights and disputes.
                     </p>
 
-                    <a href="#">
+                    <a href="{{route('law.details')}}">
                         Explore Articles
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -358,7 +357,7 @@
                         contracts and governance.
                     </p>
 
-                    <a href="#">
+                    <a href="{{route('law.details')}}">
                         Explore Articles
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -385,7 +384,7 @@
                         data protection and more.
                     </p>
 
-                    <a href="#">
+                    <a href="{{route('law.details')}}">
                         Explore Articles
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -412,7 +411,7 @@
                         practices and legal remedies.
                     </p>
 
-                    <a href="#">
+                    <a href="{{route('law.details')}}">
                         Explore Articles
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -439,7 +438,7 @@
                         planning and compliance.
                     </p>
 
-                    <a href="#">
+                    <a href="{{route('law.details')}}">
                         Explore Articles
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -466,7 +465,7 @@
                         marriage and other matters.
                     </p>
 
-                    <a href="#">
+                    <a href="{{route('law.details')}}">
                         Explore Articles
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -478,29 +477,46 @@
 
         </div>
 
+        <div class="container-fluid">
 
         <!-- ============================
              FEATURED ARTICLES HEADER
         ============================= -->
 
-        <div class="section-heading featured-heading">
-
-            <div class="section-heading-left">
-
-                <div class="featured-star">
-                    <i class="fa-solid fa-star"></i>
-                </div>
-
-                <h3>Legal Articles</h3>
-
-            </div>
-
-
-            <a href="#" class="view-all-articles">
-                View All Articles
-                <i class="fa-solid fa-arrow-right"></i>
-            </a>
-
+        <div class="flex justify-between items-center mt-2">
+          <div class="my-4">
+            <h2
+              id="hospitals-by-location"
+              class="text-lg md:text-xl font-semibold text-gray-800 dark:text-gray-100"
+            >
+              Legal Articles
+            </h2>
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+              Explore Legal Articles
+            </p>
+          </div>
+          <a
+            href="#"
+            aria-label=""
+            class="flex items-center gap-1 text-[#008080] text-sm font-semibold hover:underline transition"
+          >
+            View All
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-chevron-right"
+              aria-hidden="true"
+            >
+              <path d="m9 18 6-6-6-6"></path>
+            </svg>
+          </a>
         </div>
 
 
@@ -720,6 +736,8 @@
 
 
         </div>
+
+    </div>
 
     </div>
 
