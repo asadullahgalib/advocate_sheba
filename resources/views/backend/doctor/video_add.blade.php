@@ -42,7 +42,7 @@
               
               <!-- ইমেজ পাথ এবং নো-ইমেজ কন্ডিশন ফিক্সড করা হলো -->
               <div class="form-group col-sm-2" style="z-index: 100;">
-                <img id="showImage" src="{{(!empty($editData->image)) ? url('uploads/video_images/'.$editData->image) : url('uploads/no_image.jpg')}}" style="width: 100px; height: 80px; object-fit: cover; border:1px solid #000;" class="form-control">
+                <img id="showImage" src="{{(!empty($editData->image)) ? url('uploads/video_images/'.$editData->image) : url('uploads/no_image.png')}}" style="width: 100px; height: 80px; object-fit: cover; border:1px solid #000;" class="form-control">
               </div>
               
               <div class="form-group col-md-3" style="padding-top:30px;">
