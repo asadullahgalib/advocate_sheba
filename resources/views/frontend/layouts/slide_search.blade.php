@@ -611,7 +611,7 @@
   position: relative;
   z-index: 10;
   margin-top: -45px;
-  padding-bottom: 40px;
+  padding-bottom: 15px;
 }
 
 /* ========================================================= CARD ========================================================= */
@@ -833,6 +833,7 @@
     margin-top: -25px;
     padding-left: 8px;
     padding-right: 8px;
+    margin-bottom: 0px;
   }
 
   .legal-category-card {

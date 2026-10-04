@@ -1,6 +1,6 @@
 <link rel="stylesheet"
       href="{{ asset('assets/css/legal_information.css') }}">
-<section class="legal-directory-section">
+<section class="legal-directory-section" style="margin-bottom:15px;">
 
     <div class="container mobile_container_for_legal_information">
 
@@ -10,40 +10,37 @@
               id="hospitals-by-location"
               class="text-lg md:text-xl font-semibold text-gray-800 dark:text-gray-100"
             >
-              Legal Information
+              Court & Jurisdictions
             </h2>
             <p class="text-sm text-gray-600 dark:text-gray-400">
-              Explore Our Legal Information
+              Explore Court & Jurisdictions
             </p>
           </div>
         </div>
 
         <!-- =====================================
-             LEGAL INFORMATION
+             COURT DIRECTORY
         ====================================== -->
 
-        <div class="directory-box legal-info-box">
+        <div class="directory-box court-directory-box">
 
             <div class="row justify-content-center">
 
                 <!-- Card 1 -->
                 <div class="col-6 col-md-3">
 
-                    <a href="{{route('legal.information.rights')}}" class="directory-card legal-card">
+                    <a href="{{route('supreme.court')}}" class="directory-card court-card directory-card2">
 
                         <div class="directory-icon">
-                            <i class="fa fa-book"></i>
+                            <i class="fa fa-bank"></i>
                         </div>
 
                         <h3>
-                            Know Your<br>
-                            Rights
+                            Supreme<br>
+                            Court
                         </h3>
 
-                        <p>
-                            Learn about your<br>
-                            legal rights.
-                        </p>
+                        <div class="title-line"></div>
 
                         <div class="card-bottom">
                             <span>View Details</span>
@@ -54,25 +51,21 @@
 
                 </div>
 
-
                 <!-- Card 2 -->
                 <div class="col-6 col-md-3">
 
-                    <a href="{{route('legal.information.terms')}}" class="directory-card legal-card">
+                    <a href="{{route('district.court')}}" class="directory-card court-card directory-card2">
 
                         <div class="directory-icon">
-                            <i class="fa fa-book"></i>
+                            <i class="fa fa-building"></i>
                         </div>
 
                         <h3>
-                            Legal<br>
-                            Terms
+                            District<br>
+                            Courts
                         </h3>
 
-                        <p>
-                            Understand common<br>
-                            legal terms.
-                        </p>
+                        <div class="title-line"></div>
 
                         <div class="card-bottom">
                             <span>View Details</span>
@@ -87,21 +80,19 @@
                 <!-- Card 3 -->
                 <div class="col-6 col-md-3">
 
-                    <a href="{{route('legal.information.laws')}}" class="directory-card legal-card">
+                    <a href="{{route('tribunals.courts')}}" class="directory-card court-card directory-card2">
 
                         <div class="directory-icon">
-                            <i class="fa fa-hammer"></i>
+                            <i class="fa fa-calendar-check-o"></i>
                         </div>
 
                         <h3>
-                            Laws of<br>
-                            Bangladesh
+                            Tribunals
+                            <br>
+                            ....
                         </h3>
 
-                        <p>
-                            Explore laws and<br>
-                            act of Bangladesh.
-                        </p>
+                        <div class="title-line"></div>
 
                         <div class="card-bottom">
                             <span>View Details</span>
@@ -112,29 +103,25 @@
 
                 </div>
 
-
                 <!-- Card 4 -->
                 <div class="col-6 col-md-3">
 
-                    <a href="{{route('legal.information.procudures')}}" class="directory-card legal-card">
+                    <a href="{{route('village.court')}}" class="directory-card court-card directory-card2">
 
                         <div class="directory-icon">
-                            <i class="fa fa-file"></i>
+                            <i class="fa fa-bank"></i>
                         </div>
 
                         <h3>
-                            Legal<br>
-                            Procedures
+                            Village<br>
+                            Court
                         </h3>
 
-                        <p>
-                            Step-by-step legal<br>
-                            procedures.
-                        </p>
+                        <div class="title-line"></div>
 
                         <div class="card-bottom">
                             <span>View Details</span>
-                            <i class="fa fa-chevron-right"></i>
+                            <i class="bi bi-chevron-right"></i>
                         </div>
 
                     </a>

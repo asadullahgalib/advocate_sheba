@@ -642,25 +642,42 @@
     }
 
 </style>
-<section class="section-padding pb-5" style="background:#f5f5f5;padding: 25px 0px 25px 0px;margin-bottom: 15px;border-radius: 15px;">
+<section class="section-padding pb-5" style="background:#f5f5f5;padding: 0px 0px 0px 0px;margin-bottom: 15px;border-radius: 15px;">
     <div class="container">
-
-        <div class="section-title">
-            <div class="title text-center">
-                <h3 style="color: #1B489D;font-size: 20px;text-align: left;">
-                    <i class="fa fa-check" style="background: #129AF7;
-                        color: #fff;
-                        padding: 3px;
-                        border-radius: 15px;"></i> 
-                        Verified Legal Barristers
-                        <!-- Verified Legal Professionals -->
-                </h3>
-            </div>
-            <div class="title text-center mobile_view_all">
-                <h3 style="color: #1B489D;font-size: 20px;">
-                    <a href="#">View all <i class="fa fa-arrow-right"></i> </a>
-                </h3>
-            </div>
+        <div class="flex justify-between items-center mt-2">
+          <div class="my-4">
+            <h2
+              id="hospitals-by-location"
+              class="text-lg md:text-xl font-semibold text-gray-800 dark:text-gray-100"
+            >
+              Verified Legal Barristers
+            </h2>
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+              Explore Our Legal Barristers
+            </p>
+          </div>
+          <a
+            href="#"
+            aria-label=""
+            class="flex items-center gap-1 text-[#008080] text-sm font-semibold hover:underline transition"
+          >
+            View All
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-chevron-right"
+              aria-hidden="true"
+            >
+              <path d="m9 18 6-6-6-6"></path>
+            </svg>
+          </a>
         </div>
 
         <div class="row">

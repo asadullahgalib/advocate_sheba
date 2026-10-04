@@ -1,0 +1,299 @@
+/* =========================================================
+   LAW FIRM CAROUSEL
+   ========================================================= */
+
+.law-firm-carousel {
+    position: relative;
+    width: 100%;
+    padding: 0;
+}
+
+
+/* =========================================================
+   VIEWPORT
+   ========================================================= */
+
+.law-firm-carousel-viewport {
+    width: 100%;
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   TRACK
+   ========================================================= */
+
+.law-firm-carousel-track {
+    display: flex;
+    align-items: stretch;
+
+    transition: transform 0.45s ease;
+
+    will-change: transform;
+}
+
+
+/* =========================================================
+   INDIVIDUAL ITEM
+   DESKTOP = 3 BOX
+   ========================================================= */
+
+.law-firm-carousel-item {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+
+    /*
+     * শুধু দুই বক্সের মাঝখানে gap তৈরি করার জন্য।
+     * Carousel-এর overall width কমাবে না।
+     */
+    padding: 0 6px;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    min-width: 0;
+}
+
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.law-firm-carousel-item .doctor-profile-card {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   NAVIGATION BUTTON
+   ========================================================= */
+
+.law-firm-carousel-btn {
+    position: absolute;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #ffffff;
+    color: #1B489D;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 17px;
+
+    box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+
+    cursor: pointer;
+
+    z-index: 10;
+
+    transition: all 0.25s ease;
+}
+
+
+/* =========================================================
+   PREVIOUS BUTTON
+   ========================================================= */
+
+.law-firm-carousel-prev {
+    left: 0;
+}
+
+
+/* =========================================================
+   NEXT BUTTON
+   ========================================================= */
+
+.law-firm-carousel-next {
+    right: 0;
+}
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+.law-firm-carousel-btn:hover {
+    background: #1B489D;
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   DISABLED
+   ========================================================= */
+
+.law-firm-carousel-btn:disabled {
+    opacity: 0.35;
+
+    cursor: not-allowed;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   PREVENT BOOTSTRAP ROW EFFECT
+   ========================================================= */
+
+.law-firm-carousel-item .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+
+/* =========================================================
+   TABLET
+   2 BOX
+   ========================================================= */
+
+@media (max-width: 991px) {
+
+    .law-firm-carousel {
+        width: 100%;
+        padding: 0;
+    }
+
+
+    .law-firm-carousel-item {
+
+        flex: 0 0 50%;
+        max-width: 50%;
+
+        /*
+         * দুই বক্সের মাঝে gap
+         */
+        padding: 0 6px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   1 BOX - FULL AVAILABLE WIDTH
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+    .law-firm-carousel {
+
+        width: 100%;
+
+        /*
+         * IMPORTANT:
+         * আগে এখানে 35px ছিল।
+         * এখন সম্পূর্ণ তুলে দেওয়া হয়েছে।
+         */
+        padding: 0;
+    }
+
+
+    .law-firm-carousel-viewport {
+
+        width: 100%;
+
+        overflow: hidden;
+    }
+
+
+    .law-firm-carousel-item {
+
+        /*
+         * একটি box পুরো carousel width নেবে
+         */
+        flex: 0 0 100%;
+        max-width: 100%;
+
+        /*
+         * শুধু সামান্য পাশের gap
+         */
+        padding: 0 6px;
+
+        box-sizing: border-box;
+    }
+
+
+    .law-firm-carousel-item .doctor-profile-card {
+
+        width: 100%;
+
+        /*
+         * যাতে box-এর ভিতরের content কোনো কারণে
+         * অতিরিক্ত ছোট না হয়ে যায়
+         */
+        min-width: 0;
+    }
+
+
+    /* Navigation */
+
+    .law-firm-carousel-btn {
+
+        width: 34px;
+        height: 34px;
+
+        font-size: 14px;
+    }
+
+
+    .law-firm-carousel-prev {
+        left: 0;
+    }
+
+
+    .law-firm-carousel-next {
+        right: 0;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .law-firm-carousel {
+
+        width: 100%;
+        padding: 0;
+    }
+
+
+    .law-firm-carousel-item {
+
+        /*
+         * Mobile-এও পুরো width
+         */
+        flex: 0 0 100%;
+        max-width: 100%;
+
+        /*
+         * Box-এর মধ্যে সুন্দর gap
+         */
+        padding: 0 5px;
+    }
+
+
+    .law-firm-carousel-btn {
+
+        width: 32px;
+        height: 32px;
+
+        font-size: 13px;
+    }
+
+}

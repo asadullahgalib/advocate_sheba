@@ -1,27 +1,59 @@
+<style>
+    @media only screen and (min-width: 320px) and (max-width: 768px) {
+        .section-title .title p {
+            font-size: 14px !important;
+            margin-top: -33px;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+    }
+
+</style>
 <link rel="stylesheet"
       href="{{ asset('assets/css/practice-area-modal.css') }}">
 
 <section class="popular-categories section-padding"
          style="background-color:#f5f5f5;
-                padding:15px 0px 25px 0px;
+                padding:0px 0px 0px 0px;
                 margin-bottom:15px;
                 border-radius:15px;">
 
     <div class="container">
-
-        <div class="section-title">
-
-            <div class="title text-center">
-
-                <h3 style="color:#1B489D;font-size:25px;">
-                    <i class="fa fa-balance-scale"></i>
-                    Find Legal Help by Practice Area
-                </h3>
-
-            </div>
-
+        <div class="flex justify-between items-center mt-2">
+          <div class="my-4">
+            <h2
+              id="hospitals-by-location"
+              class="text-lg md:text-xl font-semibold text-gray-800 dark:text-gray-100"
+            >
+              Find Legal Help by Practice Area
+            </h2>
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+              Explore Practice Area
+            </p>
+          </div>
+          <a
+            href="#"
+            aria-label=""
+            class="flex items-center gap-1 text-[#008080] text-sm font-semibold hover:underline transition"
+          >
+            View All
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-chevron-right"
+              aria-hidden="true"
+            >
+              <path d="m9 18 6-6-6-6"></path>
+            </svg>
+          </a>
         </div>
-
 
         <div class="row">
 
@@ -308,29 +340,6 @@
                         </h6>
 
                     </div>
-
-                </a>
-
-            </div>
-
-
-        </div>
-
-
-        <!-- VIEW ALL -->
-        <div class="row">
-
-            <div class="col-lg-12 col-md-12 col-xl-12 col-sm-12 text-center practice_area_mobile_div">
-
-                <a href="#"
-                   class="btn"
-                   style="background:#fff;
-                          border:1px solid #129AF7;
-                          color:#129AF7;
-                          font-weight:bold;">
-
-                    View All Practice Area
-                    <i class="fa fa-arrow-right"></i>
 
                 </a>
 

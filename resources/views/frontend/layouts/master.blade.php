@@ -26,6 +26,11 @@
     <!-- Font Awesome CSS -->
     <link href="{{asset('pike/backend/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css" />
     <script src="{{asset('assets')}}/js/vendor/jquery-3.6.0.min.js"></script>
+
+    <link rel="stylesheet"
+      href="{{ asset('assets/css/top-read-more.css') }}">
+    <link rel="stylesheet"
+      href="{{ asset('assets/css/legal-professional-list.css') }}">
     
     <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -378,6 +383,278 @@
         $(document).on('click','li',function(){
             $('#name').val($(this).text());
             $('#doctorStatus').fadeOut();
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            const carousels =
+                document.querySelectorAll('.lpc-carousel');
+
+
+            carousels.forEach(function (carousel) {
+
+                const track =
+                    carousel.querySelector('.lpc-track');
+
+                const slides =
+                    carousel.querySelectorAll('.lpc-slide');
+
+                const prevButton =
+                    carousel.querySelector('.lpc-arrow-prev');
+
+                const nextButton =
+                    carousel.querySelector('.lpc-arrow-next');
+
+
+                if (
+                    !track ||
+                    !slides.length ||
+                    !prevButton ||
+                    !nextButton
+                ) {
+                    return;
+                }
+
+
+                let currentIndex = 0;
+
+
+                /* =================================================
+                   VISIBLE CARDS
+                ================================================= */
+
+                function getVisibleCards() {
+
+                    if (window.innerWidth <= 480) {
+                        return 1;
+                    }
+
+                    if (window.innerWidth <= 767) {
+                        return 2;
+                    }
+
+                    if (window.innerWidth <= 1100) {
+                        return 3;
+                    }
+
+                    return 4;
+                }
+
+
+                /* =================================================
+                   GAP
+                ================================================= */
+
+                function getGap() {
+
+                    const style =
+                        window.getComputedStyle(track);
+
+                    return parseFloat(
+                        style.columnGap ||
+                        style.gap ||
+                        0
+                    );
+                }
+
+
+                /* =================================================
+                   UPDATE
+                ================================================= */
+
+                function updateCarousel(
+                    animate = true
+                ) {
+
+                    const visibleCards =
+                        getVisibleCards();
+
+
+                    const totalCards =
+                        slides.length;
+
+
+                    const maxIndex =
+                        Math.max(
+                            0,
+                            totalCards - visibleCards
+                        );
+
+
+                    if (currentIndex > maxIndex) {
+
+                        currentIndex =
+                            maxIndex;
+
+                    }
+
+
+                    const slideWidth =
+                        slides[0]
+                            .getBoundingClientRect()
+                            .width;
+
+
+                    const gap =
+                        getGap();
+
+
+                    const move =
+                        (slideWidth + gap) *
+                        currentIndex;
+
+
+                    if (!animate) {
+
+                        track.style.transition =
+                            'none';
+
+                    } else {
+
+                        track.style.transition =
+                            'transform 0.45s ease';
+
+                    }
+
+
+                    track.style.transform =
+                        'translate3d(-' +
+                        move +
+                        'px, 0, 0)';
+
+
+                    /* Previous */
+
+                    prevButton.disabled =
+                        currentIndex <= 0;
+
+
+                    /* Next */
+
+                    nextButton.disabled =
+                        currentIndex >= maxIndex;
+
+
+                    /* Hide arrows if unnecessary */
+
+                    if (totalCards <= visibleCards) {
+
+                        prevButton.style.display =
+                            'none';
+
+                        nextButton.style.display =
+                            'none';
+
+                    } else {
+
+                        prevButton.style.display =
+                            'flex';
+
+                        nextButton.style.display =
+                            'flex';
+
+                    }
+
+                }
+
+
+                /* =================================================
+                   NEXT
+                ================================================= */
+
+                nextButton.addEventListener(
+                    'click',
+                    function () {
+
+                        const visibleCards =
+                            getVisibleCards();
+
+
+                        const maxIndex =
+                            Math.max(
+                                0,
+                                slides.length -
+                                visibleCards
+                            );
+
+
+                        if (
+                            currentIndex <
+                            maxIndex
+                        ) {
+
+                            currentIndex++;
+
+                            updateCarousel();
+
+                        }
+
+                    }
+                );
+
+
+                /* =================================================
+                   PREVIOUS
+                ================================================= */
+
+                prevButton.addEventListener(
+                    'click',
+                    function () {
+
+                        if (currentIndex > 0) {
+
+                            currentIndex--;
+
+                            updateCarousel();
+
+                        }
+
+                    }
+                );
+
+
+                /* =================================================
+                   RESIZE
+                ================================================= */
+
+                let resizeTimer;
+
+
+                window.addEventListener(
+                    'resize',
+                    function () {
+
+                        clearTimeout(
+                            resizeTimer
+                        );
+
+
+                        resizeTimer =
+                            setTimeout(
+                                function () {
+
+                                    updateCarousel(
+                                        false
+                                    );
+
+                                },
+                                150
+                            );
+
+                    }
+                );
+
+
+                /* =================================================
+                   INITIALIZE
+                ================================================= */
+
+                updateCarousel(false);
+
+            });
+
         });
     </script>
 </body>

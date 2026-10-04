@@ -148,8 +148,7 @@ class FrontenController extends Controller
         $data['categories']     = Category::all();
         $data['departments']    = Department::orderBy('sort','asc')->get();
         $data['sliders']        = Slider::all();
-        $data['doctors']        = User::where('user_category','doctor')->where('status','1')->where('booking_status','2')->orderBy('sort','asc')->get()->take(20);
-        $data['online_doctors'] = User::where('user_category','doctor')->where('status','1')->where('booking_status','1')->orderBy('sort','asc')->get()->take(20);
+        $data['doctors']        = User::where('user_category','advocate')->where('status','1')->orderBy('sort','asc')->get()->take(20);
         $data['page_type'] = 'home';
         return view('frontend.layouts.home',$data);
     }
