@@ -2,7 +2,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/law_firm_list_form_home.css') }}">
 
 <main class="main pages law-firm-carousel-section"
-      style="background-color:#f5f5f5;border-radius:15px;margin-bottom:10px;">
+      style="background-color:#f5f5f5;border-radius:15px;margin-bottom:10px;    padding-bottom: 10px;">
 
     <div class="page-content pt-50"
          style="padding:00px 0px 10px 0px !important;">

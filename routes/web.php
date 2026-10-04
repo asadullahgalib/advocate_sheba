@@ -198,6 +198,16 @@ Route::group(['middleware'=>['auth','admin']],function(){
 			Route::post('/update/{id}','Backend\TermsController@update')->name('terms.update');
 			Route::post('/delete','Backend\TermsController@delete')->name('terms.delete');
 		});
+
+		// Documents & Forms
+		Route::prefix('documents')->group(function(){
+			Route::get('/view','Backend\DocumentController@view')->name('documents.view');
+			Route::get('/add','Backend\DocumentController@add')->name('documents.add');
+			Route::post('/store','Backend\DocumentController@store')->name('documents.store');
+			Route::get('/edit/{id}','Backend\DocumentController@edit')->name('documents.edit');
+			Route::post('/update/{id}','Backend\DocumentController@update')->name('documents.update');
+			Route::post('/delete','Backend\DocumentController@delete')->name('documents.delete');
+		});
 		
 		Route::prefix('setups')->group(function(){
 			//Logo
