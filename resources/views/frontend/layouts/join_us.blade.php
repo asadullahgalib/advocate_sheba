@@ -5,17 +5,17 @@
     <div class="container position-relative">
 
         <!-- Top Justice Icon Section -->
-<div class="row" style="margin-top: 20px; margin-bottom: 25px;">
+<div class="row" style="margin-top: 10px; margin-bottom: 15px;">
     <div class="col-md-12 text-center" style="position: relative; display: flex; align-items: center; justify-content: center;">
         
         <!-- Background Horizontal Divider Line (Optional - can be styled or kept clean) -->
-        <div class="heading-line" style="position: absolute; width: 80%; height: 1px; background-color: rgba(0, 32, 91, 0.1); z-index: 1;"></div>
+        <div class="heading-line" style="position: absolute; width: 80%; height: 1px; background-color: #103C6D; z-index: 1;"></div>
         
         <!-- Circular Justice Icon Wrapper (Exact match to image) -->
         <div class="justice-icon" 
              style="width: 140px; 
                     height: 140px; 
-                    background-color: #000; 
+                    background-color: #103C6D; 
                     border-radius: 50%; 
                     display: flex; 
                     align-items: center; 
@@ -35,9 +35,9 @@
 <div class="row">
     <div class="col-md-12">
         <div class="join-professional-title"
-             style="padding: 25px 20px;
-                    margin-bottom: 25px;
-                    background: #000;
+             style="padding: 10px 20px;
+                    margin-bottom: 7px;
+                    background: #103C6D;
                     border-radius: 16px;
                     box-shadow: 0 4px 15px rgba(0, 32, 91, 0.2);
                     text-align: center;
@@ -63,10 +63,10 @@
     <div class="col-md-3">
         <a href="#" class="practice-area-card" style="text-decoration: none !important;">
             <div class="card-1"
-                 style="padding: 18px 20px;
+                 style="padding: 12px 20px;
                         margin-bottom: 15px;
-                        min-height: 60px;
-                        background: #000;
+                        min-height: 45px;
+                        background: #103C6D;
                         border-radius: 12px;
                         box-shadow: 0 4px 15px rgba(0, 32, 91, 0.2);
                         display: flex;
@@ -77,7 +77,7 @@
                  onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0, 32, 91, 0.35)';"
                  onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0, 32, 91, 0.2)';">
                 
-                <h6 style="font-size: 16px; color: #fff; font-family: 'Georgia', serif; font-weight: 500; margin: 0; letter-spacing: 0.5px;">
+                <h6 style="font-size: 16px; color: #fff; font-family: 'Georgia', serif; font-weight: bold; margin: 0; letter-spacing: 0.5px;">
                     Join as Advocate
                 </h6>
                 <span style="color: #fff; font-size: 20px; font-weight: bold; line-height: 1;">&rarr;</span>
@@ -89,10 +89,10 @@
     <div class="col-md-3">
         <a href="#" class="practice-area-card" style="text-decoration: none !important;">
             <div class="card-1"
-                 style="padding: 18px 20px;
+                 style="padding: 12px 20px;
                         margin-bottom: 15px;
-                        min-height: 60px;
-                        background: #000;
+                        min-height: 45px;
+                        background: #103C6D;
                         border-radius: 12px;
                         box-shadow: 0 4px 15px rgba(0, 32, 91, 0.2);
                         display: flex;
@@ -103,7 +103,7 @@
                  onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0, 32, 91, 0.35)';"
                  onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0, 32, 91, 0.2)';">
                 
-                <h6 style="font-size: 16px; color: #fff; font-family: 'Georgia', serif; font-weight: 500; margin: 0; letter-spacing: 0.5px;">
+                <h6 style="font-size: 16px; color: #fff; font-family: 'Georgia', serif; font-weight: bold; margin: 0; letter-spacing: 0.5px;">
                     Join as Barrister
                 </h6>
                 <span style="color: #fff; font-size: 20px; font-weight: bold; line-height: 1;">&rarr;</span>
@@ -115,10 +115,10 @@
     <div class="col-md-3">
         <a href="#" class="practice-area-card" style="text-decoration: none !important;">
             <div class="card-1"
-                 style="padding: 18px 20px;
+                 style="padding: 12px 20px;
                         margin-bottom: 15px;
-                        min-height: 60px;
-                        background: #000;
+                        min-height: 45px;
+                        background: #103C6D;
                         border-radius: 12px;
                         box-shadow: 0 4px 15px rgba(0, 32, 91, 0.2);
                         display: flex;
@@ -129,7 +129,7 @@
                  onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0, 32, 91, 0.35)';"
                  onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0, 32, 91, 0.2)';">
                 
-                <h6 style="font-size: 16px; color: #fff; font-family: 'Georgia', serif; font-weight: 500; margin: 0; letter-spacing: 0.5px;">
+                <h6 style="font-size: 16px; color: #fff; font-family: 'Georgia', serif; font-weight: bold; margin: 0; letter-spacing: 0.5px;">
                     Join as Legal Consultant
                 </h6>
                 <span style="color: #fff; font-size: 20px; font-weight: bold; line-height: 1;">&rarr;</span>
@@ -141,10 +141,10 @@
     <div class="col-md-3">
         <a href="#" class="practice-area-card" style="text-decoration: none !important;">
             <div class="card-1"
-                 style="padding: 18px 20px;
+                 style="padding: 12px 20px;
                         margin-bottom: 15px;
-                        min-height: 60px;
-                        background: #000;
+                        min-height: 45px;
+                        background: #103C6D;
                         border-radius: 12px;
                         box-shadow: 0 4px 15px rgba(0, 32, 91, 0.2);
                         display: flex;
@@ -155,7 +155,7 @@
                  onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0, 32, 91, 0.35)';"
                  onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0, 32, 91, 0.2)';">
                 
-                <h6 style="font-size: 16px; color: #fff; font-family: 'Georgia', serif; font-weight: 500; margin: 0; letter-spacing: 0.5px;">
+                <h6 style="font-size: 16px; color: #fff; font-family: 'Georgia', serif; font-weight: bold; margin: 0; letter-spacing: 0.5px;">
                     Join as Law Firm
                 </h6>
                 <span style="color: #fff; font-size: 20px; font-weight: bold; line-height: 1;">&rarr;</span>

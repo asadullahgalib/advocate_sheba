@@ -64,23 +64,44 @@
         transform: scale(1.05);
     }
 </style>
-<div class="page-content mb-50" style="padding: 25px 0px 10px 0px;background-color: #ffffff;margin-bottom: -20px !important;border-radius: 15px;">
+<div class="page-content mb-50" style="padding: 0px 0px 10px 0px;background-color: #ffffff;margin-bottom: -20px !important;border-radius: 15px;">
     <div class="container">
-        <div class="section-title">
-            <div class="title text-center">
-                <h3 style="color: #1B489D;font-size: 23px;text-align: left;">
-                    <i class="bi bi-youtube" aria-hidden="true" style="color:red;"></i> 
-                    Latest Video
-                    <br>
-                    <p style="margin-top: 7px;font-size: 13px;">আইন সম্পর্কে জানুন ভিডিও দেখে</p>
-                </h3>
-            </div>
-            <div class="title text-center mobile_view_all">
-                <h3 style="color: #1B489D;font-size: 20px;">
-                    <a href="#">View all <i class="fa fa-arrow-right"></i> </a>
-                </h3>
-            </div>
+        <div class="flex justify-between items-center mt-2">
+          <div class="my-4">
+            <h2
+              id="hospitals-by-location"
+              class="text-lg md:text-xl font-semibold text-gray-800 dark:text-gray-100"
+            >
+              Latest Video
+            </h2>
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+              আইন সম্পর্কে জানুন ভিডিও দেখে
+            </p>
+          </div>
+          <a
+            href="#"
+            aria-label=""
+            class="flex items-center gap-1 text-[#008080] text-sm font-semibold hover:underline transition"
+          >
+            View All
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-chevron-right"
+              aria-hidden="true"
+            >
+              <path d="m9 18 6-6-6-6"></path>
+            </svg>
+          </a>
         </div>
+
         <div class="row">
 
             <!-- Video 01 -->

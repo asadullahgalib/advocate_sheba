@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-lg-10 col-sm-10 offset-md-1 offset-lg-1 offset-sm-1">
-                <div class="row alert alert-success" style="background:#000;border-color:#000;">
+                <div class="row alert alert-success" style="background:#103C6D;border-color:#103C6D;">
                     <div class="col-md-1 col-lg-1 col-xl-1 col-sm-1 custom_faq_img">
                         <img src="{{asset('frontend')}}/round-logo.png" alt="" />
                     </div>
@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <h3 style="text-align: left;margin-bottom: 25px;font-size: 20px;color: #1B489D;font-weight: bold;">
-                    Frequently Asked Questions (FAQs)
+                    <i class="fa fa-question-circle" aria-hidden="true"></i> Frequently Asked Questions (FAQs)
                 </h3>
 
                 <div class="row">
@@ -49,7 +49,7 @@
                         consequat.</p>
                     </div>
                     <div class="col-md-6 col-lg-6 col-xl-6 col-sm-6" style="margin-bottom:30px;">
-                        <p style="font-weight: bold;font-size: 17px;">How are advocates listed on advocatesSheba?</p>
+                        <p style="font-weight: bold;font-size: 17px;"> <i class="fa fa-question-circle" aria-hidden="true"></i> How are advocates listed on advocatesSheba?</p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo

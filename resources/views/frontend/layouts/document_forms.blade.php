@@ -4,7 +4,7 @@
        MAIN SECTION
     ========================================= */
     .legal-home-section {
-        padding: 25px 0 15px;
+        padding: 0px 0 15px;
         background: #f5f5f5;
         border-radius: 15px;
         margin-bottom: 15px;
@@ -184,7 +184,7 @@
     @media (max-width: 767.98px) {
 
         .legal-home-section {
-            padding: 15px 0 10px;
+            padding: 0px 0 10px;
             border-radius: 10px;
         }
 
@@ -286,223 +286,57 @@
 <div class="page-content legal-home-section">
 
     <div class="container">
+        <div class="flex justify-between items-center mt-2">
+          <div class="my-4">
+            <h2
+              id="hospitals-by-location"
+              class="text-lg md:text-xl font-semibold text-gray-800 dark:text-gray-100"
+            >
+              Legal Documents & Forms
+            </h2>
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+              বিভিন্ন আইনি ডকুমেন্ট ও ফর্ম ডাউনলোড করুন
+            </p>
+          </div>
+          <a
+            href="#"
+            aria-label=""
+            class="flex items-center gap-1 text-[#008080] text-sm font-semibold hover:underline transition"
+          >
+            View All
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-chevron-right"
+              aria-hidden="true"
+            >
+              <path d="m9 18 6-6-6-6"></path>
+            </svg>
+          </a>
+        </div>
 
         <div class="row g-3">
-
-
-            <!-- =====================================
-                 LEFT SIDE - LATEST VIDEO
-            ====================================== -->
-            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
-
-                <div class="card">
-
-                    <div class="section-heading d-flex justify-content-between align-items-center">
-
-                        <div class="section-heading-left">
-
-                            <div class="section-small-icon">
-                                <i class="fa-solid fa-scale-balanced"></i>
-                            </div>
-
-                            <h3>Legal Advocates</h3>
-
-                        </div>
-
-
-                        <!-- <a href="#" class="view-all-btn">
-                            View All Topics
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </a> -->
-
-                    </div>
-
-
-                    <!-- ============================
-                         LEGAL TOPICS CARDS
-                    ============================= -->
-
-                    <div class="row legal-topics-row-advocate">
-
-
-                        <!-- Criminal Law -->
-
-                        <div class="col-xl-5-custom2 col-lg-4 col-md-4 col-sm-6 col-6">
-
-                            <div class="legal-topic-card-advocate">
-
-                                <div class="topic-icon-advocate">
-                                    <img src="{{asset('frontend/adv.png')}}" alt="Advocate Sheba" style="width:65px;">
-                                </div>
-
-                                <h4>Adv. Md. Asadullah Galib</h4>
-                                <p>
-                                    <i class="fa fa-map-pin" style="color:red;"></i> &nbsp; Supreme Court,Dhaka
-                                </p>
-
-                                <div class="profile_btn">
-                                    <button>Criminal</button>
-                                    <button>Corporate</button>
-                                </div>
-
-
-                                <p>
-                                    <i class="fa fa-user-circle-o"></i> &nbsp; 8 Years Experience
-                                </p>
-
-                                <a href="#">
-                                    View Profile
-                                </a>
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- Civil Law -->
-
-                        <div class="col-xl-5-custom2 col-lg-4 col-md-4 col-sm-6 col-6">
-
-                            <div class="legal-topic-card-advocate">
-
-                                <div class="topic-icon-advocate">
-                                    <img src="{{asset('frontend/adv.png')}}" alt="Advocate Sheba" style="width:65px;">
-                                </div>
-
-                                <h4>Adv. Md. Sayem Khan</h4>
-                                <p>
-                                    <i class="fa fa-map-pin" style="color:red;"></i> &nbsp; Supreme Court,Dhaka
-                                </p>
-
-                                <div class="profile_btn">
-                                    <button>Civil</button>
-                                    <button>Corporate</button>
-                                </div>
-
-
-                                <p>
-                                    <i class="fa fa-user-circle-o"></i> &nbsp; 8 Years Experience
-                                </p>
-
-                                <a href="#">
-                                    View Profile
-                                </a>
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- Family Law -->
-
-                        <div class="col-xl-5-custom2 col-lg-4 col-md-4 col-sm-6 col-6">
-
-                            <div class="legal-topic-card-advocate">
-
-                                <div class="topic-icon-advocate">
-                                    <img src="{{asset('frontend/adv.png')}}" alt="Advocate Sheba" style="width:65px;">
-                                </div>
-
-                                <h4>Adv. Md. Sohel Rana</h4>
-                                <p>
-                                    <i class="fa fa-map-pin" style="color:red;"></i> &nbsp; Supreme Court,Dhaka
-                                </p>
-
-                                <div class="profile_btn">
-                                    <button>Family</button>
-                                    <button>Corporate</button>
-                                </div>
-
-
-                                <p>
-                                    <i class="fa fa-user-circle-o"></i> &nbsp; 8 Years Experience
-                                </p>
-
-                                <a href="#">
-                                    View Profile
-                                </a>
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- Land Law -->
-
-                        <div class="col-xl-5-custom2 col-lg-4 col-md-4 col-sm-6 col-6">
-
-                            <div class="legal-topic-card-advocate">
-
-                                <div class="topic-icon-advocate">
-                                    <img src="{{asset('frontend/adv.png')}}" alt="Advocate Sheba" style="width:65px;">
-                                </div>
-
-                                <h4>Adv. Md. Juwel</h4>
-                                <p>
-                                    <i class="fa fa-map-pin" style="color:red;"></i> &nbsp; Supreme Court,Dhaka
-                                </p>
-
-                                <div class="profile_btn">
-                                    <button>Land</button>
-                                    <button>Corporate</button>
-                                </div>
-
-
-                                <p>
-                                    <i class="fa fa-user-circle-o"></i> &nbsp; 8 Years Experience
-                                </p>
-
-                                <a href="#">
-                                    View Profile
-                                </a>
-
-                            </div>
-
-                        </div>
-
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
 
             <!-- =====================================
                  RIGHT SIDE - LEGAL DOCUMENTS
             ====================================== -->
-            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-12">
 
                 <div class="card">
-
-                    <!-- Section Title -->
-                    <div class="legal-section-title">
-
-                        <div class="legal-section-title-inner">
-
-                            <div class="legal-section-icon pdf-section-icon">
-                                <i class="fa fa-file-pdf-o"></i>
-                            </div>
-
-                            <h3 class="legal-section-heading">
-                                Legal Documents &amp; Forms
-                                <span>
-                                    বিভিন্ন আইনি ডকুমেন্ট ও ফর্ম ডাউনলোড করুন
-                                </span>
-                            </h3>
-
-                        </div>
-
-                    </div>
-
 
                     <!-- Documents -->
                     <div class="row g-3">
 
 
                         <!-- Document 01 -->
-                        <article class="col-xl-3 col-lg-3 col-md-3 col-6 document-item">
+                        <article class="col-xl-2 col-lg-2 col-md-2 col-6 document-item">
 
                             <a href="{{route('legal.form')}}" class="document-link">
 
@@ -522,7 +356,7 @@
 
 
                         <!-- Document 02 -->
-                        <article class="col-xl-3 col-lg-3 col-md-3 col-6 document-item">
+                        <article class="col-xl-2 col-lg-2 col-md-2 col-6 document-item">
 
                             <a href="{{route('legal.form')}}" class="document-link">
 
@@ -542,7 +376,7 @@
 
 
                         <!-- Document 03 -->
-                        <article class="col-xl-3 col-lg-3 col-md-3 col-6 document-item">
+                        <article class="col-xl-2 col-lg-2 col-md-2 col-6 document-item">
 
                             <a href="{{route('legal.form')}}" class="document-link">
 
@@ -562,7 +396,7 @@
 
 
                         <!-- Document 04 -->
-                        <article class="col-xl-3 col-lg-3 col-md-3 col-6 document-item">
+                        <article class="col-xl-2 col-lg-2 col-md-2 col-6 document-item">
 
                             <a href="{{route('legal.form')}}" class="document-link">
 
@@ -582,7 +416,7 @@
 
 
                         <!-- Document 05 -->
-                        <article class="col-xl-3 col-lg-3 col-md-3 col-6 document-item">
+                        <article class="col-xl-2 col-lg-2 col-md-2 col-6 document-item">
 
                             <a href="{{route('legal.form')}}" class="document-link">
 
@@ -602,7 +436,7 @@
 
 
                         <!-- Document 06 -->
-                        <article class="col-xl-3 col-lg-3 col-md-3 col-6 document-item">
+                        <article class="col-xl-2 col-lg-2 col-md-2 col-6 document-item">
 
                             <a href="{{route('legal.form')}}" class="document-link">
 
@@ -622,7 +456,7 @@
 
 
                         <!-- Document 07 -->
-                        <article class="col-xl-3 col-lg-3 col-md-3 col-6 document-item">
+                        <article class="col-xl-2 col-lg-2 col-md-2 col-6 document-item">
 
                             <a href="{{route('legal.form')}}" class="document-link">
 
@@ -642,7 +476,83 @@
 
 
                         <!-- Document 08 -->
-                        <article class="col-xl-3 col-lg-3 col-md-3 col-6 document-item">
+                        <article class="col-xl-2 col-lg-2 col-md-2 col-6 document-item">
+
+                            <a href="{{route('legal.form')}}" class="document-link">
+
+                                <div class="document-icon-box">
+                                    <i class="fa fa-file-pdf-o"></i>
+                                </div>
+
+                                <h4 class="document-title">
+                                    <a href="#">
+                                        Applications
+                                    </a>
+                                </h4>
+
+                            </a>
+
+                        </article>
+
+                        <!-- Document 09 -->
+                        <article class="col-xl-2 col-lg-2 col-md-2 col-6 document-item">
+
+                            <a href="{{route('legal.form')}}" class="document-link">
+
+                                <div class="document-icon-box">
+                                    <i class="fa fa-file-pdf-o"></i>
+                                </div>
+
+                                <h4 class="document-title">
+                                    <a href="#">
+                                        Applications
+                                    </a>
+                                </h4>
+
+                            </a>
+
+                        </article>
+
+                        <!-- Document 10 -->
+                        <article class="col-xl-2 col-lg-2 col-md-2 col-6 document-item">
+
+                            <a href="{{route('legal.form')}}" class="document-link">
+
+                                <div class="document-icon-box">
+                                    <i class="fa fa-file-pdf-o"></i>
+                                </div>
+
+                                <h4 class="document-title">
+                                    <a href="#">
+                                        Applications
+                                    </a>
+                                </h4>
+
+                            </a>
+
+                        </article>
+
+                        <!-- Document 11 -->
+                        <article class="col-xl-2 col-lg-2 col-md-2 col-6 document-item">
+
+                            <a href="{{route('legal.form')}}" class="document-link">
+
+                                <div class="document-icon-box">
+                                    <i class="fa fa-file-pdf-o"></i>
+                                </div>
+
+                                <h4 class="document-title">
+                                    <a href="#">
+                                        Applications
+                                    </a>
+                                </h4>
+
+                            </a>
+
+                        </article>
+
+                        <!-- Document 12 -->
+                        <article class="col-xl-2 col-lg-2 col-md-2 col-6 document-item">
 
                             <a href="{{route('legal.form')}}" class="document-link">
 
@@ -662,18 +572,6 @@
 
 
                     </div>
-
-
-                    <!-- Bottom Button -->
-                    <div class="section-bottom-btn">
-
-                        <a href="#">
-                            Explore Documents
-                            <i class="fa fa-arrow-right ms-1"></i>
-                        </a>
-
-                    </div>
-
 
                 </div>
 
