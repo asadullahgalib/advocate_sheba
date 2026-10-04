@@ -19,13 +19,13 @@
           @csrf
           <div class="form-row">
             <div class="form-group col-md-12">
-              <label>Title (English) <span style="color:red;">*</span></label>
+              <label>Title <span style="color:red;">*</span></label>
               <!-- Migration array input profile column table check kore 'name' use kora holo -->
-              <input type="text" name="name" id="name" class="form-control form-control-sm" value="{{@$editData->name}}" placeholder="Enter Title/Name">
+              <input type="text" name="name" id="name" class="form-control form-control-sm" value="{{@$editData->name}}" placeholder="Enter Title">
             </div>
             
             <div class="form-group col-md-12">
-              <label for="description_en">Description (English) <span style="color:red;">*</span></label>
+              <label for="description_en">Description <span style="color:red;">*</span></label>
               <textarea name="description_en" id="description_en" class="form-control" rows="5">{{@$editData->description_en}}</textarea>
             </div>
 
