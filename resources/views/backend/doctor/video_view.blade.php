@@ -33,7 +33,7 @@
                 
                 <!-- এখানে পাথের নাম পরিবর্তন করে uploads এবং সাইজ ফিক্সড করা হলো -->
                 <td>
-                  <img src="{{(!empty($value->image)) ? url('uploads/video_images/'.$value->image) : url('uploads/no_image.jpg')}}" 
+                  <img src="{{(!empty($value->image)) ? url('uploads/video_images/'.$value->image) : url('uploads/no_image.png')}}" 
                        width="100" 
                        height="70" 
                        style="width: 100px; height: 70px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd;">
