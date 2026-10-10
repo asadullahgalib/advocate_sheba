@@ -1,151 +1,1088 @@
-<footer class="main" style="background-color: #fff; font-family: 'Segoe UI', Roboto, sans-serif;">
-    <!-- ডিসক্লেইমার সেকশন -->
-    <section class="newsletter mb-15 wow animate__animated animate__fadeIn alert alert-danger" style="padding: 20px 0px; margin-bottom: 25px; border-radius: 8px;">
+<footer class="main site-footer">
+
+    <!-- =========================================
+         DISCLAIMER
+    ========================================== -->
+    <section class="footer-disclaimer">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center" style="font-size: 14px; color: #721c24;">
-                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> &nbsp;
-                    <strong>Disclaimer:</strong> Information on AdvocateSheba is for general educational purposes only and does not replace professional medical advice, diagnosis, or treatment. Consult a qualified doctor or healthcare provider.
-                </div>
+
+            <div class="footer-disclaimer-content">
+
+                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+
+                <span>
+                    <strong>Disclaimer:</strong>
+                    Information on AdvocateSheba is for general educational purposes only
+                    and does not replace professional medical advice, diagnosis, or treatment.
+                    Consult a qualified doctor or healthcare provider.
+                </span>
+
             </div>
+
         </div>
     </section>
 
-    <!-- ৫ কলাম বিশিষ্ট আল্ট্রা-প্রফেশনাল ফিচার্ড সেকশন -->
-    <section class="featured" style="padding: 45px 0px; background-color: #fff; border-top: 1px solid #f1f5f7; border-bottom: 1px solid #f1f5f7;">
+
+    <!-- =========================================
+         FEATURED / TRUST SECTION
+    ========================================== -->
+    <section class="footer-features">
+
         <div class="container">
-            <div class="row" style="display: flex; justify-content: space-between; align-items: stretch; flex-wrap: wrap;">
-                
-                <!-- কলাম ১: Verified Information -->
-                <div class="col-lg-1-5 col-md-4 col-sm-6 col-12" style="border-right: 1px solid #f1f5f7; padding: 10px 15px; margin-bottom: 15px;">
-                    <div style="display: flex; align-items: flex-start;">
-                        <div style="margin-right: 12px; margin-top: 3px; display: flex; align-items: center;">
-                            <!-- stroke কালার #103C6D এ পরিবর্তন করা হয়েছে -->
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#103C6D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                                <path d="m9 11 2 2 4-4"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4 style="color: #0f172a; font-size: 14px; font-weight: 700; margin-bottom: 4px; letter-spacing: -0.2px;">Verified Information</h4>
-                            <p style="color: #64748b; font-size: 12px; line-height: 1.5; margin-bottom: 0;">Reviewed from public records & credentials</p>
-                        </div>
+
+            <div class="footer-feature-grid">
+
+
+                <!-- =================================
+                     FEATURE 01
+                ================================== -->
+                <div class="footer-feature-item">
+
+                    <div class="footer-feature-icon">
+                        <i class="fa fa-shield"></i>
                     </div>
+
+                    <div class="footer-feature-content">
+
+                        <h4>Verified Information</h4>
+
+                        <p>
+                            Reviewed from public records &amp; credentials
+                        </p>
+
+                    </div>
+
                 </div>
 
-                <!-- কলাম ২: Find Nearby -->
-                <div class="col-lg-1-5 col-md-4 col-sm-6 col-12" style="border-right: 1px solid #f1f5f7; padding: 10px 15px; margin-bottom: 15px;">
-                    <div style="display: flex; align-items: flex-start;">
-                        <div style="margin-right: 12px; margin-top: 3px; display: flex; align-items: center;">
-                            <!-- stroke কালার #103C6D এ পরিবর্তন করা হয়েছে -->
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#103C6D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                <circle cx="12" cy="10" r="3"></circle>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4 style="color: #0f172a; font-size: 14px; font-weight: 700; margin-bottom: 4px; letter-spacing: -0.2px;">Find Nearby</h4>
-                            <p style="color: #64748b; font-size: 12px; line-height: 1.5; margin-bottom: 0;">Search doctors by specialty & location</p>
-                        </div>
+
+                <!-- =================================
+                     FEATURE 02
+                ================================== -->
+                <div class="footer-feature-item">
+
+                    <div class="footer-feature-icon">
+                        <i class="fa fa-map-marker"></i>
                     </div>
+
+                    <div class="footer-feature-content">
+
+                        <h4>Find Nearby</h4>
+
+                        <p>
+                            Search doctors by specialty &amp; location
+                        </p>
+
+                    </div>
+
                 </div>
 
-                <!-- কলাম ৩: Trusted by Clients -->
-                <div class="col-lg-1-5 col-md-4 col-sm-6 col-12" style="border-right: 1px solid #f1f5f7; padding: 10px 15px; margin-bottom: 15px;">
-                    <div style="display: flex; align-items: flex-start;">
-                        <div style="margin-right: 12px; margin-top: 3px; display: flex; align-items: center;">
-                            <!-- stroke কালার #103C6D এ পরিবর্তন করা হয়েছে -->
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#103C6D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4 style="color: #0f172a; font-size: 14px; font-weight: 700; margin-bottom: 4px; letter-spacing: -0.2px;">Trusted by Clients</h4>
-                            <p style="color: #64748b; font-size: 12px; line-height: 1.5; margin-bottom: 0;">Helps Clients make informed decisions</p>
-                        </div>
+
+                <!-- =================================
+                     FEATURE 03
+                ================================== -->
+                <div class="footer-feature-item">
+
+                    <div class="footer-feature-icon">
+                        <i class="fa fa-star"></i>
                     </div>
-                </div>
-                <!-- কলাম ৪: Secure & Private -->
-                <div class="col-lg-1-5 col-md-4 col-sm-6 col-12" style="border-right: 1px solid #f1f5f7; padding: 10px 15px; margin-bottom: 15px;">
-                    <div style="display: flex; align-items: flex-start;">
-                        <div style="margin-right: 12px; margin-top: 3px; display: flex; align-items: center;">
-                            <!-- stroke কালার #103C6D এ পরিবর্তন করা হয়েছে -->
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#103C6D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4 style="color: #0f172a; font-size: 14px; font-weight: 700; margin-bottom: 4px; letter-spacing: -0.2px;">Secure & Private</h4>
-                            <p style="color: #64748b; font-size: 12px; line-height: 1.5; margin-bottom: 0;">Protected by strict data standards</p>
-                        </div>
+
+                    <div class="footer-feature-content">
+
+                        <h4>Trusted by Clients</h4>
+
+                        <p>
+                            Helps clients make informed decisions
+                        </p>
+
                     </div>
+
                 </div>
 
-                <!-- কলাম ৫: Easy Appointment -->
-                <div class="col-lg-1-5 col-md-4 col-sm-6 col-12" style="padding: 10px 15px; margin-bottom: 15px;">
-                    <div style="display: flex; align-items: flex-start;">
-                        <div style="margin-right: 12px; margin-top: 3px; display: flex; align-items: center;">
-                            <!-- stroke কালার #103C6D এ পরিবর্তন করা হয়েছে -->
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#103C6D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                <line x1="16" y1="2" x2="16" y2="6"></line>
-                                <line x1="8" y1="2" x2="8" y2="6"></line>
-                                <line x1="3" y1="10" x2="21" y2="10"></line>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4 style="color: #0f172a; font-size: 14px; font-weight: 700; margin-bottom: 4px; letter-spacing: -0.2px;">Easy Appointment</h4>
-                            <p style="color: #64748b; font-size: 12px; line-height: 1.5; margin-bottom: 0;">Connect with doctors and request appointments easily</p>
-                        </div>
+
+                <!-- =================================
+                     FEATURE 04
+                ================================== -->
+                <div class="footer-feature-item">
+
+                    <div class="footer-feature-icon">
+                        <i class="fa fa-lock"></i>
                     </div>
+
+                    <div class="footer-feature-content">
+
+                        <h4>Secure &amp; Private</h4>
+
+                        <p>
+                            Protected by strict data standards
+                        </p>
+
+                    </div>
+
                 </div>
+
+
+                <!-- =================================
+                     FEATURE 05
+                ================================== -->
+                <div class="footer-feature-item">
+
+                    <div class="footer-feature-icon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+
+                    <div class="footer-feature-content">
+
+                        <h4>Easy Appointment</h4>
+
+                        <p>
+                            Connect with doctors and request appointments easily
+                        </p>
+
+                    </div>
+
+                </div>
+
 
             </div>
+
         </div>
+
     </section>
 
-    <!-- ফুটার লিংক এবং কপিরাইট সেকশন -->
-    <div class="container pb-30" style="background: #fff; padding-top: 40px; padding-bottom: 25px !important;">
-        <div class="row align-items-center">
-            <!-- লোগো -->
-            <div class="col-xl-2 col-lg-2 col-md-12 text-center text-lg-left mb-3 mb-lg-0">
-                <a href="{{url('')}}">
-                    <img src="{{asset('uploads/logo_images/'.@$logo->image)}}" alt="Logo" style="max-height: 40px;">
-                </a>
-            </div>
-            
-            <!-- লিংক সমূহ -->
-            <div class="col-xl-8 col-lg-8 col-md-12 text-center mb-3 mb-lg-0">
-                <div class="footer_link" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; font-size: 13.5px;">
-                    <a href="#" style="color: #475569; text-decoration: none; font-weight: 500;">For Advocates</a> 
-                    <a href="#" style="color: #475569; text-decoration: none; font-weight: 500;">How It Works</a> 
-                    <a href="#" style="color: #475569; text-decoration: none; font-weight: 500;">User Guide</a> 
-                    <a href="#" style="color: #475569; text-decoration: none; font-weight: 500;">About</a> 
-                    <a href="#" style="color: #475569; text-decoration: none; font-weight: 500;">Contact</a> 
-                    <a href="#" style="color: #475569; text-decoration: none; font-weight: 500;">Privacy Policy</a> 
-                    <a href="#" style="color: #475569; text-decoration: none; font-weight: 500;">Terms of Use</a> 
-                    <a href="#" style="color: #475569; text-decoration: none; font-weight: 500;">Disclaimer</a> 
-                    <a href="#" style="color: #475569; text-decoration: none; font-weight: 500;">Editorial Policy</a> 
+
+    <!-- =========================================
+         MAIN FOOTER
+    ========================================== -->
+    <div class="footer-main">
+
+        <div class="container">
+
+            <div class="footer-main-row">
+
+
+                <!-- =================================
+                     LOGO
+                ================================== -->
+                <div class="footer-logo">
+
+                    <a href="{{ url('') }}">
+
+                        <img
+                            src="{{ asset('uploads/logo_images/'.@$logo->image) }}"
+                            alt="Logo"
+                        >
+
+                    </a>
+
                 </div>
+
+
+                <!-- =================================
+                     FOOTER LINKS
+                ================================== -->
+                <div class="footer-links">
+
+                    <a href="#">For Advocates</a>
+
+                    <a href="#">How It Works</a>
+
+                    <a href="#">User Guide</a>
+
+                    <a href="#">About</a>
+
+                    <a href="#">Contact</a>
+
+                    <a href="#">Privacy Policy</a>
+
+                    <a href="#">Terms of Use</a>
+
+                    <a href="#">Disclaimer</a>
+
+                    <a href="#">Editorial Policy</a>
+
+                </div>
+
+
+                <!-- =================================
+                     SOCIAL ICONS
+                ================================== -->
+                <div class="footer-social">
+
+                    <a title="Facebook" href="#" target="_blank">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+
+                    <a title="Instagram" href="#" target="_blank">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+
+                    <a title="Youtube" href="#" target="_blank">
+                        <i class="fa fa-youtube-play"></i>
+                    </a>
+
+                </div>
+
+
             </div>
 
-            <!-- সোশ্যাল আইকন -->
-            <div class="col-xl-2 col-lg-2 col-md-12 text-center text-lg-right">
-                <div class="mobile-social-icon" style="display: inline-flex; gap: 10px; justify-content: center;">
-                    <a title="Facebook" href="#" target="_blank" style="color: #1e3a8a; font-size: 18px;"><i class="fa fa-facebook-official"></i></a>
-                    <a title="Instagram" href="#" target="_blank" style="color: #db2777; font-size: 18px;"><i class="fa fa-instagram"></i></a>
-                    <a title="Youtube" href="#" target="_blank" style="color: #dc2626; font-size: 18px;"><i class="fa fa-youtube-play"></i></a>
-                </div>
-            </div>
-        </div>
 
-        <div class="row" style="margin-top: 35px; border-top: 1px solid #f1f5f7; padding-top: 20px;">
-            <div class="col-xl-12 col-lg-12 col-md-12 text-center">
-                <p class="font-sm mb-0" style="color: #94a3b8; font-size: 13px;">
-                    Copyright &copy; {{ date('Y') }} <strong style="color: #0f172a;">{{@$contact->name}}</strong>. All rights reserved.
+            <!-- =================================
+                 COPYRIGHT
+            ================================== -->
+            <div class="footer-bottom">
+
+                <p>
+
+                    Copyright &copy; {{ date('Y') }}
+
+                    <strong>
+                        {{ @$contact->name }}
+                    </strong>.
+
+                    All rights reserved.
+
                 </p>
+
             </div>
+
+
         </div>
+
     </div>
+
 </footer>
+
+
+
+<!-- =========================================
+     FOOTER CSS
+========================================== -->
+<style>
+
+    /* =========================================
+       MAIN FOOTER
+    ========================================== */
+
+    .site-footer {
+
+        background: #ffffff;
+
+        font-family:
+            'Segoe UI',
+            Roboto,
+            Arial,
+            sans-serif;
+
+        color: #0f172a;
+
+        margin-top: 0;
+
+    }
+
+
+    /* =========================================
+       DISCLAIMER
+    ========================================== */
+
+    .footer-disclaimer {
+
+        padding: 14px 0;
+
+        background: #fff8f8;
+
+        border-top: 1px solid #f1f5f7;
+
+        border-bottom: 1px solid #f1f5f7;
+
+    }
+
+
+    .footer-disclaimer-content {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 8px;
+
+        text-align: center;
+
+        color: #721c24;
+
+        font-size: 13px;
+
+        line-height: 1.6;
+
+    }
+
+
+    .footer-disclaimer-content i {
+
+        flex-shrink: 0;
+
+        font-size: 14px;
+
+    }
+
+
+    .footer-disclaimer-content strong {
+
+        font-weight: 700;
+
+    }
+
+
+    /* =========================================
+       FEATURE SECTION
+    ========================================== */
+
+    .footer-features {
+
+        background: #ffffff;
+
+        border-bottom: 1px solid #f1f5f7;
+
+        padding: 32px 0;
+
+    }
+
+
+    .footer-feature-grid {
+
+        display: grid;
+
+        grid-template-columns: repeat(5, 1fr);
+
+        width: 100%;
+
+    }
+
+
+    .footer-feature-item {
+
+        display: flex;
+
+        align-items: flex-start;
+
+        gap: 11px;
+
+        padding: 7px 20px;
+
+        min-height: 62px;
+
+        border-right: 1px solid #f1f5f7;
+
+    }
+
+
+    .footer-feature-item:first-child {
+
+        padding-left: 0;
+
+    }
+
+
+    .footer-feature-item:last-child {
+
+        border-right: none;
+
+        padding-right: 0;
+
+    }
+
+
+    /* =========================================
+       FEATURE ICON
+    ========================================== */
+
+    .footer-feature-icon {
+
+        flex: 0 0 22px;
+
+        width: 22px;
+
+        height: 22px;
+
+        margin-top: 2px;
+
+        color: #103c6d;
+
+        font-size: 21px;
+
+        line-height: 22px;
+
+        text-align: center;
+
+    }
+
+
+    .footer-feature-icon i {
+
+        display: inline-block;
+
+        color: #103c6d;
+
+        font-size: 21px;
+
+        line-height: 22px;
+
+    }
+
+
+    /* =========================================
+       FEATURE CONTENT
+    ========================================== */
+
+    .footer-feature-content {
+
+        min-width: 0;
+
+    }
+
+
+    .footer-feature-content h4 {
+
+        margin: 0 0 4px;
+
+        color: #0f172a;
+
+        font-size: 13px;
+
+        line-height: 1.3;
+
+        font-weight: 700;
+
+        letter-spacing: -0.15px;
+
+    }
+
+
+    .footer-feature-content p {
+
+        margin: 0;
+
+        color: #64748b;
+
+        font-size: 11.5px;
+
+        line-height: 1.5;
+
+    }
+
+
+    /* =========================================
+       MAIN FOOTER
+    ========================================== */
+
+    .footer-main {
+
+        background: #ffffff;
+
+        padding: 28px 0 0;
+
+    }
+
+
+    .footer-main-row {
+
+        display: grid;
+
+        grid-template-columns: 180px 1fr 120px;
+
+        align-items: center;
+
+        gap: 25px;
+
+    }
+
+
+    /* =========================================
+       LOGO
+    ========================================== */
+
+    .footer-logo {
+
+        display: flex;
+
+        align-items: center;
+
+    }
+
+
+    .footer-logo a {
+
+        display: inline-flex;
+
+        align-items: center;
+
+    }
+
+
+    .footer-logo img {
+
+        display: block;
+
+        max-width: 150px;
+
+        max-height: 42px;
+
+        width: auto;
+
+        height: auto;
+
+        object-fit: contain;
+
+    }
+
+
+    /* =========================================
+       FOOTER LINKS
+    ========================================== */
+
+    .footer-links {
+
+        display: flex;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        align-items: center;
+
+        column-gap: 18px;
+
+        row-gap: 9px;
+
+    }
+
+
+    .footer-links a {
+
+        color: #475569;
+
+        text-decoration: none;
+
+        font-size: 12.5px;
+
+        line-height: 1.5;
+
+        font-weight: 500;
+
+        transition: color .2s ease;
+
+        white-space: nowrap;
+
+    }
+
+
+    .footer-links a:hover {
+
+        color: #103c6d;
+
+    }
+
+
+    /* =========================================
+       SOCIAL ICONS
+    ========================================== */
+
+    .footer-social {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .footer-social a {
+        width: 30px;
+        height: 30px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: #64748b !important;
+        font-size: 18px !important;
+        line-height: 30px !important;
+    }
+
+    .footer-social a i {
+        display: inline-block !important;
+        font-family: FontAwesome !important;
+        font-style: normal !important;
+        font-weight: normal !important;
+        font-size: 18px !important;
+        line-height: 1 !important;
+        color: #64748b !important;
+    }
+
+
+    .footer-social a:hover {
+
+        color: #103c6d;
+
+        transform: translateY(-2px);
+
+    }
+
+
+    /* =========================================
+       COPYRIGHT
+    ========================================== */
+
+    .footer-bottom {
+
+        margin-top: 24px;
+
+        padding: 16px 0 18px;
+
+        border-top: 1px solid #f1f5f7;
+
+        text-align: center;
+
+    }
+
+
+    .footer-bottom p {
+
+        margin: 0;
+
+        color: #94a3b8;
+
+        font-size: 12px;
+
+        line-height: 1.5;
+
+    }
+
+
+    .footer-bottom strong {
+
+        color: #334155;
+
+        font-weight: 600;
+
+    }
+
+
+    /* =========================================
+       LARGE TABLET
+    ========================================== */
+
+    @media (max-width: 1199px) {
+
+        .footer-feature-item {
+
+            padding-left: 14px;
+
+            padding-right: 14px;
+
+        }
+
+
+        .footer-feature-item:first-child {
+
+            padding-left: 0;
+
+        }
+
+
+        .footer-feature-item:last-child {
+
+            padding-right: 0;
+
+        }
+
+
+        .footer-main-row {
+
+            grid-template-columns:
+                150px
+                1fr
+                100px;
+
+            gap: 18px;
+
+        }
+
+
+        .footer-links {
+
+            column-gap: 14px;
+
+        }
+
+    }
+
+
+    /* =========================================
+       TABLET
+    ========================================== */
+
+    @media (max-width: 991px) {
+
+        .footer-features {
+
+            padding: 28px 0;
+
+        }
+
+
+        .footer-feature-grid {
+
+            grid-template-columns: repeat(2, 1fr);
+
+            row-gap: 18px;
+
+        }
+
+
+        .footer-feature-item {
+
+            border-right: none;
+
+            border-bottom: 1px solid #f1f5f7;
+
+            padding: 8px 15px 18px;
+
+        }
+
+
+        .footer-feature-item:nth-child(odd) {
+
+            border-right: 1px solid #f1f5f7;
+
+        }
+
+
+        .footer-feature-item:nth-child(n+3) {
+
+            border-bottom: none;
+
+            padding-bottom: 8px;
+
+        }
+
+
+        .footer-feature-item:first-child {
+
+            padding-left: 0;
+
+        }
+
+
+        .footer-feature-item:nth-child(2) {
+
+            padding-right: 0;
+
+        }
+
+
+        .footer-feature-item:nth-child(4) {
+
+            padding-right: 0;
+
+        }
+
+
+        .footer-feature-item:last-child {
+
+            grid-column: 1 / -1;
+
+            border-right: none !important;
+
+            border-bottom: none;
+
+            padding-left: 0;
+
+            padding-right: 0;
+
+            justify-content: center;
+
+        }
+
+
+        .footer-main {
+
+            padding-top: 25px;
+
+        }
+
+
+        .footer-main-row {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            justify-content: center;
+
+            text-align: center;
+
+        }
+
+
+        .footer-logo {
+
+            width: 100%;
+
+            justify-content: center;
+
+        }
+
+
+        .footer-links {
+
+            width: 100%;
+
+        }
+
+
+        .footer-social {
+
+            width: 100%;
+
+            justify-content: center;
+
+        }
+
+    }
+
+
+    /* =========================================
+       MOBILE
+    ========================================== */
+
+    @media (max-width: 767px) {
+
+        .footer-disclaimer {
+
+            padding: 12px 15px;
+
+        }
+
+
+        .footer-disclaimer-content {
+
+            align-items: flex-start;
+
+            text-align: left;
+
+            font-size: 11.5px;
+
+            line-height: 1.55;
+
+        }
+
+
+        .footer-features {
+
+            padding: 20px 15px;
+
+        }
+
+
+        .footer-feature-grid {
+
+            grid-template-columns: 1fr;
+
+            row-gap: 0;
+
+        }
+
+
+        .footer-feature-item,
+        .footer-feature-item:nth-child(odd),
+        .footer-feature-item:nth-child(n+3),
+        .footer-feature-item:last-child {
+
+            grid-column: auto;
+
+            width: 100%;
+
+            border-right: none !important;
+
+            border-bottom: 1px solid #f1f5f7;
+
+            padding: 14px 0;
+
+            justify-content: flex-start;
+
+        }
+
+
+        .footer-feature-item:first-child {
+
+            padding-top: 0;
+
+        }
+
+
+        .footer-feature-item:last-child {
+
+            border-bottom: none !important;
+
+            padding-bottom: 0;
+
+        }
+
+
+        .footer-feature-icon {
+
+            flex-basis: 21px;
+
+            width: 21px;
+
+            height: 21px;
+
+            font-size: 20px;
+
+            line-height: 21px;
+
+        }
+
+
+        .footer-feature-icon i {
+
+            font-size: 20px;
+
+            line-height: 21px;
+
+        }
+
+
+        .footer-feature-content h4 {
+
+            font-size: 13px;
+
+        }
+
+
+        .footer-feature-content p {
+
+            font-size: 11.5px;
+
+        }
+
+
+        .footer-main {
+
+            padding: 23px 15px 0;
+
+        }
+
+
+        .footer-main-row {
+
+            gap: 17px;
+
+        }
+
+
+        .footer-logo img {
+
+            max-width: 145px;
+
+            max-height: 40px;
+
+        }
+
+
+        .footer-links {
+
+            column-gap: 13px;
+
+            row-gap: 8px;
+
+        }
+
+
+        .footer-links a {
+
+            font-size: 11.5px;
+
+        }
+
+
+        .footer-social {
+
+            gap: 7px;
+
+        }
+
+
+        .footer-social a {
+
+            width: 28px;
+
+            height: 28px;
+
+            font-size: 16px;
+
+        }
+
+
+        .footer-bottom {
+
+            margin-top: 19px;
+
+            padding: 14px 0 16px;
+
+        }
+
+
+        .footer-bottom p {
+
+            font-size: 11px;
+
+        }
+
+    }
+
+
+    /* =========================================
+       SMALL MOBILE
+    ========================================== */
+
+    @media (max-width: 400px) {
+
+        .footer-disclaimer-content {
+
+            font-size: 11px;
+
+        }
+
+
+        .footer-feature-content h4 {
+
+            font-size: 12.5px;
+
+        }
+
+
+        .footer-feature-content p {
+
+            font-size: 11px;
+
+        }
+
+
+        .footer-links {
+
+            column-gap: 10px;
+
+            row-gap: 7px;
+
+        }
+
+
+        .footer-links a {
+
+            font-size: 11px;
+
+        }
+
+    }
+
+</style>

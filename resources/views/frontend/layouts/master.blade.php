@@ -23,10 +23,10 @@
     <link rel="stylesheet" href="{{asset('assets')}}/css/plugins/animate.min.css" />
     <link rel="stylesheet" href="{{asset('assets')}}/css/main.css?v=5.2" />
     <!-- Bootstrap -->
-    <!-- Font Awesome CSS -->
-    <link href="{{asset('pike/backend/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css" />
     <script src="{{asset('assets')}}/js/vendor/jquery-3.6.0.min.js"></script>
 
+    <!-- Font Awesome CSS -->
+    <link href="{{asset('pike/backend/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet"
       href="{{ asset('assets/css/top-read-more.css') }}">
     <link rel="stylesheet"
@@ -92,6 +92,10 @@
             color: #fff;
         }
         @media only screen and (min-width:320px) and (max-width:768px){
+                .footer-disclaimer-content{
+                    font-size: 12px !important;
+                    text-align: justify !important;
+                }
             .mobile_top_login{
                 display: none !important;
             }

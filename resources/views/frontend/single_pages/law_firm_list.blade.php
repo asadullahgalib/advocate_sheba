@@ -1,870 +1,484 @@
+
 @extends('frontend.layouts.master')
+
 @section('content')
 
-@include('frontend.single_pages.single_search_bar')
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/who-is-advocate.css')}}">
 
-<link rel="stylesheet" type="text/css" href="{{asset('assets/css/find_law_firm.css')}}">
+<div class="legal-info-container" style="margin-top: 20px;">
 
-<main class="main pages" style="background-color: #f5f5f5;border-radius: 15px;margin-bottom: 10px;">
-    <div class="page-content pt-50" style="padding:20px 0px 10px 0px !important">
-        <div class="container">
-            <div class="archive-header-2">
+    <!-- About Advocate -->
+    <h5 style="margin-bottom:15px;">ল ফার্ম সম্পর্কে জানুন</h5>
+    <div class="legal-info-card">
 
-                <div class="row">
-                    <!-- Law Firm 1 -->
-                    <div class="col-lg-4 col-md-4 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
-                        <div class="doctor-profile-card">
-                            <!-- Header -->
-                            <div class="doctor-profile-title">
-                                <h3>
-                                    Law Firm Profile
-                                </h3>
-                            </div>
+        <div class="legal-info-header">
 
-                            <!-- Main Profile -->
-                            <div class="doctor-main-profile">
+            <div class="legal-info-icon">
+                <i class="fa fa-balance-scale"></i>
+            </div>
 
-                                <!-- Advocate Image -->
-                                <div class="doctor-image-wrapper">
+            <div class="legal-info-content">
 
-                                    <div class="doctor-image-box">
+                <p class="legal-info-description">
+                    ল ফার্ম (Law Firm) হলো এক বা একাধিক আইনজীবীর সমন্বয়ে পরিচালিত একটি পেশাদার প্রতিষ্ঠান, যা ব্যক্তি ও প্রতিষ্ঠানের বিভিন্ন আইনগত বিষয়ে পরামর্শ ও প্রতিনিধিত্ব প্রদান করে।
+                </p>
 
-                                        <!-- আপনার Advocate Image এখানে দিন -->
-                                        <img src="{{asset('frontend/firm_logo.jpg')}}"
-                                             alt="গালিব ল অ্যাসোসিয়েটস">
-
-                                    </div>
-
-                                </div>
-
-
-                                <!-- Doctor Information -->
-                                <div class="doctor-info">
-
-                                    <!-- Name -->
-                                    <div class="doctor-name">
-
-                                        <h2>
-                                            গালিব ল অ্যাসোসিয়েটস 
-                                        </h2>
-
-
-                                    </div>
-
-
-                                    <!-- Speciality -->
-                                    <div class="doctor-speciality">
-
-                                        <strong>
-                                            Law Firm: Supreme Court of Bangladesh
-                                        </strong>
-                                    </div>
-
-                                    <!-- Consultant -->
-                                    <div class="doctor-detail-item">
-
-                                        <i class="fa fa-user-circle-o"></i>
-
-                                        <span>
-                                            <strong>Led by Adv. Md. Asadullah Galib</strong>
-                                        </span>
-
-                                    </div>
-
-
-                                    <!-- Qualification -->
-                                    <div class="doctor-qualification">
-
-                                        <button class="btn btn-primary btn-sm" style="background-color: #c9ebca;color: #166d29;margin: 0px;line-height: 0.8;margin-bottom: 5px;">Bar Registered</button> &nbsp;
-                                        <button class="btn btn-primary btn-sm" style="background-color: #c9ebca;color: #166d29;margin: 0px;line-height: 0.8;margin-bottom: 5px;">Est. 2012</button>
-
-
-                                    </div>
-
-
-                                    <!-- Rating -->
-                                    <div class="doctor-rating">
-
-                                        <i class="fa fa-star-o" style="color:#d89d00;font-size:18px;"></i>
-
-                                        <span class="rating-number">
-                                            4.8
-                                        </span>
-
-                                        <span class="review-count">
-                                            (128 Reviews) . 5 lawyers
-                                        </span>
-
-                                    </div>
-
-                                    <!-- Hospital -->
-                                    <div class="doctor-detail-item">
-
-                                        <i class="fa fa-map-marker"></i>
-
-                                        <span>
-                                            Shahbagh, Dhaka · Kishoreganj branch
-                                        </span>
-
-                                    </div>
-
-                                    <div class="firm-info-line">
-
-                                        <i class="fa fa-briefcase"></i>
-
-                                        <span>
-                                            Corporate · Family · Property law
-                                        </span>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <!-- Practice Court -->
-                            <div class="practice-box">
-
-                                <div class="practice-title">
-                                    প্র্যাকটিস আদালত:
-                                </div>
-
-                                <div class="practice-text">
-
-                                    Supreme Court of Bangladesh
-                                    <br>
-
-                                    <span>
-                                        (High Court Division & Appellate Division)
-                                    </span>
-
-                                    <br>
-
-                                    জেলা জজ আদালত
-                                    <b>•</b>
-                                    সেশন জজ আদালত
-                                    <b>•</b>
-                                    ম্যাজিস্ট্রেট আদালত
-
-                                </div>
-
-                            </div>
-
-
-                            <!-- Specialization -->
-                            <div class="specialization">
-
-                                <div class="specialization-title">
-                                    অতিরিক্ত বিশেষজ্ঞতা:
-                                </div>
-
-                                <div class="specialization-text">
-
-                                    ফৌজদারী
-                                    <b>•</b>
-                                    দেওয়ানী
-                                    <b>•</b>
-                                    পারিবারিক
-                                    <b>•</b>
-                                    জমি-জমা
-
-                                </div>
-
-                            </div>
-
-
-                            <!-- Divider -->
-                            <div class="firm-divider"></div>
-
-
-                            <!-- Address -->
-                            <div class="firm-address">
-
-                                <div class="address-icon">
-                                    <i class="fa fa-map-marker"></i>
-                                </div>
-
-                                <div class="address-content">
-
-                                    <strong>
-                                        চেম্বারের পূর্ণ ঠিকানা:
-                                    </strong>
-
-                                    <p>
-                                        কিশোরগঞ্জ ২৫০ শয্যা হাসপাতালের পাশে,
-                                        <br>
-                                        [বাড়ি নং, রোড, এলাকা, থানা]
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-                            <!-- Action Buttons -->
-                            <div class="doctor-action-buttons">
-
-                                <!-- WhatsApp + Share -->
-                                <div class="row g-3 doctor-bottom-buttons" style="margin-bottom: 15px;">
-
-                                    <!-- WhatsApp -->
-                                    <div class="col-6">
-
-                                        <a href="tel:+8801700000000"
-                                           class="doctor-outline-btn">
-
-                                            <i class="fa fa-phone"></i>
-
-                                            <span>
-                                                Call
-                                            </span>
-
-                                        </a>
-
-                                    </div>
-
-
-                                    <!-- Share -->
-                                    <div class="col-6">
-
-                                        <a href="https://wa.me/8801700000000" target="_blank"
-                                           class="doctor-outline-btn">
-
-                                            <i class="fa fa-whatsapp"></i>
-
-                                            <span>
-                                                WhatsApp
-                                            </span>
-
-                                        </a>
-
-                                    </div>
-
-                                </div>
-
-                                <!-- Appointment -->
-                                <div class="mb-3">
-
-                                    <a href="{{route('our.law-firm-details')}}"
-                                        class="doctor-btn btn-appointment">
-
-                                        <i class="fa fa-eye"></i>
-
-                                        <span>
-                                            View Details
-                                        </span>
-
-                                    </a>
-
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <!-- Law Firm 2 -->
-                    <div class="col-lg-4 col-md-4 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
-                        <div class="doctor-profile-card">
-                            <!-- Header -->
-                            <div class="doctor-profile-title">
-                                <h3>
-                                    Law Firm Profile
-                                </h3>
-                            </div>
-
-                            <!-- Main Profile -->
-                            <div class="doctor-main-profile">
-
-                                <!-- Advocate Image -->
-                                <div class="doctor-image-wrapper">
-
-                                    <div class="doctor-image-box">
-
-                                        <!-- আপনার Advocate Image এখানে দিন -->
-                                        <img src="{{asset('frontend/firm_logo.jpg')}}"
-                                             alt="গালিব ল অ্যাসোসিয়েটস">
-
-                                    </div>
-
-                                </div>
-
-
-                                <!-- Doctor Information -->
-                                <div class="doctor-info">
-
-                                    <!-- Name -->
-                                    <div class="doctor-name">
-
-                                        <h2>
-                                            Rahman & Associates
-                                        </h2>
-
-
-                                    </div>
-
-
-                                    <!-- Speciality -->
-                                    <div class="doctor-speciality">
-
-                                        <strong>
-                                            Law Firm: Supreme Court of Bangladesh
-                                        </strong>
-                                    </div>
-
-                                    <!-- Consultant -->
-                                    <div class="doctor-detail-item">
-
-                                        <i class="fa fa-user-circle-o"></i>
-
-                                        <span>
-                                            <strong>Led by Adv. Md. Asadullah Galib</strong>
-                                        </span>
-
-                                    </div>
-
-
-                                    <!-- Qualification -->
-                                    <div class="doctor-qualification">
-
-                                        <button class="btn btn-primary btn-sm" style="background-color: #c9ebca;color: #166d29;margin: 0px;line-height: 0.8;margin-bottom: 5px;">Bar Registered</button> &nbsp;
-                                        <button class="btn btn-primary btn-sm" style="background-color: #c9ebca;color: #166d29;margin: 0px;line-height: 0.8;margin-bottom: 5px;">Est. 2012</button>
-
-
-                                    </div>
-
-
-                                    <!-- Rating -->
-                                    <div class="doctor-rating">
-
-                                        <i class="fa fa-star-o" style="color:#d89d00;font-size:18px;"></i>
-
-                                        <span class="rating-number">
-                                            4.8
-                                        </span>
-
-                                        <span class="review-count">
-                                            (128 Reviews) . 5 lawyers
-                                        </span>
-
-                                    </div>
-
-                                    <!-- Hospital -->
-                                    <div class="doctor-detail-item">
-
-                                        <i class="fa fa-map-marker"></i>
-
-                                        <span>
-                                            Shahbagh, Dhaka · Kishoreganj branch
-                                        </span>
-
-                                    </div>
-
-                                    <div class="firm-info-line">
-
-                                        <i class="fa fa-briefcase"></i>
-
-                                        <span>
-                                            Corporate · Family · Property law
-                                        </span>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <!-- Practice Court -->
-                            <div class="practice-box">
-
-                                <div class="practice-title">
-                                    প্র্যাকটিস আদালত:
-                                </div>
-
-                                <div class="practice-text">
-
-                                    Supreme Court of Bangladesh
-                                    <br>
-
-                                    <span>
-                                        (High Court Division & Appellate Division)
-                                    </span>
-
-                                    <br>
-
-                                    জেলা জজ আদালত
-                                    <b>•</b>
-                                    সেশন জজ আদালত
-                                    <b>•</b>
-                                    ম্যাজিস্ট্রেট আদালত
-
-                                </div>
-
-                            </div>
-
-
-                            <!-- Specialization -->
-                            <div class="specialization">
-
-                                <div class="specialization-title">
-                                    অতিরিক্ত বিশেষজ্ঞতা:
-                                </div>
-
-                                <div class="specialization-text">
-
-                                    ফৌজদারী
-                                    <b>•</b>
-                                    দেওয়ানী
-                                    <b>•</b>
-                                    পারিবারিক
-                                    <b>•</b>
-                                    জমি-জমা
-
-                                </div>
-
-                            </div>
-
-
-                            <!-- Divider -->
-                            <div class="firm-divider"></div>
-
-
-                            <!-- Address -->
-                            <div class="firm-address">
-
-                                <div class="address-icon">
-                                    <i class="fa fa-map-marker"></i>
-                                </div>
-
-                                <div class="address-content">
-
-                                    <strong>
-                                        চেম্বারের পূর্ণ ঠিকানা:
-                                    </strong>
-
-                                    <p>
-                                        কিশোরগঞ্জ ২৫০ শয্যা হাসপাতালের পাশে,
-                                        <br>
-                                        [বাড়ি নং, রোড, এলাকা, থানা]
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-                            <!-- Action Buttons -->
-                            <div class="doctor-action-buttons">
-
-                                <!-- WhatsApp + Share -->
-                                <div class="row g-3 doctor-bottom-buttons" style="margin-bottom: 15px;">
-
-                                    <!-- WhatsApp -->
-                                    <div class="col-6">
-
-                                        <a href="tel:+8801700000000"
-                                           class="doctor-outline-btn">
-
-                                            <i class="fa fa-phone"></i>
-
-                                            <span>
-                                                Call
-                                            </span>
-
-                                        </a>
-
-                                    </div>
-
-
-                                    <!-- Share -->
-                                    <div class="col-6">
-
-                                        <a href="https://wa.me/8801700000000" target="_blank"
-                                           class="doctor-outline-btn">
-
-                                            <i class="fa fa-whatsapp"></i>
-
-                                            <span>
-                                                WhatsApp
-                                            </span>
-
-                                        </a>
-
-                                    </div>
-
-                                </div>
-
-                                <!-- Appointment -->
-                                <div class="mb-3">
-
-                                    <a href="{{route('our.law-firm-details')}}"
-                                        class="doctor-btn btn-appointment">
-
-                                        <i class="fa fa-eye"></i>
-
-                                        <span>
-                                            View Details
-                                        </span>
-
-                                    </a>
-
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <!-- Law Firm 3 -->
-                    <div class="col-lg-4 col-md-4 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
-                        <div class="doctor-profile-card">
-                            <!-- Header -->
-                            <div class="doctor-profile-title">
-                                <h3>
-                                    Law Firm Profile
-                                </h3>
-                            </div>
-
-                            <!-- Main Profile -->
-                            <div class="doctor-main-profile">
-
-                                <!-- Advocate Image -->
-                                <div class="doctor-image-wrapper">
-
-                                    <div class="doctor-image-box">
-
-                                        <!-- আপনার Advocate Image এখানে দিন -->
-                                        <img src="{{asset('frontend/firm_logo.jpg')}}"
-                                             alt="গালিব ল অ্যাসোসিয়েটস">
-
-                                    </div>
-
-                                </div>
-
-
-                                <!-- Doctor Information -->
-                                <div class="doctor-info">
-
-                                    <!-- Name -->
-                                    <div class="doctor-name">
-
-                                        <h2>
-                                            Ahmed Legal Associates
-                                        </h2>
-
-
-                                    </div>
-
-
-                                    <!-- Speciality -->
-                                    <div class="doctor-speciality">
-
-                                        <strong>
-                                            Law Firm: Supreme Court of Bangladesh
-                                        </strong>
-                                    </div>
-
-                                    <!-- Consultant -->
-                                    <div class="doctor-detail-item">
-
-                                        <i class="fa fa-user-circle-o"></i>
-
-                                        <span>
-                                            <strong>Led by Adv. Md. Asadullah Galib</strong>
-                                        </span>
-
-                                    </div>
-
-
-                                    <!-- Qualification -->
-                                    <div class="doctor-qualification">
-
-                                        <button class="btn btn-primary btn-sm" style="background-color: #c9ebca;color: #166d29;margin: 0px;line-height: 0.8;margin-bottom: 5px;">Bar Registered</button> &nbsp;
-                                        <button class="btn btn-primary btn-sm" style="background-color: #c9ebca;color: #166d29;margin: 0px;line-height: 0.8;margin-bottom: 5px;">Est. 2012</button>
-
-
-                                    </div>
-
-
-                                    <!-- Rating -->
-                                    <div class="doctor-rating">
-
-                                        <i class="fa fa-star-o" style="color:#d89d00;font-size:18px;"></i>
-
-                                        <span class="rating-number">
-                                            4.8
-                                        </span>
-
-                                        <span class="review-count">
-                                            (128 Reviews) . 5 lawyers
-                                        </span>
-
-                                    </div>
-
-                                    <!-- Hospital -->
-                                    <div class="doctor-detail-item">
-
-                                        <i class="fa fa-map-marker"></i>
-
-                                        <span>
-                                            Shahbagh, Dhaka · Kishoreganj branch
-                                        </span>
-
-                                    </div>
-
-                                    <div class="firm-info-line">
-
-                                        <i class="fa fa-briefcase"></i>
-
-                                        <span>
-                                            Corporate · Family · Property law
-                                        </span>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <!-- Practice Court -->
-                            <div class="practice-box">
-
-                                <div class="practice-title">
-                                    প্র্যাকটিস আদালত:
-                                </div>
-
-                                <div class="practice-text">
-
-                                    Supreme Court of Bangladesh
-                                    <br>
-
-                                    <span>
-                                        (High Court Division & Appellate Division)
-                                    </span>
-
-                                    <br>
-
-                                    জেলা জজ আদালত
-                                    <b>•</b>
-                                    সেশন জজ আদালত
-                                    <b>•</b>
-                                    ম্যাজিস্ট্রেট আদালত
-
-                                </div>
-
-                            </div>
-
-
-                            <!-- Specialization -->
-                            <div class="specialization">
-
-                                <div class="specialization-title">
-                                    অতিরিক্ত বিশেষজ্ঞতা:
-                                </div>
-
-                                <div class="specialization-text">
-
-                                    ফৌজদারী
-                                    <b>•</b>
-                                    দেওয়ানী
-                                    <b>•</b>
-                                    পারিবারিক
-                                    <b>•</b>
-                                    জমি-জমা
-
-                                </div>
-
-                            </div>
-
-
-                            <!-- Divider -->
-                            <div class="firm-divider"></div>
-
-
-                            <!-- Address -->
-                            <div class="firm-address">
-
-                                <div class="address-icon">
-                                    <i class="fa fa-map-marker"></i>
-                                </div>
-
-                                <div class="address-content">
-
-                                    <strong>
-                                        চেম্বারের পূর্ণ ঠিকানা:
-                                    </strong>
-
-                                    <p>
-                                        কিশোরগঞ্জ ২৫০ শয্যা হাসপাতালের পাশে,
-                                        <br>
-                                        [বাড়ি নং, রোড, এলাকা, থানা]
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-                            <!-- Action Buttons -->
-                            <div class="doctor-action-buttons">
-
-                                <!-- WhatsApp + Share -->
-                                <div class="row g-3 doctor-bottom-buttons" style="margin-bottom: 15px;">
-
-                                    <!-- WhatsApp -->
-                                    <div class="col-6">
-
-                                        <a href="tel:+8801700000000"
-                                           class="doctor-outline-btn">
-
-                                            <i class="fa fa-phone"></i>
-
-                                            <span>
-                                                Call
-                                            </span>
-
-                                        </a>
-
-                                    </div>
-
-
-                                    <!-- Share -->
-                                    <div class="col-6">
-
-                                        <a href="https://wa.me/8801700000000" target="_blank"
-                                           class="doctor-outline-btn">
-
-                                            <i class="fa fa-whatsapp"></i>
-
-                                            <span>
-                                                WhatsApp
-                                            </span>
-
-                                        </a>
-
-                                    </div>
-
-                                </div>
-
-                                <!-- Appointment -->
-                                <div class="mb-3">
-
-                                    <a href="{{route('our.law-firm-details')}}"
-                                        class="doctor-btn btn-appointment">
-
-                                        <i class="fa fa-eye"></i>
-
-                                        <span>
-                                            View Details
-                                        </span>
-
-                                    </a>
-
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="container mt-3">
-                      <ul class="pagination justify-content-center">
-                        <li class="page-item"><a class="page-link" href="#"><i class="fa fa-arrow-left" aria-hidden="true"></i></a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                        <li class="page-item"><a class="page-link" href="#">5</a></li>
-                        <li class="page-item"><a class="page-link" href="#">6</a></li>
-                        <li class="page-item"><a class="page-link" href="#">7</a></li>
-                        <li class="page-item"><a class="page-link" href="#">8</a></li>
-                        <li class="page-item"><a class="page-link" href="#">9</a></li>
-                        <li class="page-item"><a class="page-link" href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i></a></li>
-                      </ul>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
-</main>
 
-<section style="padding: 5px 0px 5px 0px;
-    background-color: #f5f5f5;
-    margin-bottom: 0px;
-    border-radius: 15px;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-lg-12 col-sm-12">
-                <div class="row alert alert-success" style="background:#123b6d;border-color:#123b6d;">
-                    <div class="col-md-8 col-lg-8 col-sm-8 offset-md-2 offset-lg-2 offset-sm-2">
-                        <div class="row">
-                            <div class="col-md-1 col-lg-1 col-xl-1 col-sm-1 custom_faq_img">
-                                <img src="{{asset('frontend')}}/round-logo.png" alt="" />
-                            </div>
-                            <div class="col-md-11 col-lg-11 col-xl-11 col-sm-11">
-                                <h3 style="text-align: left;margin-bottom: 15px;font-size: 20px;color: #fff;font-weight: bold;">
-                                    ল ফার্ম কারা ? 
-                                </h3>
-                                <p style="color:#fff">
-                                    ল ফার্ম হলো এক বা একাধিক আইনজীবীর সমন্বয়ে পরিচালিত একটি পেশাদার প্রতিষ্ঠান, যা ব্যক্তি ও প্রতিষ্ঠানের বিভিন্ন আইনগত বিষয়ে পরামর্শ ও প্রতিনিধিত্ব প্রদান করে।
-                                </p>
+    <!-- 1. কে তারা? -->
+    <div class="legal-info-card">
 
-                                <h3 style="text-align: left;margin-bottom: 15px;font-size: 20px;color: #fff;font-weight: bold;    margin-top: 26px;">
-                                    তারা কি করেন ? 
-                                </h3>
-                                <p style="color:#fff">
-                                    <i class="fa fa-dot-circle-o" style="color:#fff;"></i> &nbsp;
-                                    মামলা পরিচালনা 
-                                </p>
-                                <p style="color:#fff">
-                                    <i class="fa fa-dot-circle-o" style="color:#fff;"></i> &nbsp;
-                                    আইনি পরামর্শ প্রদান
-                                </p>
-                                <p style="color:#fff">
-                                    <i class="fa fa-dot-circle-o" style="color:#fff;"></i> &nbsp;
-                                    চুক্তি ও দলিল তৈরি
-                                </p>
-                                <p style="color:#fff">
-                                    <i class="fa fa-dot-circle-o" style="color:#fff;"></i> &nbsp;
-                                    কর্পোরেট আইনগত সেবা
-                                </p>
-                                <p style="color:#fff">
-                                    <i class="fa fa-dot-circle-o" style="color:#fff;"></i> &nbsp;
-                                    সম্পত্তি ও জমি সংক্রান্ত সেবা
-                                </p>
-                                <p style="color:#fff">
-                                    <i class="fa fa-dot-circle-o" style="color:#fff;"></i> &nbsp;
-                                    আইনগত নোটিশ ও বিরোধ নিষ্পত্তি
-                                </p>
+        <div class="legal-info-header">
 
-                                <h3 style="text-align: left;margin-bottom: 15px;font-size: 20px;color: #fff;font-weight: bold;    margin-top: 26px;">
-                                    কিভাবে ল ফার্ম গঠন করা যায় ? 
-                                </h3>
-                                <p style="color:#fff">
-                                    <i class="fa fa-dot-circle-o" style="color:#fff;"></i> &nbsp;
-                                    যোগ্য আইনজীবীদের সমন্বয়ে ফার্ম গঠন
-                                </p>
-                                <p style="color:#fff">
-                                    <i class="fa fa-dot-circle-o" style="color:#fff;"></i> &nbsp;
-                                    প্রয়োজনীয় আইনগত ও প্রশাসনিক আনুষ্ঠানিকতা সম্পন্ন
-                                </p>
-                                <p style="color:#fff">
-                                    <i class="fa fa-dot-circle-o" style="color:#fff;"></i> &nbsp;
-                                    প্র্যাকটিস এরিয়া নির্ধারণ
-                                </p>
-                                <p style="color:#fff">
-                                    <i class="fa fa-dot-circle-o" style="color:#fff;"></i> &nbsp;
-                                    এঅফিস ও পেশাদার ব্যবস্থাপনা তৈরি
-                                </p>
-                                <p style="color:#fff">
-                                    <i class="fa fa-dot-circle-o" style="color:#fff;"></i> &nbsp;
-                                    ক্লায়েন্টদের জন্য আইনগত সেবা প্রদান
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="legal-info-icon">
+                <i class="fa fa-money"></i>
+            </div>
+
+            <div class="legal-info-content">
+
+                <h3 class="legal-info-title">ল ফার্ম কারা?</h3>
+
+                <p class="legal-info-description">
+                    ল ফার্ম দের ফি কাঠামো, পারিশ্রমিক এবং খরচ সম্পর্কে ধারণা।
+                </p>
+
+                <button type="button"
+                        class="legal-info-toggle"
+                        aria-expanded="false">
+                    <span class="legal-info-toggle-text">বিস্তারিত পড়ুন</span>
+                    <span class="legal-info-arrow">↓</span>
+                </button>
+
             </div>
         </div>
+
+        <div class="legal-info-details" hidden>
+
+            <h4>আইনজীবীদের ফি সম্পর্কে</h4>
+
+            <p>
+                মামলার ধরন, জটিলতা, আদালত, প্রয়োজনীয় সময় ও আইনজীবীর
+                অভিজ্ঞতা অনুযায়ী পারিশ্রমিক ভিন্ন হতে পারে।
+            </p>
+
+            <ul>
+                <li>প্রাথমিক পরামর্শ ফি।</li>
+                <li>মামলা পরিচালনা ও শুনানির ফি।</li>
+                <li>আবেদন, দলিল ও অন্যান্য নথি প্রস্তুতের খরচ।</li>
+                <li>আদালত ও আনুষঙ্গিক খরচের সম্ভাব্য হিসাব।</li>
+            </ul>
+
+            <p>
+                কাজ শুরু করার আগে ফি ও অন্যান্য খরচ সম্পর্কে পরিষ্কারভাবে
+                আলোচনা করে নেওয়া উচিত।
+            </p>
+
+        </div>
     </div>
-</section>
+
+    <!-- 2. তারা কি করেন? -->
+    <div class="legal-info-card">
+
+        <div class="legal-info-header">
+
+            <div class="legal-info-icon">
+                <i class="fa fa-money"></i>
+            </div>
+
+            <div class="legal-info-content">
+
+                <h3 class="legal-info-title">তারা কি করেন ?</h3>
+
+                <p class="legal-info-description">
+                    ল ফার্ম দের ফি কাঠামো, পারিশ্রমিক এবং খরচ সম্পর্কে ধারণা।
+                </p>
+
+                <button type="button"
+                        class="legal-info-toggle"
+                        aria-expanded="false">
+                    <span class="legal-info-toggle-text">বিস্তারিত পড়ুন</span>
+                    <span class="legal-info-arrow">↓</span>
+                </button>
+
+            </div>
+        </div>
+
+        <div class="legal-info-details" hidden>
+
+            <h4>আইনজীবীদের ফি সম্পর্কে</h4>
+
+            <p>
+                মামলার ধরন, জটিলতা, আদালত, প্রয়োজনীয় সময় ও আইনজীবীর
+                অভিজ্ঞতা অনুযায়ী পারিশ্রমিক ভিন্ন হতে পারে।
+            </p>
+
+            <ul>
+                <li>প্রাথমিক পরামর্শ ফি।</li>
+                <li>মামলা পরিচালনা ও শুনানির ফি।</li>
+                <li>আবেদন, দলিল ও অন্যান্য নথি প্রস্তুতের খরচ।</li>
+                <li>আদালত ও আনুষঙ্গিক খরচের সম্ভাব্য হিসাব।</li>
+            </ul>
+
+            <p>
+                কাজ শুরু করার আগে ফি ও অন্যান্য খরচ সম্পর্কে পরিষ্কারভাবে
+                আলোচনা করে নেওয়া উচিত।
+            </p>
+
+        </div>
+    </div>
+
+    <!-- 3. যোগ্যতা -->
+    <div class="legal-info-card">
+
+        <div class="legal-info-header">
+
+            <div class="legal-info-icon">
+                <i class="fa fa-graduation-cap"></i>
+            </div>
+
+            <div class="legal-info-content">
+
+                <h3 class="legal-info-title">কিভাবে ল ফার্ম গঠন করা যায় ? </h3>
+
+                <p class="legal-info-description">
+                    ল ফার্ম  হতে হলে কী কী যোগ্যতা ও শর্ত পূরণ করতে হয়।
+                </p>
+
+                <button type="button"
+                        class="legal-info-toggle"
+                        aria-expanded="false">
+                    <span class="legal-info-toggle-text">বিস্তারিত পড়ুন</span>
+                    <span class="legal-info-arrow">↓</span>
+                </button>
+
+            </div>
+        </div>
+
+        <div class="legal-info-details" hidden>
+
+            <h4>ল ফার্ম  হওয়ার প্রাথমিক যোগ্যতা</h4>
+
+            <p>
+                বাংলাদেশে আইনজীবী হিসেবে তালিকাভুক্ত হতে হলে প্রযোজ্য আইন
+                ও বাংলাদেশ বার কাউন্সিলের নির্ধারিত শর্ত পূরণ করতে হয়।
+            </p>
+
+            <ul>
+                <li>স্বীকৃত বিশ্ববিদ্যালয় থেকে আইন বিষয়ে প্রয়োজনীয় ডিগ্রি অর্জন।</li>
+                <li>প্রযোজ্য নিয়ম অনুযায়ী শিক্ষানবিশি বা পিউপিলেজ সম্পন্ন করা।</li>
+                <li>বার কাউন্সিলের নির্ধারিত পরীক্ষায় উত্তীর্ণ হওয়া।</li>
+                <li>তালিকাভুক্তির অন্যান্য প্রযোজ্য শর্ত পূরণ করা।</li>
+            </ul>
+
+        </div>
+    </div>
+
+
+    <!-- 4. কোথায় বসেন -->
+    <div class="legal-info-card">
+
+        <div class="legal-info-header">
+
+            <div class="legal-info-icon">
+                <i class="fa fa-university"></i>
+            </div>
+
+            <div class="legal-info-content">
+
+                <h3 class="legal-info-title">কোথায় বসেন?</h3>
+
+                <p class="legal-info-description">
+                    ল ফার্ম রা কোথায় চেম্বার বা অফিস বজায় রাখেন এবং কোথায় প্র্যাকটিস করেন।
+                </p>
+
+                <button type="button"
+                        class="legal-info-toggle"
+                        aria-expanded="false">
+                    <span class="legal-info-toggle-text">বিস্তারিত পড়ুন</span>
+                    <span class="legal-info-arrow">↓</span>
+                </button>
+
+            </div>
+        </div>
+
+        <div class="legal-info-details" hidden>
+
+            <h4>ল ফার্ম দের চেম্বার ও কর্মস্থল</h4>
+
+            <p>
+                ল ফার্ম রা সাধারণত আদালত প্রাঙ্গণ, ব্যক্তিগত চেম্বার,
+                আইনজীবী সমিতির ভবন অথবা আইন প্রতিষ্ঠানের অফিসে
+                পেশাগত কার্যক্রম পরিচালনা করেন।
+            </p>
+
+            <ul>
+                <li>সুপ্রিম কোর্ট ও হাইকোর্ট প্রাঙ্গণ।</li>
+                <li>জেলা ও দায়রা জজ আদালত প্রাঙ্গণ।</li>
+                <li>অধস্তন দেওয়ানি ও ফৌজদারি আদালত।</li>
+                <li>ব্যক্তিগত চেম্বার এবং ল ফার্ম।</li>
+            </ul>
+
+        </div>
+    </div>
+
+
+    <!-- 5. প্রকারভেদ -->
+    <div class="legal-info-card">
+
+        <div class="legal-info-header">
+
+            <div class="legal-info-icon">
+                <i class="fa fa-share-alt"></i>
+            </div>
+
+            <div class="legal-info-content">
+
+                <h3 class="legal-info-title">প্রকারভেদ</h3>
+
+                <p class="legal-info-description">
+                    বিভিন্ন ধরনের ল ফার্ম  এবং তাদের আইনি ক্ষেত্রভিত্তিক পার্থক্য।
+                </p>
+
+                <button type="button"
+                        class="legal-info-toggle"
+                        aria-expanded="false">
+                    <span class="legal-info-toggle-text">বিস্তারিত পড়ুন</span>
+                    <span class="legal-info-arrow">↓</span>
+                </button>
+
+            </div>
+        </div>
+
+        <div class="legal-info-details" hidden>
+
+            <h4>আইনজীবীদের কাজের ক্ষেত্র</h4>
+
+            <p>
+                আইনজীবীরা তাঁদের অভিজ্ঞতা, দক্ষতা ও পেশাগত আগ্রহ অনুযায়ী
+                বিভিন্ন ধরনের আইনি বিষয়ে কাজ করতে পারেন।
+            </p>
+
+            <ul>
+                <li>দেওয়ানি ও সম্পত্তি আইন।</li>
+                <li>ফৌজদারি আইন ও মামলা পরিচালনা।</li>
+                <li>পারিবারিক আইন ও উত্তরাধিকারসংক্রান্ত বিষয়।</li>
+                <li>করপোরেট, ব্যবসায়িক ও শ্রম আইন।</li>
+                <li>সংবিধান, রিট ও মানবাধিকারসংক্রান্ত বিষয়।</li>
+            </ul>
+
+        </div>
+    </div>
+
+
+    <!-- 6. কীভাবে বেছে নেবেন -->
+    <div class="legal-info-card">
+
+        <div class="legal-info-header">
+
+            <div class="legal-info-icon">
+                <i class="fa fa-tasks"></i>
+            </div>
+
+            <div class="legal-info-content">
+
+                <h3 class="legal-info-title">কীভাবে বেছে নেবেন?</h3>
+
+                <p class="legal-info-description">
+                    আপনার মামলার জন্য সঠিক ল ফার্ম  নির্বাচনের গুরুত্বপূর্ণ টিপস।
+                </p>
+
+                <button type="button"
+                        class="legal-info-toggle"
+                        aria-expanded="false">
+                    <span class="legal-info-toggle-text">বিস্তারিত পড়ুন</span>
+                    <span class="legal-info-arrow">↓</span>
+                </button>
+
+            </div>
+        </div>
+
+        <div class="legal-info-details" hidden>
+
+            <h4>সঠিক ল ফার্ম  নির্বাচনের উপায়</h4>
+
+            <p>
+                আপনার মামলার ধরন ও প্রয়োজন অনুযায়ী অভিজ্ঞতা এবং দক্ষতা
+                বিবেচনা করে আইনজীবী নির্বাচন করা ভালো।
+            </p>
+
+            <ul>
+                <li>আপনার মামলার বিষয়ে তাঁর অভিজ্ঞতা যাচাই করুন।</li>
+                <li>বার কাউন্সিলের তালিকাভুক্তি ও পরিচয় যাচাই করুন।</li>
+                <li>ফি, সম্ভাব্য খরচ ও কাজের পরিধি আগে আলোচনা করুন।</li>
+                <li>যোগাযোগের সুবিধা ও পেশাগত আচরণ বিবেচনা করুন।</li>
+            </ul>
+
+        </div>
+    </div>
+
+
+    <!-- 7. ফি -->
+    <div class="legal-info-card">
+
+        <div class="legal-info-header">
+
+            <div class="legal-info-icon">
+                <i class="fa fa-money"></i>
+            </div>
+
+            <div class="legal-info-content">
+
+                <h3 class="legal-info-title">ফি</h3>
+
+                <p class="legal-info-description">
+                    ল ফার্ম দের ফি কাঠামো, পারিশ্রমিক এবং খরচ সম্পর্কে ধারণা।
+                </p>
+
+                <button type="button"
+                        class="legal-info-toggle"
+                        aria-expanded="false">
+                    <span class="legal-info-toggle-text">বিস্তারিত পড়ুন</span>
+                    <span class="legal-info-arrow">↓</span>
+                </button>
+
+            </div>
+        </div>
+
+        <div class="legal-info-details" hidden>
+
+            <h4>আইনজীবীদের ফি সম্পর্কে</h4>
+
+            <p>
+                মামলার ধরন, জটিলতা, আদালত, প্রয়োজনীয় সময় ও আইনজীবীর
+                অভিজ্ঞতা অনুযায়ী পারিশ্রমিক ভিন্ন হতে পারে।
+            </p>
+
+            <ul>
+                <li>প্রাথমিক পরামর্শ ফি।</li>
+                <li>মামলা পরিচালনা ও শুনানির ফি।</li>
+                <li>আবেদন, দলিল ও অন্যান্য নথি প্রস্তুতের খরচ।</li>
+                <li>আদালত ও আনুষঙ্গিক খরচের সম্ভাব্য হিসাব।</li>
+            </ul>
+
+            <p>
+                কাজ শুরু করার আগে ফি ও অন্যান্য খরচ সম্পর্কে পরিষ্কারভাবে
+                আলোচনা করে নেওয়া উচিত।
+            </p>
+
+        </div>
+    </div>
+
+</div>
+
+@include('frontend.layouts.find_professional')
+
+<script>
+(function () {
+    function initializeLegalInfoCards() {
+
+        // শুধু এই কম্পোনেন্টের বক্সগুলো নিয়ন্ত্রণ করবে
+        const containers = document.querySelectorAll('.legal-info-container');
+
+        containers.forEach(function (container) {
+
+            // একই container-এ listener যেন দ্বিতীয়বার যুক্ত না হয়
+            if (container.dataset.legalInfoInitialized === 'true') {
+                return;
+            }
+
+            container.dataset.legalInfoInitialized = 'true';
+
+            const cards = container.querySelectorAll('.legal-info-card');
+
+            cards.forEach(function (card) {
+
+                const button = card.querySelector('.legal-info-toggle');
+                const details = card.querySelector('.legal-info-details');
+
+                if (!button || !details) {
+                    return;
+                }
+
+                // শুরুতে সব বক্স বন্ধ থাকবে
+                card.classList.remove('is-open');
+                button.setAttribute('aria-expanded', 'false');
+                details.hidden = true;
+
+                button.addEventListener('click', function () {
+
+                    const shouldOpen = !card.classList.contains('is-open');
+
+                    // একই container-এর অন্য বক্সগুলো বন্ধ করা
+                    cards.forEach(function (otherCard) {
+
+                        otherCard.classList.remove('is-open');
+
+                        const otherButton =
+                            otherCard.querySelector('.legal-info-toggle');
+
+                        const otherDetails =
+                            otherCard.querySelector('.legal-info-details');
+
+                        if (otherButton && otherDetails) {
+                            otherButton.setAttribute('aria-expanded', 'false');
+                            otherDetails.hidden = true;
+
+                            const otherText =
+                                otherButton.querySelector('.legal-info-toggle-text');
+
+                            if (otherText) {
+                                otherText.textContent = 'বিস্তারিত পড়ুন';
+                            }
+
+                            const otherArrow =
+                                otherButton.querySelector('.legal-info-arrow');
+
+                            if (otherArrow) {
+                                otherArrow.textContent = '↓';
+                            }
+                        }
+                    });
+
+                    // ক্লিক করা বক্সটি আগে বন্ধ থাকলে খুলবে
+                    if (shouldOpen) {
+
+                        card.classList.add('is-open');
+                        button.setAttribute('aria-expanded', 'true');
+                        details.hidden = false;
+
+                        const text =
+                            button.querySelector('.legal-info-toggle-text');
+
+                        if (text) {
+                            text.textContent = 'সংক্ষিপ্ত করুন';
+                        }
+
+                        const arrow =
+                            button.querySelector('.legal-info-arrow');
+
+                        if (arrow) {
+                            arrow.textContent = '↑';
+                        }
+                    }
+                });
+            });
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener(
+            'DOMContentLoaded',
+            initializeLegalInfoCards
+        );
+    } else {
+        initializeLegalInfoCards();
+    }
+})();
+</script>
 
 @endsection
