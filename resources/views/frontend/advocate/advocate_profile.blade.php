@@ -643,7 +643,20 @@
             }
         }
 
+        /* শুধু দুইটি কার্ডের Height সমান রাখা */
+        .custom_doctor_profile_bottom {
+            align-self: stretch;
+        }
+
+        .custom_doctor_profile_bottom .lpc-slide {
+            height: 100%;
+        }
+
+        .custom_doctor_profile_bottom .lpc-card {
+            height: 100%;
+        }
     </style>
+
     <main class="main pages" style="background-color: #f5f5f5;border-radius: 15px;margin-bottom: 10px;">
         <div class="page-content pt-50" style="padding:20px 0px 10px 0px !important">
             <div class="container">
@@ -651,210 +664,228 @@
 
                     <div class="row">
                         <!-- Advocate Profile -->
-                        <div class="col-lg-4 col-md-4 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
-                            <div class="doctor-profile-card">
-                                <!-- Header -->
-                                <div class="doctor-profile-title">
-                                    <h3>
-                                        Advocate Profile
-                                    </h3>
-                                </div>
+                        <div class="col-lg-6 col-md-6 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
+                            <div class="lpc-slide">
+
+                                <div class="lpc-card">
 
 
-                                <!-- Main Profile -->
-                                <div class="doctor-main-profile">
+                                    <!-- PROFILE IMAGE -->
 
-                                    <!-- Advocate Image -->
-                                    <div class="doctor-image-wrapper">
+                                    <div class="lpc-image-area">
 
-                                        <div class="doctor-image-box">
+                                        <div class="lpc-profile-image">
 
-                                            <!-- আপনার Advocate Image এখানে দিন -->
                                             <img src="{{asset('frontend/adv.png')}}"
-                                                 alt="এড. মোঃ আসাদুল্লাহ গালিব">
+                                                 alt="Adv. Rafiqul Islam">
 
                                         </div>
 
-                                        <!-- Verified -->
-                                        <div class="doctor-verified">
 
-                                            <i class="fa fa-check" style="border: 1px solid #155B30;
-                                                padding: 3px;
-                                                border-radius: 25px;
-                                                background: #155B30;
-                                                color: white;font-size: 15px;"></i>
+                                        <!-- VERIFIED -->
 
-                                            <span>
-                                                Bar Council Verified
-                                            </span>
+                                        <div class="lpc-verified">
+
+                                            <i class="fa fa-check"></i>
+
+                                            Bar Council Verified
 
                                         </div>
 
                                     </div>
 
 
-                                    <!-- Doctor Information -->
-                                    <div class="doctor-info">
 
-                                        <!-- Name -->
-                                        <div class="doctor-name">
+                                    <!-- PROFILE BODY -->
 
-                                            <h2>
-                                                এড. মোঃ আসাদুল্লাহ গালিব 
-                                            </h2>
+                                    <div class="lpc-body">
 
+
+                                        <h3 class="lpc-name">
+                                            Adv. Rafiqul Islam
+                                        </h3>
+
+
+                                        <div class="lpc-designation">
+                                            Legal Consultant
+                                        </div>
+
+
+                                        <!-- RATING -->
+
+                                        <div class="lpc-rating">
+
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+
+                                            <strong>4.8</strong>
+
+                                            <span>
+                                                (61 Reviews)
+                                            </span>
 
                                         </div>
 
 
-                                        <!-- Speciality -->
-                                        <div class="doctor-speciality">
+                                        <!-- SPECIALIZATION -->
 
-                                            <strong>
-                                                Advocate
-                                            </strong>
+                                        <div class="lpc-specialization">
+                                            Corporate & Tax Advisory Specialist
                                         </div>
 
 
-                                        <!-- Qualification -->
-                                        <div class="doctor-qualification">
+                                        <!-- COURT -->
 
+                                        <div class="lpc-court">
                                             Supreme Court of Bangladesh
+                                        </div>
 
+                                        <div class="lpc-court-location">
+                                            District & Sessions Judge Court, Dhaka
                                         </div>
 
 
-                                        <!-- Rating -->
-                                        <div class="doctor-rating">
+                                        <!-- DIVIDER -->
 
-                                            <i class="fa fa-star-o" style="color:#d89d00;font-size:18px;"></i>
-                                            <i class="fa fa-star-o" style="color:#d89d00;font-size:18px;"></i>
+                                        <div class="lpc-divider"></div>
 
-                                            <span class="rating-number">
-                                                4.8
-                                            </span>
 
-                                            <span class="review-count">
-                                                (128 Reviews)
-                                            </span>
+                                        <!-- INFORMATION -->
+
+                                        <div class="lpc-info">
+
+
+                                            <!-- LEFT -->
+
+                                            <div class="lpc-info-column">
+
+                                                <div class="lpc-info-label">
+                                                    Qualification:
+                                                </div>
+
+                                                <div class="lpc-info-value">
+                                                    LL.B, LL.M
+                                                </div>
+
+
+                                                <div class="lpc-info-label">
+                                                    Enrollment No:
+                                                </div>
+
+                                                <div class="lpc-info-value">
+                                                    BCB-XXXXXX
+                                                </div>
+
+                                            </div>
+
+
+                                            <!-- RIGHT -->
+
+                                            <div class="lpc-info-column">
+
+                                                <div class="lpc-info-label">
+                                                    Experience:
+                                                </div>
+
+                                                <div class="lpc-info-value">
+                                                    15 Years of Experience
+                                                </div>
+
+
+                                                <div class="lpc-info-label">
+                                                    Bar Association:
+                                                </div>
+
+                                                <div class="lpc-info-value">
+                                                    Dhaka Bar Association
+                                                </div>
+
+                                            </div>
 
                                         </div>
 
+                                        <!-- Action Buttons -->
+                                        <div class="doctor-action-buttons">
 
-                                        <!-- Experience -->
-                                        <div class="doctor-detail-item">
+                                            <!-- WhatsApp + Share -->
+                                            <div class="row g-3 doctor-bottom-buttons" style="margin-bottom: 15px;">
 
-                                            <i class="fa fa-user-md"></i>
+                                                <!-- WhatsApp -->
+                                                <div class="col-6">
 
-                                            <span>
-                                                <strong>10 Years</strong> Practice
-                                            </span>
+                                                    <a href="tel:+8801700000000"
+                                                       class="doctor-outline-btn">
 
+                                                        <i class="fa fa-phone"></i>
+
+                                                        <span>
+                                                            Call
+                                                        </span>
+
+                                                    </a>
+
+                                                </div>
+
+
+                                                <!-- Share -->
+                                                <div class="col-6">
+
+                                                    <a href="https://wa.me/8801700000000" target="_blank"
+                                                       class="doctor-outline-btn">
+
+                                                        <i class="fa fa-whatsapp"></i>
+
+                                                        <span>
+                                                            WhatsApp
+                                                        </span>
+
+                                                    </a>
+
+                                                </div>
+
+                                            </div>
+
+                                            <!-- Appointment -->
+                                            <div class="mb-3">
+
+                                                <a href="javascript:void(0)" onclick="shareDoctorProfile()"
+                                                    class="doctor-btn btn-appointment">
+
+                                                    <i class="fa fa-share-alt"></i>
+
+                                                    <span>
+                                                        Share Profile
+                                                    </span>
+
+                                                </a>
+
+                                            </div>
                                         </div>
 
-
-                                        <!-- Consultant -->
-                                        <!-- <div class="doctor-detail-item">
-
-                                            <i class="fa fa-user-circle-o"></i>
-
-                                            <span>
-                                                <strong>Associate Consultant</strong>
-                                            </span>
-
-                                        </div> -->
-
-
-                                        <!-- Hospital -->
-                                        <div class="doctor-detail-item">
-
-                                            <i class="fa fa-map-marker"></i>
-
-                                            <span>
-                                                Kishoreganj 250 Bed Hospital
-                                            </span>
-
-                                        </div>
 
                                     </div>
 
-                                </div>
-
-
-                                <!-- Action Buttons -->
-                                <div class="doctor-action-buttons">
-
-                                    <!-- WhatsApp + Share -->
-                                    <div class="row g-3 doctor-bottom-buttons" style="margin-bottom: 15px;">
-
-                                        <!-- WhatsApp -->
-                                        <div class="col-6">
-
-                                            <a href="tel:+8801700000000"
-                                               class="doctor-outline-btn">
-
-                                                <i class="fa fa-phone"></i>
-
-                                                <span>
-                                                    Call
-                                                </span>
-
-                                            </a>
-
-                                        </div>
-
-
-                                        <!-- Share -->
-                                        <div class="col-6">
-
-                                            <a href="https://wa.me/8801700000000" target="_blank"
-                                               class="doctor-outline-btn">
-
-                                                <i class="fa fa-whatsapp"></i>
-
-                                                <span>
-                                                    WhatsApp
-                                                </span>
-
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-
-                                    <!-- Appointment -->
-                                    <div class="mb-3">
-
-                                        <a href="javascript:void(0)" onclick="shareDoctorProfile()"
-                                            class="doctor-btn btn-appointment">
-
-                                            <i class="fa fa-share-alt"></i>
-
-                                            <span>
-                                                Share Profile
-                                            </span>
-
-                                        </a>
-
-                                    </div>
                                 </div>
 
                             </div>
                         </div>
 
-                        @include('frontend.advocate.about_doctor')
-                        @include('frontend.advocate.practice_area')
+                        @include('frontend.advocate.about_advocate')
+                        @include('frontend.advocate.legal_service')
                         @include('frontend.advocate.court_jurisdictions')
-                        @include('frontend.advocate.education')
-                        @include('frontend.advocate.training')
                         @include('frontend.advocate.membership')
-                        @include('frontend.advocate.social_engagement')
+                        @include('frontend.advocate.training')
+                        @include('frontend.advocate.education')
                         @include('frontend.advocate.chamber')
+                        @include('frontend.advocate.office_hour')
                         @include('frontend.advocate.map')
                         @include('frontend.advocate.reviews')
-                        @include('frontend.advocate.faq')
-                        @include('frontend.advocate.photo_gallery')
+                        @include('frontend.advocate.social_engagement')
                         @include('frontend.advocate.philosophy')
+                        @include('frontend.advocate.photo_gallery')
                         @include('frontend.advocate.legal_topics')
                         @include('frontend.advocate.video')
                         @include('frontend.advocate.recommented_advocate')

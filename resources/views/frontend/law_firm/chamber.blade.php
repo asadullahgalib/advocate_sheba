@@ -63,12 +63,12 @@
 
     .address-column {
         position: relative;
-        padding-left: 65px;
+        padding-left: 0px;
         min-height: 115px;
     }
 
     .address-column:first-child {
-        border-right: 1px solid #c9c8c2;
+        /*border-right: 1px solid #c9c8c2;*/
     }
 
     .address-icon {
@@ -319,7 +319,7 @@
         }
 
         .address-column {
-            padding-left: 55px;
+            padding-left: 0px;
         }
 
         .address-column:first-child {
@@ -411,211 +411,79 @@
     }
 </style>
 
-<div class="law-page">
+<div class="col-lg-4 col-md-4 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
+    <div class="lpc-slide">
 
-    <!-- HEADER -->
-    <div class="law-title">
-        <h1>Law Chamber | Offices &amp; Hours</h1>
-    </div>
+        <div class="lpc-card">
 
-    <div class="law-subtitle">
-        Professional Legal Services | Supreme Court Bar
-    </div>
+            <!-- PROFILE BODY -->
 
-    <!-- ADDRESS -->
-    <div class="address-wrapper">
+            <div class="lpc-body">
 
-        <div class="row">
+                <!-- HEADER -->
+                <div class="law-title" style="text-align:left !important;">
+                    <h1> <i class="fa fa-map-marker"></i> Chamber & Office</h1>
+                </div>
 
-            <!-- CHAMBER ADDRESS -->
-            <div class="col-md-6">
-                <div class="address-column">
+                <div class="law-subtitle" style="text-align:left !important;">
+                    Professional Legal Services | Supreme Court Bar
+                </div>
 
-                    <i class="bi bi-geo-alt-fill address-icon"></i>
+                <!-- ADDRESS -->
+                <div class="address-wrapper">
 
-                    <div class="address-title">
-                        Chamber Address:
-                    </div>
+                    <div class="row">
 
-                    <div class="address-text">
-                        Supreme Court Bar Building (8th Floor)<br>
-                        Room No-810, Shahbagh, Dhaka-1000
+                        <!-- CHAMBER ADDRESS -->
+                        <div class="col-md-12" style="text-align:left;">
+                            <div class="address-column" style="padding-left: 0px !important;border-right:none !important;">
+
+                                <div class="address-title">
+                                    Chamber Address:
+                                </div>
+
+                                <div class="address-text">
+                                    Supreme Court Bar Building (8th Floor)<br>
+                                    Room No-810, Shahbagh, Dhaka-1000
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <!-- OFFICE ADDRESS -->
+                        <div class="col-md-12" style="text-align:left;">
+                            <div class="address-column" style="padding-left: 0px !important;border-right:none !important;border-bottom: none !important;">
+
+                                <div class="address-title">
+                                    Office Address:
+                                </div>
+
+                                <div class="address-text">
+                                    Supreme Court Bar Building (8th Floor)<br>
+                                    Room No-810, Shahbagh, Dhaka-1000
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-12" style="text-align:left;">
+                            <a href="#" class="doctor-outline-btn" style="background-color: #153f70;color: #fff;">
+
+                                <i class="fa fa-map-marker" style="color:#fff"></i>
+
+                                <span>
+                                    View on Map
+                                </span>
+
+                            </a>
+                        </div>
+
                     </div>
 
                 </div>
+
             </div>
-
-
-            <!-- OFFICE ADDRESS -->
-            <div class="col-md-6">
-                <div class="address-column">
-
-                    <i class="bi bi-geo-alt-fill address-icon"></i>
-
-                    <div class="address-title">
-                        Office Address:
-                    </div>
-
-                    <div class="address-text">
-                        Supreme Court Bar Building (8th Floor)<br>
-                        Room No-810, Shahbagh, Dhaka-1000
-                    </div>
-
-                </div>
-            </div>
-
         </div>
-
-
-        <!-- OFFICE HOURS -->
-        <div class="hours-card">
-
-            <div class="hours-heading">
-
-                <div class="clock-icon">
-                    <i class="bi bi-clock"></i>
-                </div>
-
-                <div>
-                    <h2>Office Hours:</h2>
-                    <p>Counseling &amp; Consultation Times</p>
-                </div>
-
-            </div>
-
-
-            <div class="hours-table">
-
-                <div class="hours-row">
-                    <div class="hours-day closed">
-                        Closed
-                    </div>
-
-                    <div class="hours-separator"></div>
-
-                    <div class="hours-time">
-                        10:00 AM – 7:00 PM
-                    </div>
-                </div>
-
-
-                <div class="hours-row">
-                    <div class="hours-day">
-                        Court Office
-                    </div>
-
-                    <div class="hours-separator"></div>
-
-                    <div class="hours-time">
-                        10:00 AM – 7:00 PM
-                    </div>
-                </div>
-
-
-                <div class="hours-row">
-                    <div class="hours-day">
-                        Chamber
-                    </div>
-
-                    <div class="hours-separator"></div>
-
-                    <div class="hours-time">
-                        10:00 AM – 7:00 PM
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
     </div>
-
-
-    <!-- COMMUNICATION -->
-    <div class="communication">
-
-        <div class="communication-card">
-
-            <div class="communication-title">
-                <i class="bi bi-buildings-fill"></i>
-                <span>Map &amp; Communication:</span>
-            </div>
-
-
-            <div class="communication-items">
-
-                <!-- MAP -->
-                <div class="communication-item">
-
-                    <div class="communication-icon">
-                        <i class="bi bi-geo-alt"></i>
-                    </div>
-
-                    <div class="communication-label">
-                        View on Map
-                    </div>
-
-                </div>
-
-
-                <!-- WHATSAPP -->
-                <div class="communication-item">
-
-                    <div class="communication-icon whatsapp-icon">
-                        <i class="bi bi-whatsapp"></i>
-                    </div>
-
-                    <div class="communication-value">
-                        +880 1913-720088
-                    </div>
-
-                    <div class="communication-label">
-                        WhatsApp
-                    </div>
-
-                </div>
-
-
-                <!-- EMAIL -->
-                <div class="communication-item">
-
-                    <div class="communication-icon">
-                        <i class="bi bi-envelope-fill"></i>
-                    </div>
-
-                    <div class="communication-value">
-                        info@lawchamber.com
-                    </div>
-
-                </div>
-
-                <!-- EMAIL -->
-                <div class="communication-item">
-
-                    <div class="communication-icon">
-                        <i class="bi bi-telephone-fill"></i>
-                    </div>
-
-                    <div class="communication-value">
-                        +880 1913-720088
-                    </div>
-
-                    <div class="communication-label">
-                        Phone &amp; general inquiries
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- FOOTER -->
-    <p class="appointment">
-        By Prior Appointment Only | Contact for Scheduling
-    </p>
-
 </div>

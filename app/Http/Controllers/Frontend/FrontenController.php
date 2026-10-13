@@ -222,7 +222,7 @@ class FrontenController extends Controller
         $data['departments']    = Department::orderBy('sort','asc')->get();
         $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
         $data['page_type'] = 'find_consultant';
-        return view('frontend.single_pages.law_firm_details',$data);
+        return view('frontend.law_firm.law_firm_profile',$data);
     }
 
     public function legalInformation(){

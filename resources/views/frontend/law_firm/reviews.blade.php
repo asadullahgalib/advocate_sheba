@@ -1,7 +1,7 @@
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/rating.css')}}">
 
 <!-- Client Rating & Reviews -->
-<div class="col-lg-4 col-md-4 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
+<div class="col-lg-3 col-md-3 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
     <div class="doctor-profile-card">
 
         <!-- Header -->

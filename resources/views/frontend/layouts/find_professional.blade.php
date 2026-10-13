@@ -3,7 +3,7 @@
         padding: 12px 20px;
         margin-bottom: 15px;
         min-height: 45px;
-        background: rgb(16, 60, 109);
+        background-color: #103C6D !important;
         border-radius: 12px;
         box-shadow: rgba(0, 32, 91, 0.2) 0px 4px 15px;
         display: flex;

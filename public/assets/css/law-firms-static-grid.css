@@ -1,0 +1,93 @@
+/* =========================================================
+   STATIC LAW FIRMS GRID (NO CAROUSEL)
+   Add this CSS AFTER the existing lpc CSS file.
+   Scoped to .lpc-static-firms-section so other pages/sections
+   using the same lpc classes are not affected.
+   ========================================================= */
+
+.lpc-static-firms-section .lpc-carousel {
+    position: static;
+    width: 100%;
+}
+
+.lpc-static-firms-section .lpc-viewport {
+    width: 100%;
+    overflow: visible;
+}
+
+.lpc-static-firms-section .lpc-track {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    width: 100%;
+    margin: 0;
+    padding: 5px 2px 10px;
+    transform: none !important;
+    transition: none;
+    will-change: auto;
+    box-sizing: border-box;
+}
+
+.lpc-static-firms-section .lpc-slide {
+    display: flex;
+    min-width: 0;
+    width: 100%;
+    height: 100%;
+    flex: initial;
+    box-sizing: border-box;
+}
+
+.lpc-static-firms-section .lpc-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.lpc-static-firms-section .lpc-body {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+}
+
+.lpc-static-firms-section .lpc-info {
+    flex: 1 1 auto;
+}
+
+.lpc-static-firms-section .lpc-profile-button {
+    margin-top: auto;
+}
+
+.lpc-static-firms-section .lpc-arrow {
+    display: none !important;
+}
+
+/* Laptop/tablet: 3 cards */
+@media (max-width: 1100px) {
+    .lpc-static-firms-section .lpc-track {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+    }
+}
+
+/* Mobile: 2 cards */
+@media (max-width: 767px) {
+    .lpc-static-firms-section .lpc-track {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        padding: 5px 2px 10px;
+    }
+}
+
+/* Very small screens: 1 card */
+@media (max-width: 480px) {
+    .lpc-static-firms-section .lpc-track {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+    }
+
+    .lpc-static-firms-section .lpc-slide {
+        width: 100%;
+    }
+}

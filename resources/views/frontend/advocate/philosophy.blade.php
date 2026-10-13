@@ -3,24 +3,24 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 
-<section class="professional-section">
+<section class="professional-section" style="padding: 0px 0px 20px 0px !important;">
 
     <div class="container">
 
-        <!-- =========================
-             Section Header
-        ========================== -->
-
-        <div class="professional-header text-center">
-
-            <h2> <i class="fa-solid fa-scale-balanced"></i> Professional Philosophy</h2>
-
-            <p>
-                Professional Philosophy, Objectives & Rights
+        <div class="flex justify-between items-center mt-2">
+          <div class="my-4">
+            <h2
+              id="hospitals-by-location"
+              class="text-lg md:text-xl font-semibold text-gray-800 dark:text-gray-100"
+            >
+              Professional Philosophy
+            </h2>
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+              Professional Philosophy, Objectives & Rights
             </p>
-
+          </div>
+          
         </div>
-
 
         <!-- =========================
              Cards Row

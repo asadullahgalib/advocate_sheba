@@ -140,7 +140,7 @@
         }
 
         .doctor-name h2 {
-            font-size: 19px;
+            font-size: 17px;
             font-weight: 700;
             color: #111111;
             margin: 0;
@@ -400,7 +400,7 @@
             }
 
             .doctor-name h2 {
-                font-size: 23px;
+                font-size: 18px;
             }
 
             .doctor-name .verified-icon {
@@ -643,7 +643,20 @@
             }
         }
 
+        /* শুধু দুইটি কার্ডের Height সমান রাখা */
+        .custom_doctor_profile_bottom {
+            align-self: stretch;
+        }
+
+        .custom_doctor_profile_bottom .lpc-slide {
+            height: 100%;
+        }
+
+        .custom_doctor_profile_bottom .lpc-card {
+            height: 100%;
+        }
     </style>
+    
     <main class="main pages" style="background-color: #f5f5f5;border-radius: 15px;margin-bottom: 10px;">
         <div class="page-content pt-50" style="padding:20px 0px 10px 0px !important">
             <div class="container">
@@ -651,231 +664,207 @@
 
                     <div class="row">
                         <!-- Advocate Profile -->
-                        <div class="col-lg-4 col-md-4 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
-                            <div class="doctor-profile-card">
-                                <!-- Header -->
-                                <div class="doctor-profile-title">
-                                    <h3>
-                                        Advocate Profile
-                                    </h3>
-                                </div>
+                        <div class="col-lg-6 col-md-6 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
+                            <div class="lpc-slide">
+
+                                <div class="lpc-card">
 
 
-                                <!-- Main Profile -->
-                                <div class="doctor-main-profile">
+                                    <!-- PROFILE IMAGE -->
 
-                                    <!-- Advocate Image -->
-                                    <div class="doctor-image-wrapper">
+                                    <div class="lpc-image-area">
 
-                                        <div class="doctor-image-box">
+                                        <div class="lpc-profile-image">
 
-                                            <!-- আপনার Advocate Image এখানে দিন -->
                                             <img src="{{asset('frontend/adv.png')}}"
-                                                 alt="এড. মোঃ আসাদুল্লাহ গালিব">
+                                                 alt="Adv. Rafiqul Islam">
 
                                         </div>
 
-                                        <!-- Verified -->
-                                        <div class="doctor-verified">
 
-                                            <i class="fa fa-check" style="border: 1px solid #155B30;
-                                                padding: 3px;
-                                                border-radius: 25px;
-                                                background: #155B30;
-                                                color: white;font-size: 15px;"></i>
+                                        <!-- VERIFIED -->
 
-                                            <span>
-                                                Bar Council Verified
-                                            </span>
+                                        <div class="lpc-verified">
+
+                                            <i class="fa fa-check"></i>
+
+                                            Bar Council Verified
 
                                         </div>
 
                                     </div>
 
 
-                                    <!-- Doctor Information -->
-                                    <div class="doctor-info">
 
-                                        <!-- Name -->
-                                        <div class="doctor-name">
+                                    <!-- PROFILE BODY -->
 
-                                            <h2>
-                                                এড. মোঃ আসাদুল্লাহ গালিব 
+                                    <div class="lpc-body">
 
-                                                <i class="fa fa-check verified-icon" style="border: 1px solid #155B30;
-                                                    padding: 3px;
-                                                    border-radius: 25px;
-                                                    background: #155B30;
-                                                    color: white;font-size: 15px;"></i>
-                                            </h2>
 
+                                        <h3 class="lpc-name">
+                                            Adv. Rafiqul Islam
+                                        </h3>
+
+
+                                        <div class="lpc-designation">
+                                            Legal Consultant
+                                        </div>
+
+
+                                        <!-- RATING -->
+
+                                        <div class="lpc-rating">
+
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+
+                                            <strong>4.8</strong>
+
+                                            <span>
+                                                (61 Reviews)
+                                            </span>
 
                                         </div>
 
 
-                                        <!-- Speciality -->
-                                        <div class="doctor-speciality">
+                                        <!-- SPECIALIZATION -->
 
-                                            <strong>
-                                                Advocate
-                                            </strong>
+                                        <div class="lpc-specialization">
+                                            Corporate & Tax Advisory Specialist
                                         </div>
 
 
-                                        <!-- Qualification -->
-                                        <div class="doctor-qualification">
+                                        <!-- COURT -->
 
+                                        <div class="lpc-court">
                                             Supreme Court of Bangladesh
+                                        </div>
 
+                                        <div class="lpc-court-location">
+                                            District & Sessions Judge Court, Dhaka
                                         </div>
 
 
-                                        <!-- Rating -->
-                                        <div class="doctor-rating">
+                                        <!-- DIVIDER -->
 
-                                            <i class="fa fa-star-o" style="color:#d89d00;font-size:18px;"></i>
-                                            <i class="fa fa-star-o" style="color:#d89d00;font-size:18px;"></i>
-
-                                            <span class="rating-number">
-                                                4.8
-                                            </span>
-
-                                            <span class="review-count">
-                                                (128 Reviews)
-                                            </span>
-
-                                        </div>
+                                        <div class="lpc-divider"></div>
 
 
-                                        <!-- Experience -->
-                                        <div class="doctor-detail-item">
+                                        <!-- INFORMATION -->
 
-                                            <i class="fa fa-user-md"></i>
-
-                                            <span>
-                                                <strong>10 Years</strong> Practice
-                                            </span>
-
-                                        </div>
+                                        <div class="lpc-info">
 
 
-                                        <!-- Consultant -->
-                                        <!-- <div class="doctor-detail-item">
+                                            <!-- LEFT -->
 
-                                            <i class="fa fa-user-circle-o"></i>
+                                            <div class="lpc-info-column">
 
-                                            <span>
-                                                <strong>Associate Consultant</strong>
-                                            </span>
+                                                <div class="lpc-info-label">
+                                                    Qualification:
+                                                </div>
 
-                                        </div> -->
-
-
-                                        <!-- Hospital -->
-                                        <div class="doctor-detail-item">
-
-                                            <i class="fa fa-map-marker"></i>
-
-                                            <span>
-                                                Kishoreganj 250 Bed Hospital
-                                            </span>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
+                                                <div class="lpc-info-value">
+                                                    LL.B, LL.M
+                                                </div>
 
 
-                                <!-- Action Buttons -->
-                                <div class="doctor-action-buttons">
+                                                <div class="lpc-info-label">
+                                                    Enrollment No:
+                                                </div>
 
-                                    <!-- WhatsApp + Share -->
-                                    <div class="row g-3 doctor-bottom-buttons" style="margin-bottom: 15px;">
+                                                <div class="lpc-info-value">
+                                                    BCB-XXXXXX
+                                                </div>
 
-                                        <!-- WhatsApp -->
-                                        <div class="col-6">
+                                            </div>
 
-                                            <a href="tel:+8801700000000"
-                                               class="doctor-outline-btn">
 
-                                                <i class="fa fa-phone"></i>
+                                            <!-- RIGHT -->
 
-                                                <span>
-                                                    Call
-                                                </span>
+                                            <div class="lpc-info-column">
 
-                                            </a>
+                                                <div class="lpc-info-label">
+                                                    Experience:
+                                                </div>
+
+                                                <div class="lpc-info-value">
+                                                    15 Years of Experience
+                                                </div>
+
+
+                                                <div class="lpc-info-label">
+                                                    Bar Association:
+                                                </div>
+
+                                                <div class="lpc-info-value">
+                                                    Dhaka Bar Association
+                                                </div>
+
+                                            </div>
 
                                         </div>
 
+                                        <!-- Action Buttons -->
+                                        <div class="doctor-action-buttons">
 
-                                        <!-- Share -->
-                                        <div class="col-6">
+                                            <!-- WhatsApp + Share -->
+                                            <div class="row g-3 doctor-bottom-buttons" style="margin-bottom: 15px;">
 
-                                            <a href="https://wa.me/8801700000000" target="_blank"
-                                               class="doctor-outline-btn">
+                                                <!-- WhatsApp -->
+                                                <div class="col-6">
 
-                                                <i class="fa fa-whatsapp"></i>
+                                                    <a href="tel:+8801700000000"
+                                                       class="doctor-outline-btn">
 
-                                                <span>
-                                                    WhatsApp
-                                                </span>
+                                                        <i class="fa fa-phone"></i>
 
-                                            </a>
+                                                        <span>
+                                                            Call
+                                                        </span>
 
+                                                    </a>
+
+                                                </div>
+
+
+                                                <!-- Share -->
+                                                <div class="col-6">
+
+                                                    <a href="https://wa.me/8801700000000" target="_blank"
+                                                       class="doctor-outline-btn">
+
+                                                        <i class="fa fa-whatsapp"></i>
+
+                                                        <span>
+                                                            WhatsApp
+                                                        </span>
+
+                                                    </a>
+
+                                                </div>
+
+                                            </div>
+
+                                            <!-- Appointment -->
+                                            <div class="mb-3">
+
+                                                <a href="javascript:void(0)" onclick="shareDoctorProfile()"
+                                                    class="doctor-btn btn-appointment">
+
+                                                    <i class="fa fa-share-alt"></i>
+
+                                                    <span>
+                                                        Share Profile
+                                                    </span>
+
+                                                </a>
+
+                                            </div>
                                         </div>
 
-                                    </div>
-
-                                    <!-- Appointment -->
-                                    <div class="mb-3">
-
-                                        <a href="javascript:void(0)" onclick="shareDoctorProfile()"
-                                            class="doctor-btn btn-appointment">
-
-                                            <i class="fa fa-share-alt"></i>
-
-                                            <span>
-                                                Share Profile
-                                            </span>
-
-                                        </a>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- About Advocate -->
-                        <div class="col-lg-4 col-md-4 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
-                            <div class="doctor-profile-card">
-
-                                <!-- Header -->
-                                <div class="doctor-profile-title">
-                                    <h3>
-                                        About Advocate
-                                    </h3>
-                                </div>
-
-                                <!-- Main Profile -->
-                                <div class="doctor-main-profile">
-
-                                    <!-- Doctor Information -->
-                                    <div class="doctor-info">
-
-                                        <p style="text-align: justify;">এড. মোঃ আসাদুল্লাহ গালিব ... Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                        cillum dolore eu fugiat nulla pariatur.</p>
-
-                                        <p style="text-align: justify;">এড. মোঃ আসাদুল্লাহ গালিব ... Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                        cillum dolore eu fugiat nulla pariatur.</p>
 
                                     </div>
 
@@ -884,706 +873,21 @@
                             </div>
                         </div>
 
-                        <!-- Practice Area & Legal Service -->
-                        <div class="col-lg-4 col-md-4 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
-                            <div class="doctor-profile-card">
-
-                                <!-- Header -->
-                                <div class="doctor-profile-title">
-                                    <h3>
-                                        Practice Area & Legal Service
-                                    </h3>
-                                </div>
-
-                                <!-- Main Profile -->
-                                <div class="doctor-main-profile">
-
-                                    <div class="row row-cols-4 g-2">
-
-                                        <div class="col text-center" style="margin-bottom: 10px;border: 1px solid #c8bfbfba;">
-                                            <img src="{{asset('frontend/profile/pra-1.jpg')}}"
-                                                 class="profile_specialties_img"
-                                                 alt="Corporate & Company Law">
-                                            <p style="font-size: 13px;line-height: 18px;">Corporate & Company Law</p>
-                                        </div>
-
-                                        <div class="col text-center" style="margin-bottom: 10px;border: 1px solid #c8bfbfba;">
-                                            <img src="{{asset('frontend/profile/pra-2.jpg')}}"
-                                                 class="profile_specialties_img"
-                                                 alt="Commercial & Business Law">
-                                            <p style="font-size: 13px;line-height: 18px;">Commercial & Business Law</p>
-                                        </div>
-
-                                        <div class="col text-center" style="margin-bottom: 10px;border: 1px solid #c8bfbfba;">
-                                            <img src="{{asset('frontend/profile/pra-3.jpg')}}"
-                                                 class="profile_specialties_img"
-                                                 alt="Banking & Finance Law">
-                                            <p style="font-size: 13px;line-height: 18px;">Banking & Finance Law</p>
-                                        </div>
-
-                                        <div class="col text-center" style="margin-bottom: 10px;border: 1px solid #c8bfbfba;">
-                                            <img src="{{asset('frontend/profile/pra-4.jpg')}}"
-                                                 class="profile_specialties_img"
-                                                 alt="TAX,VAT & Customs">
-                                            <p style="font-size: 13px;line-height: 18px;">TAX,VAT & Customs</p>
-                                        </div>
-
-
-                                        <div class="col text-center" style="margin-bottom: 10px;border: 1px solid #c8bfbfba;">
-                                            <img src="{{asset('frontend/profile/pra-1.jpg')}}"
-                                                 class="profile_specialties_img"
-                                                 alt="Corporate & Company Law">
-                                            <p style="font-size: 13px;line-height: 18px;">Corporate & Company Law</p>
-                                        </div>
-
-                                        <div class="col text-center" style="margin-bottom: 10px;border: 1px solid #c8bfbfba;">
-                                            <img src="{{asset('frontend/profile/pra-2.jpg')}}"
-                                                 class="profile_specialties_img"
-                                                 alt="Commercial & Business Law">
-                                            <p style="font-size: 13px;line-height: 18px;">Commercial & Business Law</p>
-                                        </div>
-
-                                        <div class="col text-center" style="margin-bottom: 10px;border: 1px solid #c8bfbfba;">
-                                            <img src="{{asset('frontend/profile/pra-3.jpg')}}"
-                                                 class="profile_specialties_img"
-                                                 alt="Banking & Finance Law">
-                                            <p style="font-size: 13px;line-height: 18px;">Banking & Finance Law</p>
-                                        </div>
-
-                                        <div class="col text-center" style="margin-bottom: 10px;border: 1px solid #c8bfbfba;">
-                                            <img src="{{asset('frontend/profile/pra-4.jpg')}}"
-                                                 class="profile_specialties_img"
-                                                 alt="TAX,VAT & Customs">
-                                            <p style="font-size: 13px;line-height: 18px;">TAX,VAT & Customs</p>
-                                        </div>
-
-                                    </div>
-
-                                    <style>
-                                        .profile_specialties_img {
-                                            width: 100%;
-                                            max-width: 300px;
-                                            height: auto;
-                                            aspect-ratio: 1 / 1;
-                                            object-fit: cover;
-                                        }
-
-                                        .profile_specialties_img + p {
-                                            font-weight: bold;
-                                            margin-top: 5px;
-                                            margin-bottom: 0;
-                                        }
-                                    </style>
-
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- Education & Qualification -->
-                        <div class="col-lg-4 col-md-4 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
-                            <div class="doctor-profile-card">
-
-                                <!-- Header -->
-                                <div class="doctor-profile-title">
-                                    <h3>
-                                        Education & Qualification
-                                    </h3>
-                                </div>
-
-                                <!-- Main Profile -->
-                                <div class="doctor-main-profile card" style="padding: 5px 0px;background: #f5f5f5;    margin-bottom: 15px;">
-
-                                    <div style="width: 35px;
-                                        font-size: 25px;
-                                        float: left;
-                                        margin: 15px 0px 5px 10px;">
-                                        <i class="fa fa-graduation-cap" style="color:#155B30;"></i>
-                                    </div>
-                                    <div>
-                                        <h3 style="font-size: 20px;">LL.B. (Hons.)</h3>
-                                        <p>University of Dhaka</p>
-                                    </div>
-                                </div>
-
-                                <div class="doctor-main-profile card" style="padding: 5px 0px;background: #f5f5f5;    margin-bottom: 15px;">
-
-                                    <div style="width: 35px;
-                                        font-size: 25px;
-                                        float: left;
-                                        margin: 15px 0px 5px 10px;">
-                                        <i class="fa fa-graduation-cap" style="color:#155B30;"></i>
-                                    </div>
-                                    <div>
-                                        <h3 style="font-size: 20px;">LL.M. (Master of Laws)</h3>
-                                        <p>University of Dhaka</p>
-                                    </div>
-                                </div>
-
-                                <div class="doctor-main-profile card" style="padding: 5px 0px;background: #f5f5f5;    margin-bottom: 15px;">
-
-                                    <div style="width: 35px;
-                                        font-size: 25px;
-                                        float: left;
-                                        margin: 15px 0px 5px 10px;">
-                                        <i class="fa fa-graduation-cap" style="color:#155B30;"></i>
-                                    </div>
-                                    <div>
-                                        <h3 style="font-size: 20px;">Advocate Enrollment</h3>
-                                        <p>Bangladesh Bar Council</p>
-                                    </div>
-                                </div>
-
-                                <div class="doctor-main-profile card" style="padding: 5px 0px;background: #f5f5f5;    margin-bottom: 15px;">
-
-                                    <div style="width: 35px;
-                                        font-size: 25px;
-                                        float: left;
-                                        margin: 15px 0px 5px 10px;">
-                                        <i class="fa fa-graduation-cap" style="color:#155B30;"></i>
-                                    </div>
-                                    <div>
-                                        <h3 style="font-size: 20px;">Legal Practice</h3>
-                                        <p>Supreme Court of Bangladesh</p>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- Training & Certifications -->
-                        <div class="col-lg-4 col-md-4 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
-                            <div class="doctor-profile-card">
-
-                                <!-- Header -->
-                                <div class="doctor-profile-title">
-                                    <h3>
-                                        Certifications & Training
-                                    </h3>
-                                </div>
-
-                                <!-- Main Profile -->
-                                <div class="doctor-main-profile card" style="padding: 5px 0px;background: #f5f5f5;    margin-bottom: 15px;">
-
-                                    <div style="width: 35px;
-                                        font-size: 25px;
-                                        float: left;
-                                        margin: 15px 0px 5px 10px;">
-                                        <i class="fa fa-dot-circle-o" style="color:#155B30;"></i>
-                                    </div>
-                                    <div style="margin-top: 14px;">
-                                        <p style="font-weight:bold;">Bangladesh Bar Council</p>
-                                    </div>
-                                </div>
-
-                                <div class="doctor-main-profile card" style="padding: 5px 0px;background: #f5f5f5;    margin-bottom: 15px;">
-
-                                    <div style="width: 35px;
-                                        font-size: 25px;
-                                        float: left;
-                                        margin: 15px 0px 5px 10px;">
-                                        <i class="fa fa-dot-circle-o" style="color:#155B30;"></i>
-                                    </div>
-                                    <div style="margin-top: 14px;">
-                                        <p style="font-weight:bold;">Supreme Court of Bangladesh</p>
-                                    </div>
-                                </div>
-
-                                <div class="doctor-main-profile card" style="padding: 5px 0px;background: #f5f5f5;    margin-bottom: 15px;">
-
-                                    <div style="width: 35px;
-                                        font-size: 25px;
-                                        float: left;
-                                        margin: 15px 0px 5px 10px;">
-                                        <i class="fa fa-dot-circle-o" style="color:#155B30;"></i>
-                                    </div>
-                                    <div style="margin-top: 14px;">
-                                        <p style="font-weight:bold;">Bangladesh Judicial Academy</p>
-                                    </div>
-                                </div>
-
-                                <div class="doctor-main-profile card" style="padding: 5px 0px;background: #f5f5f5;    margin-bottom: 15px;">
-
-                                    <div style="width: 35px;
-                                        font-size: 25px;
-                                        float: left;
-                                        margin: 15px 0px 5px 10px;">
-                                        <i class="fa fa-dot-circle-o" style="color:#155B30;"></i>
-                                    </div>
-                                    <div style="margin-top: 14px;">
-                                        <p style="font-weight:bold;">International Bar Association</p>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- Professional Memberships -->
-                        <div class="col-lg-4 col-md-4 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
-                            <div class="doctor-profile-card">
-
-                                <!-- Header -->
-                                <div class="doctor-profile-title">
-                                    <h3>
-                                        Professional Memberships
-                                    </h3>
-                                </div>
-
-                                <!-- Main Profile -->
-                                <div class="doctor-main-profile card" style="padding: 5px 0px;background: #f5f5f5;    margin-bottom: 15px;">
-
-                                    <div style="width: 35px;
-                                        font-size: 25px;
-                                        float: left;
-                                        margin: 15px 0px 5px 10px;">
-                                        <i class="fa fa-dot-circle-o" style="color:#155B30;"></i>
-                                    </div>
-                                    <div style="margin-top: 14px;">
-                                        <p style="font-weight:bold;">Bangladesh Bar Council</p>
-                                    </div>
-                                </div>
-
-                                <div class="doctor-main-profile card" style="padding: 5px 0px;background: #f5f5f5;    margin-bottom: 15px;">
-
-                                    <div style="width: 35px;
-                                        font-size: 25px;
-                                        float: left;
-                                        margin: 15px 0px 5px 10px;">
-                                        <i class="fa fa-dot-circle-o" style="color:#155B30;"></i>
-                                    </div>
-                                    <div style="margin-top: 14px;">
-                                        <p style="font-weight:bold;">Dhaka Bar Association</p>
-                                    </div>
-                                </div>
-
-                                <div class="doctor-main-profile card" style="padding: 5px 0px;background: #f5f5f5;    margin-bottom: 15px;">
-
-                                    <div style="width: 35px;
-                                        font-size: 25px;
-                                        float: left;
-                                        margin: 15px 0px 5px 10px;">
-                                        <i class="fa fa-dot-circle-o" style="color:#155B30;"></i>
-                                    </div>
-                                    <div style="margin-top: 14px;">
-                                        <p style="font-weight:bold;">Supreme Court Bar Association of Bangladesh</p>
-                                    </div>
-                                </div>
-
-                                <div class="doctor-main-profile card" style="padding: 5px 0px;background: #f5f5f5;    margin-bottom: 15px;">
-
-                                    <div style="width: 35px;
-                                        font-size: 25px;
-                                        float: left;
-                                        margin: 15px 0px 5px 10px;">
-                                        <i class="fa fa-dot-circle-o" style="color:#155B30;"></i>
-                                    </div>
-                                    <div style="margin-top: 14px;">
-                                        <p style="font-weight:bold;">International Bar Association</p>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- Works Experience/Workplace -->
-                        <div class="col-lg-4 col-md-4 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
-                            <div class="doctor-profile-card">
-
-                                <!-- Header -->
-                                <div class="doctor-profile-title">
-                                    <h3>
-                                        Works Experience/Workplace
-                                    </h3>
-                                </div>
-
-                                <!-- Work Experience -->
-
-                                <!-- Timeline -->
-                                <div class="experience-timeline">
-
-                                    <!-- Experience Item -->
-                                    <div class="experience-item">
-
-                                        <div class="timeline-dot"></div>
-
-                                        <div class="experience-content">
-                                            <div class="designation">
-                                                Associate Consultant (Medicine)
-                                            </div>
-
-                                            <div class="workplace">
-                                                Kishoreganj 250 Bed Hospital
-                                            </div>
-
-                                            <div class="experience-year">
-                                                2018 - Present
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-
-                                    <!-- Experience Item -->
-                                    <div class="experience-item">
-
-                                        <div class="timeline-dot"></div>
-
-                                        <div class="experience-content">
-                                            <div class="designation">
-                                                Medical Officer
-                                            </div>
-
-                                            <div class="workplace">
-                                                Upazila Health Complex, Mithamain
-                                            </div>
-
-                                            <div class="experience-year">
-                                                2016 - 2018
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-
-                                    <!-- Experience Item -->
-                                    <div class="experience-item">
-
-                                        <div class="timeline-dot"></div>
-
-                                        <div class="experience-content">
-                                            <div class="designation">
-                                                Intern Doctor
-                                            </div>
-
-                                            <div class="workplace">
-                                                Dhaka Medical College Hospital
-                                            </div>
-
-                                            <div class="experience-year">
-                                                2015 - 2016
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-
-                                <style>
-
-                                    /* Timeline */
-                                    .experience-timeline {
-                                        position: relative;
-                                        margin-left: 10px;
-                                        padding-left: 22px;
-                                    }
-
-
-                                    /* Vertical Line */
-                                    .experience-timeline::before {
-                                        content: "";
-                                        position: absolute;
-                                        left: 4px;
-                                        top: 7px;
-                                        bottom: 8px;
-                                        width: 1px;
-                                        background: #cfd5dc;
-                                    }
-
-
-                                    /* Experience Item */
-                                    .experience-item {
-                                        position: relative;
-                                        margin-bottom: 17px;
-                                    }
-
-                                    .experience-item:last-child {
-                                        margin-bottom: 0;
-                                    }
-
-
-                                    /* Timeline Dot */
-                                    .timeline-dot {
-                                        position: absolute;
-                                        left: -22px;
-                                        top: 4px;
-
-                                        width: 9px;
-                                        height: 9px;
-
-                                        background: #ffffff;
-                                        border: 2px solid #294b85;
-                                        border-radius: 50%;
-
-                                        z-index: 2;
-                                    }
-
-
-                                    /* Content */
-                                    .experience-content {
-                                        font-size: 11px;
-                                        line-height: 1.45;
-                                        color: #26364d;
-                                    }
-
-
-                                    /* Designation */
-                                    .designation {
-                                        font-weight: 700;
-                                        color: #26364d;
-                                        margin-bottom: 1px;
-                                        font-size: 18px;
-                                    }
-
-
-                                    /* Workplace */
-                                    .workplace {
-                                        font-weight: 500;
-                                        color: #33445d;
-                                        font-size: 15px;
-                                    }
-
-
-                                    /* Year */
-                                    .experience-year {
-                                        color: #53627a;
-                                        margin-top: 1px;
-                                        font-size: 15px;
-                                    }
-
-
-                                    /* Mobile */
-                                    @media (max-width: 576px) {
-
-                                        .work-experience-title {
-                                            font-size: 13px;
-                                        }
-
-                                        .experience-content {
-                                            font-size: 11px;
-                                        }
-
-                                    }
-
-                                </style>
-
-                            </div>
-                        </div>
-
-                        <!-- Chamber & Appointment -->
-                        <div class="col-lg-4 col-md-4 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
-                            <div class="doctor-profile-card">
-                                <!-- Header -->
-                                <div class="doctor-profile-title">
-                                    <h3>
-                                        Chamber & Appointment
-                                    </h3>
-                                </div>
-
-
-                                <!-- Main Profile -->
-                                <div class="doctor-main-profile">
-
-                                    <!-- Advocate Image -->
-                                    <div class="doctor-image-wrapper">
-
-                                        <div class="doctor-image-box">
-
-                                            <!-- আপনার Advocate Image এখানে দিন -->
-                                            <img src="{{asset('frontend/profile/hospital.jpg')}}"
-                                                 alt="Hospital">
-
-                                        </div>
-
-                                    </div>
-
-
-                                    <!-- Doctor Information -->
-                                    <div class="doctor-info" style="width:100%">
-
-                                        <!-- Name -->
-                                        <div class="doctor-name">
-
-                                            <h2>
-                                                Anwar Khan Modern Hospital
-                                            </h2>
-
-                                        </div>
-
-                                        <!-- Hospital -->
-                                        <div class="doctor-detail-item">
-
-                                            <i class="fa fa-map-marker"></i>
-
-                                            <span>
-                                                Kishoreganj 250 Bed Hospital
-                                            </span>
-
-                                        </div>
-
-                                        <!-- Consultant -->
-                                        <div class="doctor-detail-item">
-
-                                            <i class="fa fa-phone"></i> Helpline: 
-
-                                            <span>
-                                                <strong>01928511049, 01928511049</strong>
-                                            </span>
-
-                                        </div>
-
-                                        <!-- Consultant -->
-                                        <div class="doctor-detail-item">
-
-                                            Website: 
-
-                                            <span>
-                                                <strong>www.popularsoftbd.com</strong>
-                                            </span>
-
-                                        </div>
-
-                                        <!-- Consultant -->
-                                        <div class="doctor-detail-item">
-
-                                            Consultation Fee: 
-
-                                            <span>
-                                                <strong>৳ </strong> 500 
-                                            </span>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-
-                                <!-- Action Buttons -->
-                                <div class="doctor-action-buttons">
-
-                                    <!-- WhatsApp + Share -->
-                                    <div class="row g-3 doctor-bottom-buttons">
-
-                                        <!-- WhatsApp -->
-                                        <div class="col-6">
-
-                                            <a href="https://wa.me/8801700000000"
-                                               target="_blank"
-                                               class="doctor-outline-btn">
-
-                                                <i class="fa fa-calendar-check-o"></i>
-
-                                                <span>
-                                                    Get Appointment
-                                                </span>
-
-                                            </a>
-
-                                        </div>
-
-
-                                        <!-- Share -->
-                                        <div class="col-6">
-
-                                            <a href="javascript:void(0)"
-                                               onclick="shareDoctorProfile()"
-                                               class="doctor-outline-btn">
-
-                                                <i class="fa fa-whatsapp"></i>
-
-                                                <span>
-                                                    Call/WhatsApp
-                                                </span>
-
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- Schedule/Hours -->
-                        <div class="col-lg-4 col-md-4 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
-                            <div class="doctor-profile-card">
-
-                                <!-- Header -->
-                                <div class="doctor-profile-title">
-                                    <h3>
-                                        Schedule/Hours
-                                    </h3>
-                                </div>
-
-                                <!-- Main Profile -->
-                                <div class="doctor-main-profile">
-
-                                    <!-- Doctor Information -->
-                                    <div class="doctor-info">
-
-                                        <table class="table table-bordered table-sm table-hovered">
-                                            <thead>
-                                                <tr>
-                                                    <th style="color:#12636c">Day</th>
-                                                    <th style="color:#12636c">Time</th>
-                                                    <th style="color:#12636c">Status</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Saturday</td>
-                                                    <td>3.00pm - 8.00pm</td>
-                                                    <td style="color:#12636c">Available</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Sunday</td>
-                                                    <td>3.00pm - 8.00pm</td>
-                                                    <td style="color:#12636c">Available</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Monday</td>
-                                                    <td>3.00pm - 8.00pm</td>
-                                                    <td>Closed</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Wednesday</td>
-                                                    <td>3.00pm - 8.00pm</td>
-                                                    <td style="color:#12636c">Available</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Tuesday</td>
-                                                    <td>3.00pm - 8.00pm</td>
-                                                    <td style="color:#12636c">Available</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Thursday</td>
-                                                    <td>3.00pm - 8.00pm</td>
-                                                    <td style="color:#12636c">Available</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Friday</td>
-                                                    <td>3.00pm - 8.00pm</td>
-                                                    <td>Closed</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-
+                        @include('frontend.advocate.about_doctor')
+                        @include('frontend.advocate.practice_area')
+                        @include('frontend.advocate.court_jurisdictions')
+                        @include('frontend.advocate.education')
+                        @include('frontend.advocate.training')
+                        @include('frontend.advocate.membership')
+                        @include('frontend.advocate.social_engagement')
+                        @include('frontend.advocate.chamber')
+                        @include('frontend.advocate.map')
                         @include('frontend.advocate.reviews')
                         @include('frontend.advocate.faq')
-                        @include('frontend.advocate.map')
-                        @include('frontend.advocate.video')
-                        @include('frontend.advocate.legal_topics')
                         @include('frontend.advocate.photo_gallery')
+                        @include('frontend.advocate.philosophy')
+                        @include('frontend.advocate.legal_topics')
+                        @include('frontend.advocate.video')
                         @include('frontend.advocate.recommented_advocate')
 
                     </div>

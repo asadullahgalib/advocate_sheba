@@ -258,7 +258,7 @@
                     data-bs-dismiss="modal"
                     aria-label="Close">
 
-                <i class="bi bi-x-lg"></i>
+                <i class="fa fa-times-circle"></i>
 
             </button>
 
@@ -372,7 +372,7 @@
                     data-bs-dismiss="modal"
                     aria-label="Close">
 
-                <i class="bi bi-x-lg"></i>
+                <i class="fa fa-times-circle"></i>
 
             </button>
 

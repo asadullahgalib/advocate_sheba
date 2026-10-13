@@ -213,7 +213,7 @@
 
                                 <!-- VIEW Details -->
 
-                                <a href="{{route('advocate-profile')}}"
+                                <a href="{{route('our.law-firm-details')}}"
                                    class="lpc-profile-button">
 
                                     <i class="fa fa-eye"></i>
@@ -373,7 +373,7 @@
 
                                 <!-- VIEW Details -->
 
-                                <a href="{{route('advocate-profile')}}"
+                                <a href="{{route('our.law-firm-details')}}"
                                    class="lpc-profile-button">
 
                                     <i class="fa fa-eye"></i>
@@ -533,7 +533,7 @@
 
                                 <!-- VIEW Details -->
 
-                                <a href="{{route('advocate-profile')}}"
+                                <a href="{{route('our.law-firm-details')}}"
                                    class="lpc-profile-button">
 
                                     <i class="fa fa-eye"></i>
@@ -693,7 +693,7 @@
 
                                 <!-- VIEW Details -->
 
-                                <a href="{{route('advocate-profile')}}"
+                                <a href="{{route('our.law-firm-details')}}"
                                    class="lpc-profile-button">
 
                                     <i class="fa fa-eye"></i>
@@ -853,7 +853,7 @@
 
                                 <!-- VIEW Details -->
 
-                                <a href="{{route('advocate-profile')}}"
+                                <a href="{{route('our.law-firm-details')}}"
                                    class="lpc-profile-button">
 
                                     <i class="fa fa-eye"></i>
@@ -1013,7 +1013,7 @@
 
                                 <!-- VIEW Details -->
 
-                                <a href="{{route('advocate-profile')}}"
+                                <a href="{{route('our.law-firm-details')}}"
                                    class="lpc-profile-button">
 
                                     <i class="fa fa-eye"></i>

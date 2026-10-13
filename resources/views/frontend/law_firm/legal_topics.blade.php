@@ -1,475 +1,111 @@
-<style>
-    /* ==============================
-       Video / Health Topic Thumbnail
-       ============================== */
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/find_advocate.css')}}">
 
-    .health-topic-thumb {
-        position: relative;
-        overflow: hidden;
-        border-radius: 15px;
-        width: 100%;
-    }
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/article.css')}}">
 
-    .health-topic-thumb img {
-        width: 100%;
-        height: auto;
-        display: block;
-        border-radius: 15px;
-        transition: transform 0.4s ease;
-    }
-
-    /* ==============================
-       TOP DATE BADGE
-       ============================== */
-
-    .topic-date-badge {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        z-index: 5;
-
-        background: rgba(0, 0, 0, 0.90);
-        color: #fff;
-
-        padding: 6px 10px;
-        border-radius: 6px;
-
-        font-size: 13px;
-        font-weight: 600;
-
-        display: flex;
-        align-items: center;
-        gap: 6px;
-
-        line-height: 1;
-    }
-
-    .topic-date-badge i {
-        color: #fff;
-        font-size: 14px;
-    }
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/legal-service-article.css') }}">
 
 
-    /* ==============================
-       BOTTOM SPECIALIST BADGE
-       ============================== */
+<!-- ============================
+     LEGAL ARTICLES SECTION START
+============================= -->
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/legal-service-article.css') }}">
 
-    .topic-specialist-badge {
-        position: absolute;
-        left: 10px;
-        bottom: 10px;
-        z-index: 5;
+<section class="legal-articles-section" style="background: #f7f8fa;padding: 0px 0px 0px 0px;">
 
-        background: #155B30;
-        color: #fff;
+    <div class="container-fluid">
 
-        padding: 7px 13px;
-        border-radius: 6px;
+        <!-- ============================
+             FEATURED ARTICLES HEADER
+        ============================= -->
 
-        font-size: 14px;
-        font-weight: 600;
-
-        display: flex;
-        align-items: center;
-        gap: 7px;
-
-        line-height: 1;
-    }
-
-    .topic-specialist-badge i {
-        font-size: 13px;
-    }
-
-
-    /* ==============================
-       HOVER OVERLAY
-       ============================== */
-
-    .topic-hover-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-
-        width: 100%;
-        height: 100%;
-
-        background: rgba(0, 0, 0, 0.35);
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        opacity: 0;
-        visibility: hidden;
-
-        transition: all 0.3s ease;
-
-        z-index: 4;
-    }
-
-    .health-topic-thumb:hover .topic-hover-overlay {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    .health-topic-thumb:hover .topic-youtube-icon {
-        transform: scale(1);
-    }
-
-
-    /* ==============================
-       IMAGE HOVER ZOOM
-       ============================== */
-
-    .health-topic-thumb:hover img {
-        transform: scale(1.04);
-    }
-
-
-    /* ==============================
-       MOBILE RESPONSIVE
-       ============================== */
-
-    @media (max-width: 575px) {
-
-        .topic-date-badge {
-            top: 8px;
-            left: 8px;
-            padding: 5px 8px;
-            font-size: 11px;
-        }
-
-        .topic-specialist-badge {
-            left: 8px;
-            bottom: 8px;
-            padding: 6px 10px;
-            font-size: 12px;
-        }
-
-        .topic-youtube-icon {
-            width: 48px;
-            height: 48px;
-        }
-
-        .topic-youtube-icon i {
-            font-size: 21px;
-        }
-    }
-</style>
-
-<div class="page-content mb-50" style="margin-top: 15px;    margin-bottom: 0px !important;">
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <div class="title text-center">
-                <h3 style="color: #1B489D;font-size: 20px;text-align: left;">
-                    Latest Legal Topics
-                    <br>
-                    <span style="color: #000;font-size: 13px;">Your Guide to Better Justice</span>
-                </h3>
-            </div>
-
-            <div class="title text-center mobile_view_all">
-                <h3 style="color: #1B489D;font-size: 20px;">
-                    <a href="#">
-                        View all
-                        <i class="fa fa-arrow-right"></i>
-                    </a>
-                </h3>
-            </div>
-
+        <div class="flex justify-between items-center mt-2">
+          <div class="my-4">
+            <h2
+              id="hospitals-by-location"
+              class="text-lg md:text-xl font-semibold text-gray-800 dark:text-gray-100"
+            >
+              Legal Articles
+            </h2>
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+              Explore Legal Articles
+            </p>
+          </div>
+          <a
+            href="#"
+            aria-label=""
+            class="flex items-center gap-1 text-[#008080] text-sm font-semibold hover:underline transition"
+          >
+            View All
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-chevron-right"
+              aria-hidden="true"
+            >
+              <path d="m9 18 6-6-6-6"></path>
+            </svg>
+          </a>
         </div>
 
 
-        <div class="row">
+        <!-- ============================
+             FEATURED ARTICLES
+        ============================= -->
 
-            <div class="col-lg-12">
+        <div class="row featured-articles-row">
 
-                <div class="loop-grid">
 
-                    <div class="row">
+            <!-- Article 1 -->
 
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
 
-                        <!-- =====================================
-                             VIDEO / TOPIC 01
-                             ===================================== -->
+                <div class="featured-article-card">
 
-                        <article class="col-xl-3 col-lg-4 col-md-6 text-center hover-up mb-30 animated">
+                    <div class="article-image">
 
-                            <div class="post-thumb">
+                        <img src="{{asset('frontend/f1.jpg')}}" alt="Criminal Law">
 
-                                <a href="#">
+                        <span class="article-category">
+                            Criminal Law
+                        </span>
 
-                                    <div class="health-topic-thumb">
+                    </div>
 
-                                        <!-- Image -->
-                                        <img
-                                            src="{{ asset('frontend/video-4.jpg') }}"
-                                            alt="Cardiologist in Bangladesh"
-                                        >
 
+                    <div class="article-content">
 
-                                        <!-- TOP DATE -->
-                                        <div class="topic-date-badge">
+                        <h4>
+                            What Are Your Rights
+                            When You Are Arrested?
+                        </h4>
 
-                                            <i class="fa fa-calendar"></i>
 
-                                            <span>
-                                                Aug 12, 2026
-                                            </span>
+                        <div class="article-meta">
 
-                                        </div>
+                            <span>
+                                <i class="fa-regular fa-calendar"></i>
+                                May 4, 2024
+                            </span>
 
+                            <span>
+                                <i class="fa-regular fa-eye"></i>
+                                1.2K Views
+                            </span>
 
-                                        <!-- BOTTOM SPECIALIST -->
-                                        <div class="topic-specialist-badge">
+                        </div>
 
-                                            <i class="fa fa-tag"></i>
 
-                                            <span>
-                                                Land Specialist
-                                            </span>
-
-                                        </div>
-
-                                    </div>
-
-                                </a>
-
-                            </div>
-
-
-                            <div class="entry-content-2">
-
-                                <h4
-                                    class="post-title mb-15"
-                                    style="font-size:17px;"
-                                >
-
-                                    <a href="#">
-
-                                        জমি জমার আইনি স্মস্যাঃ সমাধান ও প্রতিকার
-
-                                    </a>
-
-                                </h4>
-
-                            </div>
-
-                        </article>
-
-
-
-                        <!-- =====================================
-                             VIDEO / TOPIC 02
-                             ===================================== -->
-
-                        <article class="col-xl-3 col-lg-4 col-md-6 text-center hover-up mb-30 animated">
-
-                            <div class="post-thumb">
-
-                                <a href="#">
-
-                                    <div class="health-topic-thumb">
-
-                                        <!-- Image -->
-                                        <img
-                                            src="{{ asset('frontend/video-3.jpg') }}"
-                                            alt="Endocrinologist in Bangladesh"
-                                        >
-
-
-                                        <!-- TOP DATE -->
-                                        <div class="topic-date-badge">
-
-                                            <i class="fa fa-calendar"></i>
-
-                                            <span>
-                                                Aug 12, 2026
-                                            </span>
-
-                                        </div>
-
-
-                                        <!-- BOTTOM SPECIALIST -->
-                                        <div class="topic-specialist-badge">
-
-                                            <i class="fa fa-tag"></i>
-
-                                            <span>
-                                                Civil Specialist
-                                            </span>
-
-                                        </div>
-
-                                    </div>
-
-                                </a>
-
-                            </div>
-
-
-                            <div class="entry-content-2">
-
-                                <h4
-                                    class="post-title mb-15"
-                                    style="font-size:17px;"
-                                >
-
-                                    <a href="#">
-
-                                        পারিবারিক বিরোধঃ আইনি ও সালিশ
-
-                                    </a>
-
-                                </h4>
-
-                            </div>
-
-                        </article>
-
-
-
-                        <!-- =====================================
-                             VIDEO / TOPIC 03
-                             ===================================== -->
-
-                        <article class="col-xl-3 col-lg-4 col-md-6 text-center hover-up mb-30 animated">
-
-                            <div class="post-thumb">
-
-                                <a href="#">
-
-                                    <div class="health-topic-thumb">
-
-                                        <!-- Image -->
-                                        <img
-                                            src="{{ asset('frontend/video-1.jpg') }}"
-                                            alt="Chest Specialist in Bangladesh"
-                                        >
-
-
-                                        <!-- TOP DATE -->
-                                        <div class="topic-date-badge">
-
-                                            <i class="fa fa-calendar"></i>
-
-                                            <span>
-                                                Aug 12, 2026
-                                            </span>
-
-                                        </div>
-
-
-                                        <!-- BOTTOM SPECIALIST -->
-                                        <div class="topic-specialist-badge">
-
-                                            <i class="fa fa-tag"></i>
-
-                                            <span>
-                                                Criminal Specialist
-                                            </span>
-
-                                        </div>
-
-                                    </div>
-
-                                </a>
-
-                            </div>
-
-
-                            <div class="entry-content-2">
-
-                                <h4
-                                    class="post-title mb-15"
-                                    style="font-size:17px;"
-                                >
-
-                                    <a href="#">
-
-                                        অপরাধঃ আইনি ও প্রতিকার
-
-                                    </a>
-
-                                </h4>
-
-                            </div>
-
-                        </article>
-
-
-
-                        <!-- =====================================
-                             VIDEO / TOPIC 04
-                             ===================================== -->
-
-                        <article class="col-xl-3 col-lg-4 col-md-6 text-center hover-up mb-30 animated">
-
-                            <div class="post-thumb">
-
-                                <a href="#">
-
-                                    <div class="health-topic-thumb">
-
-                                        <!-- Image -->
-                                        <img
-                                            src="{{ asset('frontend/video-2.jpg') }}"
-                                            alt="Specialist Doctor"
-                                        >
-
-
-                                        <!-- TOP DATE -->
-                                        <div class="topic-date-badge">
-
-                                            <i class="fa fa-calendar"></i>
-
-                                            <span>
-                                                Aug 12, 2026
-                                            </span>
-
-                                        </div>
-
-
-                                        <!-- BOTTOM SPECIALIST -->
-                                        <div class="topic-specialist-badge">
-
-                                            <i class="fa fa-tag"></i>
-
-                                            <span>
-                                                Civil Specialist
-                                            </span>
-
-                                        </div>
-
-                                    </div>
-
-                                </a>
-
-                            </div>
-
-
-                            <div class="entry-content-2">
-
-                                <h4
-                                    class="post-title mb-15"
-                                    style="font-size:17px;"
-                                >
-
-                                    <a href="#">
-
-                                        জমি জমার আইনি স্মস্যাঃ সমাধান ও প্রতিকার
-
-                                    </a>
-
-                                </h4>
-
-                            </div>
-
-                        </article>
-
+                        <a href="{{route('legal.article.details')}}" class="read-more">
+                            Read More
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
 
                     </div>
 
@@ -477,8 +113,165 @@
 
             </div>
 
+
+            <!-- Article 2 -->
+
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+
+                <div class="featured-article-card">
+
+                    <div class="article-image">
+
+                        <img src="{{asset('frontend/f2.jpg')}}" alt="Land Law">
+
+                        <span class="article-category">
+                            Land Law
+                        </span>
+
+                    </div>
+
+
+                    <div class="article-content">
+
+                        <h4>
+                            What to Check Before
+                            Buying a Land?
+                        </h4>
+
+
+                        <div class="article-meta">
+
+                            <span>
+                                <i class="fa-regular fa-calendar"></i>
+                                Apr 30, 2024
+                            </span>
+
+                            <span>
+                                <i class="fa-regular fa-eye"></i>
+                                980 Views
+                            </span>
+
+                        </div>
+
+
+                        <a href="{{route('legal.article.details')}}" class="read-more">
+                            Read More
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Article 3 -->
+
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+
+                <div class="featured-article-card">
+
+                    <div class="article-image">
+
+                        <img src="{{asset('frontend/f3.jpg')}}" alt="Family Law">
+
+                        <span class="article-category">
+                            Family Law
+                        </span>
+
+                    </div>
+
+
+                    <div class="article-content">
+
+                        <h4>
+                            What is the Legal Process
+                            of Divorce in Bangladesh?
+                        </h4>
+
+
+                        <div class="article-meta">
+
+                            <span>
+                                <i class="fa-regular fa-calendar"></i>
+                                May 1, 2024
+                            </span>
+
+                            <span>
+                                <i class="fa-regular fa-eye"></i>
+                                1.5K Views
+                            </span>
+
+                        </div>
+
+
+                        <a href="{{route('legal.article.details')}}" class="read-more">
+                            Read More
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Article 4 -->
+
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+
+                <div class="featured-article-card">
+
+                    <div class="article-image">
+
+                        <img src="{{asset('frontend/f4.jpg')}}" alt="Corporate Law">
+
+                        <span class="article-category">
+                            Corporate Law
+                        </span>
+
+                    </div>
+
+
+                    <div class="article-content">
+
+                        <h4>
+                            Steps to Register a Private
+                            Limited Company in Bangladesh
+                        </h4>
+
+
+                        <div class="article-meta">
+
+                            <span>
+                                <i class="fa-regular fa-calendar"></i>
+                                Apr 28, 2024
+                            </span>
+
+                            <span>
+                                <i class="fa-regular fa-eye"></i>
+                                860 Views
+                            </span>
+
+                        </div>
+
+
+                        <a href="{{route('legal.article.details')}}" class="read-more">
+                            Read More
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
         </div>
 
     </div>
 
-</div>
+</section>

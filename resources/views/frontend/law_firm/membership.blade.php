@@ -10,7 +10,7 @@
         </div>
 
         <!-- Main Profile -->
-        <div class="doctor-main-profile card" style="padding: 5px 0px;background: #f5f5f5;    margin-bottom: 15px;">
+        <div class="doctor-main-profile card" style="padding: 3px 0px;background: #f5f5f5;    margin-bottom: 10px;">
 
             <div style="width: 35px;
                 font-size: 25px;
@@ -23,7 +23,7 @@
             </div>
         </div>
 
-        <div class="doctor-main-profile card" style="padding: 5px 0px;background: #f5f5f5;    margin-bottom: 15px;">
+        <div class="doctor-main-profile card" style="padding: 3px 0px;background: #f5f5f5;    margin-bottom: 10px;">
 
             <div style="width: 35px;
                 font-size: 25px;
@@ -36,7 +36,7 @@
             </div>
         </div>
 
-        <div class="doctor-main-profile card" style="padding: 5px 0px;background: #f5f5f5;    margin-bottom: 15px;">
+        <div class="doctor-main-profile card" style="padding: 3px 0px;background: #f5f5f5;    margin-bottom: 10px;">
 
             <div style="width: 35px;
                 font-size: 25px;
@@ -49,7 +49,7 @@
             </div>
         </div>
 
-        <div class="doctor-main-profile card" style="padding: 5px 0px;background: #f5f5f5;    margin-bottom: 15px;">
+        <div class="doctor-main-profile card" style="padding: 3px 0px;background: #f5f5f5;    margin-bottom: 10px;">
 
             <div style="width: 35px;
                 font-size: 25px;

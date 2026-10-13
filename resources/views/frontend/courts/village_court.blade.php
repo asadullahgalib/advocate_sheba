@@ -72,237 +72,155 @@
         <div class="row">
 
             <div class="col-md-12">
-                 <div class="faq-card mb-4">
+                <div class="faq-card mb-4">
 
-                                <div class="faq-accordion"
-                                     id="civilCourtFaq">
-
-
-                                    <!-- CIVIL FAQ 1 -->
-
-                                    <div class="faq-item active">
-
-                                        <button class="faq-question"
-                                                type="button">
-
-                                            <span>
-                                                Jurisdiction
-                                            </span>
-
-                                            <i class="bi bi-chevron-up"></i>
-
-                                        </button>
+                    <div class="faq-accordion"
+                         id="civilCourtFaq">
 
 
-                                        <div class="faq-answer">
+                        <!-- CIVIL FAQ 1 -->
 
-                                            <p>
-                                               স্থানীয় পর্যায়ে ছোট বিরোধ নিষ্পত্তির জন্য গঠিত আদালত, ইউনিয়ন পরিষদ কেন্দ্রিক গ্রাম আদালত আইন, ২০০৬ 
-                                            </p>
+                        <div class="faq-item active">
 
-                                        </div>
+                            <button class="faq-question"
+                                    type="button">
 
-                                    </div>
+                                <span>
+                                    Jurisdiction
+                                </span>
 
+                                <i class="bi bi-chevron-up"></i>
 
-                                    <!-- CIVIL FAQ 2 -->
-
-                                    <div class="faq-item">
-
-                                        <button class="faq-question"
-                                                type="button">
-
-                                            <span>
-                                                Case Types
-                                            </span>
-
-                                            <i class="bi bi-chevron-down"></i>
-
-                                        </button>
+                            </button>
 
 
-                                        <div class="faq-answer">
+                            <div class="faq-answer">
 
-                                            <p>
-                                                একই ইউনিয়নের বাসিন্দাদের মধ্যকার বিরোধ, সীমিত আর্থিক অংক ও ছোট ফৌজদারি অপরাধ।
-                                            </p>
-
-                                        </div>
-
-                                    </div>
-
-
-                                    <!-- CIVIL FAQ 3 -->
-
-                                    <div class="faq-item">
-
-                                        <button class="faq-question"
-                                                type="button">
-
-                                            <span>
-                                                Structures
-                                            </span>
-
-                                            <i class="bi bi-chevron-down"></i>
-
-                                        </button>
-
-
-                                        <div class="faq-answer">
-
-                                            <p>
-                                                দেওয়ানি আদালতের বিভিন্ন স্তর ও এখতিয়ার রয়েছে। মামলার
-                                                প্রকৃতি, আর্থিক মূল্য এবং প্রযোজ্য আইন অনুযায়ী সংশ্লিষ্ট
-                                                আদালত মামলাটি শুনানি ও নিষ্পত্তি করে।
-                                            </p>
-
-                                        </div>
-
-                                    </div>
-                                    <!-- CIVIL FAQ 3 -->
-
-                                    <div class="faq-item">
-
-                                        <button class="faq-question"
-                                                type="button">
-
-                                            <span>
-                                                Appeal Process
-                                            </span>
-
-                                            <i class="bi bi-chevron-down"></i>
-
-                                        </button>
-
-
-                                        <div class="faq-answer">
-
-                                            <p>
-                                                দেওয়ানি আদালতের বিভিন্ন স্তর ও এখতিয়ার রয়েছে। মামলার
-                                                প্রকৃতি, আর্থিক মূল্য এবং প্রযোজ্য আইন অনুযায়ী সংশ্লিষ্ট
-                                                আদালত মামলাটি শুনানি ও নিষ্পত্তি করে।
-                                            </p>
-
-                                        </div>
-
-                                    </div>
-                                    <!-- CIVIL FAQ 3 -->
-
-                                    <div class="faq-item">
-
-                                        <button class="faq-question"
-                                                type="button">
-
-                                            <span>
-                                                Lawer Practicing Here
-                                            </span>
-
-                                            <i class="bi bi-chevron-down"></i>
-
-                                        </button>
-
-
-                                        <div class="faq-answer">
-
-                                            <p>
-                                                দেওয়ানি আদালতের বিভিন্ন স্তর ও এখতিয়ার রয়েছে। মামলার
-                                                প্রকৃতি, আর্থিক মূল্য এবং প্রযোজ্য আইন অনুযায়ী সংশ্লিষ্ট
-                                                আদালত মামলাটি শুনানি ও নিষ্পত্তি করে।
-                                            </p>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
+                                <p>
+                                   স্থানীয় পর্যায়ে ছোট বিরোধ নিষ্পত্তির জন্য গঠিত আদালত, ইউনিয়ন পরিষদ কেন্দ্রিক গ্রাম আদালত আইন, ২০০৬ 
+                                </p>
 
                             </div>
-                        <!-- Modal-button-start-here -->
-                            <div class="row mb-3" style="margin-top: 15px;">
-                                <div class="col-md-3">
-                                    <a href="{{route('find.our.advocate-list')}}"
-                                       class="practice-area-card" 
-                                       style="color: #fff !important;">
-
-                                        <div class="card-1"
-                                             style="padding: 15px 5px 10px 6px;
-                                                    margin-bottom: 5px;
-                                                    min-height: 50px;
-                                                    background-color: #000;">
-
-                                            <h6 style="font-size:15px;color: #fff;">
-                                                Find Advocates
-                                            </h6>
-
-                                        </div>
-
-                                    </a>
-                                </div>
-
-                                <div class="col-md-3">
-                                    <a href="{{route('find.our.barrister-list')}}"
-                                       class="practice-area-card" 
-                                       style="color: #fff !important;">
-
-                                        <div class="card-1"
-                                             style="padding: 15px 5px 10px 6px;
-                                                    margin-bottom: 5px;
-                                                    min-height: 50px;
-                                                    background-color: #000;">
-
-                                            <h6 style="font-size:15px;color: #fff;">
-                                                Find Barristers
-                                            </h6>
-
-                                        </div>
-
-                                    </a>
-                                </div>
-
-                                <div class="col-md-3">
-                                    <a href="{{route('find.our.consultant-list')}}"
-                                       class="practice-area-card" 
-                                       style="color: #fff !important;">
-
-                                        <div class="card-1"
-                                             style="padding: 15px 5px 10px 6px;
-                                                    margin-bottom: 5px;
-                                                    min-height: 50px;
-                                                    background-color: #000;">
-
-                                            <h6 style="font-size:15px;color: #fff;">
-                                                Find Legal Consultants
-                                            </h6>
-
-                                        </div>
-
-                                    </a>
-                                </div>
-
-                                <div class="col-md-3">
-                                    <a href="{{route('find.our.law-firm-list')}}"
-                                       class="practice-area-card" 
-                                       style="color: #fff !important;">
-
-                                        <div class="card-1"
-                                             style="padding: 15px 5px 10px 6px;
-                                                    margin-bottom: 5px;
-                                                    min-height: 50px;
-                                                    background-color: #000;">
-
-                                            <h6 style="font-size:15px;color: #fff;">
-                                                Find Law Firms
-                                            </h6>
-
-                                        </div>
-
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- Modal-button-ends-here -->
 
                         </div>
+
+
+                        <!-- CIVIL FAQ 2 -->
+
+                        <div class="faq-item">
+
+                            <button class="faq-question"
+                                    type="button">
+
+                                <span>
+                                    Case Types
+                                </span>
+
+                                <i class="bi bi-chevron-down"></i>
+
+                            </button>
+
+
+                            <div class="faq-answer">
+
+                                <p>
+                                    একই ইউনিয়নের বাসিন্দাদের মধ্যকার বিরোধ, সীমিত আর্থিক অংক ও ছোট ফৌজদারি অপরাধ।
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- CIVIL FAQ 3 -->
+
+                        <div class="faq-item">
+
+                            <button class="faq-question"
+                                    type="button">
+
+                                <span>
+                                    Structures
+                                </span>
+
+                                <i class="bi bi-chevron-down"></i>
+
+                            </button>
+
+
+                            <div class="faq-answer">
+
+                                <p>
+                                    দেওয়ানি আদালতের বিভিন্ন স্তর ও এখতিয়ার রয়েছে। মামলার
+                                    প্রকৃতি, আর্থিক মূল্য এবং প্রযোজ্য আইন অনুযায়ী সংশ্লিষ্ট
+                                    আদালত মামলাটি শুনানি ও নিষ্পত্তি করে।
+                                </p>
+
+                            </div>
+
+                        </div>
+                        <!-- CIVIL FAQ 3 -->
+
+                        <div class="faq-item">
+
+                            <button class="faq-question"
+                                    type="button">
+
+                                <span>
+                                    Appeal Process
+                                </span>
+
+                                <i class="bi bi-chevron-down"></i>
+
+                            </button>
+
+
+                            <div class="faq-answer">
+
+                                <p>
+                                    দেওয়ানি আদালতের বিভিন্ন স্তর ও এখতিয়ার রয়েছে। মামলার
+                                    প্রকৃতি, আর্থিক মূল্য এবং প্রযোজ্য আইন অনুযায়ী সংশ্লিষ্ট
+                                    আদালত মামলাটি শুনানি ও নিষ্পত্তি করে।
+                                </p>
+
+                            </div>
+
+                        </div>
+                        <!-- CIVIL FAQ 3 -->
+
+                        <div class="faq-item">
+
+                            <button class="faq-question"
+                                    type="button">
+
+                                <span>
+                                    Lawer Practicing Here
+                                </span>
+
+                                <i class="bi bi-chevron-down"></i>
+
+                            </button>
+
+
+                            <div class="faq-answer">
+
+                                <p>
+                                    দেওয়ানি আদালতের বিভিন্ন স্তর ও এখতিয়ার রয়েছে। মামলার
+                                    প্রকৃতি, আর্থিক মূল্য এবং প্রযোজ্য আইন অনুযায়ী সংশ্লিষ্ট
+                                    আদালত মামলাটি শুনানি ও নিষ্পত্তি করে।
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                @include('frontend.layouts.find_professional_single') 
+                <div style="margin-bottom:15px;"></div>
+            </div>
 
         </div>
 
