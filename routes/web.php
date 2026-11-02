@@ -58,6 +58,7 @@ Route::get('/location-wise-list','Frontend\FrontenController@locationWiseList')-
 Route::get('/practice-area-wise-list','Frontend\FrontenController@practiceAreaWiseList')->name('our.practice-area-wise-list');
 Route::get('/profile','Frontend\FrontenController@profile')->name('advocate-profile');
 Route::get('/legal-article-details','Frontend\FrontenController@legalArticleDetails')->name('legal.article.details');
+Route::get('/video-details','Frontend\FrontenController@videoDetails')->name('video.details');
 Route::get('/category-list','Frontend\FrontenController@categoryList')->name('our.category-list');
 Route::get('/category/details/{id}','Frontend\FrontenController@categoryDetails')->name('our.category-details');
 Route::post('/category/details/store','Frontend\FrontenController@categoryDetailsStore')->name('our.category-details.store');

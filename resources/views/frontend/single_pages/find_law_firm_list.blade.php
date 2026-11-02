@@ -5,6 +5,8 @@
 
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/law-firms-static-grid.css')}}">
 
+@include('frontend.single_pages.single_search_bar')
+
 <section class="lpc-carousel-section lpc-static-firms-section" style="background: #ebe9e957;">
     <div class="container">
 

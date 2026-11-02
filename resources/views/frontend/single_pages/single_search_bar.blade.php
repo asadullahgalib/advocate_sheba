@@ -1,9 +1,9 @@
 <!-- ========================================================= LEGAL HERO SECTION ========================================================= -->
 
-<section class="legal-hero-section hero-3 position-relative" style="height:290px !important">
+<section class="legal-hero-section hero-3 position-relative" style="height: 325px !important;">
 
     <div class="container">
-        <div class="row">
+        <div class="row mobile_row">
             <div class="col-md-10 offset-md-1">
                 <div class="legal-hero-content">
 
@@ -25,6 +25,31 @@
 
                     <form class="legal-search-form"
                           style="padding: 5px 10px; border-radius: 15px;">
+
+                        <!-- =========================================
+                             FIRST SEARCH ROW
+                        ========================================== -->
+
+                        <div class="main-search-row">
+
+                            <input type="text"
+                                   class="form-control"
+                                   placeholder="Search by Name, Practice Area, Location...">
+
+                            <!-- Search Button -->
+                            <button type="submit"
+                                    class="btn main-search-button"
+                                    style="font-size: 16px;
+                                           font-weight: 700;
+                                           padding: 8px 10px;
+                                           background: #000 !important;
+                                           border: 1px solid #000 !important;">
+
+                                <i class="fa fa-search"></i>
+
+                            </button>
+
+                        </div>
 
 
                         <!-- =========================================
@@ -401,7 +426,7 @@
   position: relative;
   z-index: 10;
   margin-top: -45px;
-  padding-bottom: 40px;
+  padding-bottom: 15px;
 }
 
 /* ========================================================= CARD ========================================================= */
@@ -541,6 +566,10 @@
     background-position: center center;
   }
 
+  .mobile_row{
+    margin-top: 25px !important;
+  }
+
   .legal-hero-content {
     max-width: 100%;
     margin-top: 120px;
@@ -623,6 +652,7 @@
     margin-top: -25px;
     padding-left: 8px;
     padding-right: 8px;
+    margin-bottom: 0px;
   }
 
   .legal-category-card {
@@ -653,6 +683,9 @@
 
 /* ========================================================= SMALL MOBILE ========================================================= */
 @media (max-width: 480px) {
+  .mobile_row{
+    margin-top: 25px !important;
+  }
   .legal-hero-section {
     padding-left: 8px;
     padding-right: 8px;

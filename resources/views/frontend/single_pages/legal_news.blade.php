@@ -381,7 +381,7 @@
             <article class="col-xl-3 col-lg-4 col-md-6 text-center hover-up mb-30 animated">
                 <div class="post-thumb">
 
-                    <a href="#">
+                    <a href="{{route('video.details')}}">
 
                         <div class="video-thumb">
 
@@ -404,7 +404,7 @@
 
                 <div class="entry-content-2">
                     <h4 class="post-title mb-15" style="font-size:17px;margin-top: 15px;">
-                        <a href="#">
+                        <a href="{{route('video.details')}}">
                             জমি বিক্রির আগে যে বিষয় গুলো জানা দরকার
                         </a>
                     </h4>
@@ -416,7 +416,7 @@
             <article class="col-xl-3 col-lg-4 col-md-6 text-center hover-up mb-30 animated">
                 <div class="post-thumb">
 
-                    <a href="#">
+                    <a href="{{route('video.details')}}">
 
                         <div class="video-thumb">
 
@@ -439,7 +439,7 @@
 
                 <div class="entry-content-2">
                     <h4 class="post-title mb-15" style="font-size:17px;margin-top: 15px;">
-                        <a href="#">
+                        <a href="{{route('video.details')}}">
                             নারীর আইনি অধিকার ও নিরাপত্তা
                         </a>
                     </h4>
@@ -451,7 +451,7 @@
             <article class="col-xl-3 col-lg-4 col-md-6 text-center hover-up mb-30 animated">
                 <div class="post-thumb">
 
-                    <a href="#">
+                    <a href="{{route('video.details')}}">
 
                         <div class="video-thumb">
 
@@ -474,7 +474,7 @@
 
                 <div class="entry-content-2">
                     <h4 class="post-title mb-15" style="font-size:17px;margin-top: 15px;">
-                        <a href="#">
+                        <a href="{{route('video.details')}}">
                             পারিবারিক বিরোধ নিস্পত্তি ও আপোস মীমাংসা
                         </a>
                     </h4>
@@ -486,7 +486,7 @@
             <article class="col-xl-3 col-lg-4 col-md-6 text-center hover-up mb-30 animated">
                 <div class="post-thumb">
 
-                    <a href="#">
+                    <a href="{{route('video.details')}}">
 
                         <div class="video-thumb">
 
@@ -509,7 +509,7 @@
 
                 <div class="entry-content-2">
                     <h4 class="post-title mb-15" style="font-size:17px;margin-top: 15px;">
-                        <a href="#">
+                        <a href="{{route('video.details')}}">
                             আইনি পরামর্শ
                         </a>
                     </h4>

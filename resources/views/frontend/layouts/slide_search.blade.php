@@ -2,251 +2,251 @@
 
 <section class="legal-hero-section hero-3 position-relative">
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-10 offset-md-1">
-            <div class="legal-hero-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <div class="legal-hero-content">
 
-                <!-- Heading -->
-                <h1>
-                    Find the Right
-                    <span>Legal Professional</span>
-                </h1>
+                    <!-- Heading -->
+                    <h1>
+                        Find the Right
+                        <span>Legal Professional</span>
+                    </h1>
 
-                <!-- Description -->
-                <p class="hero-description">
-                    আপনার প্রয়োজনের জন্য সঠিক আইনজীবী ও আইনি পরামর্শদাতা খুঁজে নিন
-                </p>
+                    <!-- Description -->
+                    <p class="hero-description">
+                        আপনার প্রয়োজনের জন্য সঠিক আইনজীবী ও আইনি পরামর্শদাতা খুঁজে নিন
+                    </p>
 
 
-                <!-- =================================================
-                     SEARCH AREA
-                ================================================== -->
+                    <!-- =================================================
+                         SEARCH AREA
+                    ================================================== -->
 
-                <form class="legal-search-form"
-                      style="padding: 5px 10px; border-radius: 15px;">
+                    <form class="legal-search-form"
+                          style="padding: 5px 10px; border-radius: 15px;">
 
-                    <!-- =========================================
-                         FIRST SEARCH ROW
-                    ========================================== -->
+                        <!-- =========================================
+                             FIRST SEARCH ROW
+                        ========================================== -->
 
-                    <div class="main-search-row">
+                        <div class="main-search-row">
 
-                        <input type="text"
-                               class="form-control"
-                               placeholder="Search by Name, Practice Area, Location...">
+                            <input type="text"
+                                   class="form-control"
+                                   placeholder="Search by Name, Practice Area, Location...">
 
-                        <!-- Search Button -->
-                        <button type="submit"
-                                class="btn main-search-button"
-                                style="font-size: 16px;
-                                       font-weight: 700;
-                                       padding: 8px 10px;
-                                       background: #000 !important;
-                                       border: 1px solid #000 !important;">
+                            <!-- Search Button -->
+                            <button type="submit"
+                                    class="btn main-search-button"
+                                    style="font-size: 16px;
+                                           font-weight: 700;
+                                           padding: 8px 10px;
+                                           background: #000 !important;
+                                           border: 1px solid #000 !important;">
 
-                            <i class="fa fa-search"></i>
+                                <i class="fa fa-search"></i>
 
-                        </button>
+                            </button>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             SECOND SEARCH ROW
+                        ========================================== -->
+
+                        <!-- =========================================================
+                             SECOND SEARCH ROW
+                        ========================================================= -->
+
+                        <div class="advanced-search-row">
+
+                            <!-- Practice Area -->
+                            <div class="search-select custom-select">
+
+                                <div class="custom-select-box">
+
+                                    <span class="selected-text">
+                                        Practice Area
+                                    </span>
+
+                                    <i class="fa fa-chevron-down"></i>
+
+                                </div>
+
+                                <div class="custom-options">
+
+                                    <div class="custom-option"
+                                         data-value="">
+                                        Practice Area
+                                    </div>
+
+                                    <div class="custom-option"
+                                         data-value="criminal-law">
+                                        Criminal Law
+                                    </div>
+
+                                    <div class="custom-option"
+                                         data-value="civil-law">
+                                        Civil Law
+                                    </div>
+
+                                    <div class="custom-option"
+                                         data-value="family-law">
+                                        Family Law
+                                    </div>
+
+                                    <div class="custom-option"
+                                         data-value="corporate-law">
+                                        Corporate Law
+                                    </div>
+
+                                </div>
+
+                                <input type="hidden"
+                                       name="practice_area"
+                                       value="">
+
+                            </div>
+
+
+                            <!-- Location -->
+                            <div class="search-select custom-select">
+
+                                <div class="custom-select-box">
+
+                                    <span class="selected-text">
+                                        Location
+                                    </span>
+
+                                    <i class="fa fa-chevron-down"></i>
+
+                                </div>
+
+                                <div class="custom-options">
+
+                                    <div class="custom-option"
+                                         data-value="">
+                                        Location
+                                    </div>
+
+                                    <div class="custom-option"
+                                         data-value="dhaka">
+                                        Dhaka
+                                    </div>
+
+                                    <div class="custom-option"
+                                         data-value="chattogram">
+                                        Chattogram
+                                    </div>
+
+                                    <div class="custom-option"
+                                         data-value="sylhet">
+                                        Sylhet
+                                    </div>
+
+                                    <div class="custom-option"
+                                         data-value="rajshahi">
+                                        Rajshahi
+                                    </div>
+
+                                </div>
+
+                                <input type="hidden"
+                                       name="location"
+                                       value="">
+
+                            </div>
+
+
+                            <!-- Court -->
+                            <div class="search-select custom-select court-select">
+
+                                <div class="custom-select-box">
+
+                                    <span class="selected-text">
+                                        Court
+                                    </span>
+
+                                    <i class="fa fa-chevron-down"></i>
+
+                                </div>
+
+                                <div class="custom-options">
+
+                                    <div class="custom-option"
+                                         data-value="">
+                                        Court
+                                    </div>
+
+                                    <div class="custom-option"
+                                         data-value="supreme-court">
+                                        Supreme Court
+                                    </div>
+
+                                    <div class="custom-option"
+                                         data-value="high-court">
+                                        High Court
+                                    </div>
+
+                                    <div class="custom-option"
+                                         data-value="district-court">
+                                        District Court
+                                    </div>
+
+                                </div>
+
+                                <input type="hidden"
+                                       name="court"
+                                       value="">
+
+                            </div>
+
+
+                            <!-- Search Button -->
+                            <button type="submit"
+                                    class="btn advanced-search-button">
+
+                                <i class="fa fa-search"></i>
+
+                                Search
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+
+                    <!-- =================================================
+                         CATEGORY LINKS
+                    ================================================== -->
+
+                    <div class="legal-category-links">
+
+                        <a href="{{route('our.advocate-list')}}" class="active">
+                            Advocates
+                        </a>
+
+                        <a href="{{route('our.barrister-list')}}">
+                            Barristers
+                        </a>
+
+                        <a href="{{route('our.consultant-list')}}">
+                            Legal Consultants
+                        </a>
+
+                        <a href="{{route('our.law-firm-list')}}">
+                            Law Firms
+                        </a>
 
                     </div>
-
-
-                    <!-- =========================================
-                         SECOND SEARCH ROW
-                    ========================================== -->
-
-                    <!-- =========================================================
-                         SECOND SEARCH ROW
-                    ========================================================= -->
-
-                    <div class="advanced-search-row">
-
-                        <!-- Practice Area -->
-                        <div class="search-select custom-select">
-
-                            <div class="custom-select-box">
-
-                                <span class="selected-text">
-                                    Practice Area
-                                </span>
-
-                                <i class="fa fa-chevron-down"></i>
-
-                            </div>
-
-                            <div class="custom-options">
-
-                                <div class="custom-option"
-                                     data-value="">
-                                    Practice Area
-                                </div>
-
-                                <div class="custom-option"
-                                     data-value="criminal-law">
-                                    Criminal Law
-                                </div>
-
-                                <div class="custom-option"
-                                     data-value="civil-law">
-                                    Civil Law
-                                </div>
-
-                                <div class="custom-option"
-                                     data-value="family-law">
-                                    Family Law
-                                </div>
-
-                                <div class="custom-option"
-                                     data-value="corporate-law">
-                                    Corporate Law
-                                </div>
-
-                            </div>
-
-                            <input type="hidden"
-                                   name="practice_area"
-                                   value="">
-
-                        </div>
-
-
-                        <!-- Location -->
-                        <div class="search-select custom-select">
-
-                            <div class="custom-select-box">
-
-                                <span class="selected-text">
-                                    Location
-                                </span>
-
-                                <i class="fa fa-chevron-down"></i>
-
-                            </div>
-
-                            <div class="custom-options">
-
-                                <div class="custom-option"
-                                     data-value="">
-                                    Location
-                                </div>
-
-                                <div class="custom-option"
-                                     data-value="dhaka">
-                                    Dhaka
-                                </div>
-
-                                <div class="custom-option"
-                                     data-value="chattogram">
-                                    Chattogram
-                                </div>
-
-                                <div class="custom-option"
-                                     data-value="sylhet">
-                                    Sylhet
-                                </div>
-
-                                <div class="custom-option"
-                                     data-value="rajshahi">
-                                    Rajshahi
-                                </div>
-
-                            </div>
-
-                            <input type="hidden"
-                                   name="location"
-                                   value="">
-
-                        </div>
-
-
-                        <!-- Court -->
-                        <div class="search-select custom-select court-select">
-
-                            <div class="custom-select-box">
-
-                                <span class="selected-text">
-                                    Court
-                                </span>
-
-                                <i class="fa fa-chevron-down"></i>
-
-                            </div>
-
-                            <div class="custom-options">
-
-                                <div class="custom-option"
-                                     data-value="">
-                                    Court
-                                </div>
-
-                                <div class="custom-option"
-                                     data-value="supreme-court">
-                                    Supreme Court
-                                </div>
-
-                                <div class="custom-option"
-                                     data-value="high-court">
-                                    High Court
-                                </div>
-
-                                <div class="custom-option"
-                                     data-value="district-court">
-                                    District Court
-                                </div>
-
-                            </div>
-
-                            <input type="hidden"
-                                   name="court"
-                                   value="">
-
-                        </div>
-
-
-                        <!-- Search Button -->
-                        <button type="submit"
-                                class="btn advanced-search-button">
-
-                            <i class="fa fa-search"></i>
-
-                            Search
-
-                        </button>
-
-                    </div>
-
-                </form>
-
-
-                <!-- =================================================
-                     CATEGORY LINKS
-                ================================================== -->
-
-                <div class="legal-category-links">
-
-                    <a href="{{route('our.advocate-list')}}" class="active">
-                        Advocates
-                    </a>
-
-                    <a href="{{route('our.barrister-list')}}">
-                        Barristers
-                    </a>
-
-                    <a href="{{route('our.consultant-list')}}">
-                        Legal Consultants
-                    </a>
-
-                    <a href="{{route('our.law-firm-list')}}">
-                        Law Firms
-                    </a>
 
                 </div>
-
             </div>
         </div>
     </div>
-</div>
 
 </section>
 

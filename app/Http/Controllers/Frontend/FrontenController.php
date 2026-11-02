@@ -293,6 +293,14 @@ class FrontenController extends Controller
         return view('frontend.single_pages.article',$data);
     }
 
+    public function videoDetails(){
+        $data['categories']     = Category::all();
+        $data['departments']    = Department::orderBy('sort','asc')->get();
+        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
+        $data['page_type'] = 'video_details';
+        return view('frontend.single_pages.video_details',$data);
+    }
+
     public function categoryList(){
         $data['categories']     = Category::all();
         $data['page_type']      = 'category';
