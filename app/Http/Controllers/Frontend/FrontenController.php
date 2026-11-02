@@ -49,6 +49,15 @@ class FrontenController extends Controller
         return response()->json($doctors);
     }
 
+    //Registration
+    public function registration(){
+        $data['categories']     = Category::all();
+        $data['departments']    = Department::orderBy('sort','asc')->get();
+        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
+        $data['page_type']      = 'registration';
+        return view('frontend.registration.user_registration',$data);
+    }
+
     // Court & Jurisdictions started
 
     public function supremeCourt(){

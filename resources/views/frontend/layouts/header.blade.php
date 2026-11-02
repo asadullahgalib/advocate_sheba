@@ -13,7 +13,7 @@
                                 </a> 
                             </li>
                             <li> 
-                                <a href="#">
+                                <a href="{{route('registration')}}">
                                     <i class="fa fa-sign-in" aria-hidden="true"></i> Registration
                                 </a> 
                             </li>

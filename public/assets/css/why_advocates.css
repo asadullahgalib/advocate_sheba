@@ -1,0 +1,216 @@
+/* ===== Grow Your Practice (ap-) + Why Advocates Love (wl-) : সব CSS এক ফাইলে ===== */
+
+/* ---------- Why Advocates Love section ---------- */
+.wl-section{--deep:#064e4a;--band:#044845;--teal:#0d8a7d;--ink:#3b4a54;--muted:#7d8993;--line:#e3e9ec;
+  font-family:'Roboto',system-ui,sans-serif;color:var(--ink);padding:28px 48px 64px;background:#fff}
+.wl-section *{box-sizing:border-box}
+
+.wl-top{border-top:1px solid var(--line);margin-bottom:26px}
+.wl-title{text-align:center;font-size:clamp(1.7rem,3.6vw,2.2rem);font-weight:700;color:var(--deep);margin:0 0 56px;letter-spacing:-.01em}
+.wl-title span{color:var(--teal)}
+
+/* পাঁচটা ফিচার */
+.wl-grid{display:flex;flex-wrap:wrap;justify-content:center;margin-bottom:44px}
+.wl-item{flex:0 0 20%;max-width:20%;padding:0 18px;text-align:center}
+.wl-item + .wl-item{border-left:1px solid var(--line)}
+.wl-ico{width:48px;height:48px;border-radius:50%;background:#fff;box-shadow:0 4px 14px rgba(6,78,74,.14);color:var(--teal);
+  display:inline-flex;align-items:center;justify-content:center;font-size:1.15rem;margin-bottom:26px}
+.wl-item h4{font-size:.88rem;font-weight:700;color:#111f26;line-height:1.45;margin:0 0 10px}
+.wl-item p{font-size:.74rem;line-height:1.7;color:var(--muted);margin:0}
+
+/* গাঢ় সবুজ বক্স */
+.wl-band{background:var(--band);border-radius:32px;padding:46px 40px 50px;text-align:center;color:#fff;box-shadow:0 18px 40px rgba(6,78,74,.22)}
+.wl-band h3{font-size:clamp(1.4rem,3vw,1.85rem);font-weight:700;margin:0 0 12px;color:#fff;letter-spacing:-.01em}
+.wl-band p{max-width:660px;margin:0 auto 36px;color:#9be3d7;font-size:.9rem;line-height:1.6}
+.wl-stats{display:flex;justify-content:space-evenly;align-items:center;gap:24px;flex-wrap:wrap;max-width:900px;margin:0 auto}
+.wl-stat{display:flex;align-items:center;gap:14px;text-align:left}
+.wl-stat-ico{flex:0 0 56px;height:56px;border-radius:50%;background:#0a6f66;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.3rem}
+.wl-num{font-size:2rem;font-weight:700;line-height:1.1;color:#fff}
+.wl-label{font-size:.66rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#8fd9cd;margin-top:3px}
+
+/* ট্যাবলেট: ৩টা করে এক সারিতে */
+@media (max-width:991px){
+  .wl-section{padding:24px 22px 48px}
+  .wl-item{flex:0 0 33.333%;max-width:33.333%;padding:0 14px;margin-bottom:34px;border-left:0!important}
+  .wl-grid{margin-bottom:10px}
+  .wl-stats{gap:28px}
+}
+
+/* মোবাইল: একটার নিচে একটা */
+@media (max-width:767px){
+  .wl-section{padding:20px 14px 40px}
+  .wl-title{margin-bottom:32px}
+  .wl-item{flex:0 0 100%;max-width:100%}
+  .wl-band{border-radius:24px;padding:34px 18px}
+  .wl-stats{flex-direction:column;align-items:center;gap:22px}
+  .wl-stat{width:240px}
+}
+
+/* ---------- Grow Your Practice (hero) section ---------- */
+.ap-hero{--deep:#064e4a;--teal:#0d8a7d;--mint:#e4f3f1;--ink:#3b4a54;--muted:#8a96a0;--line:#e6ecef;
+  font-family:'Roboto',system-ui,sans-serif;color:var(--ink);padding:56px 48px 40px;background:#fff;overflow:hidden}
+.ap-hero *{box-sizing:border-box}
+.ap-title{font-size:clamp(2.2rem,5vw,3.4rem);font-weight:800;line-height:1.1;letter-spacing:-.02em;color:var(--deep);margin:0 0 22px}
+.ap-title span{color:var(--teal)}
+.ap-lead{font-size:1.05rem;line-height:1.7;max-width:540px;margin:0 0 26px}
+.ap-lead b{color:var(--teal);font-weight:600}
+
+.ap-features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
+.ap-feature{min-width:0;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 10px;text-align:center;box-shadow:0 2px 10px rgba(6,78,74,.05)}
+.ap-ico{width:34px;height:34px;border-radius:50%;background:var(--mint);color:var(--teal);display:inline-flex;align-items:center;justify-content:center;font-size:1rem;margin-bottom:8px}
+.ap-feature strong{display:block;font-size:.8rem;color:#111f26}
+.ap-feature small{display:block;font-size:.68rem;color:var(--muted);margin-top:3px}
+
+.ap-offer{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;background:var(--deep);border-radius:22px;padding:20px;align-items:center}
+.ap-offer-card{background:#fff;border-radius:16px;padding:18px;display:flex;gap:16px;align-items:center;height:100%}
+.ap-brain{flex:0 0 82px;height:82px;border-radius:50%;background:var(--mint);color:var(--teal);display:flex;align-items:center;justify-content:center;font-size:2.3rem;border:6px solid #f3faf9}
+.ap-offer-card h4{font-size:.98rem;font-weight:700;color:var(--deep);margin:0 0 4px}
+.ap-offer-card h4 i{color:var(--teal);font-size:.85rem;margin:0 3px}
+.ap-offer-card p{font-size:.85rem;color:#51606a;margin:0 0 8px;padding-bottom:8px;border-bottom:1px dashed var(--line)}
+.ap-price{font-size:.8rem;color:var(--muted)}
+.ap-price b{font-size:1.9rem;color:var(--deep);font-weight:800;margin:0 2px}
+.ap-contact{text-align:center;color:#fff}
+.ap-contact h5{font-size:1rem;font-weight:700;margin:0 0 12px;color:#fff}
+.ap-call{display:flex;align-items:center;gap:12px;background:#fff;border-radius:14px;padding:12px 14px;text-align:left;text-decoration:none}
+.ap-call-ico{flex:0 0 46px;height:46px;border-radius:50%;background:#0aa05a;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.3rem}
+.ap-call small{display:block;font-size:.72rem;font-weight:600;color:#26343c}
+.ap-call strong{display:block;font-size:1.12rem;color:#111f26;font-weight:700;white-space:nowrap}
+.ap-avail{margin-top:10px;font-size:.78rem;font-weight:500}
+.ap-avail i{margin-right:5px}
+.ap-avail small{display:block;color:#8be0d3;font-size:.72rem;margin-top:2px}
+
+.ap-steps{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px 0;margin:22px 0 14px}
+.ap-step{display:flex;align-items:center;gap:8px;font-weight:600;font-size:.88rem;color:#111f26;padding:0 18px}
+.ap-step i{color:var(--teal);font-size:1.05rem}
+.ap-step + .ap-step{border-left:1px solid var(--line)}
+.ap-secure{font-size:.78rem;color:var(--muted)}
+.ap-secure i{color:var(--teal);margin-right:6px}
+
+.ap-visual{position:relative;height:660px}
+.ap-photo-wrap{position:absolute;inset:0}
+.ap-circle{position:absolute;left:50%;top:50px;width:440px;height:440px;margin-left:-250px;border-radius:50%;background:var(--mint)}
+.ap-dots{position:absolute;right:-6px;top:20px;width:80px;height:70px;background-image:radial-gradient(var(--teal) 1.6px,transparent 1.7px);background-size:16px 16px;opacity:.5}
+.ap-sil{position:absolute;left:50%;bottom:0;width:300px;margin-left:-190px}
+.ap-photo{position:absolute;left:50%;bottom:0;height:640px;max-width:none;margin-left:-326px;object-fit:contain}
+.ap-float{position:absolute;right:0;background:#fff;border-radius:16px;box-shadow:0 10px 30px rgba(6,78,74,.14);text-align:center;font-size:.72rem;font-weight:600;color:#111f26;padding:14px 12px;width:142px}
+.ap-float .ap-ico{display:flex;margin:0 auto 6px}
+.ap-f1{top:300px}
+.ap-f2{top:440px}
+.ap-line{position:absolute;right:70px;top:400px;height:44px;border-left:1.5px dashed #9fd2cb}
+.ap-ai{position:absolute;right:0;bottom:6px;width:272px;background:#fff;border-radius:16px;box-shadow:0 10px 30px rgba(6,78,74,.14);padding:14px;display:flex;gap:12px;align-items:center}
+.ap-ai .ap-ico{flex:0 0 40px;height:40px;margin:0;font-size:1.2rem}
+.ap-ai strong{font-size:.78rem;color:#111f26;display:flex;justify-content:space-between;align-items:center}
+.ap-ai em{font-style:normal;background:var(--teal);color:#fff;font-size:.62rem;padding:2px 7px;border-radius:5px}
+.ap-ai small{display:block;font-size:.66rem;line-height:1.45;color:#6b7882;margin-top:4px}
+
+@media (max-width:991px){
+  .ap-hero{padding:36px 22px 28px}
+  .ap-visual{height:auto;margin-top:36px}
+  .ap-photo-wrap{position:relative;height:400px}
+  .ap-circle{width:330px;height:330px;top:20px;margin-left:-165px}
+  .ap-photo{height:390px;margin-left:-188px}
+  .ap-sil{width:230px;margin-left:-115px}
+  .ap-dots{display:none}
+  .ap-line{display:none}
+  .ap-float,.ap-ai{position:static;width:100%;max-width:340px;margin:12px auto 0}
+  .ap-float{display:flex;align-items:center;gap:12px;text-align:left}
+  .ap-float .ap-ico{margin:0}
+}
+@media (max-width:767px){
+  .ap-hero{padding:28px 14px 24px}
+  .ap-features{gap:8px}
+  .ap-feature{padding:12px 6px}
+  .ap-feature .ap-ico{width:30px;height:30px;font-size:.9rem}
+  .ap-feature strong{font-size:.7rem}
+  .ap-feature small{font-size:.6rem}
+  .ap-offer{grid-template-columns:1fr}
+  .ap-offer-card{flex-direction:column;text-align:center}
+  .ap-step{border-left:0!important;padding:0 12px}
+}
+
+/* ---------- Advocates Growing with section ---------- */
+.ag-section{--deep:#064e4a;--teal:#0d8a7d;--mint:#e9f3f3;--ink:#3b4a54;--muted:#6b7882;--line:#e6ecef;
+  font-family:'Roboto',system-ui,sans-serif;color:var(--ink);padding:36px 48px 56px;background:#fff}
+.ag-section *{box-sizing:border-box}
+
+.ag-title{text-align:center;font-size:clamp(1.6rem,3.4vw,2.1rem);font-weight:700;color:var(--deep);margin:0 0 10px;letter-spacing:-.01em}
+.ag-title span{color:var(--teal)}
+.ag-sub{text-align:center;font-size:.88rem;color:var(--muted);margin:0 0 60px}
+
+.ag-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-bottom:46px}
+.ag-card{display:flex;flex-direction:column;align-items:center;background:#fff;border:1px solid var(--line);border-radius:24px;
+  padding:32px 20px 20px;text-align:center;box-shadow:0 6px 22px rgba(6,78,74,.08);text-decoration:none}
+.ag-card:hover{text-decoration:none}
+.ag-photo{width:128px;height:128px;border-radius:50%;background:var(--mint);overflow:hidden;margin-bottom:28px;display:block}
+.ag-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.ag-name{font-size:.98rem;font-weight:700;color:var(--deep);margin:0 0 6px;line-height:1.35}
+.ag-area{font-size:.78rem;font-weight:700;color:var(--teal);margin:0}
+.ag-arrow{align-self:flex-end;margin-top:12px;color:var(--deep);font-size:1.05rem;line-height:1}
+
+.ag-join{display:flex;justify-content:center}
+.ag-join a{display:inline-flex;align-items:center;gap:12px;text-decoration:none;font-weight:700;color:var(--deep);font-size:1rem}
+.ag-join a:hover{text-decoration:none}
+.ag-join-ico{width:40px;height:40px;border-radius:50%;background:var(--mint);color:var(--teal);display:inline-flex;align-items:center;justify-content:center}
+.ag-join b{color:var(--teal);font-weight:700}
+.ag-bottom{border-top:1px solid var(--line);margin-top:40px}
+
+/* ট্যাবলেট: ২টা করে */
+@media (max-width:991px){
+  .ag-section{padding:28px 22px 44px}
+  .ag-grid{grid-template-columns:repeat(2,1fr)}
+}
+/* মোবাইল: একটার নিচে একটা */
+@media (max-width:767px){
+  .ag-section{padding:22px 14px 36px}
+  .ag-sub{margin-bottom:34px}
+  .ag-grid{grid-template-columns:1fr;gap:18px}
+}
+
+/* ---------- As Featured In ---------- */
+.am-section{--deep:#064e4a;--line:#e6ecef;
+  font-family:'Roboto',system-ui,sans-serif;padding:16px 48px 0;background:#fff}
+.am-section *{box-sizing:border-box}
+.am-label{text-align:center;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--deep);margin:0 0 20px}
+.am-logos{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:20px 52px;padding-bottom:28px;border-bottom:1px solid var(--line)}
+.am-logos img{height:155px;width:auto;max-width:150px;object-fit:contain;display:block}
+.am-name{font-size:1.05rem;font-weight:700;color:var(--deep)}
+
+/* ---------- Ready to Grow Your Practice ---------- */
+.rg-section{--deep:#064e4a;--band:#044845;
+  font-family:'Roboto',system-ui,sans-serif;padding:48px 48px 64px;background:#fff}
+.rg-section *{box-sizing:border-box}
+.rg-band{background:var(--band);border-radius:32px;padding:44px 48px;display:flex;align-items:center;justify-content:space-between;
+  gap:32px;color:#fff;box-shadow:0 18px 40px rgba(6,78,74,.22)}
+.rg-left{display:flex;align-items:center;gap:20px}
+.rg-ico{flex:0 0 64px;height:64px;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:1.6rem}
+.rg-left h3{font-size:clamp(1.5rem,3vw,1.9rem);font-weight:700;margin:0 0 6px;color:#fff;letter-spacing:-.01em}
+.rg-left p{margin:0;max-width:390px;color:#9be3d7;font-size:.9rem;line-height:1.6}
+
+.rg-right{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:14px}
+.rg-call{display:flex;align-items:center;gap:14px;background:#fff;border-radius:14px;padding:14px 22px;text-decoration:none;min-width:270px}
+.rg-call:hover{text-decoration:none}
+.rg-call-ico{flex:0 0 48px;height:48px;border-radius:50%;background:#0aa05a;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+.rg-call small{display:block;font-size:.75rem;font-weight:600;color:#26343c}
+.rg-call strong{display:block;font-size:1.3rem;color:#111f26;font-weight:700;white-space:nowrap}
+.rg-steps{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px;font-size:.72rem;font-weight:600;color:#fff}
+.rg-steps span{display:inline-flex;align-items:center;gap:6px}
+.rg-steps i{font-size:.85rem}
+
+/* ট্যাবলেট ও মোবাইল: বক্স একটার নিচে একটা */
+@media (max-width:991px){
+  .am-section{padding:14px 22px 0}
+  .rg-section{padding:36px 22px 48px}
+  .rg-band{flex-direction:column;text-align:center;padding:36px 24px;gap:26px}
+  .rg-left{flex-direction:column;gap:16px}
+  .rg-left p{margin:0 auto}
+  .rg-right{width:100%}
+  .rg-call{width:100%;max-width:420px}
+}
+@media (max-width:767px){
+  .am-section{padding:12px 14px 0}
+  .am-logos{gap:18px 30px}
+  .am-logos img{height:110px}
+  .rg-section{padding:28px 14px 40px}
+  .rg-band{border-radius:24px;padding:30px 18px}
+}

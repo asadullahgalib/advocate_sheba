@@ -25,6 +25,9 @@ Route::get('/clear-cache', function () {
 
 Route::get('/','Frontend\FrontenController@index');
 
+//Registration
+Route::get('/registration','Frontend\FrontenController@registration')->name('registration');
+
 // Courts
 Route::get('/supreme-court','Frontend\FrontenController@supremeCourt')->name('supreme.court');
 Route::get('/district-court','Frontend\FrontenController@districtCourt')->name('district.court');
