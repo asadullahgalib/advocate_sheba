@@ -1,3 +1,4 @@
+
 <style>
     /* Video Thumbnail */
     .video-thumb {
@@ -64,185 +65,112 @@
         transform: scale(1.05);
     }
 </style>
+
 <div class="page-content mb-50" style="padding: 0px 0px 10px 0px;background-color: #ffffff;margin-bottom: -20px !important;border-radius: 15px;">
+
     <div class="container">
+
         <div class="flex justify-between items-center mt-2">
-          <div class="my-4">
-            <h2
-              id="hospitals-by-location"
-              class="text-lg md:text-xl font-semibold text-gray-800 dark:text-gray-100"
+
+            <div class="my-4">
+
+                <h2
+                    id="hospitals-by-location"
+                    class="text-lg md:text-xl font-semibold text-gray-800 dark:text-gray-100"
+                >
+                    Latest Video
+                </h2>
+
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                    আইন সম্পর্কে জানুন ভিডিও দেখে
+                </p>
+
+            </div>
+
+            <a
+                href="#"
+                aria-label=""
+                class="flex items-center gap-1 text-[#008080] text-sm font-semibold hover:underline transition"
             >
-              Latest Video
-            </h2>
-            <p class="text-sm text-gray-600 dark:text-gray-400">
-              আইন সম্পর্কে জানুন ভিডিও দেখে
-            </p>
-          </div>
-          <a
-            href="#"
-            aria-label=""
-            class="flex items-center gap-1 text-[#008080] text-sm font-semibold hover:underline transition"
-          >
-            View All
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-chevron-right"
-              aria-hidden="true"
-            >
-              <path d="m9 18 6-6-6-6"></path>
-            </svg>
-          </a>
+                View All
+
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-chevron-right"
+                    aria-hidden="true"
+                >
+                    <path d="m9 18 6-6-6-6"></path>
+                </svg>
+
+            </a>
+
         </div>
 
         <div class="row">
 
-            <!-- Video 01 -->
-            <article class="col-xl-3 col-lg-4 col-md-6 text-center hover-up mb-30 animated">
-                <div class="post-thumb">
+            @forelse($videos as $video)
 
-                    <a href="{{route('video.details')}}">
+                <article class="col-xl-3 col-lg-4 col-md-6 text-center hover-up mb-30 animated">
 
-                        <div class="video-thumb">
+                    <div class="post-thumb">
 
-                            <img 
-                                src="{{asset('frontend/video-1.jpg')}}" 
-                                alt="Cardiologist in Bangladesh"
-                            >
+                        <a href="{{ route('video.details', $video->id) }}">
 
-                            <div class="video-overlay">
-                                <div class="youtube-icon">
-                                    <i class="fa fa-play"></i>
+                            <div class="video-thumb">
+
+                                <img
+                                    src="{{ !empty($video->image) ? asset('uploads/video_images/'.$video->image) : asset('frontend/video-1.jpg') }}"
+                                    alt="{{ $video->title }}"
+                                >
+
+                                <div class="video-overlay">
+
+                                    <div class="youtube-icon">
+                                        <i class="fa fa-play"></i>
+                                    </div>
+
                                 </div>
+
                             </div>
 
-                        </div>
-
-                    </a>
-
-                </div>
-
-                <div class="entry-content-2">
-                    <h4 class="post-title mb-15" style="font-size:17px;margin-top: 15px;">
-                        <a href="{{route('video.details')}}">
-                            জমি বিক্রির আগে যে বিষয় গুলো জানা দরকার
                         </a>
-                    </h4>
-                </div>
-            </article>
 
+                    </div>
 
-            <!-- Video 02 -->
-            <article class="col-xl-3 col-lg-4 col-md-6 text-center hover-up mb-30 animated">
-                <div class="post-thumb">
+                    <div class="entry-content-2">
 
-                    <a href="{{route('video.details')}}">
+                        <h4 class="post-title mb-15" style="font-size:17px;margin-top:15px;">
 
-                        <div class="video-thumb">
+                            <a href="{{ route('video.details', $video->id) }}">
+                                {{ $video->title }}
+                            </a>
 
-                            <img 
-                                src="{{asset('frontend/video-2.jpg')}}" 
-                                alt="Heart Specialist Doctor"
-                            >
+                        </h4>
 
-                            <div class="video-overlay">
-                                <div class="youtube-icon">
-                                    <i class="fa fa-play"></i>
-                                </div>
-                            </div>
+                    </div>
 
-                        </div>
+                </article>
 
-                    </a>
+            @empty
+
+                <div class="col-12 text-center py-4">
+
+                    <p>No videos available right now.</p>
 
                 </div>
 
-                <div class="entry-content-2">
-                    <h4 class="post-title mb-15" style="font-size:17px;margin-top: 15px;">
-                        <a href="{{route('video.details')}}">
-                            নারীর আইনি অধিকার ও নিরাপত্তা
-                        </a>
-                    </h4>
-                </div>
-            </article>
-
-
-            <!-- Video 03 -->
-            <article class="col-xl-3 col-lg-4 col-md-6 text-center hover-up mb-30 animated">
-                <div class="post-thumb">
-
-                    <a href="{{route('video.details')}}">
-
-                        <div class="video-thumb">
-
-                            <img 
-                                src="{{asset('frontend/video-3.jpg')}}" 
-                                alt="Heart Specialist Doctor"
-                            >
-
-                            <div class="video-overlay">
-                                <div class="youtube-icon">
-                                    <i class="fa fa-play"></i>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </a>
-
-                </div>
-
-                <div class="entry-content-2">
-                    <h4 class="post-title mb-15" style="font-size:17px;margin-top: 15px;">
-                        <a href="{{route('video.details')}}">
-                            পারিবারিক বিরোধ নিস্পত্তি ও আপোস মীমাংসা
-                        </a>
-                    </h4>
-                </div>
-            </article>
-
-
-            <!-- Video 04 -->
-            <article class="col-xl-3 col-lg-4 col-md-6 text-center hover-up mb-30 animated">
-                <div class="post-thumb">
-
-                    <a href="{{route('video.details')}}">
-
-                        <div class="video-thumb">
-
-                            <img 
-                                src="{{asset('frontend/video-4.jpg')}}" 
-                                alt="Heart Specialist Doctor"
-                            >
-
-                            <div class="video-overlay">
-                                <div class="youtube-icon">
-                                    <i class="fa fa-play"></i>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </a>
-
-                </div>
-
-                <div class="entry-content-2">
-                    <h4 class="post-title mb-15" style="font-size:17px;margin-top: 15px;">
-                        <a href="{{route('video.details')}}">
-                            আইনি পরামর্শ
-                        </a>
-                    </h4>
-                </div>
-            </article>
+            @endforelse
 
         </div>
+
     </div>
+
 </div>

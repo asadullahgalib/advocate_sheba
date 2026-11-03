@@ -201,110 +201,231 @@ class ContactController extends Controller
     }
 
     // Video Gallery
+    // Video Gallery
+
     public function videoView()
     {
-        if (@Auth::user()->user_category == 'admin' || @Auth::user()->user_category == 'Developer') {
+        $user = Auth::user();
+
+        if (in_array($user->user_category, ['admin', 'Developer'])) {
+
             $data['allData'] = VideoGallery::orderBy('id', 'desc')->get();
+
+        } elseif (in_array($user->user_category, ['doctor', 'nurse'])) {
+
+            $data['allData'] = VideoGallery::where('user_id', $user->id)
+                ->orderBy('id', 'desc')
+                ->get();
+
+        } else {
+
+            abort(403);
+
         }
-        if (@Auth::user()->user_category == 'doctor' || @Auth::user()->user_category == 'nurse') {
-            $data['allData'] = VideoGallery::where('user_id', @Auth::user()->id)->orderBy('id', 'desc')->get();
-        }
+
         return view('backend.doctor.video_view', $data);
     }
 
     public function videoAdd()
     {
-        $data['employees'] = User::whereIn('user_category', ['doctor', 'nurse'])->where('status', '1')->get();
+        $user = Auth::user();
+
+        if (!in_array($user->user_category, ['admin', 'Developer', 'doctor', 'nurse'])) {
+            abort(403);
+        }
+
+        $data['employees'] = User::whereIn('user_category', ['doctor', 'nurse'])
+            ->where('status', '1')
+            ->get();
+
         return view('backend.doctor.video_add', $data);
     }
 
     public function videoStore(Request $request)
     {
+        $user = Auth::user();
+
+        $request->validate([
+            'title' => 'nullable|string|max:255',
+            'link' => 'required|string',
+            'description_en' => 'nullable|string',
+            'user_id' => 'required_if:user_category,admin|nullable|exists:users,id',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+        ]);
+
         $data = new VideoGallery();
+
+        $data->title = $request->title;
         $data->link = $request->link;
-        
-        if (@Auth::user()->user_category == 'admin' || @Auth::user()->user_category == 'Developer') {
-            $user_id = $request->user_id;
+        $data->description_en = $request->description_en;
+
+        if (in_array($user->user_category, ['admin', 'Developer'])) {
+
+            $data->user_id = $request->user_id;
+
+        } elseif (in_array($user->user_category, ['doctor', 'nurse'])) {
+
+            $data->user_id = $user->id;
+
+        } else {
+
+            abort(403);
+
         }
-        if (@Auth::user()->user_category == 'doctor' || @Auth::user()->user_category == 'nurse') {
-            $user_id = Auth::user()->id;
-        }
-        $data->user_id = $user_id;
 
         if ($request->file('image')) {
+
             $file = $request->file('image');
-            $filename = date('YmdHi') . $file->getClientOriginalName();
+
+            $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+
             $file->move(public_path('uploads/video_images'), $filename);
+
             $img = Image::make(public_path('uploads/video_images/' . $filename));
-            $img->resize(300, 200)->save(public_path('uploads/video_images/' . $filename));
-            
+
+            $img->resize(500, 300)->save(public_path('uploads/video_images/' . $filename));
+
             $data->image = $filename;
         }
-        
-        $data->created_by = Auth::user()->id;
+
+        $data->created_by = $user->id;
+
         $data->save();
-        
-        return redirect()->route('doctor-profile.video.view')->with('success', 'Data Inserted successfully');
+
+        return redirect()->route('doctor-profile.video.view')
+            ->with('success', 'Data Inserted successfully');
     }
 
     public function videoEdit($id)
     {
-        if (@Auth::user()->user_category == 'admin' || @Auth::user()->user_category == 'Developer') {
-            $data['editData'] = VideoGallery::where('id', $id)->first();
+        $user = Auth::user();
+
+        if (in_array($user->user_category, ['admin', 'Developer'])) {
+
+            $data['editData'] = VideoGallery::findOrFail($id);
+
+        } elseif (in_array($user->user_category, ['doctor', 'nurse'])) {
+
+            $data['editData'] = VideoGallery::where('user_id', $user->id)
+                ->where('id', $id)
+                ->firstOrFail();
+
+        } else {
+
+            abort(403);
+
         }
-        if (@Auth::user()->user_category == 'doctor' || @Auth::user()->user_category == 'nurse') {
-            $user_id = Auth::user()->id;
-            $data['editData'] = VideoGallery::where('user_id', @Auth::user()->id)->where('id', $id)->first();
-        }
-        $data['employees'] = User::whereIn('user_category', ['doctor', 'nurse'])->where('status', '1')->get();
+
+        $data['employees'] = User::whereIn('user_category', ['doctor', 'nurse'])
+            ->where('status', '1')
+            ->get();
+
         return view('backend.doctor.video_add', $data);
     }
 
     public function videoUpdate(Request $request, $id)
     {
-        $data = VideoGallery::find($id);
+        $user = Auth::user();
+
+        if (in_array($user->user_category, ['admin', 'Developer'])) {
+
+            $data = VideoGallery::findOrFail($id);
+
+        } elseif (in_array($user->user_category, ['doctor', 'nurse'])) {
+
+            $data = VideoGallery::where('user_id', $user->id)
+                ->where('id', $id)
+                ->firstOrFail();
+
+        } else {
+
+            abort(403);
+
+        }
+
+        $request->validate([
+            'title' => 'nullable|string|max:255',
+            'link' => 'required|string',
+            'description_en' => 'nullable|string',
+            'user_id' => 'required_if:user_category,admin|nullable|exists:users,id',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+        ]);
+
+        $data->title = $request->title;
         $data->link = $request->link;
-        
-        if (@Auth::user()->user_category == 'admin' || @Auth::user()->user_category == 'Developer') {
-            $user_id = $request->user_id;
+        $data->description_en = $request->description_en;
+
+        if (in_array($user->user_category, ['admin', 'Developer'])) {
+
+            $data->user_id = $request->user_id;
+
+        } else {
+
+            $data->user_id = $user->id;
+
         }
-        if (@Auth::user()->user_category == 'doctor' || @Auth::user()->user_category == 'nurse') {
-            $user_id = Auth::user()->id;
-        }
-        $data->user_id = $user_id;
 
         if ($request->file('image')) {
-            $file = $request->file('image');
+
             if (!empty($data->image) && file_exists(public_path('uploads/video_images/' . $data->image))) {
+
                 @unlink(public_path('uploads/video_images/' . $data->image));
+
             }
-            
-            $filename = date('YmdHi') . $file->getClientOriginalName();
+
+            $file = $request->file('image');
+
+            $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+
             $file->move(public_path('uploads/video_images'), $filename);
-            
+
             $img = Image::make(public_path('uploads/video_images/' . $filename));
-            $img->resize(300, 200)->save(public_path('uploads/video_images/' . $filename));
-            
+
+            $img->resize(500, 300)->save(public_path('uploads/video_images/' . $filename));
+
             $data->image = $filename;
         }
-        
-        $data->updated_by = Auth::user()->id;
+
+        $data->updated_by = $user->id;
+
         $data->save();
-        
-        return redirect()->route('doctor-profile.video.view')->with('success', 'Data updated successfully');
+
+        return redirect()->route('doctor-profile.video.view')
+            ->with('success', 'Data updated successfully');
     }
+
     public function videoDelete(Request $request)
     {
-        $data = VideoGallery::find($request->id);
-        
-        if (!empty($data->image) && file_exists(public_path('uploads/video_images/' . $data->image))) {
-            @unlink(public_path('uploads/video_images/' . $data->image));
+        $user = Auth::user();
+
+        if (in_array($user->user_category, ['admin', 'Developer'])) {
+
+            $data = VideoGallery::findOrFail($request->id);
+
+        } elseif (in_array($user->user_category, ['doctor', 'nurse'])) {
+
+            $data = VideoGallery::where('user_id', $user->id)
+                ->where('id', $request->id)
+                ->firstOrFail();
+
+        } else {
+
+            abort(403);
+
         }
-        
+
+        if (!empty($data->image) && file_exists(public_path('uploads/video_images/' . $data->image))) {
+
+            @unlink(public_path('uploads/video_images/' . $data->image));
+
+        }
+
         $data->delete();
-        
-        return redirect()->route('doctor-profile.video.view')->with('success', 'Data Deleted successfully');
+
+        return redirect()->route('doctor-profile.video.view')
+            ->with('success', 'Data Deleted successfully');
     }
+        
 
     // Photo Gallery
 

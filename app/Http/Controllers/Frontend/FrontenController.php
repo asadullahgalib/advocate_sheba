@@ -189,22 +189,29 @@ class FrontenController extends Controller
     // Legal Information ends
 
     public function index(){
+
     $data['categories']     = Category::all();
     $data['departments']    = Department::orderBy('sort','asc')->get();
     $data['sliders']        = Slider::all();
     $data['doctors']        = User::where('user_category','advocate')->where('status','1')->orderBy('sort','asc')->get()->take(20);
+
     $data['legalArticles'] = NewsEvent::with('law')
-    ->orderBy('date', 'desc')
-    ->take(4)
-    ->get();
+        ->orderBy('date', 'desc')
+        ->take(4)
+        ->get();
 
     // FAQ Data
     $data['faqs'] = Faq::orderBy('serial', 'asc')->get();
 
+    // Video Gallery Data
+    $data['videos'] = VideoGallery::orderBy('id', 'desc')
+        ->take(4)
+        ->get();
+
     $data['page_type'] = 'home';
 
     return view('frontend.layouts.home', $data);
-    }
+}
 
     public function advocateList(){
         $data['categories']     = Category::all();
@@ -362,13 +369,24 @@ class FrontenController extends Controller
         return view('frontend.single_pages.article', $data);
     }
 
-    public function videoDetails(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
-        $data['page_type'] = 'video_details';
-        return view('frontend.single_pages.video_details',$data);
-    }
+    public function videoDetails($id){
+
+    $data['categories'] = Category::all();
+
+    $data['departments'] = Department::orderBy('sort','asc')->get();
+
+    $data['doctors'] = User::where('user_category','doctor')
+        ->where('department_id','57')
+        ->where('status','1')
+        ->paginate(8);
+
+    // Selected Video Data
+    $data['video'] = VideoGallery::findOrFail($id);
+
+    $data['page_type'] = 'video_details';
+
+    return view('frontend.single_pages.video_details', $data);
+}
 
     public function categoryList(){
         $data['categories']     = Category::all();

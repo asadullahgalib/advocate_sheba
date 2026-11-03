@@ -18,6 +18,8 @@ class CreateVideoGalleriesTable extends Migration
             $table->integer('user_id')->nullable();
             $table->string('title')->nullable();
             $table->longText('link')->nullable();
+            $table->string('image')->nullable();
+            $table->longText('description_en')->nullable();
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
             $table->timestamps();

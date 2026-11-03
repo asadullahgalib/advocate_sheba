@@ -20,7 +20,7 @@ class CreateNewsEventsTable extends Migration
             $table->string('image')->nullable();
             $table->string('title')->nullable();
             $table->date('date')->nullable();
-            $table->longText('description')->nullable();
+            $table->longText('description_en')->nullable();
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
             $table->timestamps();
