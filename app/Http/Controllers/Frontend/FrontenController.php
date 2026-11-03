@@ -36,6 +36,8 @@ use App\Model\Package;
 use App\Model\Ambulance;
 use App\Model\Promotion;
 use App\Model\Support;
+use App\Model\Term;
+use App\Model\Faq;
 use Auth;
 use DateTime;
 use PDF;
@@ -49,6 +51,30 @@ class FrontenController extends Controller
         return response()->json($doctors);
     }
 
+
+    //Term Show
+    public function term()
+    {
+        $route = request()->route()->getName();
+
+        $ids = [
+            'for.advocate'     => 1,
+            'how.it.works'     => 2,
+            'user.guide'       => 3,
+            'contact'          => 4,
+            'privacy.policy'   => 5,
+            'terms.of.use'     => 7,
+            'disclaimer'       => 6,
+            'editorial.policy' => 8,
+        ];
+
+        $id = $ids[$route] ?? abort(404);
+
+        $term = Term::findOrFail($id);
+
+        return view('frontend.term.term', compact('term'));
+    }
+
     //Registration
     public function registration(){
         $data['categories']     = Category::all();
@@ -56,6 +82,15 @@ class FrontenController extends Controller
         $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
         $data['page_type']      = 'registration';
         return view('frontend.registration.user_registration',$data);
+    }
+
+    //Registration
+    public function advocateJoin(){
+        $data['categories']     = Category::all();
+        $data['departments']    = Department::orderBy('sort','asc')->get();
+        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
+        $data['page_type']      = 'advocate-join';
+        return view('frontend.registration.advocate_join',$data);
     }
 
     // Court & Jurisdictions started
@@ -154,12 +189,21 @@ class FrontenController extends Controller
     // Legal Information ends
 
     public function index(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['sliders']        = Slider::all();
-        $data['doctors']        = User::where('user_category','advocate')->where('status','1')->orderBy('sort','asc')->get()->take(20);
-        $data['page_type'] = 'home';
-        return view('frontend.layouts.home',$data);
+    $data['categories']     = Category::all();
+    $data['departments']    = Department::orderBy('sort','asc')->get();
+    $data['sliders']        = Slider::all();
+    $data['doctors']        = User::where('user_category','advocate')->where('status','1')->orderBy('sort','asc')->get()->take(20);
+    $data['legalArticles'] = NewsEvent::with('law')
+    ->orderBy('date', 'desc')
+    ->take(4)
+    ->get();
+
+    // FAQ Data
+    $data['faqs'] = Faq::orderBy('serial', 'asc')->get();
+
+    $data['page_type'] = 'home';
+
+    return view('frontend.layouts.home', $data);
     }
 
     public function advocateList(){
@@ -294,12 +338,28 @@ class FrontenController extends Controller
         return view('frontend.advocate.advocate_profile',$data);
     }
 
-    public function legalArticleDetails(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
+    public function legalArticleDetails($id)
+    {
+        $data['categories'] = Category::all();
+
+        $data['departments'] = Department::orderBy('sort', 'asc')->get();
+
+        $data['doctors'] = User::where('user_category', 'doctor')
+            ->where('department_id', '57')
+            ->where('status', '1')
+            ->paginate(8);
+
+        $data['article'] = NewsEvent::with('law')->findOrFail($id);
+
+        $data['relatedArticles'] = NewsEvent::with('law')
+            ->where('id', '!=', $id)
+            ->orderBy('date', 'desc')
+            ->take(4)
+            ->get();
+
         $data['page_type'] = 'artical_details';
-        return view('frontend.single_pages.article',$data);
+
+        return view('frontend.single_pages.article', $data);
     }
 
     public function videoDetails(){

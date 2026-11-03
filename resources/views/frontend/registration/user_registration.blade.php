@@ -288,5 +288,11 @@
   </div>
 </section>
 
+<!-- ================= Floating Join Button ================= -->
+<a class="jb-btn" href="{{route('advocate.join')}}" target="_blank" rel="noopener noreferrer">
+  <span class="jb-dot"></span>
+  Join {{ $brandName }}
+</a>
+
 
 @endsection

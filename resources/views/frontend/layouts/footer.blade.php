@@ -182,23 +182,23 @@
                 ================================== -->
                 <div class="footer-links">
 
-                    <a href="#">For Advocates</a>
+                    <a href="{{route('for.advocate')}}">For Advocates</a>
 
-                    <a href="#">How It Works</a>
+                    <a href="{{route('how.it.works')}}">How It Works</a>
 
-                    <a href="#">User Guide</a>
+                    <a href="{{route('user.guide')}}">User Guide</a>
 
                     <a href="#">About</a>
 
-                    <a href="#">Contact</a>
+                    <a href="{{route('contact')}}">Contact</a>
 
-                    <a href="#">Privacy Policy</a>
+                    <a href="{{route('privacy.policy')}}">Privacy Policy</a>
 
-                    <a href="#">Terms of Use</a>
+                    <a href="{{route('terms.of.use')}}">Terms of Use</a>
 
-                    <a href="#">Disclaimer</a>
+                    <a href="{{route('disclaimer')}}">Disclaimer</a>
 
-                    <a href="#">Editorial Policy</a>
+                    <a href="{{route('editorial.policy')}}">Editorial Policy</a>
 
                 </div>
 

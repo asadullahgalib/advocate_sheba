@@ -25,8 +25,28 @@ Route::get('/clear-cache', function () {
 
 Route::get('/','Frontend\FrontenController@index');
 
+// Dynamic Terms Routes
+
+Route::get('/for-advocate', 'Frontend\FrontenController@term')->name('for.advocate');
+
+Route::get('/how-it-works', 'Frontend\FrontenController@term')->name('how.it.works');
+
+Route::get('/user-guide', 'Frontend\FrontenController@term')->name('user.guide');
+
+Route::get('/contact', 'Frontend\FrontenController@term')->name('contact');
+
+
+Route::get('/privacy-policy', 'Frontend\FrontenController@term')->name('privacy.policy');
+
+Route::get('/terms-of-use', 'Frontend\FrontenController@term')->name('terms.of.use');
+
+Route::get('/disclaimer', 'Frontend\FrontenController@term')->name('disclaimer');
+
+Route::get('/editorial-policy', 'Frontend\FrontenController@term')->name('editorial.policy');
+
 //Registration
 Route::get('/registration','Frontend\FrontenController@registration')->name('registration');
+Route::get('/advocate-join','Frontend\FrontenController@advocateJoin')->name('advocate.join');
 
 // Courts
 Route::get('/supreme-court','Frontend\FrontenController@supremeCourt')->name('supreme.court');
@@ -60,7 +80,7 @@ Route::get('/legal-news','Frontend\FrontenController@legalNews')->name('our.lega
 Route::get('/location-wise-list','Frontend\FrontenController@locationWiseList')->name('our.location-wise-list');
 Route::get('/practice-area-wise-list','Frontend\FrontenController@practiceAreaWiseList')->name('our.practice-area-wise-list');
 Route::get('/profile','Frontend\FrontenController@profile')->name('advocate-profile');
-Route::get('/legal-article-details','Frontend\FrontenController@legalArticleDetails')->name('legal.article.details');
+Route::get('/legal-article-details/{id}', 'Frontend\FrontenController@legalArticleDetails')->name('legal.article.details');
 Route::get('/video-details','Frontend\FrontenController@videoDetails')->name('video.details');
 Route::get('/category-list','Frontend\FrontenController@categoryList')->name('our.category-list');
 Route::get('/category/details/{id}','Frontend\FrontenController@categoryDetails')->name('our.category-details');
