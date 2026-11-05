@@ -6,6 +6,4 @@
 
     @include('frontend.layouts.course')
 
-    @include('frontend.layouts.faq')
-
 @endsection

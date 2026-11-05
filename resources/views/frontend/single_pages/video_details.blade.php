@@ -99,6 +99,18 @@
         display: block;
     }
 
+    .video-player-empty {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #cbd5e1;
+        font-size: 14px;
+        text-align: center;
+        padding: 15px;
+    }
+
     /* Video information */
     .video-meta-row {
         display: flex;
@@ -532,6 +544,10 @@
         display: block;
     }
 
+    .video-description-content.expanded .video-description-preview {
+        display: none;
+    }
+
     .video-read-more-btn {
         display: inline-flex;
         align-items: center;
@@ -613,18 +629,41 @@
 
 </style>
 
+@php
+    // ভিডিওর শিরোনাম (ফাঁকা থাকলে ডিফল্ট)
+    $videoTitle = $video->title ?: 'Legal Video';
+
+    // বিবরণ থেকে সাধারণ লেখা (HTML ছাড়া)
+    $descPlain   = trim(strip_tags($video->description_en ?? ''));
+    $descLimit   = 400;
+    $descHasMore = mb_strlen($descPlain) > $descLimit;
+
+    // Video link থেকে embed URL বানানো
+    $rawLink  = trim($video->link ?? '');
+    $embedUrl = null;
+
+    // iframe কোড দেওয়া থাকলে তার src বের করা
+    if (stripos($rawLink, '<iframe') !== false && preg_match('/src=["\']([^"\']+)["\']/i', $rawLink, $srcMatch)) {
+        $rawLink = $srcMatch[1];
+    }
+
+    if (preg_match('~(?:youtube\.com/(?:watch\?(?:.*&)?v=|embed/|shorts/|live/)|youtu\.be/)([A-Za-z0-9_-]{11})~i', $rawLink, $idMatch)) {
+        $embedUrl = 'https://www.youtube.com/embed/' . $idMatch[1];
+    } elseif (preg_match('~^https?://~i', $rawLink)) {
+        $embedUrl = $rawLink;
+    }
+@endphp
+
 <main class="video-details-page">
     <div class="container">
 
         <!-- Breadcrumb -->
         <nav class="video-breadcrumb" aria-label="Breadcrumb">
-            <a href="{{url('')}}">Home</a>
+            <a href="{{ url('') }}">Home</a>
             <span class="separator">/</span>
-            <a href="#">Legal Video</a>
+            <a href="{{ route('video.list') }}">Legal Video</a>
             <span class="separator">/</span>
-            <a href="#">Land Law</a>
-            <span class="separator">/</span>
-            <span class="current">জমি বিক্রির আগে যে বিষয় গুলো জানা দরকার</span>
+            <span class="current">{{ $videoTitle }}</span>
         </nav>
 
         <div class="row g-4">
@@ -636,23 +675,31 @@
 
                     <!-- Video Heading -->
                     <h1 class="video-main-title">
-                        জমি বিক্রির আগে যে বিষয় গুলো জানা দরকার! জরুরি কাগজপত্র ও সতর্কতা
+                        {{ $videoTitle }}
                     </h1>
 
-                    <p class="video-main-subtitle">
-                        জমি মানুষের জীবনের অন্যতম মূল্যবান সম্পদ। কেউ নিজের প্রয়োজনে, কেউ ব্যবসায়িক কারণে, আবার কেউ আর্থিক সংকট মোকাবিলার জন্য জমি বিক্রি করে থাকেন।
-                    </p>
+                    @if($descPlain != '')
+                        <p class="video-main-subtitle">
+                            {{ \Illuminate\Support\Str::limit($descPlain, 220) }}
+                        </p>
+                    @endif
 
                     <!-- Video Player -->
                     <div class="video-player-wrapper">
-                        <iframe
-                            src="https://www.youtube.com/embed/u6f4IPmE1z0?si=E9n_V3sldaOKWqrt"
-                            title="জমি বিক্রির আগে যে বিষয় গুলো জানা দরকার"
-                            loading="lazy"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin"
-                            allowfullscreen>
-                        </iframe>
+                        @if($embedUrl)
+                            <iframe
+                                src="{{ $embedUrl }}"
+                                title="{{ $videoTitle }}"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen>
+                            </iframe>
+                        @else
+                            <div class="video-player-empty">
+                                ভিডিওটি এই মুহূর্তে দেখা যাচ্ছে না।
+                            </div>
+                        @endif
                     </div>
 
                     <!-- Channel Information -->
@@ -669,7 +716,7 @@
                                 </h3>
 
                                 <p class="video-channel-info">
-                                    লিগেল প্রফেশ্নাল বিষয়ক তথ্য ও ভিডিও
+                                    লিগেল প্রফেশ্নাল বিষয়ক তথ্য ও ভিডিও
                                 </p>
                             </div>
                         </div>
@@ -689,7 +736,7 @@
                         <button type="button"
                                 class="video-action-btn"
                                 id="videoShareBtn">
-                            ↗ শেয়ার করুন
+                            ↗ শেয়ার করুন
                         </button>
 
                         <button type="button"
@@ -699,7 +746,7 @@
                         </button>
 
                         <span class="video-date">
-                            প্রকাশের তারিখ: Jul 14, 2026
+                            প্রকাশের তারিখ: {{ $video->created_at ? $video->created_at->format('M d, Y') : '' }}
                         </span>
 
                     </div>
@@ -713,32 +760,43 @@
                         ভিডিও সম্পর্কে বিস্তারিত
                     </h2>
 
-                    <div class="video-description-content" id="videoDescription">
-                        <p>
-                            জমি মানুষের জীবনের অন্যতম মূল্যবান সম্পদ। কেউ নিজের প্রয়োজনে, কেউ ব্যবসায়িক কারণে, আবার কেউ আর্থিক সংকট মোকাবিলার জন্য জমি বিক্রি করে থাকেন। তবে জমি বিক্রি করা শুধু ক্রেতার সঙ্গে দাম নির্ধারণ করে দলিল সম্পাদন করার মধ্যেই সীমাবদ্ধ নয়। জমির মালিকানা নিশ্চিত করা, প্রয়োজনীয় কাগজপত্র প্রস্তুত রাখা, সঠিক মূল্য নির্ধারণ এবং আইনগত জটিলতা এড়িয়ে চলার মতো গুরুত্বপূর্ণ বিষয়গুলো আগে থেকেই জানা প্রয়োজন। সামান্য অসতর্কতার কারণে জমি বিক্রির পরেও মামলা, আর্থিক ক্ষতি কিংবা নানা ধরনের সমস্যার সম্মুখীন হতে পারেন।
-                        </p>
+                    @if($descPlain != '')
 
-                        <p>
-                            তাই জমি বিক্রির সিদ্ধান্ত নেওয়ার আগে নিচের বিষয়গুলো ভালোভাবে জেনে নেওয়া উচিত।
-                        </p>
+                        <div class="video-description-content" id="videoDescription">
 
-                        <!-- Read More Content -->
-                        <div class="video-description-extra" id="videoDescriptionExtra">
-                            <div contenteditable="true" aria-label="Start writing" aria-multiline="true" role="textbox" translate="no" class="ProseMirror content-xaiQhS leading-relaxed"><h5 dir="auto"><span>জমি বিক্রির আগে যে বিষয়গুলো জানা দরকার</span></h5><p dir="auto"><span>জমি মানুষের জীবনের অন্যতম মূল্যবান সম্পদ। কেউ নিজের প্রয়োজনে, কেউ ব্যবসায়িক কারণে, আবার কেউ আর্থিক সংকট মোকাবিলার জন্য জমি বিক্রি করে থাকেন। তবে জমি বিক্রি করা শুধু ক্রেতার সঙ্গে দাম নির্ধারণ করে দলিল সম্পাদন করার মধ্যেই সীমাবদ্ধ নয়। জমির মালিকানা নিশ্চিত করা, প্রয়োজনীয় কাগজপত্র প্রস্তুত রাখা, সঠিক মূল্য নির্ধারণ এবং আইনগত জটিলতা এড়িয়ে চলার মতো গুরুত্বপূর্ণ বিষয়গুলো আগে থেকেই জানা প্রয়োজন। সামান্য অসতর্কতার কারণে জমি বিক্রির পরেও মামলা, আর্থিক ক্ষতি কিংবা নানা ধরনের সমস্যার সম্মুখীন হতে পারেন।</span></p><p dir="auto"><span>তাই জমি বিক্রির সিদ্ধান্ত নেওয়ার আগে নিচের বিষয়গুলো ভালোভাবে জেনে নেওয়া উচিত।</span></p><h5 dir="auto"><span>১. জমির মালিকানা নিশ্চিত করুন</span></h5><p dir="auto" class="isSelectedEnd"><span>জমি বিক্রির আগে সর্বপ্রথম নিশ্চিত হতে হবে, জমিটির বৈধ মালিকানা আপনার রয়েছে কি না। জমিটি নিজের নামে ক্রয় করা হলে ক্রয় দলিল, উত্তরাধিকারসূত্রে পাওয়া হলে ওয়ারিশ-সংক্রান্ত কাগজপত্র এবং অন্যান্য ক্ষেত্রে মালিকানা অর্জনের প্রমাণ যাচাই করতে হবে।</span></p><p dir="auto" class="isSelectedEnd"><span>শুধু খতিয়ান বা নামজারি থাকলেই যে জমির নিরঙ্কুশ মালিকানা প্রমাণিত হয়, এমন নয়। জমির পূর্ববর্তী মালিকানা, দলিলের ধারাবাহিকতা এবং সংশ্লিষ্ট রেকর্ডও যাচাই করা জরুরি।</span></p><h5 dir="auto"><span>২. প্রয়োজনীয় কাগজপত্র প্রস্তুত রাখুন</span></h5><p dir="auto" class="isSelectedEnd"><span>জমি বিক্রির সময় ক্রেতা সাধারণত জমির বিভিন্ন কাগজপত্র দেখতে চান। তাই আগেই প্রয়োজনীয় কাগজপত্র সংগ্রহ করে রাখা ভালো।</span></p><p dir="auto" class="isSelectedEnd"><span>গুরুত্বপূর্ণ কাগজপত্রের মধ্যে রয়েছে—</span></p><ul data-spread="false"><li><p dir="auto" class="isSelectedEnd"><span>জমির মূল দলিল বা মালিকানা অর্জনের প্রাসঙ্গিক দলিল।</span></p></li><li><p dir="auto" class="isSelectedEnd"><span>সর্বশেষ খতিয়ান ও প্রযোজ্য পূর্ববর্তী খতিয়ান।</span></p></li><li><p dir="auto" class="isSelectedEnd"><span>নামজারি বা মিউটেশনের কাগজপত্র।</span></p></li><li><p dir="auto" class="isSelectedEnd"><span>হালনাগাদ ভূমি উন্নয়ন কর পরিশোধের দাখিলা।</span></p></li><li><p dir="auto" class="isSelectedEnd"><span>মৌজা ম্যাপ বা প্রয়োজনীয় নকশা।</span></p></li><li><p dir="auto" class="isSelectedEnd"><span>উত্তরাধিকারসূত্রে পাওয়া জমির ক্ষেত্রে ওয়ারিশ সনদসহ প্রাসঙ্গিক কাগজপত্র।</span></p></li><li><p dir="auto" class="isSelectedEnd"><span>জমি বন্ধক, মামলা বা অন্য কোনো দায়ের আওতায় থাকলে সংশ্লিষ্ট তথ্য ও কাগজপত্র।</span></p></li></ul><p dir="auto" class="isSelectedEnd"><span>জমির ধরন ও মালিকানা অর্জনের পদ্ধতি অনুযায়ী কাগজপত্রের প্রয়োজনীয়তা ভিন্ন হতে পারে। তাই দলিল সম্পাদনের আগে সংশ্লিষ্ট সাব-রেজিস্ট্রি অফিস বা ভূমি আইন বিষয়ে অভিজ্ঞ আইনজীবীর পরামর্শ নেওয়া উচিত।</span></p><h5 dir="auto"><span>৩. জমির দাগ, খতিয়ান ও পরিমাণ মিলিয়ে দেখুন</span></h5><p dir="auto" class="isSelectedEnd"><span>জমির দলিলে উল্লেখিত দাগ নম্বর, খতিয়ান নম্বর, মৌজা, জমির শ্রেণি এবং পরিমাণ বাস্তব জমির সঙ্গে মিলিয়ে দেখা অত্যন্ত গুরুত্বপূর্ণ।</span></p><p dir="auto" class="isSelectedEnd"><span>অনেক ক্ষেত্রে কাগজে জমির পরিমাণ এক রকম থাকলেও বাস্তবে দখলে থাকা জমির পরিমাণ কম বা বেশি হতে পারে। আবার একই দাগে একাধিক মালিকের জমি থাকতে পারে। এ ধরনের সমস্যা এড়াতে প্রয়োজন হলে অভিজ্ঞ আমিন বা সার্ভেয়ার দিয়ে জমি পরিমাপ করিয়ে নিন।</span></p><h5 dir="auto"><span>৪. জমির বর্তমান বাজারমূল্য নির্ধারণ করুন</span></h5><p dir="auto" class="isSelectedEnd"><span>জমি বিক্রির আগে সঠিক বাজারমূল্য জানা অত্যন্ত জরুরি। তাড়াহুড়া করে কম দামে জমি বিক্রি করলে আর্থিক ক্ষতি হতে পারে। আবার অতিরিক্ত দাম চাইলে উপযুক্ত ক্রেতা পেতেও দেরি হতে পারে।</span></p><p dir="auto" class="isSelectedEnd"><span>বাজারমূল্য নির্ধারণের সময় বিবেচনা করুন—</span></p><ul data-spread="false"><li><p dir="auto" class="isSelectedEnd"><span>জমির অবস্থান ও যোগাযোগব্যবস্থা।</span></p></li><li><p dir="auto" class="isSelectedEnd"><span>রাস্তার প্রস্থ এবং জমিতে প্রবেশের সুবিধা।</span></p></li><li><p dir="auto" class="isSelectedEnd"><span>আশপাশের জমির সাম্প্রতিক বিক্রয়মূল্য।</span></p></li><li><p dir="auto" class="isSelectedEnd"><span>জমির শ্রেণি ও ব্যবহারযোগ্যতা।</span></p></li><li><p dir="auto" class="isSelectedEnd"><span>বিদ্যুৎ, পানি, বাজার, শিক্ষাপ্রতিষ্ঠানসহ প্রয়োজনীয় সুবিধার নৈকট্য।</span></p></li><li><p dir="auto" class="isSelectedEnd"><span>ভবিষ্যতে এলাকার উন্নয়নের সম্ভাবনা।</span></p></li></ul><p dir="auto" class="isSelectedEnd"><span>শুধু সরকারি নির্ধারিত মূল্য বা অন্যের কথার ওপর নির্ভর না করে স্থানীয় বাজার যাচাই করে বাস্তবসম্মত মূল্য নির্ধারণ করুন।</span></p><h5 dir="auto"><span>৫. জমির দখল ও সীমানা পরিষ্কার রাখুন</span></h5><p dir="auto" class="isSelectedEnd"><span>জমি বিক্রির আগে নিশ্চিত হোন, জমির সীমানা স্পষ্ট এবং জমির দখলসংক্রান্ত কোনো বিরোধ নেই। প্রতিবেশীর সঙ্গে সীমানা নিয়ে সমস্যা, চলাচলের রাস্তা নিয়ে বিরোধ অথবা অন্য কারও দখল থাকলে তা বিক্রির আগে সমাধানের উদ্যোগ নিন।</span></p><p dir="auto" class="isSelectedEnd"><span>জমিতে অন্য কারও বসতঘর, স্থাপনা বা ব্যবহার থাকলে বিষয়টি গোপন না করে ক্রেতাকে পরিষ্কারভাবে জানান। জমির প্রকৃত অবস্থা সম্পর্কে স্বচ্ছতা বজায় রাখলে ভবিষ্যতের বিরোধ কমে।</span></p><h5 dir="auto"><span>৬. জমিতে মামলা, বন্ধক বা অন্য কোনো দায় আছে কি না যাচাই করুন</span></h5><p dir="auto" class="isSelectedEnd"><span>জমি বিক্রির আগে খোঁজ নিন, জমিটি কোনো আদালতের মামলা, নিষেধাজ্ঞা, ব্যাংকঋণের বন্ধক, অধিগ্রহণের প্রক্রিয়া বা অন্য কোনো আইনগত জটিলতার আওতায় রয়েছে কি না।</span></p><p dir="auto" class="isSelectedEnd"><span>যৌথ মালিকানার জমি হলে সব সহমালিকের অধিকার ও সম্মতির বিষয়টিও গুরুত্বের সঙ্গে বিবেচনা করতে হবে। উত্তরাধিকারসূত্রে পাওয়া জমির ক্ষেত্রে সব ওয়ারিশের অংশ এবং বিক্রেতার প্রকৃত বিক্রয়যোগ্য স্বত্ব নিশ্চিত করা প্রয়োজন।</span></p><p dir="auto" class="isSelectedEnd"><span>কোনো বিরোধ বা দায় থাকলে তা গোপন করে বিক্রি করার চেষ্টা না করে আগে আইনগত অবস্থান পরিষ্কার করুন।</span></p><h5 dir="auto"><span>৭. ক্রেতার পরিচয় ও অর্থের উৎস সম্পর্কে সতর্ক থাকুন</span></h5><p dir="auto" class="isSelectedEnd"><span>জমি কেনার আগ্রহ দেখালেই অপরিচিত কাউকে সব মূল কাগজপত্র দিয়ে দেওয়া উচিত নয়। ক্রেতার পরিচয়, যোগাযোগের তথ্য এবং লেনদেনের শর্ত সম্পর্কে নিশ্চিত হোন।</span></p><p dir="auto" class="isSelectedEnd"><span>বায়না বা অগ্রিম অর্থ গ্রহণের সময় লিখিত চুক্তি করুন। সেখানে জমির বিবরণ, মোট মূল্য, অগ্রিম অর্থ, অবশিষ্ট টাকা পরিশোধের সময়সীমা এবং চুক্তি ভঙ্গের শর্ত স্পষ্টভাবে উল্লেখ রাখুন।</span></p><p dir="auto" class="isSelectedEnd"><span>অর্থ গ্রহণের ক্ষেত্রে ব্যাংকিং চ্যানেল বা যাচাইযোগ্য লেনদেনের পদ্ধতি ব্যবহার করা নিরাপদ। টাকা পরিশোধের প্রমাণ ও রসিদ সংরক্ষণ করুন।</span></p><h5 dir="auto"><span>৮. দলিল সম্পাদনের আগে সব শর্ত বুঝে নিন</span></h5><p dir="auto" class="isSelectedEnd"><span>জমি বিক্রির দলিল একটি গুরুত্বপূর্ণ আইনগত নথি। দলিলে জমির পরিচিতি, দাগ ও খতিয়ান নম্বর, পরিমাণ, সীমানা, বিক্রয়মূল্য এবং পক্ষগুলোর সঠিক তথ্য থাকা জরুরি।</span></p><p dir="auto" class="isSelectedEnd"><span>দলিলের খসড়া ভালোভাবে পড়ে বুঝে নিন। কোনো তথ্য ভুল থাকলে স্বাক্ষরের আগে সংশোধন করুন। প্রয়োজনে অভিজ্ঞ দলিল লেখক ও আইনজীবীর সহায়তা নিন।</span></p><p dir="auto" class="isSelectedEnd"><span>বিশেষভাবে মনে রাখবেন, সম্পূর্ণ মূল্য বুঝে পাওয়ার আগে দলিলে মূল্য পরিশোধের বিষয়ে অসত্য ঘোষণা করা উচিত নয়। জমি বিক্রির ক্ষেত্রে প্রযোজ্য নিবন্ধন, কর, ফি এবং অন্যান্য আইনগত আনুষ্ঠানিকতা যথাযথভাবে সম্পন্ন করতে হবে।</span></p><h5 dir="auto"><span>৯. বিক্রয়-সংক্রান্ত খরচ ও কর সম্পর্কে জানুন</span></h5><p dir="auto" class="isSelectedEnd"><span>জমি বিক্রির সঙ্গে বিভিন্ন ধরনের কর, ফি, দলিল প্রস্তুত-সংক্রান্ত খরচ এবং অন্যান্য ব্যয় যুক্ত থাকতে পারে। কোন খরচ কে বহন করবেন, তা ক্রেতা ও বিক্রেতার মধ্যে আগেই পরিষ্কার করে নেওয়া ভালো।</span></p><p dir="auto" class="isSelectedEnd"><span>প্রযোজ্য আইন অনুযায়ী বিক্রেতার কোনো কর বা দায় পরিশোধের প্রয়োজন থাকলে তা যাচাই করুন। জমির অবস্থান, শ্রেণি, লেনদেনের ধরন এবং প্রচলিত বিধানের ওপর খরচ নির্ভর করতে পারে। তাই বর্তমান নিয়ম ও প্রযোজ্য হার সম্পর্কে সংশ্লিষ্ট কর্তৃপক্ষের কাছ থেকে নিশ্চিত তথ্য নিন।</span></p><h5 dir="auto"><span>১০. উত্তরাধিকার ও পাওয়ার অব অ্যাটর্নির ক্ষেত্রে বাড়তি সতর্কতা অবলম্বন করুন</span></h5><p dir="auto" class="isSelectedEnd"><span>উত্তরাধিকারসূত্রে পাওয়া জমি বিক্রি করার সময় ওয়ারিশদের পরিচয়, প্রাপ্য অংশ এবং মালিকানা-সংক্রান্ত কাগজপত্র যাচাই করতে হবে। একজন ওয়ারিশ সাধারণত নিজের আইনগত অধিকার ও অংশের বাইরে অন্যের অংশ বিক্রি করতে পারেন না।</span></p><p dir="auto" class="isSelectedEnd"><span>আবার প্রতিনিধি বা পাওয়ার অব অ্যাটর্নির মাধ্যমে জমি বিক্রি হলে ক্ষমতাপত্রের বৈধতা, পরিধি এবং কার্যকারিতা যাচাই করা জরুরি। প্রয়োজনে আইনজীবীর পরামর্শ নিয়ে নিশ্চিত হোন যে প্রতিনিধি সংশ্লিষ্ট জমি বিক্রির জন্য যথাযথ ক্ষমতাপ্রাপ্ত।</span></p><h5 dir="auto"><span>১১. জমি বিক্রির পর সব প্রমাণ সংরক্ষণ করুন</span></h5><p dir="auto" class="isSelectedEnd"><span>দলিল সম্পাদন ও নিবন্ধনের পর বিক্রয়-সংক্রান্ত সব গুরুত্বপূর্ণ কাগজপত্র যত্নসহকারে সংরক্ষণ করুন। যেমন—</span></p><ul data-spread="false"><li><p dir="auto" class="isSelectedEnd"><span>নিবন্ধিত দলিলের কপি বা প্রাপ্তিসংক্রান্ত প্রমাণ।</span></p></li><li><p dir="auto" class="isSelectedEnd"><span>টাকা গ্রহণের রসিদ ও ব্যাংক লেনদেনের প্রমাণ।</span></p></li><li><p dir="auto" class="isSelectedEnd"><span>বায়নাপত্র বা বিক্রয়-সংক্রান্ত চুক্তি।</span></p></li><li><p dir="auto" class="isSelectedEnd"><span>প্রযোজ্য কর ও ফি পরিশোধের রসিদ।</span></p></li><li><p dir="auto" class="isSelectedEnd"><span>ক্রেতার সঙ্গে সম্পাদিত অন্যান্য লিখিত সমঝোতা।</span></p></li></ul><p dir="auto"><span>এসব নথি ভবিষ্যতে কোনো প্রশ্ন, বিরোধ বা আইনগত প্রয়োজন দেখা দিলে কাজে আসতে পারে।</span></p>
-                            </div>
+                            @if($descHasMore)
+
+                                <p class="video-description-preview">
+                                    {{ \Illuminate\Support\Str::limit($descPlain, $descLimit) }}
+                                </p>
+
+                                <!-- Read More Content -->
+                                <div class="video-description-extra" id="videoDescriptionExtra">
+                                    {!! $video->description_en !!}
+                                </div>
+
+                            @else
+
+                                {!! $video->description_en !!}
+
+                            @endif
+
                         </div>
-                    </div>
 
-                    <button type="button"
-                            class="video-read-more-btn"
-                            id="videoReadMoreBtn"
-                            aria-expanded="false"
-                            aria-controls="videoDescriptionExtra">
-                        Read more <span class="read-more-arrow">⌄</span>
-                    </button>
+                        @if($descHasMore)
+                            <button type="button"
+                                    class="video-read-more-btn"
+                                    id="videoReadMoreBtn"
+                                    aria-expanded="false"
+                                    aria-controls="videoDescriptionExtra">
+                                Read more <span class="read-more-arrow">⌄</span>
+                            </button>
+                        @endif
+
+                    @endif
 
                     <!-- Content Source -->
-                    <div class="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-2xl border border-gray-200 dark:border-gray-700 my-6"><div class="italic text-sm md:text-base bg-white dark:bg-gray-900 p-4 rounded-lg border-l-4 border-[#008080] text-gray-700 dark:text-gray-300 space-y-1"><p><strong>Content Source:</strong> AdvocateSheba Official YouTube Channel</p><p><strong>Legal Expert Featured:</strong> এডভোকেট মোঃ আসাদুল্লাহ গালিব, সুপ্রিম কোড়ট অব বাংলাদেশ ।</p><p><strong>Content Prepared &amp; Published By:</strong> AdvocateSheba Editorial Team</p><p><strong>Last Updated:</strong> 14 July 2026<a aria-label="Read Doctors24 editorial policy" class="text-[#008080] dark:text-red-400" href="#"> • Read Editorial Policy →</a></p></div></div>
+                    <div class="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-2xl border border-gray-200 dark:border-gray-700 my-6"><div class="italic text-sm md:text-base bg-white dark:bg-gray-900 p-4 rounded-lg border-l-4 border-[#008080] text-gray-700 dark:text-gray-300 space-y-1"><p><strong>Content Source:</strong> AdvocateSheba Official YouTube Channel</p><p><strong>Legal Expert Featured:</strong> এডভোকেট মোঃ আসাদুল্লাহ গালিব, সুপ্রিম কোড়ট অব বাংলাদেশ ।</p><p><strong>Content Prepared &amp; Published By:</strong> AdvocateSheba Editorial Team</p><p><strong>Last Updated:</strong> {{ $video->updated_at ? $video->updated_at->format('d F Y') : '' }}<a aria-label="Read Doctors24 editorial policy" class="text-[#008080] dark:text-red-400" href="#"> • Read Editorial Policy →</a></p></div></div>
 
                     <style>
                         .my-6{margin-top:1.5rem;margin-bottom:1.5rem;}
@@ -776,111 +834,44 @@
                             সম্পর্কিত ভিডিও
                         </h2>
 
-                        <a href="#"
+                        <a href="{{ route('video.list') }}"
                            class="related-video-view-all">
                             সব ভিডিও →
                         </a>
                     </div>
 
-                    <!-- Related Video 1 -->
-                    <a href="{{route('video.details')}}"
-                       class="related-video-item">
+                    @forelse($relatedVideos as $related)
 
-                        <div class="related-video-thumb">
-                            <img
-                                src="{{asset('frontend/video-1.jpg')}}"
-                                alt="পেটব্যথার কারণ"
-                                loading="lazy">
+                        <!-- Related Video -->
+                        <a href="{{ route('video.details', $related->slug) }}"
+                           class="related-video-item">
 
-                            <span class="related-video-play">▶</span>
-                        </div>
+                            <div class="related-video-thumb">
+                                <img
+                                    src="{{ !empty($related->image) ? asset('uploads/video_images/'.$related->image) : asset('frontend/video-1.jpg') }}"
+                                    alt="{{ $related->title }}"
+                                    loading="lazy">
 
-                        <div class="related-video-info">
-                            <h3 class="related-video-title">
-                                জমি বিক্রির আগে যে বিষয় গুলো জানা দরকার
-                            </h3>
+                                <span class="related-video-play">▶</span>
+                            </div>
 
-                            <p class="related-video-meta">
-                                জমি বিষয়ক আলোচনা
-                            </p>
-                        </div>
+                            <div class="related-video-info">
+                                <h3 class="related-video-title">
+                                    {{ $related->title ?: 'Legal Video' }}
+                                </h3>
 
-                    </a>
+                                <p class="related-video-meta">
+                                    {{ \Illuminate\Support\Str::limit(trim(strip_tags($related->description_en ?? '')), 60) }}
+                                </p>
+                            </div>
 
-                    <!-- Related Video 2 -->
-                    <a href="{{route('video.details')}}"
-                       class="related-video-item">
+                        </a>
 
-                        <div class="related-video-thumb">
-                            <img
-                                src="{{asset('frontend/video-2.jpg')}}"
-                                alt="লিভারের যত্ন"
-                                loading="lazy">
+                    @empty
 
-                            <span class="related-video-play">▶</span>
-                        </div>
+                        <p class="related-video-meta">আর কোনো ভিডিও পাওয়া যায়নি।</p>
 
-                        <div class="related-video-info">
-                            <h3 class="related-video-title">
-                                নারীর আইনি অধিকার ও নিরাপত্তা
-                            </h3>
-
-                            <p class="related-video-meta">
-                                নারীর আইনি অধিকার ও নিরাপত্তা বিষয়ক পরামর্শ
-                            </p>
-                        </div>
-
-                    </a>
-
-                    <!-- Related Video 3 -->
-                    <a href="{{route('video.details')}}"
-                       class="related-video-item">
-
-                        <div class="related-video-thumb">
-                            <img
-                                src="{{asset('frontend/video-3.jpg')}}"
-                                alt="অপারেশনের প্রস্তুতি"
-                                loading="lazy">
-
-                            <span class="related-video-play">▶</span>
-                        </div>
-
-                        <div class="related-video-info">
-                            <h3 class="related-video-title">
-                                পারিবারিক বিরোধ নিস্পত্তি ও আপোস মীমাংসা
-                            </h3>
-
-                            <p class="related-video-meta">
-                                পারিবারিক বিরোধ নিস্পত্তি বিষয়ক পরামর্শ
-                            </p>
-                        </div>
-
-                    </a>
-
-                    <!-- Related Video 4 -->
-                    <a href="{{route('video.details')}}"
-                       class="related-video-item">
-
-                        <div class="related-video-thumb">
-                            <img
-                                src="{{asset('frontend/video-4.jpg')}}"
-                                alt="স্বাস্থ্য সচেতনতা"
-                                loading="lazy">
-
-                            <span class="related-video-play">▶</span>
-                        </div>
-
-                        <div class="related-video-info">
-                            <h3 class="related-video-title">
-                                আইনি পরামর্শ
-                            </h3>
-
-                            <p class="related-video-meta">
-                                আইনি পরামর্শ বিষয়ক আলোচনা
-                            </p>
-                        </div>
-
-                    </a>
+                    @endforelse
 
                 </section>
 
@@ -908,7 +899,7 @@
                         await navigator.share(shareData);
                     } else if (navigator.clipboard) {
                         await navigator.clipboard.writeText(shareData.url);
-                        alert('ভিডিওর লিংক কপি হয়েছে।');
+                        alert('ভিডিওর লিংক কপি হয়েছে।');
                     } else {
                         window.prompt('ভিডিওর লিংক কপি করুন:', shareData.url);
                     }
@@ -927,7 +918,7 @@
                 try {
                     if (navigator.clipboard) {
                         await navigator.clipboard.writeText(url);
-                        alert('ভিডিওর লিংক কপি হয়েছে।');
+                        alert('ভিডিওর লিংক কপি হয়েছে।');
                     } else {
                         window.prompt('ভিডিওর লিংক কপি করুন:', url);
                     }
@@ -990,7 +981,7 @@
             </p>
           </div>
           <a
-            href="#"
+            href="{{ route('legal.article.list') }}"
             aria-label=""
             class="flex items-center gap-1 text-[#008080] text-sm font-semibold hover:underline transition"
           >
@@ -1020,214 +1011,61 @@
 
         <div class="row featured-articles-row">
 
+            @forelse($legalArticles as $article)
 
-            <!-- Article 1 -->
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
 
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="featured-article-card">
 
-                <div class="featured-article-card">
+                        <div class="article-image">
 
-                    <div class="article-image">
+                            <img
+                                src="{{ $article->image ? asset('uploads/news_images/'.$article->image) : asset('frontend/f1.jpg') }}"
+                                alt="{{ $article->title }}"
+                            >
 
-                        <img src="{{asset('frontend/f1.jpg')}}" alt="Criminal Law">
-
-                        <span class="article-category">
-                            Criminal Law
-                        </span>
-
-                    </div>
-
-
-                    <div class="article-content">
-
-                        <h4>
-                            What Are Your Rights
-                            When You Are Arrested?
-                        </h4>
-
-
-                        <div class="article-meta">
-
-                            <span>
-                                <i class="fa-regular fa-calendar"></i>
-                                May 4, 2024
-                            </span>
-
-                            <span>
-                                <i class="fa-regular fa-eye"></i>
-                                1.2K Views
+                            <span class="article-category">
+                                {{ $article->law ? $article->law->title_en : 'Legal Article' }}
                             </span>
 
                         </div>
 
 
-                        <a href="{{route('legal.article.details')}}" class="read-more">
-                            Read More
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </a>
+                        <div class="article-content">
 
-                    </div>
-
-                </div>
-
-            </div>
+                            <h4>
+                                {{ $article->title }}
+                            </h4>
 
 
-            <!-- Article 2 -->
+                            <div class="article-meta">
 
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+                                <span>
+                                    <i class="fa-regular fa-calendar"></i>
+                                    {{ $article->date ? \Carbon\Carbon::parse($article->date)->format('M d, Y') : 'Date unavailable' }}
+                                </span>
 
-                <div class="featured-article-card">
-
-                    <div class="article-image">
-
-                        <img src="{{asset('frontend/f2.jpg')}}" alt="Land Law">
-
-                        <span class="article-category">
-                            Land Law
-                        </span>
-
-                    </div>
+                            </div>
 
 
-                    <div class="article-content">
-
-                        <h4>
-                            What to Check Before
-                            Buying a Land?
-                        </h4>
-
-
-                        <div class="article-meta">
-
-                            <span>
-                                <i class="fa-regular fa-calendar"></i>
-                                Apr 30, 2024
-                            </span>
-
-                            <span>
-                                <i class="fa-regular fa-eye"></i>
-                                980 Views
-                            </span>
+                            <a href="{{ route('legal.article.details', $article->slug) }}" class="read-more">
+                                Read More
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
 
                         </div>
 
-
-                        <a href="{{route('legal.article.details')}}" class="read-more">
-                            Read More
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-
                     </div>
 
                 </div>
 
-            </div>
+            @empty
 
-
-            <!-- Article 3 -->
-
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
-
-                <div class="featured-article-card">
-
-                    <div class="article-image">
-
-                        <img src="{{asset('frontend/f3.jpg')}}" alt="Family Law">
-
-                        <span class="article-category">
-                            Family Law
-                        </span>
-
-                    </div>
-
-
-                    <div class="article-content">
-
-                        <h4>
-                            What is the Legal Process
-                            of Divorce in Bangladesh?
-                        </h4>
-
-
-                        <div class="article-meta">
-
-                            <span>
-                                <i class="fa-regular fa-calendar"></i>
-                                May 1, 2024
-                            </span>
-
-                            <span>
-                                <i class="fa-regular fa-eye"></i>
-                                1.5K Views
-                            </span>
-
-                        </div>
-
-
-                        <a href="{{route('legal.article.details')}}" class="read-more">
-                            Read More
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-
-                    </div>
-
+                <div class="col-12 text-center py-4">
+                    <p>No legal articles available right now.</p>
                 </div>
 
-            </div>
-
-
-            <!-- Article 4 -->
-
-            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
-
-                <div class="featured-article-card">
-
-                    <div class="article-image">
-
-                        <img src="{{asset('frontend/f4.jpg')}}" alt="Corporate Law">
-
-                        <span class="article-category">
-                            Corporate Law
-                        </span>
-
-                    </div>
-
-
-                    <div class="article-content">
-
-                        <h4>
-                            Steps to Register a Private
-                            Limited Company in Bangladesh
-                        </h4>
-
-
-                        <div class="article-meta">
-
-                            <span>
-                                <i class="fa-regular fa-calendar"></i>
-                                Apr 28, 2024
-                            </span>
-
-                            <span>
-                                <i class="fa-regular fa-eye"></i>
-                                860 Views
-                            </span>
-
-                        </div>
-
-
-                        <a href="{{route('legal.article.details')}}" class="read-more">
-                            Read More
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
+            @endforelse
 
         </div>
 

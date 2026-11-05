@@ -1,4 +1,3 @@
-
 <style>
     /* Video Thumbnail */
     .video-thumb {
@@ -88,7 +87,7 @@
             </div>
 
             <a
-                href="#"
+                href="{{ route('video.list') }}"
                 aria-label=""
                 class="flex items-center gap-1 text-[#008080] text-sm font-semibold hover:underline transition"
             >
@@ -122,7 +121,7 @@
 
                     <div class="post-thumb">
 
-                        <a href="{{ route('video.details', $video->id) }}">
+                        <a href="{{ route('video.details', $video->slug) }}">
 
                             <div class="video-thumb">
 
@@ -149,7 +148,7 @@
 
                         <h4 class="post-title mb-15" style="font-size:17px;margin-top:15px;">
 
-                            <a href="{{ route('video.details', $video->id) }}">
+                            <a href="{{ route('video.details', $video->slug) }}">
                                 {{ $video->title }}
                             </a>
 

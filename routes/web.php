@@ -54,8 +54,16 @@ Route::get('/district-court','Frontend\FrontenController@districtCourt')->name('
 Route::get('/tribunals-court','Frontend\FrontenController@tribunalsCourt')->name('tribunals.courts');
 Route::get('/village-court','Frontend\FrontenController@villageCourt')->name('village.court');
 
-//Legal Documents & Forms
-Route::get('/legal/form','Frontend\FrontenController@legalForm')->name('legal.form');
+// ==========================================
+// LEGAL DOCUMENTS & FORMS
+// ==========================================
+
+Route::get('/legal/forms', 'Frontend\FrontenController@legalFormList')
+    ->name('legal.form.list');
+
+Route::get('/legal/form/{slug}', 'Frontend\FrontenController@legalForm')
+    ->name('legal.form');
+
 
 // Legal Information
 Route::get('/legal/information/rights','Frontend\FrontenController@legalInformationRights')->name('legal.information.rights');
@@ -80,8 +88,27 @@ Route::get('/legal-news','Frontend\FrontenController@legalNews')->name('our.lega
 Route::get('/location-wise-list','Frontend\FrontenController@locationWiseList')->name('our.location-wise-list');
 Route::get('/practice-area-wise-list','Frontend\FrontenController@practiceAreaWiseList')->name('our.practice-area-wise-list');
 Route::get('/profile','Frontend\FrontenController@profile')->name('advocate-profile');
-Route::get('/legal-article-details/{id}', 'Frontend\FrontenController@legalArticleDetails')->name('legal.article.details');
-Route::get('/video-details/{id}', 'Frontend\FrontenController@videoDetails')->name('video.details');
+// ==========================================
+// LEGAL ARTICLES
+// ==========================================
+
+Route::get('/legal/article-list', 'Frontend\FrontenController@legalArticleList')
+    ->name('legal.article.list');
+
+Route::get('/legal-article-details/{slug}', 'Frontend\FrontenController@legalArticleDetails')
+    ->name('legal.article.details');
+//end
+// ==========================================
+// VIDEO GALLERY
+// ==========================================
+
+Route::get('/video-list', 'Frontend\FrontenController@videoList')
+    ->name('video.list');
+
+Route::get('/video-details/{slug}', 'Frontend\FrontenController@videoDetails')
+    ->name('video.details');
+
+//Ends
 Route::get('/category-list','Frontend\FrontenController@categoryList')->name('our.category-list');
 Route::get('/category/details/{id}','Frontend\FrontenController@categoryDetails')->name('our.category-details');
 Route::post('/category/details/store','Frontend\FrontenController@categoryDetailsStore')->name('our.category-details.store');

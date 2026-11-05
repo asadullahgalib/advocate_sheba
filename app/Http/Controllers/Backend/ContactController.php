@@ -18,6 +18,7 @@ use App\Model\Support;
 use App\Model\Law;
 use App\Model\AddPosition;
 use App\User;
+use Illuminate\Support\Str;
 use Image;
 
 class ContactController extends Controller
@@ -201,8 +202,6 @@ class ContactController extends Controller
     }
 
     // Video Gallery
-    // Video Gallery
-
     public function videoView()
     {
         $user = Auth::user();
@@ -256,6 +255,15 @@ class ContactController extends Controller
         $data = new VideoGallery();
 
         $data->title = $request->title;
+
+        // স্যারের নিয়মে slug (title ফাঁকা হলে "video" ধরা হবে)
+        $slug = rand(0000, 9999);
+        $slugBase = Str::slug((string) $request->title);
+        if ($slugBase == '') {
+            $slugBase = 'video';
+        }
+        $data->slug = $slugBase . $slug . date('His');
+
         $data->link = $request->link;
         $data->description_en = $request->description_en;
 
@@ -352,6 +360,17 @@ class ContactController extends Controller
         ]);
 
         $data->title = $request->title;
+
+        // slug আগে থেকে থাকলে বদলাবে না (লিংক ঠিক রাখতে), ফাঁকা থাকলে শুধু তখন বানাবে
+        if (empty($data->slug)) {
+            $slug = rand(0000, 9999);
+            $slugBase = Str::slug((string) $request->title);
+            if ($slugBase == '') {
+                $slugBase = 'video';
+            }
+            $data->slug = $slugBase . $slug . date('His');
+        }
+
         $data->link = $request->link;
         $data->description_en = $request->description_en;
 
@@ -528,8 +547,11 @@ class ContactController extends Controller
     }
 
     public function newsStore(Request $request){
+        $slug = rand(0000, 9999);
+
         $data = new NewsEvent();
         $data->title = $request->title;
+        $data->slug = Str::slug($request->title) . $slug . date('His');
         
         $data->law_id = $request->law_id; 
         
@@ -572,6 +594,13 @@ class ContactController extends Controller
     public function newsUpdate(Request $request,$id){
         $data = NewsEvent::find($id);
         $data->title = $request->title;
+
+        // slug আগে থেকে থাকলে বদলাবে না (লিংক ঠিক রাখতে), ফাঁকা থাকলে শুধু তখন বানাবে
+        if (empty($data->slug)) {
+            $slug = rand(0000, 9999);
+            $data->slug = Str::slug($request->title) . $slug . date('His');
+        }
+
         $data->law_id = $request->law_id; 
         
         $data->date = date('Y-m-d',strtotime($request->date));
