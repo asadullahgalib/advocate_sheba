@@ -38,6 +38,7 @@ use App\Model\Promotion;
 use App\Model\Support;
 use App\Model\Term;
 use App\Model\Faq;
+use App\Model\Document;
 use Auth;
 use DateTime;
 use PDF;
@@ -129,17 +130,55 @@ class FrontenController extends Controller
 
     // Court & Jurisdictions ends
 
-    // Legal Documents & Forms
-    public function legalForm(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
-        $data['page_type']      = 'legal_form';
-        $data['pdfUrl']         = asset('pdfs/bail_form.pdf'); 
-        
-        return view('frontend.document_forms.legal_form', $data);
+// ==========================================
+// LEGAL DOCUMENTS & FORMS - LIST PAGE
+// ==========================================
+
+    public function legalFormList()
+    {
+        $data['categories'] = Category::all();
+
+        $data['departments'] = Department::orderBy('sort', 'asc')->get();
+
+        $data['doctors'] = User::where('user_category', 'doctor')
+            ->where('department_id', '57')
+            ->where('status', '1')
+            ->paginate(8);
+
+        $data['page_type'] = 'legal_form';
+
+        $data['documents'] = Document::orderBy('id', 'desc')
+            ->paginate(12);
+
+        return view('frontend.document_forms.legal_form_list', $data);
     }
 
+
+// ==========================================
+// LEGAL DOCUMENTS & FORMS - DETAILS PAGE
+// ==========================================
+
+    public function legalForm($slug)
+    {
+        $data['categories'] = Category::all();
+
+        $data['departments'] = Department::orderBy('sort', 'asc')->get();
+
+        $data['doctors'] = User::where('user_category', 'doctor')
+            ->where('department_id', '57')
+            ->where('status', '1')
+            ->paginate(8);
+
+        $data['page_type'] = 'legal_form';
+
+        $data['document'] = Document::where('slug', $slug)->firstOrFail();
+
+        $data['pdfUrl'] = !empty($data['document']->pdf_file)
+            ? asset('uploads/document_files/' . $data['document']->pdf_file)
+            : null;
+
+        return view('frontend.document_forms.legal_form', $data);
+    }
 
 
 
@@ -207,6 +246,8 @@ class FrontenController extends Controller
     $data['videos'] = VideoGallery::orderBy('id', 'desc')
         ->take(4)
         ->get();
+
+    $data['documents']      = Document::orderBy('id','desc')->take(12)->get();
 
     $data['page_type'] = 'home';
 
@@ -301,12 +342,79 @@ class FrontenController extends Controller
         return view('frontend.single_pages.courts',$data);
     }
 
-    public function legalNews(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
-        $data['page_type'] = 'legal_news';
-        return view('frontend.single_pages.legal_news',$data);
+    // ==========================================
+// LEGAL ARTICLES - LIST PAGE
+// ==========================================
+
+    public function legalArticleList()
+    {
+        $data['categories'] = Category::all();
+
+        $data['departments'] = Department::orderBy('sort', 'asc')->get();
+
+        $data['doctors'] = User::where('user_category', 'doctor')
+            ->where('department_id', '57')
+            ->where('status', '1')
+            ->paginate(8, ['*'], 'doctors_page');
+
+        $data['page_type'] = 'legal_article';
+
+        $data['articles'] = NewsEvent::with('law')
+            ->orderBy('date', 'desc')
+            ->paginate(12);
+
+        return view('frontend.single_pages.legal_article_list', $data);
+    }
+
+
+// ==========================================
+// LEGAL ARTICLES - DETAILS PAGE
+// ==========================================
+
+    // ==========================================
+// LEGAL ARTICLES - DETAILS PAGE
+// ==========================================
+
+    public function legalArticleDetails($slug)
+    {
+        $data['categories'] = Category::all();
+
+        $data['departments'] = Department::orderBy('sort', 'asc')->get();
+
+        $data['doctors'] = User::where('user_category', 'doctor')
+            ->where('department_id', '57')
+            ->where('status', '1')
+            ->paginate(8);
+
+        $data['page_type'] = 'legal_article';
+
+        $data['article'] = NewsEvent::with('law')
+            ->where('slug', $slug)
+            ->firstOrFail();
+
+        // আগে একই আইনের (law) article, কম পড়লে সর্বশেষগুলো দিয়ে পূরণ
+        $related = NewsEvent::with('law')
+            ->where('id', '!=', $data['article']->id)
+            ->where('law_id', $data['article']->law_id)
+            ->orderBy('date', 'desc')
+            ->take(4)
+            ->get();
+
+        if ($related->count() < 4) {
+            $excludeIds = $related->pluck('id')->push($data['article']->id)->all();
+
+            $more = NewsEvent::with('law')
+                ->whereNotIn('id', $excludeIds)
+                ->orderBy('date', 'desc')
+                ->take(4 - $related->count())
+                ->get();
+
+            $related = $related->concat($more);
+        }
+
+        $data['relatedArticles'] = $related;
+
+        return view('frontend.single_pages.legal_article_details', $data);
     }
 
     public function locationWiseList(){
@@ -345,7 +453,35 @@ class FrontenController extends Controller
         return view('frontend.advocate.advocate_profile',$data);
     }
 
-    public function legalArticleDetails($id)
+    // ==========================================
+// VIDEO GALLERY - LIST PAGE
+// ==========================================
+
+    public function videoList()
+    {
+        $data['categories'] = Category::all();
+
+        $data['departments'] = Department::orderBy('sort', 'asc')->get();
+
+        $data['doctors'] = User::where('user_category', 'doctor')
+            ->where('department_id', '57')
+            ->where('status', '1')
+            ->paginate(8, ['*'], 'doctors_page');
+
+        $data['page_type'] = 'video_list';
+
+        $data['videos'] = VideoGallery::orderBy('id', 'desc')
+            ->paginate(12);
+
+        return view('frontend.single_pages.video_list', $data);
+    }
+
+
+// ==========================================
+// VIDEO GALLERY - DETAILS PAGE
+// ==========================================
+
+    public function videoDetails($slug)
     {
         $data['categories'] = Category::all();
 
@@ -356,37 +492,25 @@ class FrontenController extends Controller
             ->where('status', '1')
             ->paginate(8);
 
-        $data['article'] = NewsEvent::with('law')->findOrFail($id);
+        // Selected Video Data
+        $data['video'] = VideoGallery::where('slug', $slug)->firstOrFail();
 
-        $data['relatedArticles'] = NewsEvent::with('law')
-            ->where('id', '!=', $id)
+        // সম্পর্কিত ভিডিও (সাইডবার)
+        $data['relatedVideos'] = VideoGallery::where('id', '!=', $data['video']->id)
+            ->orderBy('id', 'desc')
+            ->take(4)
+            ->get();
+
+        // নিচের Legal Articles section
+        $data['legalArticles'] = NewsEvent::with('law')
             ->orderBy('date', 'desc')
             ->take(4)
             ->get();
 
-        $data['page_type'] = 'artical_details';
+        $data['page_type'] = 'video_details';
 
-        return view('frontend.single_pages.article', $data);
+        return view('frontend.single_pages.video_details', $data);
     }
-
-    public function videoDetails($id){
-
-    $data['categories'] = Category::all();
-
-    $data['departments'] = Department::orderBy('sort','asc')->get();
-
-    $data['doctors'] = User::where('user_category','doctor')
-        ->where('department_id','57')
-        ->where('status','1')
-        ->paginate(8);
-
-    // Selected Video Data
-    $data['video'] = VideoGallery::findOrFail($id);
-
-    $data['page_type'] = 'video_details';
-
-    return view('frontend.single_pages.video_details', $data);
-}
 
     public function categoryList(){
         $data['categories']     = Category::all();

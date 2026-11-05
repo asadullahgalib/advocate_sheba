@@ -30,8 +30,8 @@
                 </li>
 
                 <li>
-                    <a href="#">
-                        Blogs
+                    <a href="{{ route('legal.article.list') }}">
+                        Legal Articles
                     </a>
                 </li>
 
@@ -40,7 +40,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="{{ route('legal.article.list') }}">
                         {{ $article->law ? $article->law->title_en : 'Legal Article' }}
                     </a>
                 </li>
@@ -167,7 +167,7 @@
                     <i class="fa-regular fa-user"></i>
 
                     <span>
-                        {{ $article->user ? $article->user->name : 'AdvocateSheba Editorial Team' }}
+                        AdvocateSheba Editorial Team
                     </span>
 
                 </div>
@@ -279,9 +279,11 @@
 </div>
 
 <!-- ============================
-     LEGAL ARTICLES SECTION START
+     RELATED LEGAL ARTICLES START
 ============================= -->
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/legal-service-article.css') }}">
+
+@if($relatedArticles->count() > 0)
 
 <section class="legal-articles-section" style="background: #f7f8fa;padding: 0px 0px 0px 0px;">
 
@@ -304,7 +306,7 @@
             </p>
           </div>
           <a
-            href="#"
+            href="{{ route('legal.article.list') }}"
             aria-label=""
             class="flex items-center gap-1 text-[#008080] text-sm font-semibold hover:underline transition"
           >
@@ -334,7 +336,7 @@
 
         <div class="row featured-articles-row">
 
-            @forelse($relatedArticles as $related)
+            @foreach($relatedArticles as $related)
 
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
 
@@ -371,7 +373,7 @@
                             </div>
 
 
-                            <a href="{{ route('legal.article.details', $related->id) }}" class="read-more">
+                            <a href="{{ route('legal.article.details', $related->slug) }}" class="read-more">
                                 Read More
                                 <i class="fa-solid fa-arrow-right"></i>
                             </a>
@@ -382,19 +384,15 @@
 
                 </div>
 
-            @empty
-
-                <div class="col-12 text-center py-4">
-                    <p>No related articles available right now.</p>
-                </div>
-
-            @endforelse
+            @endforeach
 
         </div>
 
     </div>
 
 </section>
+
+@endif
 
 <style>
     /* Video Thumbnail */

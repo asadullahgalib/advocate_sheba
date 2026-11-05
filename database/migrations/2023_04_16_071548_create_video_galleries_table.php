@@ -17,6 +17,7 @@ class CreateVideoGalleriesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id')->nullable();
             $table->string('title')->nullable();
+            $table->string('slug', 191)->nullable()->unique();
             $table->longText('link')->nullable();
             $table->string('image')->nullable();
             $table->longText('description_en')->nullable();

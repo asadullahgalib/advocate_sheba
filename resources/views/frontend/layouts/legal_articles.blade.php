@@ -1,4 +1,3 @@
-
 <!-- ============================
      LEGAL ARTICLES SECTION START
 ============================= -->
@@ -23,7 +22,7 @@
                 </p>
             </div>
 
-            <a href="#" aria-label="" class="flex items-center gap-1 text-[#008080] text-sm font-semibold hover:underline transition">
+            <a href="{{ route('legal.article.list') }}" aria-label="" class="flex items-center gap-1 text-[#008080] text-sm font-semibold hover:underline transition">
                 View All
 
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right" aria-hidden="true">
@@ -76,7 +75,7 @@
                             </div>
 
 
-                            <a href="{{ route('legal.article.details', $article->id) }}" class="read-more">
+                            <a href="{{ route('legal.article.details', $article->slug) }}" class="read-more">
 
                                 Read More
 

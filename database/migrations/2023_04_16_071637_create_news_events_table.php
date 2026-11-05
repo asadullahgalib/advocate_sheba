@@ -19,6 +19,7 @@ class CreateNewsEventsTable extends Migration
             $table->integer('law_id')->nullable();
             $table->string('image')->nullable();
             $table->string('title')->nullable();
+            $table->string('slug', 191)->nullable()->unique();
             $table->date('date')->nullable();
             $table->longText('description_en')->nullable();
             $table->integer('created_by')->nullable();

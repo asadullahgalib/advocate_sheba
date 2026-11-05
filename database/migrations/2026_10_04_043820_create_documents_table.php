@@ -16,6 +16,7 @@ class CreateDocumentsTable extends Migration
         Schema::create('documents', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title')->nullable();
+            $table->string('slug', 191)->nullable()->unique();
             $table->string('sub_title')->nullable();
             $table->string('pdf_file')->nullable();
             $table->integer('created_by')->nullable();

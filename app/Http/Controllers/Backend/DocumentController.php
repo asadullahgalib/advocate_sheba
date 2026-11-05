@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Auth;
 use App\Model\Document;
 
@@ -12,13 +13,13 @@ class DocumentController extends Controller
     // ১. সব ডকুমেন্ট লিস্ট দেখা
     public function view(){
         $data['allData'] = Document::orderBy('id', 'desc')->get();
-        // পাথ পরিবর্তন করে backend.documents.document_view করা হয়েছে
+        // পাথ পরিবর্তন করে backend.documents.document_view করা হয়েছে
         return view('backend.documents.document_view', $data); 
     }
 
     // ২. নতুন ডকুমেন্ট যোগ করার ফর্ম
     public function add(){
-        // পাথ পরিবর্তন করে backend.documents.document_add করা হয়েছে
+        // পাথ পরিবর্তন করে backend.documents.document_add করা হয়েছে
         return view('backend.documents.document_add'); 
     }
 
@@ -29,8 +30,11 @@ class DocumentController extends Controller
             'title' => 'required',
         ]);
 
+        $slug = rand(0000, 9999);
+
         $data = new Document();
         $data->title = $request->title;
+        $data->slug = Str::slug($request->title) . $slug . date('His');
         $data->sub_title = $request->sub_title;
         $data->created_by = Auth::user()->id;
 
@@ -66,6 +70,12 @@ class DocumentController extends Controller
         $data->title = $request->title;
         $data->sub_title = $request->sub_title;
         $data->updated_by = Auth::user()->id;
+
+        // slug আগে থেকে থাকলে বদলাবে না (লিংক ঠিক রাখতে), ফাঁকা থাকলে শুধু তখন বানাবে
+        if (empty($data->slug)) {
+            $slug = rand(0000, 9999);
+            $data->slug = Str::slug($request->title) . $slug . date('His');
+        }
 
         // ================= PDF Update & Old File Delete =================
         if ($request->hasFile('pdf_file')) {
