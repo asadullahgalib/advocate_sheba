@@ -220,6 +220,16 @@ Route::group(['middleware'=>['auth','admin']],function(){
 			Route::post('/delete','Backend\LegalInformationController@delete')->name('legal-information.delete');
 		});
 
+		// Legal Information Details
+		Route::prefix('legal-information-details')->group(function(){
+			Route::get('/view','Backend\LegalInformationDetailsController@view')->name('legal-information-details.view');
+			Route::get('/add','Backend\LegalInformationDetailsController@add')->name('legal-information-details.add');
+			Route::post('/store','Backend\LegalInformationDetailsController@store')->name('legal-information-details.store');
+			Route::get('/edit/{id}','Backend\LegalInformationDetailsController@edit')->name('legal-information-details.edit');
+			Route::post('/update/{id}','Backend\LegalInformationDetailsController@update')->name('legal-information-details.update');
+			Route::post('/delete','Backend\LegalInformationDetailsController@delete')->name('legal-information-details.delete');
+		});
+
 		// Law
 		Route::prefix('laws')->group(function(){
 			Route::get('/view','Backend\LawController@view')->name('laws.view');
