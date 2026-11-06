@@ -26,120 +26,52 @@
 
             <div class="row justify-content-center">
 
-                <!-- Card 1 -->
-                <div class="col-6 col-md-3">
+                @forelse($legalInformations as $info)
 
-                    <a href="{{route('legal.information.rights')}}" class="directory-card legal-card">
+                    @php
+                        // icon: Font Awesome class অথবা ছবির লিংক
+                        $icon = trim($info->icon ?? '');
+                        $isHttp = preg_match('~^https?://~i', $icon);
+                        $isImage = $icon != '' && ($isHttp || preg_match('~\.(png|jpe?g|svg|webp|gif)$~i', $icon));
+                        $iconUrl = $isHttp ? $icon : asset($icon);
+                    @endphp
 
-                        <div class="directory-icon">
-                            <i class="fa fa-book"></i>
-                        </div>
+                    <div class="col-6 col-md-3">
 
-                        <h3>
-                            Know Your<br>
-                            Rights
-                        </h3>
+                        <a href="{{ route('legal.information.details', $info->slug) }}" class="directory-card legal-card">
 
-                        <p>
-                            Learn about your<br>
-                            legal rights.
-                        </p>
+                            <div class="directory-icon">
+                                @if($isImage)
+                                    <img src="{{ $iconUrl }}" alt="{{ $info->title_en }}" style="max-width:60%;max-height:60%;object-fit:contain;">
+                                @else
+                                    <i class="{{ $icon != '' ? $icon : 'fa-solid fa-book' }}"></i>
+                                @endif
+                            </div>
 
-                        <div class="card-bottom">
-                            <span>View Details</span>
-                            <i class="fa fa-chevron-right"></i>
-                        </div>
+                            <h3>
+                                {{ $info->title_en }}
+                            </h3>
 
-                    </a>
+                            <p>
+                                {{ \Illuminate\Support\Str::limit(trim(strip_tags($info->description_en)), 60) }}
+                            </p>
 
-                </div>
+                            <div class="card-bottom">
+                                <span>View Details</span>
+                                <i class="fa fa-chevron-right"></i>
+                            </div>
 
+                        </a>
 
-                <!-- Card 2 -->
-                <div class="col-6 col-md-3">
+                    </div>
 
-                    <a href="{{route('legal.information.terms')}}" class="directory-card legal-card">
+                @empty
 
-                        <div class="directory-icon">
-                            <i class="fa fa-book"></i>
-                        </div>
+                    <div class="col-12 text-center py-4">
+                        <p>No legal information available right now.</p>
+                    </div>
 
-                        <h3>
-                            Legal<br>
-                            Terms
-                        </h3>
-
-                        <p>
-                            Understand common<br>
-                            legal terms.
-                        </p>
-
-                        <div class="card-bottom">
-                            <span>View Details</span>
-                            <i class="fa fa-chevron-right"></i>
-                        </div>
-
-                    </a>
-
-                </div>
-
-
-                <!-- Card 3 -->
-                <div class="col-6 col-md-3">
-
-                    <a href="{{route('legal.information.laws')}}" class="directory-card legal-card">
-
-                        <div class="directory-icon">
-                            <i class="fa fa-hammer"></i>
-                        </div>
-
-                        <h3>
-                            Laws of<br>
-                            Bangladesh
-                        </h3>
-
-                        <p>
-                            Explore laws and<br>
-                            act of Bangladesh.
-                        </p>
-
-                        <div class="card-bottom">
-                            <span>View Details</span>
-                            <i class="fa fa-chevron-right"></i>
-                        </div>
-
-                    </a>
-
-                </div>
-
-
-                <!-- Card 4 -->
-                <div class="col-6 col-md-3">
-
-                    <a href="{{route('legal.information.procudures')}}" class="directory-card legal-card">
-
-                        <div class="directory-icon">
-                            <i class="fa fa-file"></i>
-                        </div>
-
-                        <h3>
-                            Legal<br>
-                            Procedures
-                        </h3>
-
-                        <p>
-                            Step-by-step legal<br>
-                            procedures.
-                        </p>
-
-                        <div class="card-bottom">
-                            <span>View Details</span>
-                            <i class="fa fa-chevron-right"></i>
-                        </div>
-
-                    </a>
-
-                </div>
+                @endforelse
 
             </div>
 

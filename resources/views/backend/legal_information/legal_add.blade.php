@@ -18,14 +18,17 @@
         <form method="post" action="{{(@$editData)?route('legal-information.update',$editData->id):route('legal-information.store')}}" id="myForm">
           @csrf
           <div class="form-row">
+            
+            <!-- Title Field (Max 191) -->
             <div class="form-group col-md-12">
-              <label>Title (English) <span style="color:red;">*</span></label>
-              <input type="text" name="title_en" id="title_en" class="form-control form-control-sm" value="{{@$editData->title_en}}" placeholder="Enter Title">
+              <label>Title <span style="color:red;">*</span></label>
+              <input type="text" name="title_en" id="title_en" class="form-control form-control-sm" value="{{@$editData->title_en}}" placeholder="Enter Title" maxlength="191">
             </div>
             
+            <!-- Subtitle Field (Max 100 ক্যারেক্টার লক করা হয়েছে) -->
             <div class="form-group col-md-12">
-              <label for="description_en">Description (English) <span style="color:red;">*</span></label>
-              <textarea name="description_en" id="description_en" class="form-control" rows="5">{{@$editData->description_en}}</textarea>
+              <label>Subtitle <span style="color:red;">*</span></label>
+              <input type="text" name="description_en" id="description_en" class="form-control form-control-sm" value="{{@$editData->description_en}}" placeholder="Enter Subtitle" maxlength="100">
             </div>
 
             <div class="form-group col-md-3">
@@ -39,40 +42,26 @@
   </div>
 
 <script type="text/javascript">
-  $(document).ready(function(){
-    // CKEditor for Description
-    var editor2 = CKEDITOR.replace('description_en');
-    CKFinder.setupCKEditor(editor2, '/ckfinder/');
-    editor2.on('change', function() {
-        editor2.updateElement();
-        $('#description_en').valid();
-    });
-  });
-</script>
-
-<script type="text/javascript">
     $(document).ready(function () {
-      $('textarea[name="description_en"]').each(function(){
-          $(this).val($(this).val().trim());
-      });
-
       $('#myForm').validate({
-        ignore : [],
-        debug : false,
         rules: {
           title_en: {
             required: true,
+            maxlength: 191
           },
           description_en: {
             required: true,
+            maxlength: 100 // ১০০ ক্যারেক্টার লিমিট
           }
         },
         messages: {
           title_en: {
             required: "Please enter the title",
+            maxlength: "Title cannot be longer than 191 characters"
           },
           description_en: {
-            required: "Please enter the description",
+            required: "Please enter the subtitle",
+            maxlength: "Subtitle cannot be longer than 100 characters" // এরর মেসেজ
           }
         },
         errorElement: 'span',

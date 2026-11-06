@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Model\LegalInformation;
 use Auth;
 
@@ -29,8 +30,11 @@ class LegalInformationController extends Controller
             'description_en' => 'required',
         ]);
 
+        $slug = rand(0000, 9999);
+
         $data = new LegalInformation();
         $data->title_en = $request->title_en;
+        $data->slug = Str::slug($request->title_en) . $slug . date('His');
         $data->description_en = $request->description_en;
         $data->created_by = Auth::user()->id;
         $data->save();
@@ -53,6 +57,13 @@ class LegalInformationController extends Controller
 
         $data = LegalInformation::find($id);
         $data->title_en = $request->title_en;
+
+        // slug আগে থেকে থাকলে বদলাবে না (লিংক ঠিক রাখতে), ফাঁকা থাকলে শুধু তখন বানাবে
+        if (empty($data->slug)) {
+            $slug = rand(0000, 9999);
+            $data->slug = Str::slug($request->title_en) . $slug . date('His');
+        }
+
         $data->description_en = $request->description_en;
         $data->updated_by = Auth::user()->id;
         $data->save();

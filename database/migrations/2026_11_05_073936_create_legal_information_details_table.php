@@ -15,9 +15,11 @@ class CreateLegalInformationDetailsTable extends Migration
     {
         Schema::create('legal_information_details', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('legal_information_id')->nullable();
-            $table->string('title')->nullable();
+            $table->bigInteger('legal_information_id')->nullable();
+            $table->string('title_bn')->nullable();
+            $table->string('title_en')->nullable();
             $table->longText('description_en')->nullable();
+            $table->integer('serial')->nullable();
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
             $table->timestamps();
