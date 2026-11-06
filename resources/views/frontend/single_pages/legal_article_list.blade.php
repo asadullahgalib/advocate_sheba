@@ -77,10 +77,6 @@
 
         </div>
 
-        <div class="d-flex justify-content-center my-4">
-            {{ $articles->links() }}
-        </div>
-
     </div>
 
 </section>

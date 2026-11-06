@@ -28,21 +28,20 @@ Route::get('/','Frontend\FrontenController@index');
 // Dynamic Terms Routes
 
 Route::get('/for-advocate', 'Frontend\FrontenController@term')->name('for.advocate');
-
 Route::get('/how-it-works', 'Frontend\FrontenController@term')->name('how.it.works');
-
 Route::get('/user-guide', 'Frontend\FrontenController@term')->name('user.guide');
-
 Route::get('/contact', 'Frontend\FrontenController@term')->name('contact');
 
-
 Route::get('/privacy-policy', 'Frontend\FrontenController@term')->name('privacy.policy');
-
 Route::get('/terms-of-use', 'Frontend\FrontenController@term')->name('terms.of.use');
-
 Route::get('/disclaimer', 'Frontend\FrontenController@term')->name('disclaimer');
-
 Route::get('/editorial-policy', 'Frontend\FrontenController@term')->name('editorial.policy');
+
+// Join Us
+Route::get('/join-advocate','Frontend\FrontenController@joinAdvocate')->name('join-advocate');
+Route::get('/join-barrister','Frontend\FrontenController@joinBarrister')->name('join-barrister');
+Route::get('/join-consultant','Frontend\FrontenController@joinConsultant')->name('join-consultant');
+Route::get('/join-law-firm','Frontend\FrontenController@joinLawFirm')->name('join-law-firm');
 
 //Registration
 Route::get('/registration','Frontend\FrontenController@registration')->name('registration');
@@ -58,7 +57,7 @@ Route::get('/village-court','Frontend\FrontenController@villageCourt')->name('vi
 // LEGAL DOCUMENTS & FORMS
 // ==========================================
 
-Route::get('/legal/forms', 'Frontend\FrontenController@legalFormList')
+Route::get('/legal-documents-forms', 'Frontend\FrontenController@legalFormList')
     ->name('legal.form.list');
 
 Route::get('/legal/form/{slug}', 'Frontend\FrontenController@legalForm')
@@ -92,17 +91,17 @@ Route::get('/profile','Frontend\FrontenController@profile')->name('advocate-prof
 // LEGAL ARTICLES
 // ==========================================
 
-Route::get('/legal/article-list', 'Frontend\FrontenController@legalArticleList')
+Route::get('/legal-articles', 'Frontend\FrontenController@legalArticleList')
     ->name('legal.article.list');
 
-Route::get('/legal-article-details/{slug}', 'Frontend\FrontenController@legalArticleDetails')
+Route::get('/article-details/{slug}', 'Frontend\FrontenController@legalArticleDetails')
     ->name('legal.article.details');
 //end
 // ==========================================
 // VIDEO GALLERY
 // ==========================================
 
-Route::get('/video-list', 'Frontend\FrontenController@videoList')
+Route::get('/latest-video', 'Frontend\FrontenController@videoList')
     ->name('video.list');
 
 Route::get('/video-details/{slug}', 'Frontend\FrontenController@videoDetails')

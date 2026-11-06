@@ -29,7 +29,8 @@
         </div>
     </div>
 
-    <div class="header-bottom header-bottom-bg-color sticky-bar">
+    <div class="header-bottom header-bottom-bg-color sticky-bar" style="background-color: #103C6D;
+    border-bottom: 1px solid #103C6D;border-top: 1px solid #103C6D;">
         <div class="container">
             <div class="header-wrap header-space-between position-relative">
                 <div class="logo logo-width-1 d-block d-lg-none">
@@ -73,7 +74,7 @@
                     <div class="header-action-2">
                         <div class="header-action-icon-2">
                             <a href="{{url('/login')}}" title="Login">
-                                <span class="pro-count white"><i class="fa fa-user"></i> Login</span>
+                                <span class="pro-count white" style="color:#fff !important"><i class="fa fa-user"></i> Login</span>
                             </a>
                         </div>
                     </div>

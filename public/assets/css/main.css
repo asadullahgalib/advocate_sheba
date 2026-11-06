@@ -7878,7 +7878,7 @@ h6.post-title {
 
 .burger-icon.burger-icon-white > span::before,
 .burger-icon.burger-icon-white > span::after {
-  background-color: #1D546D;
+  background-color: #fff;
 }
 
 .body-overlay-1 {
@@ -8353,8 +8353,8 @@ h6.post-title {
 
 .header-style-1 .header-bottom-bg-color {
 /*  background-color: #ddd;;*/
-  border-top: 1px solid #ececec;
-  border-bottom: 1px solid #ececec;
+  border-top: 1px solid #103C6D;
+  border-bottom: 1px solid #103C6D;
 }
 
 .header-style-1 .main-categori-wrap > a {
@@ -8460,7 +8460,15 @@ span.fi-rs-apps {
   display: inline-block;
   font-size: 16px;
   font-weight: bold;
-  color: #103C6D;
+  color: #fff;
+  font-family: "Quicksand", sans-serif;
+}
+
+.main-menu > nav > ul > li > a:hover {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  color: #d0b67c !important;
   font-family: "Quicksand", sans-serif;
 }
 
@@ -8471,7 +8479,7 @@ span.fi-rs-apps {
 }
 
 .main-menu > nav > ul > li > a.active {
-  color: #103C6D;
+  color: #fff;
 }
 
 .main-menu > nav > ul > li ul.sub-menu {

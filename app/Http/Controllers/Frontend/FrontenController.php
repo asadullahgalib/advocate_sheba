@@ -85,6 +85,38 @@ class FrontenController extends Controller
         return view('frontend.registration.user_registration',$data);
     }
 
+    public function joinAdvocate(){
+        $data['categories']     = Category::all();
+        $data['departments']    = Department::orderBy('sort','asc')->get();
+        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
+        $data['page_type']      = 'joinAdvocate';
+        return view('frontend.registration.user_registration',$data);
+    }
+
+    public function joinBarrister(){
+        $data['categories']     = Category::all();
+        $data['departments']    = Department::orderBy('sort','asc')->get();
+        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
+        $data['page_type']      = 'joinBarrister';
+        return view('frontend.registration.user_registration',$data);
+    }
+
+    public function joinConsultant(){
+        $data['categories']     = Category::all();
+        $data['departments']    = Department::orderBy('sort','asc')->get();
+        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
+        $data['page_type']      = 'joinConsultant';
+        return view('frontend.registration.user_registration',$data);
+    }
+
+    public function joinLawFirm(){
+        $data['categories']     = Category::all();
+        $data['departments']    = Department::orderBy('sort','asc')->get();
+        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
+        $data['page_type']      = 'joinLawFirm';
+        return view('frontend.registration.user_registration',$data);
+    }
+
     //Registration
     public function advocateJoin(){
         $data['categories']     = Category::all();
@@ -148,7 +180,7 @@ class FrontenController extends Controller
         $data['page_type'] = 'legal_form';
 
         $data['documents'] = Document::orderBy('id', 'desc')
-            ->paginate(12);
+            ->get();
 
         return view('frontend.document_forms.legal_form_list', $data);
     }
@@ -232,6 +264,7 @@ class FrontenController extends Controller
     $data['categories']     = Category::all();
     $data['departments']    = Department::orderBy('sort','asc')->get();
     $data['sliders']        = Slider::all();
+    $data['logo']           = Logo::first();
     $data['doctors']        = User::where('user_category','advocate')->where('status','1')->orderBy('sort','asc')->get()->take(20);
 
     $data['legalArticles'] = NewsEvent::with('law')
@@ -247,7 +280,9 @@ class FrontenController extends Controller
         ->take(4)
         ->get();
 
-    $data['documents']      = Document::orderBy('id','desc')->take(12)->get();
+    $data['documents'] = Document::orderBy('id','desc')->get();
+
+    // dd($data['documents']);
 
     $data['page_type'] = 'home';
 
@@ -334,6 +369,14 @@ class FrontenController extends Controller
         return view('frontend.single_pages.legal_information',$data);
     }
 
+    public function legalNews(){
+        $data['categories']     = Category::all();
+        $data['departments']    = Department::orderBy('sort','asc')->get();
+        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
+        $data['page_type'] = 'legal_news';
+        return view('frontend.single_pages.legal_news',$data);
+    }
+
     public function courts(){
         $data['categories']     = Category::all();
         $data['departments']    = Department::orderBy('sort','asc')->get();
@@ -360,8 +403,7 @@ class FrontenController extends Controller
         $data['page_type'] = 'legal_article';
 
         $data['articles'] = NewsEvent::with('law')
-            ->orderBy('date', 'desc')
-            ->paginate(12);
+            ->orderBy('date', 'desc')->get();
 
         return view('frontend.single_pages.legal_article_list', $data);
     }
@@ -471,7 +513,7 @@ class FrontenController extends Controller
         $data['page_type'] = 'video_list';
 
         $data['videos'] = VideoGallery::orderBy('id', 'desc')
-            ->paginate(12);
+            ->get();
 
         return view('frontend.single_pages.video_list', $data);
     }

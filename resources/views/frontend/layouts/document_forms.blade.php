@@ -1,235 +1,366 @@
 <style>
-/* =========================================
-   LEGAL DOCUMENTS HOME SECTION
-========================================= */
 
-.legal-home-section {
-    background: #f5f5f5;
-    border-radius: 16px;
-    padding: 24px 0 15px;
-    margin: 0 0 15px;
-}
-
-.legal-home-container {
-    width: 83%;
-    max-width: 1600px;
-    margin: auto;
-}
-
-/* Header */
-.legal-home-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
-}
-
-.legal-home-header h2 {
-    font-size: 21px;
-    font-weight: 600;
-    color: #164a9b;
-    margin: 0 0 2px;
-}
-
-.legal-home-header p {
-    font-size: 14px;
-    color: #111;
-    margin: 0;
-}
-
-.legal-view-all {
-    color: #164a9b;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    white-space: nowrap;
-}
-
-.legal-view-all:hover {
-    color: #008080;
-}
-
-/* Main White Card */
-.legal-documents-card {
-    background: #fff;
-    border: 1px solid #e5e5e5;
-    border-radius: 11px;
-    padding: 20px 6px 14px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.03);
-}
-
-/* Document Grid */
-.legal-documents-grid {
-    display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 16px 0;
-}
-
-/* Single Document */
-.legal-document-item {
-    min-height: 136px;
-    border: 1px solid #e8e2e2;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    text-decoration: none !important;
-    padding: 8px;
-    transition: all .25s ease;
-}
-
-.legal-document-item:hover {
-    background: #f8fbff;
-    border-color: #168df5;
-}
-
-.legal-pdf-icon {
-    width: 82px;
-    height: 82px;
-    border: 2px solid #c9c9c9;
-    border-radius: 11px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 13px;
-    transition: all .25s ease;
-}
-
-.legal-pdf-icon i {
-    font-size: 48px;
-    color: #168df5;
-}
-
-.legal-document-item:hover .legal-pdf-icon {
-    border-color: #168df5;
-}
-
-.legal-document-item h4 {
-    font-size: 15px;
-    font-weight: 400;
-    color: #111;
-    margin: 0;
-    line-height: 1.4;
-    overflow-wrap: anywhere;
-}
-
-.legal-empty {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 30px;
-    color: #777;
-}
-
-/* Responsive */
-@media (max-width: 991px) {
-    .legal-home-container {
-        width: 94%;
-    }
-
-    .legal-documents-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 575px) {
+    /* =========================================
+       MAIN SECTION
+    ========================================= */
     .legal-home-section {
-        padding: 18px 0;
+        padding: 0px 0 15px;
+        background: #f5f5f5;
+        border-radius: 15px;
+        margin-bottom: 15px;
     }
 
-    .legal-home-header h2 {
-        font-size: 17px;
+    .legal-home-section .card {
+        height: 100%;
+        padding: 20px 14px 15px;
+        border: 1px solid #e8e8e8;
+        border-radius: 10px;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
     }
 
-    .legal-home-header p {
-        font-size: 12px;
+
+    /* =========================================
+       SECTION TITLE
+    ========================================= */
+    .legal-section-title {
+        margin-bottom: 25px;
     }
 
-    .legal-view-all {
-        font-size: 12px;
+    .legal-section-title-inner {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 12px;
+        width: 100%;
     }
 
-    .legal-documents-card {
-        padding: 12px 5px;
+    .legal-section-icon {
+        flex: 0 0 45px;
+        width: 45px;
+        height: 45px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        color: #fff;
+        border-radius: 50%;
+
+        font-size: 22px;
     }
 
-    .legal-documents-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 10px 0;
+    .youtube-section-icon {
+        background: #ff0000;
     }
 
-    .legal-document-item {
-        min-height: 120px;
+    .pdf-section-icon {
+        background: #129AF7;
     }
 
-    .legal-pdf-icon {
-        width: 68px;
-        height: 68px;
+    .legal-section-heading {
+        margin: 0;
+        padding: 0;
+        color: #1B489D;
+        font-size: 20px;
+        line-height: 1.2;
+        font-weight: 600;
+        text-align: left;
     }
 
-    .legal-pdf-icon i {
-        font-size: 40px;
+    .legal-section-heading span {
+        display: block;
+        margin-top: 3px;
+        color: #111;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.4;
     }
 
-    .legal-document-item h4 {
+    /* =========================================
+       DOCUMENT CARD
+    ========================================= */
+    .document-item {
+        text-align: center;
+        margin-bottom: 0px;
+        border: 1px solid #e7e0e0ba;
+        padding: 7px 0px;
+    }
+
+    .document-link {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .document-icon-box {
+        width: 82px;
+        height: 82px;
+
+        margin: 0 auto;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border: 2px solid #8080807a;
+        border-radius: 10px;
+
+        background: #fff;
+
+        transition: all 0.3s ease;
+    }
+
+    .document-icon-box i {
+        color: #129AF7;
+        font-size: 48px;
+        transition: all 0.3s ease;
+    }
+
+    .document-link:hover .document-icon-box {
+        border-color: #129AF7;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(18, 154, 247, 0.15);
+    }
+
+    .document-link:hover .document-icon-box i {
+        transform: scale(1.08);
+    }
+
+    .document-title {
+        margin-top: 8px;
+        margin-bottom: 0;
+        line-height: 1.25;
+    }
+
+    .document-title a {
+        color: #111;
+        font-size: 16px;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    .document-link:hover .document-title a {
+        color: #129AF7;
+    }
+
+
+    /* =========================================
+       BOTTOM BUTTON
+    ========================================= */
+    .section-bottom-btn {
+        margin-top: 5px;
+        text-align: center;
+    }
+
+    .section-bottom-btn a {
+        display: inline-block;
+
+        padding: 7px 20px;
+
+        color: #111;
+        background: #fff;
+
+        border: 1px solid #aaa;
+        border-radius: 3px;
+
         font-size: 13px;
+        text-decoration: none;
+
+        transition: all 0.3s ease;
     }
-}
+
+    .section-bottom-btn a:hover {
+        color: #fff;
+        background: #129AF7;
+        border-color: #129AF7;
+    }
+
+
+    /* =========================================
+       MOBILE
+       2 ITEMS PER ROW
+    ========================================= */
+    @media (max-width: 767.98px) {
+
+        .legal-home-section {
+            padding: 0px 0 10px;
+            border-radius: 10px;
+        }
+
+        .legal-home-section .card {
+            padding: 15px 8px 12px;
+        }
+
+        /*
+         * IMPORTANT:
+         * Title stays horizontal on mobile.
+         * Icon LEFT + Text RIGHT.
+         */
+        .legal-section-title {
+            margin-bottom: 20px;
+        }
+
+        .legal-section-title-inner {
+            gap: 9px;
+            align-items: center;
+        }
+
+        .legal-section-icon {
+            flex: 0 0 42px;
+            width: 42px;
+            height: 42px;
+            font-size: 20px;
+        }
+
+        .legal-section-heading {
+            font-size: 17px;
+        }
+
+        .legal-section-heading span {
+            font-size: 12px;
+            margin-top: 2px;
+        }
+
+        /* Document */
+        .document-icon-box {
+            width: 65px;
+            height: 65px;
+        }
+
+        .document-icon-box i {
+            font-size: 38px;
+        }
+
+        .document-title {
+            margin-top: 6px;
+        }
+
+        .document-title a {
+            font-size: 14px;
+        }
+
+    }
+
+
+    /* =========================================
+       VERY SMALL MOBILE
+    ========================================= */
+    @media (max-width: 400px) {
+
+        .legal-home-section .card {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .legal-section-heading {
+            font-size: 16px;
+        }
+
+        .legal-section-heading span {
+            font-size: 11px;
+        }
+
+        .legal-section-icon {
+            flex-basis: 40px;
+            width: 40px;
+            height: 40px;
+        }
+
+        .video-title a {
+            font-size: 13px;
+        }
+
+        .document-title a {
+            font-size: 13px;
+        }
+
+    }
+
 </style>
 
 
 <!-- =========================================
-     LEGAL DOCUMENTS HOME SECTION
+     MAIN SECTION
 ========================================= -->
+<div class="page-content legal-home-section">
 
-<div class="legal-home-section">
-
-    <div class="legal-home-container">
-
-        <!-- Header -->
-        <div class="legal-home-header">
-
-            <div>
-                <h2>Legal Documents &amp; Forms</h2>
-                <p>বিভিন্ন আইনি ডকুমেন্ট ও ফর্ম ডাউনলোড করুন</p>
-            </div>
-
-            <a href="{{ route('legal.form.list') }}" class="legal-view-all">
-                View All <i class="fa fa-angle-right"></i>
-            </a>
-
+    <div class="container">
+        <div class="flex justify-between items-center mt-2">
+          <div class="my-4">
+            <h2
+              id="hospitals-by-location"
+              class="text-lg md:text-xl font-semibold text-gray-800 dark:text-gray-100"
+            >
+              Legal Documents & Forms
+            </h2>
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+              বিভিন্ন আইনি ডকুমেন্ট ও ফর্ম ডাউনলোড করুন
+            </p>
+          </div>
+          <a
+            href="{{ route('legal.form.list') }}"
+            aria-label=""
+            class="flex items-center gap-1 text-[#008080] text-sm font-semibold hover:underline transition"
+          >
+            View All
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-chevron-right"
+              aria-hidden="true"
+            >
+              <path d="m9 18 6-6-6-6"></path>
+            </svg>
+          </a>
         </div>
 
-        <!-- Documents -->
-        <div class="legal-documents-card">
+        <div class="row g-3">
 
-            <div class="legal-documents-grid">
+            <!-- =====================================
+                 RIGHT SIDE - LEGAL DOCUMENTS
+            ====================================== -->
+            <div class="col-xl-12 col-lg-12 col-md-12 col-12">
 
-                @forelse($documents as $document)
+                <div class="card">
 
-                    <a href="{{ route('legal.form', $document->slug) }}"
-                       class="legal-document-item">
+                    <!-- Documents -->
+                    <div class="row g-3">
 
-                        <div class="legal-pdf-icon">
-                            <i class="fa fa-file-pdf-o"></i>
-                        </div>
+                        @foreach($documents as $document)
+                        <!-- Document 01 -->
+                        <article class="col-xl-2 col-lg-2 col-md-2 col-6 document-item">
 
-                        <h4>{{ $document->title }}</h4>
+                            <a href="{{ route('legal.form', $document->slug) }}" class="document-link">
 
-                    </a>
+                                <div class="document-icon-box">
+                                    <i class="fa fa-file-pdf-o"></i>
+                                </div>
 
-                @empty
+                                <h4 class="document-title">
+                                    <a href="{{ route('legal.form', $document->slug) }}">
+                                        {{ $document->title }}
+                                    </a>
+                                </h4>
 
-                    <div class="legal-empty">
-                        কোনো ডকুমেন্ট পাওয়া যায়নি।
+                            </a>
+
+                        </article>
+                        @endforeach
+                        
                     </div>
 
-                @endforelse
+                </div>
 
             </div>
+
 
         </div>
 

@@ -43,7 +43,7 @@
             z-index: 10000 !important;
         }
         .custom_menu{
-            color: #000 !important;
+            color: #fff !important;
             text-decoration: underline !important;
         }
         a.doctor_profile:hover{

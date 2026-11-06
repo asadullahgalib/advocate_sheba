@@ -61,7 +61,7 @@
     <div class="row" style="margin-top: 5px;">
         <!-- Card 1: Advocate -->
         <div class="col-md-3">
-            <a href="#" class="practice-area-card" style="text-decoration: none !important;">
+            <a href="{{route('join-advocate')}}" class="practice-area-card" style="text-decoration: none !important;">
                 <div class="card-1"
                      style="padding: 12px 20px;
                             margin-bottom: 15px;
@@ -87,7 +87,7 @@
 
         <!-- Card 2: Barrister -->
         <div class="col-md-3">
-            <a href="#" class="practice-area-card" style="text-decoration: none !important;">
+            <a href="{{route('join-barrister')}}" class="practice-area-card" style="text-decoration: none !important;">
                 <div class="card-1"
                      style="padding: 12px 20px;
                             margin-bottom: 15px;
@@ -113,7 +113,7 @@
 
         <!-- Card 3: Legal Consultant -->
         <div class="col-md-3">
-            <a href="#" class="practice-area-card" style="text-decoration: none !important;">
+            <a href="{{route('join-consultant')}}" class="practice-area-card" style="text-decoration: none !important;">
                 <div class="card-1"
                      style="padding: 12px 20px;
                             margin-bottom: 15px;
@@ -139,7 +139,7 @@
 
         <!-- Card 4: Law Firm -->
         <div class="col-md-3">
-            <a href="#" class="practice-area-card" style="text-decoration: none !important;">
+            <a href="{{route('join-law-firm')}}" class="practice-area-card" style="text-decoration: none !important;">
                 <div class="card-1"
                      style="padding: 12px 20px;
                             margin-bottom: 15px;

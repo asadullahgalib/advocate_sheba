@@ -104,3 +104,11 @@ Professional Philosophy, advocate er sathe somporko nai.
 Frequently Asked Questions (FAQ) aita advocate er jonno thakbe na.
 
 #103C6D
+
+05/11/2026:
+===========
+1. Search bar er modde count hobe.
+2. search bar uporer black website er color hobe.
+3. search by hobe name,enrollment,bar no diye.
+4. header er back ground color hobe website color.
+5. Trusted Health Information & Doctor Discovery Platform in Bangladesh er logo footer nicher logo hobe. 

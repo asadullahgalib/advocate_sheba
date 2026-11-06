@@ -157,7 +157,7 @@
       </div>
     </div>
 
-    <div class="wl-band">
+    <div class="wl-band" style="background-color:#103C6D">
       <h3>Join Our Growing Advocate Community</h3>
       <p>Join the community of advocates using {{ $brandName }} to strengthen their digital presence and connect with more clients.</p>
 
@@ -259,7 +259,7 @@
 <!-- ================= Ready to Grow Your Practice ================= -->
 <section class="rg-section">
   <div class="container">
-    <div class="rg-band">
+    <div class="rg-band" style="background-color: #103C6D;">
 
       <div class="rg-left">
         <span class="rg-ico"><i class="bi bi-people"></i></span>
@@ -289,7 +289,7 @@
 </section>
 
 <!-- ================= Floating Join Button ================= -->
-<a class="jb-btn" href="{{route('advocate.join')}}" target="_blank" rel="noopener noreferrer">
+<a class="jb-btn" href="{{route('advocate.join')}}" rel="noopener noreferrer">
   <span class="jb-dot"></span>
   Join {{ $brandName }}
 </a>

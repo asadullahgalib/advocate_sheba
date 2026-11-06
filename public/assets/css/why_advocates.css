@@ -6,7 +6,7 @@
 .wl-section *{box-sizing:border-box}
 
 .wl-top{border-top:1px solid var(--line);margin-bottom:26px}
-.wl-title{text-align:center;font-size:clamp(1.7rem,3.6vw,2.2rem);font-weight:700;color:var(--deep);margin:0 0 56px;letter-spacing:-.01em}
+.wl-title{text-align:center;font-size:clamp(1.7rem,3.6vw,2.2rem);font-weight:700;color:#103C6D;margin:0 0 56px;letter-spacing:-.01em}
 .wl-title span{color:var(--teal)}
 
 /* পাঁচটা ফিচার */
@@ -50,7 +50,7 @@
 .ap-hero{--deep:#064e4a;--teal:#0d8a7d;--mint:#e4f3f1;--ink:#3b4a54;--muted:#8a96a0;--line:#e6ecef;
   font-family:'Roboto',system-ui,sans-serif;color:var(--ink);padding:56px 48px 40px;background:#fff;overflow:hidden}
 .ap-hero *{box-sizing:border-box}
-.ap-title{font-size:clamp(2.2rem,5vw,3.4rem);font-weight:800;line-height:1.1;letter-spacing:-.02em;color:var(--deep);margin:0 0 22px}
+.ap-title{font-size:clamp(2.2rem,5vw,3.4rem);font-weight:800;line-height:1.1;letter-spacing:-.02em;color:#103C6D;margin:0 0 22px}
 .ap-title span{color:var(--teal)}
 .ap-lead{font-size:1.05rem;line-height:1.7;max-width:540px;margin:0 0 26px}
 .ap-lead b{color:var(--teal);font-weight:600}
@@ -61,14 +61,14 @@
 .ap-feature strong{display:block;font-size:.8rem;color:#111f26}
 .ap-feature small{display:block;font-size:.68rem;color:var(--muted);margin-top:3px}
 
-.ap-offer{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;background:var(--deep);border-radius:22px;padding:20px;align-items:center}
+.ap-offer{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;background:#103C6D;border-radius:22px;padding:20px;align-items:center}
 .ap-offer-card{background:#fff;border-radius:16px;padding:18px;display:flex;gap:16px;align-items:center;height:100%}
 .ap-brain{flex:0 0 82px;height:82px;border-radius:50%;background:var(--mint);color:var(--teal);display:flex;align-items:center;justify-content:center;font-size:2.3rem;border:6px solid #f3faf9}
-.ap-offer-card h4{font-size:.98rem;font-weight:700;color:var(--deep);margin:0 0 4px}
+.ap-offer-card h4{font-size:.98rem;font-weight:700;color:#103C6D;margin:0 0 4px}
 .ap-offer-card h4 i{color:var(--teal);font-size:.85rem;margin:0 3px}
 .ap-offer-card p{font-size:.85rem;color:#51606a;margin:0 0 8px;padding-bottom:8px;border-bottom:1px dashed var(--line)}
 .ap-price{font-size:.8rem;color:var(--muted)}
-.ap-price b{font-size:1.9rem;color:var(--deep);font-weight:800;margin:0 2px}
+.ap-price b{font-size:1.9rem;color:#103C6D;font-weight:800;margin:0 2px}
 .ap-contact{text-align:center;color:#fff}
 .ap-contact h5{font-size:1rem;font-weight:700;margin:0 0 12px;color:#fff}
 .ap-call{display:flex;align-items:center;gap:12px;background:#fff;border-radius:14px;padding:12px 14px;text-align:left;text-decoration:none}
@@ -133,7 +133,7 @@
   font-family:'Roboto',system-ui,sans-serif;color:var(--ink);padding:36px 48px 56px;background:#fff}
 .ag-section *{box-sizing:border-box}
 
-.ag-title{text-align:center;font-size:clamp(1.6rem,3.4vw,2.1rem);font-weight:700;color:var(--deep);margin:0 0 10px;letter-spacing:-.01em}
+.ag-title{text-align:center;font-size:clamp(1.6rem,3.4vw,2.1rem);font-weight:700;color:#103C6D;margin:0 0 10px;letter-spacing:-.01em}
 .ag-title span{color:var(--teal)}
 .ag-sub{text-align:center;font-size:.88rem;color:var(--muted);margin:0 0 60px}
 
@@ -143,12 +143,12 @@
 .ag-card:hover{text-decoration:none}
 .ag-photo{width:128px;height:128px;border-radius:50%;background:var(--mint);overflow:hidden;margin-bottom:28px;display:block}
 .ag-photo img{width:100%;height:100%;object-fit:cover;display:block}
-.ag-name{font-size:.98rem;font-weight:700;color:var(--deep);margin:0 0 6px;line-height:1.35}
+.ag-name{font-size:.98rem;font-weight:700;color:#103C6D;margin:0 0 6px;line-height:1.35}
 .ag-area{font-size:.78rem;font-weight:700;color:var(--teal);margin:0}
-.ag-arrow{align-self:flex-end;margin-top:12px;color:var(--deep);font-size:1.05rem;line-height:1}
+.ag-arrow{align-self:flex-end;margin-top:12px;color:#103C6D;font-size:1.05rem;line-height:1}
 
 .ag-join{display:flex;justify-content:center}
-.ag-join a{display:inline-flex;align-items:center;gap:12px;text-decoration:none;font-weight:700;color:var(--deep);font-size:1rem}
+.ag-join a{display:inline-flex;align-items:center;gap:12px;text-decoration:none;font-weight:700;color:#103C6D;font-size:1rem}
 .ag-join a:hover{text-decoration:none}
 .ag-join-ico{width:40px;height:40px;border-radius:50%;background:var(--mint);color:var(--teal);display:inline-flex;align-items:center;justify-content:center}
 .ag-join b{color:var(--teal);font-weight:700}
@@ -170,10 +170,10 @@
 .am-section{--deep:#064e4a;--line:#e6ecef;
   font-family:'Roboto',system-ui,sans-serif;padding:16px 48px 0;background:#fff}
 .am-section *{box-sizing:border-box}
-.am-label{text-align:center;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--deep);margin:0 0 20px}
+.am-label{text-align:center;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#103C6D;margin:0 0 20px}
 .am-logos{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:20px 52px;padding-bottom:28px;border-bottom:1px solid var(--line)}
 .am-logos img{height:155px;width:auto;max-width:150px;object-fit:contain;display:block}
-.am-name{font-size:1.05rem;font-weight:700;color:var(--deep)}
+.am-name{font-size:1.05rem;font-weight:700;color:#103C6D}
 
 /* ---------- Ready to Grow Your Practice ---------- */
 .rg-section{--deep:#064e4a;--band:#044845;

@@ -81,7 +81,7 @@
             <div class="my-4">
 
                 <h2 class="text-lg md:text-xl font-semibold text-gray-800 dark:text-gray-100">
-                    All Videos
+                    Latest Video
                 </h2>
 
                 <p class="text-sm text-gray-600 dark:text-gray-400">
@@ -147,10 +147,6 @@
 
             @endforelse
 
-        </div>
-
-        <div class="d-flex justify-content-center my-4">
-            {{ $videos->links() }}
         </div>
 
     </div>
