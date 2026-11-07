@@ -41,6 +41,7 @@ use App\Model\Faq;
 use App\Model\Document;
 use App\Model\LegalInformation;
 use App\Model\legalInformationDetails;
+use App\Model\Law;
 use Auth;
 use DateTime;
 use PDF;
@@ -254,13 +255,29 @@ class FrontenController extends Controller
         return redirect()->route('legal.information.details', $info->slug);
     }
 
-    public function lawDetails(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
-        $data['page_type']      = 'law_details';
-        return view('frontend.law.law_details',$data);
-    }
+    
+    public function lawDetails($slug)
+{
+    $data['categories'] = Category::all();
+
+    $data['departments'] = Department::orderBy('sort', 'asc')->get();
+
+    $data['doctors'] = User::where('user_category', 'doctor')
+        ->where('department_id', '57')
+        ->where('status', '1')
+        ->paginate(8);
+
+    $data['law'] = Law::with(['lawDetails' => function ($query) {
+        $query->orderBy('serial', 'asc');
+    }])
+    ->where('slug', $slug)
+    ->firstOrFail();
+
+    $data['page_type'] = 'law_details';
+
+    return view('frontend.law.law_details', $data);
+}
+
 
 // Legal Information ends
 
@@ -297,6 +314,11 @@ class FrontenController extends Controller
     // dd($data['documents']);
 
     $data['page_type'] = 'home';
+
+    // Legal Services Data (Home Page Maximum 12 Cards)
+    $data['laws'] = Law::orderBy('id', 'asc')
+    ->take(12)
+    ->get();
 
     return view('frontend.layouts.home', $data);
 }

@@ -72,7 +72,9 @@ Route::get('/legal/information/rights','Frontend\FrontenController@legalInformat
 Route::get('/legal/information/terms','Frontend\FrontenController@legalInformationTerms')->name('legal.information.terms');
 Route::get('/legal/information/laws','Frontend\FrontenController@legalInformationLaws')->name('legal.information.laws');
 Route::get('/legal/information/procudures','Frontend\FrontenController@legalInformationProcudures')->name('legal.information.procudures');
-Route::get('/law/details','Frontend\FrontenController@lawDetails')->name('law.details');
+
+Route::get('/law/details/{slug}', 'Frontend\FrontenController@lawDetails')
+    ->name('law.details');
 
 
 Route::get('/advocate-list','Frontend\FrontenController@advocateList')->name('our.advocate-list');
