@@ -520,7 +520,7 @@
                         </div>
 
 
-                        <a href="{{route('legal.article.details')}}" class="read-more">
+                        <a href="#" class="read-more">
                             Read More
                             <i class="fa-solid fa-arrow-right"></i>
                         </a>
@@ -572,7 +572,7 @@
                         </div>
 
 
-                        <a href="{{route('legal.article.details')}}" class="read-more">
+                        <a href="#" class="read-more">
                             Read More
                             <i class="fa-solid fa-arrow-right"></i>
                         </a>
@@ -624,7 +624,7 @@
                         </div>
 
 
-                        <a href="{{route('legal.article.details')}}" class="read-more">
+                        <a href="#" class="read-more">
                             Read More
                             <i class="fa-solid fa-arrow-right"></i>
                         </a>
@@ -676,7 +676,7 @@
                         </div>
 
 
-                        <a href="{{route('legal.article.details')}}" class="read-more">
+                        <a href="#" class="read-more">
                             Read More
                             <i class="fa-solid fa-arrow-right"></i>
                         </a>
