@@ -15,6 +15,7 @@
               <tr class="text-center">
                 <th>Sl.</th>
                 <th>Title (English)</th>
+                <th>Subtitle</th> <!-- নতুন যুক্ত করা হেডার কলাম -->
                 <th>Action</th>
               </tr>
             </thead>
@@ -23,6 +24,7 @@
               <tr class="text-center">
                 <td>{{$key+1}}</td>
                 <td>{{$legal->title_en}}</td>
+                <td>{{$legal->description_en}}</td> <!-- ডাটাবেজ থেকে সাবটাইটেল শো করবে -->
                 <td>
                   <!-- Edit Button -->
                   <a class="btn btn-sm btn-success" title="Edit" href="{{route('legal-information.edit',$legal->id)}}">
