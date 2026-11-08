@@ -112,3 +112,11 @@ Frequently Asked Questions (FAQ) aita advocate er jonno thakbe na.
 3. search by hobe name,enrollment,bar no diye.
 4. header er back ground color hobe website color.
 5. Trusted Health Information & Doctor Discovery Platform in Bangladesh er logo footer nicher logo hobe. 
+
+07/11/2026:
+===========
+home page er 4 ta soto link e click korle 
+
+header menu: videos add hobe
+
+profile verified er width soto hobe.

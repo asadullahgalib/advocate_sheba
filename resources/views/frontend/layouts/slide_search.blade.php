@@ -17,7 +17,7 @@
                     <p class="hero-description">
                         আপনার প্রয়োজনের জন্য সঠিক আইনজীবী ও আইনি পরামর্শদাতা খুঁজে নিন
                     </p>
-                    <p class="hero-description" style="margin: -17px 0px 8px 0px;color: #d0b67c">
+                    <p class="hero-description" style="margin: -17px 0px 8px 0px;color: #fff;font-weight: bold;font-size: 16px;">
                         Discover 1,00 Barristers · 1,500 Advocates · 1,200 Legal Consultant · 3,700 Lawyers.
                     </p>
 
