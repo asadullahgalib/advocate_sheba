@@ -556,7 +556,7 @@ class FrontenController extends Controller
             ->where('status', '1')
             ->paginate(8, ['*'], 'doctors_page');
 
-        $data['page_type'] = 'video_list';
+        $data['page_type'] = 'video';
 
         $data['videos'] = VideoGallery::orderBy('id', 'desc')
             ->get();
