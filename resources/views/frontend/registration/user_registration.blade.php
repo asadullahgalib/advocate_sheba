@@ -231,30 +231,22 @@
   </div>
 </section>
 
-@php
-  $featured = [
-    ['name' => 'Prothom Alo',   'img' => 'uploads/news_link/5.png', 'link' => 'https://www.prothomalo.com/'],
-    ['name' => 'Media Two',   'img' => 'uploads/news_link/1.png', 'link' => 'https://barta24.com/'],
-    ['name' => 'Media Three', 'img' => 'uploads/news_link/12.png', 'link' => 'https://dhakamail.com/'],
-    ['name' => 'Media Four',  'img' => 'uploads/news_link/6.jpg', 'link' => 'https://www.khaborerkagoj.com/'],
-    ['name' => 'Media Five',  'img' => 'uploads/news_link/2.jpg', 'link' => 'https://www.bd-pratidin.com/'],
-  ];
-@endphp
-
+@if(isset($megazines) && $megazines->count() > 0)
 <!-- ================= As Featured In ================= -->
 <section class="am-section">
   <div class="container">
     <p class="am-label">As Featured In</p>
     <div class="am-logos">
-      @foreach($featured as $m)
-        <a href="{{ $m['link'] }}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: inline-block;">
-          <img src="{{ url($m['img']) }}" alt="{{ $m['name'] }}"
+      @foreach($megazines as $m)
+        <a href="{{ !empty($m->link) ? $m->link : '#' }}" {{ !empty($m->link) ? 'target=_blank' : '' }} rel="noopener noreferrer" style="text-decoration: none; display: inline-block;">
+          <img src="{{ !empty($m->image) ? url('uploads/megazine_images/'.$m->image) : url('uploads/no_image.png') }}" alt="{{ $m->title }}"
                onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'am-name',textContent:this.alt}))">
         </a>
       @endforeach
     </div>
   </div>
 </section>
+@endif
 
 <!-- ================= Ready to Grow Your Practice ================= -->
 <section class="rg-section">

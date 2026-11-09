@@ -37,7 +37,7 @@ class AddsController extends Controller
         if ($request->file('image')) {
             $file = $request->file('image');
             $filename = date('YmdHi').$file->getClientOriginalName();
-            Image::make($file)->resize(300, 300)->save(public_path('uploads/adds_images/'.$filename));
+            Image::make($file)->resize(1000, 300)->save(public_path('uploads/adds_images/'.$filename));
             $data->image = $filename;
         }
 
@@ -69,7 +69,7 @@ class AddsController extends Controller
             $file = $request->file('image');
             @unlink(public_path('uploads/adds_images/'.$data->image));
             $filename = date('YmdHi').$file->getClientOriginalName();
-            Image::make($file)->resize(300, 300)->save(public_path('uploads/adds_images/'.$filename));
+            Image::make($file)->resize(1000, 300)->save(public_path('uploads/adds_images/'.$filename));
             $data->image = $filename;
         }
 

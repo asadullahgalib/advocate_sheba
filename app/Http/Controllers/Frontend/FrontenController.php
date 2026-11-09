@@ -42,6 +42,8 @@ use App\Model\Document;
 use App\Model\LegalInformation;
 use App\Model\legalInformationDetails;
 use App\Model\Law;
+use App\Model\Megazine;
+use App\Model\Add;
 use Auth;
 use DateTime;
 use PDF;
@@ -72,9 +74,12 @@ class FrontenController extends Controller
             'editorial.policy' => 8,
         ];
 
-        $id = $ids[$route] ?? abort(404);
-
-        $term = Term::findOrFail($id);
+        if ($route === 'about') {
+            $term = Term::where('name', 'like', '%About%')->firstOrFail();
+        } else {
+            $id = $ids[$route] ?? abort(404);
+            $term = Term::findOrFail($id);
+        }
 
         return view('frontend.term.term', compact('term'));
     }
@@ -84,6 +89,12 @@ class FrontenController extends Controller
         $data['categories']     = Category::all();
         $data['departments']    = Department::orderBy('sort','asc')->get();
         $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
+
+        // As Featured In (Megazine) Data
+        $data['megazines']      = Megazine::orderBy('serial', 'asc')
+            ->orderBy('id', 'desc')
+            ->get();
+
         $data['page_type']      = 'registration';
         return view('frontend.registration.user_registration',$data);
     }
@@ -324,14 +335,23 @@ class FrontenController extends Controller
 
     $data['documents'] = Document::orderBy('id','desc')->get();
 
-    // dd($data['documents']);
+    // Notice Bar (Promotion) Data
+    $data['promotions'] = Promotion::where('status', 1)
+        ->orderBy('serial', 'asc')
+        ->orderBy('id', 'desc')
+        ->get();
 
     $data['page_type'] = 'home';
 
     // Legal Services Data (Home Page Maximum 12 Cards)
     $data['laws'] = Law::orderBy('id', 'asc')
-    ->take(10)
-    ->get();
+        ->take(10)
+        ->get();
+
+    $data['adds'] = Add::orderBy('serial', 'asc')
+    ->orderBy('id', 'desc')
+    ->get()
+    ->groupBy('add_position_id');
 
     return view('frontend.layouts.home', $data);
 }

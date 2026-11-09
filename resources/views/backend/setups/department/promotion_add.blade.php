@@ -1,6 +1,5 @@
 @extends('backend.layouts.master')
 @section('content')
-<script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
 
   <div class="col-md-12" style="padding-top: 40px;">
     <div class="card">
@@ -9,91 +8,42 @@
           @if(isset($editData))
             Promotion Update
           @else
-            Promotion Add
+            Promotion Create
           @endif
           <a href="{{ route('human-resource.hrm.promotion.view') }}" class="btn btn-success float-right btn-sm custom_btn"><i class="fa fa-list"> Promotion List</i></a>
         </h3>
       </div>
 
-      <form role="form" action="{{(@$editData)?route('human-resource.hrm.promotion.update',$editData->id):route('human-resource.hrm.promotion.store')}}" method="POST" enctype="multipart/form-data" id="MyForm">
+      <form role="form" action="{{ isset($editData) ? route('human-resource.hrm.promotion.update', $editData->id) : route('human-resource.hrm.promotion.store') }}" method="POST" id="myForm">
         @csrf
-          <div class="card-body">
-            <div class="form-row">                   
-              
-              <!-- ড্রপডাউনের নাম এবং আইডি position_id থেকে পরিবর্তন করে add_position_id করা হলো -->
-              <div class="form-group col-md-4">
-                <label for="add_position_id">Adds Position <span style="color:red">*</span></label>
-                <select name="add_position_id" id="add_position_id" class="form-control form-control-sm">
-                  <option value="">Select Position</option>
-                  @foreach($positions as $pos)
-                    <option value="{{ $pos->id }}" {{ (@$editData->add_position_id == $pos->id) ? 'selected' : '' }}>
-                      {{ $pos->name }}
-                    </option>
-                  @endforeach
-                </select>
-              </div>
+        <div class="card-body">
+          <div class="form-row">
 
-              <div class="form-group col-md-4">
-                <label for="title">Title <span style="color:red">*</span> </label>
-                <input type="text" name="title" class="form-control form-control-sm" value="{{ @$editData->title }}"> 
-              </div>
-              <div class="form-group col-md-2">
-                <label for="sort">Sort Order <span style="color:red">*</span> </label>
-                <input type="number" name="sort" class="form-control form-control-sm" value="{{ @$editData->sort }}" required> 
-              </div>
-              <div class="form-group col-sm-3">
-                <label>Image <span style="color:red;">(500px X 500px)</span></label>
-                <input type="file" name="image" id="image" class="form-control form-control-sm">
-              </div>
-              <div class="form-group col-sm-2" style="z-index: 100;">
-                <img id="showImage" src="{{(!empty($editData->image))?url('uploads/promotion_images/'.$editData->image):url('uploads/no_image.png')}}" style="width: 150px; height: 150px" class="form-control">
-              </div>
-              <div class="form-group col-md-3" style="padding-top: 30px;">
-                <button type="submit" class="btn btn-primary btn-sm">@if(isset($editData)) Update @else Submit @endif</button>
-              </div>
+            <div class="form-group col-md-12">
+              <label for="title">Title <span style="color:red">*</span></label>
+              <input type="text" name="title" id="title" class="form-control form-control-sm" value="{{ isset($editData) ? $editData->title : old('title') }}" placeholder="Write title">
+              <font style="color: red;">{{ ($errors->has('title')) ? $errors->first('title') : '' }}</font>
             </div>
+
+            <div class="form-group col-md-8">
+              <label for="link">Link</label>
+              <input type="text" name="link" id="link" class="form-control form-control-sm" value="{{ isset($editData) ? $editData->link : old('link') }}" placeholder="https://example.com">
+            </div>
+
+            <div class="form-group col-md-4">
+              <label for="serial">Serial</label>
+              <input type="number" name="serial" id="serial" class="form-control form-control-sm" value="{{ isset($editData) ? $editData->serial : old('serial') }}" placeholder="1">
+            </div>
+
+            <div class="form-group col-md-3" style="padding-top:10px;">
+              <button type="submit" class="btn btn-primary btn-sm">@if(isset($editData)) Update @else Submit @endif</button>
+            </div>
+
           </div>
-        </form>            
+        </div>
+      </form>
 
     </div>
   </div>
 
-<script type="text/javascript">
-  $(document).ready(function () {  
-    $('#MyForm').validate({
-      ignore:[],
-      rules: {          
-        add_position_id: { // ভ্যালিডেশন রুলস আপডেট করা হলো
-          required: true, 
-        },
-        title: {
-          required: true,
-        }, 
-        sort: {
-          required: true,
-        }, 
-      },
-      messages: { 
-        add_position_id: { // ভ্যালিডেশন মেসেজ আপডেট করা হলো
-          required: "Please select a position",
-        }
-      },
-      errorElement: 'span',
-      errorPlacement: function (error, element) {
-        error.addClass('invalid-feedback');
-        element.closest('.form-group').append(error);
-      },
-      highlight: function (element, errorClass, validClass) {
-        $(element).addClass('is-invalid');
-      },
-      unhighlight: function (element, errorClass, validClass) {
-        $(element).removeClass('is-invalid');
-      }
-    });
-  });
-</script>
-
-<script>
-  CKEDITOR.replace( 'editor1' );
-</script>
 @endsection

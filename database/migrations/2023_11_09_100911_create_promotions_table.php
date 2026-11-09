@@ -16,7 +16,9 @@ class CreatePromotionsTable extends Migration
         Schema::create('promotions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('add_position_id')->nullable();
+            $table->integer('serial')->nullable();
             $table->string('title')->nullable();
+            $table->longText('link')->nullable();
             $table->string('image')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->integer('created_by')->nullable();

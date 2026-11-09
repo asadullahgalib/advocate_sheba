@@ -766,7 +766,7 @@ class ContactController extends Controller
     // Promotion
 
     public function promotionView(){
-        $data['allData'] = Promotion::orderBy('id','desc')->get();
+        $data['allData'] = Promotion::orderBy('serial','asc')->orderBy('id','desc')->get();
         return view('backend.setups.department.promotion_view',$data);
     }
 
@@ -778,9 +778,9 @@ class ContactController extends Controller
     public function promotionStore(Request $request){
         $data = new Promotion();
         $data->title = $request->title;
-        $data->sort = $request->sort;
-        
-        $data->add_position_id = $request->add_position_id; 
+        $data->serial = $request->serial;
+        $data->link = $request->link;
+        $data->add_position_id = $request->add_position_id;
 
         if ($request->file('image')){
             $file = $request->file('image');
@@ -790,10 +790,10 @@ class ContactController extends Controller
             $file->resize(500,500)->save(public_path('uploads/promotion_images/').$filename);
             $data['image']= $filename;
         }
-        
+
         $data->created_by = Auth::user()->id;
         $data->save();
-        
+
         return redirect()->route('human-resource.hrm.promotion.view')->with('success','Data Inserted successfully');
     }
 
@@ -806,8 +806,9 @@ class ContactController extends Controller
     public function promotionUpdate(Request $request,$id){
         $data = Promotion::find($id);
         $data->title = $request->title;
-        $data->sort = $request->sort;
-        $data->add_position_id = $request->add_position_id; 
+        $data->serial = $request->serial;
+        $data->link = $request->link;
+        $data->add_position_id = $request->add_position_id;
 
         if ($request->file('image')){
             $file = $request->file('image');

@@ -1,3 +1,4 @@
+@if(isset($promotions) && $promotions->count() > 0)
 <style>
     .notice-bar{background-color:#103C6D;color:white;display:flex;align-items:center;justify-content:space-between;padding:5px 5px;font-size:15px;position:relative;}
     .notice-label{background-color:#1B489D;padding:6px 15px;border-radius:25px 0 0 25px;font-weight:bold;margin-right:10px;}
@@ -14,14 +15,12 @@
             <div class="col-12 col-md-12 col-lg-12">
                 <div class="notice-bar">
                     <div class="notice-content">
-                        <marquee behavior="scroll" direction="left" scrollamount="5" onmouseover="this.stop();" onmouseout="this.start();" style="    padding-top: 10px;">
-                            <a href="#">
-                                📢 Welcome to Advocate Sheba  &nbsp;&nbsp; | &nbsp;&nbsp;
-                            </a>
-
-                            <a href="#">
-                                📢 Advocate Sheba ন্যায়ের পাশে আমরা  &nbsp;&nbsp; | &nbsp;&nbsp;
-                            </a>
+                        <marquee behavior="scroll" direction="left" scrollamount="5" onmouseover="this.stop();" onmouseout="this.start();" style="padding-top: 10px;">
+                            @foreach($promotions as $promotion)
+                                <a href="{{ !empty($promotion->link) ? $promotion->link : '#' }}" {{ !empty($promotion->link) ? 'target=_blank' : '' }}>
+                                    📢 {{ $promotion->title }} &nbsp;&nbsp; | &nbsp;&nbsp;
+                                </a>
+                            @endforeach
                         </marquee>
                     </div>
                 </div>
@@ -35,3 +34,4 @@
         document.getElementById('noticeBar').style.display = 'none';
     }
 </script>
+@endif

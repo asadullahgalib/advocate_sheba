@@ -188,7 +188,7 @@
 
                     <a href="{{route('user.guide')}}">User Guide</a>
 
-                    <a href="#">About</a>
+                    <a href="{{route('about')}}">About</a>
 
                     <a href="{{route('contact')}}">Contact</a>
 
