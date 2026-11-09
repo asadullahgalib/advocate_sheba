@@ -17,6 +17,7 @@ class CreateLawsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title_en')->nullable();
             $table->string('slug', 191)->nullable()->unique();
+            $table->string('icon', 100)->nullable();
             $table->longText('description_en')->nullable();
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();

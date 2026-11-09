@@ -1,4 +1,3 @@
-
 @extends('frontend.layouts.master')
 @section('content')
 
@@ -108,8 +107,6 @@
 
     <div class="container-fluid">
 
-        <!-- FEATURED ARTICLES HEADER -->
-
         <div class="flex justify-between items-center mt-2">
 
             <div class="my-4">
@@ -154,8 +151,6 @@
 
         </div>
 
-
-        <!-- FEATURED ARTICLES -->
 
         <div class="row featured-articles-row">
 
@@ -517,7 +512,7 @@
                         style="font-size:17px;margin-top: 15px;">
 
                         <a href="#">
-                            জমি বিক্রির আগে যে বিষয় গুলো জানা দরকার
+                            জমি বিক্রির আগে যে বিষয় গুলো জানা দরকার
                         </a>
 
                     </h4>

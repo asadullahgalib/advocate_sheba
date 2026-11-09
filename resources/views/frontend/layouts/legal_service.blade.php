@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/legal-service-article.css') }}">
 
 <section class="legal-articles-section" style="background: #f7f8fa;padding: 0px 0px 0px 0px;">
@@ -20,7 +19,7 @@
             </div>
 
             <a
-                href="#"
+                href="{{ route('law.list') }}"
                 aria-label=""
                 class="flex items-center gap-1 text-[#008080] text-sm font-semibold hover:underline transition"
             >
@@ -63,10 +62,12 @@
                             {{ \Illuminate\Support\Str::limit(strip_tags($law->description_en ?? ''), 100) }}
                         </p>
 
-                        <a href="{{ route('law.details', $law->id) }}">
-                            Explore Articles
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </a>
+                        @if(!empty($law->slug))
+                            <a href="{{ route('law.details', $law->slug) }}">
+                                Explore Articles
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        @endif
 
                     </div>
 
