@@ -286,6 +286,36 @@ Route::group(['middleware'=>['auth','admin']],function(){
 			Route::post('/update/{id}','Backend\DocumentController@update')->name('documents.update');
 			Route::post('/delete','Backend\DocumentController@delete')->name('documents.delete');
 		});
+
+		Route::prefix('advertisements')->group(function(){
+			// Headlines
+			Route::get('/headline/view','Backend\ContactController@promotionView')->name('human-resource.hrm.promotion.view');
+			Route::get('/headline/add','Backend\ContactController@promotionAdd')->name('human-resource.hrm.promotion.add');
+			Route::post('/headline/store','Backend\ContactController@promotionStore')->name('human-resource.hrm.promotion.store');
+			Route::get('/headline/edit/{id}','Backend\ContactController@promotionEdit')->name('human-resource.hrm.promotion.edit');
+			Route::post('/headline/update/{id}','Backend\ContactController@promotionUpdate')->name('human-resource.hrm.promotion.update');
+			Route::post('/headline/delete','Backend\ContactController@promotionDelete')->name('human-resource.hrm.promotion.delete');
+			
+			// Adds
+			Route::prefix('adds')->group(function(){
+				Route::get('/view','Backend\AddsController@view')->name('adds.view');
+				Route::get('/add','Backend\AddsController@add')->name('adds.add');
+				Route::post('/store','Backend\AddsController@store')->name('adds.store');
+				Route::get('/edit/{id}','Backend\AddsController@edit')->name('adds.edit');
+				Route::post('/update/{id}','Backend\AddsController@update')->name('adds.update');
+				Route::post('/delete','Backend\AddsController@delete')->name('adds.delete');
+			});
+
+			// Magazine
+			Route::prefix('megazines')->group(function(){
+				Route::get('/view','Backend\MegazineController@view')->name('megazines.view');
+				Route::get('/add','Backend\MegazineController@add')->name('megazines.add');
+				Route::post('/store','Backend\MegazineController@store')->name('megazines.store');
+				Route::get('/edit/{id}','Backend\MegazineController@edit')->name('megazines.edit');
+				Route::post('/update/{id}','Backend\MegazineController@update')->name('megazines.update');
+				Route::post('/delete','Backend\MegazineController@delete')->name('megazines.delete');
+			});
+		});
 		
 		Route::prefix('setups')->group(function(){
 			//Logo
@@ -374,13 +404,6 @@ Route::group(['middleware'=>['auth','admin']],function(){
 			Route::get('/ambulance/edit/{id}','Backend\ContactController@ambulanceEdit')->name('human-resource.hrm.ambulance.edit');
 			Route::post('/ambulance/update/{id}','Backend\ContactController@ambulanceUpdate')->name('human-resource.hrm.ambulance.update');
 			Route::post('/ambulance/delete','Backend\ContactController@ambulanceDelete')->name('human-resource.hrm.ambulance.delete');
-			// Promotion
-			Route::get('/promotion/view','Backend\ContactController@promotionView')->name('human-resource.hrm.promotion.view');
-			Route::get('/promotion/add','Backend\ContactController@promotionAdd')->name('human-resource.hrm.promotion.add');
-			Route::post('/promotion/store','Backend\ContactController@promotionStore')->name('human-resource.hrm.promotion.store');
-			Route::get('/promotion/edit/{id}','Backend\ContactController@promotionEdit')->name('human-resource.hrm.promotion.edit');
-			Route::post('/promotion/update/{id}','Backend\ContactController@promotionUpdate')->name('human-resource.hrm.promotion.update');
-			Route::post('/promotion/delete','Backend\ContactController@promotionDelete')->name('human-resource.hrm.promotion.delete');
 			// Support
 			Route::get('/about/view','Backend\ContactController@aboutView')->name('human-resource.hrm.about.view');
 			Route::get('/about/add','Backend\ContactController@aboutAdd')->name('human-resource.hrm.about.add');
@@ -426,9 +449,6 @@ Route::group(['middleware'=>['auth','admin']],function(){
 			Route::get('/gallery/details/{id}', 'Backend\Advocate\AdvocateController@galleryDetails')->name('advocates.gallery.details');
 			Route::post('/gallery/details/store/{id}', 'Backend\Advocate\AdvocateController@galleryDetailsStore')->name('advocates.gallery.details.store');
 			Route::post('/gallery/details/delete', 'Backend\Advocate\AdvocateController@galleryDetailsDelete')->name('advocates.gallery.details.delete');
-
-
-
 
 			Route::get('/passowrd/{id}','Backend\Advocate\AdvocateController@payrollEmployeeEditPassword')->name('payroll.employee.view.edit.passowrd');
 			Route::post('/passowrd/{id}','Backend\Advocate\AdvocateController@payrollEmployeeUpdatePassword')->name('payroll.employee.view.update.passowrd');
