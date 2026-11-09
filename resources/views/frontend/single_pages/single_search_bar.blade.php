@@ -1,9 +1,9 @@
 <!-- ========================================================= LEGAL HERO SECTION ========================================================= -->
 
-<section class="legal-hero-section hero-3 position-relative" style="height: 325px !important;">
+<section class="legal-hero-section hero-3 position-relative">
 
     <div class="container">
-        <div class="row mobile_row">
+        <div class="row">
             <div class="col-md-10 offset-md-1">
                 <div class="legal-hero-content">
 
@@ -16,6 +16,9 @@
                     <!-- Description -->
                     <p class="hero-description">
                         আপনার প্রয়োজনের জন্য সঠিক আইনজীবী ও আইনি পরামর্শদাতা খুঁজে নিন
+                    </p>
+                    <p class="hero-description" style="margin: -17px 0px 8px 0px;color: #fff;font-weight: bold;font-size: 15px;">
+                         Discover 2,000 Advocates
                     </p>
 
 
@@ -34,7 +37,7 @@
 
                             <input type="text"
                                    class="form-control"
-                                   placeholder="Search by Name, Practice Area, Location...">
+                                   placeholder="Search by Name, Enrollment Number, Bar Number">
 
                             <!-- Search Button -->
                             <button type="submit"
@@ -42,8 +45,8 @@
                                     style="font-size: 16px;
                                            font-weight: 700;
                                            padding: 8px 10px;
-                                           background: #000 !important;
-                                           border: 1px solid #000 !important;">
+                                           background: #103C6D !important;
+                                           border: 1px solid #103C6D !important;">
 
                                 <i class="fa fa-search"></i>
 
@@ -228,11 +231,42 @@
 <style>
 
 /* ========================================================= HERO CONTENT ========================================================= */
+.hero-3 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-preferred-size: content;
+    flex-basis: content;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    background: #103C6D !important;
+    background-size: cover;
+    height: 450px;
+}
+
+@media (max-width: 480px) {
+    .legal-hero-section {
+        padding-top: 0px !important;
+    }
+}
+
 .legal-hero-content {
   width: 100%;
   max-width: 760px;
   margin-left: 0;
   text-align: left;
+}
+
+button.advanced-search-button:hover{
+    background-color: #103C6D !important;
 }
 
 /* ========================================================= HEADING ========================================================= */
@@ -558,135 +592,136 @@
   }
 }
 
-/* ========================================================= MOBILE ========================================================= */
+/* =========================================================
+   MOBILE RESPONSIVE
+========================================================= */
+
 @media (max-width: 767px) {
-  .legal-hero-section {
-    min-height: auto;
-    padding: 35px 12px 100px;
-    background-position: center center;
-  }
 
-  .mobile_row{
-    margin-top: 25px !important;
-  }
+    /* Hero Section */
+    .legal-hero-section {
+        min-height: auto;
 
-  .legal-hero-content {
-    max-width: 100%;
-    margin-top: 120px;
-    margin-bottom: 80px;
-  }
+        /* Navbar এর জন্য উপরে জায়গা রাখা */
+        padding: 135px 12px 100px !important;
 
-  .legal-hero-content h1 {
-    font-size: 29px;
-    text-align: center;
-  }
+        background-position: center center;
+        position: relative;
+    }
 
-  .hero-description {
-    font-size: 12px;
-    margin-bottom: 18px;
-    text-align: center;
-  }
+    /* Hero Content */
+    .legal-hero-content {
+        width: 100%;
+        max-width: 100%;
 
-  /* ========================================= FIRST / MAIN SEARCH ========================================= */
-  .main-search-row {
-    grid-template-columns: 1fr 55px;
-    gap: 5px;
-  }
+        /* Margin দিয়ে আর উপরে-নিচে সরানোর প্রয়োজন নেই */
+        margin: 0 auto !important;
 
-  .main-search-row .form-control {
-    height: 44px;
-    font-size: 12px;
-    padding: 0 10px;
-  }
+        text-align: center;
+    }
 
-  .main-search-button {
-    height: 44px;
-    font-size: 13px;
-  }
+    .legal-hero-content h1 {
+        font-size: 29px;
+        text-align: center;
+    }
 
-  /* ========================================= SECOND SEARCH ROW Practice Area = 1 Column Location = 1 Column Court = 2 Columns Search = 2 Columns ========================================= */
-  .advanced-search-row {
-    grid-template-columns: 1fr 1fr;
-    gap: 5px;
-  }
+    .hero-description {
+        font-size: 12px;
+        margin-bottom: 18px;
+        text-align: center;
+    }
 
-  .search-select select {
-    height: 44px;
-    font-size: 10px;
-  }
+    /* Main Search */
+    .main-search-row {
+        grid-template-columns: 1fr 55px;
+        gap: 5px;
+    }
 
-  /* Court takes full width of Practice Area + Location */
-  .advanced-search-row .court-select {
-    grid-column: 1 / -1;
-  }
+    .main-search-row .form-control {
+        height: 44px;
+        font-size: 12px;
+        padding: 0 10px;
+    }
 
-  /* Search button also takes full width of two columns */
-  .advanced-search-row .advanced-search-button {
-    grid-column: 1 / -1;
-    height: 44px;
-    font-size: 15px;
-    width: 100%;
-    font-weight: bold;
-    color: #000;
-  }
+    .main-search-button {
+        height: 44px;
+        font-size: 13px;
+    }
 
-  /* ========================================= CATEGORY LINKS ========================================= */
-  .legal-category-links {
-    justify-content: center;
-    align-items: center;
-    gap: 7px;
-    margin-top: 15px;
-    width: 100%;
-  }
+    /* Advanced Search */
+    .advanced-search-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 5px;
+    }
 
-  .legal-category-links a {
-    min-height: 34px;
-    padding: 6px 12px;
-    font-size: 10px;
-    border-radius: 5px;
-    text-align: center;
-  }
+    .advanced-search-row .court-select,
+    .advanced-search-row .advanced-search-button {
+        grid-column: 1 / -1;
+    }
 
-  /* ========================================= CARDS ========================================= */
-  .legal-category-section {
-    margin-top: -25px;
-    padding-left: 8px;
-    padding-right: 8px;
-    margin-bottom: 0px;
-  }
+    .advanced-search-button {
+        height: 44px;
+        width: 100%;
+        font-size: 15px;
+        font-weight: bold;
+    }
 
-  .legal-category-card {
-    min-height: 210px;
-    padding: 14px 6px;
-  }
+    /* Category Links */
 
-  .category-icon {
-    width: 54px;
-    height: 54px;
-    font-size: 21px;
-  }
+    .legal-category-links {
+        justify-content: center;
+        align-items: center;
+        gap: 7px;
+        margin-top: 15px;
+        margin-bottom: 40px;
+        width: 100%;
+    }
 
-  .legal-category-card h3 {
-    font-size: 13px;
-  }
+    .legal-category-links a {
+        min-height: 34px;
+        padding: 6px 12px;
+        font-size: 10px;
+        border-radius: 5px;
+        text-align: center;
+    }
 
-  .legal-category-card p {
-    font-size: 9px;
-  }
+    /* Category Cards */
+    .legal-category-section {
+        margin-top: -25px;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
 
-  .category-button {
-    min-width: 100px;
-    padding: 6px 5px;
-    font-size: 8px;
-  }
+    .legal-category-card {
+        min-height: 210px;
+        padding: 14px 6px;
+    }
+
+    .category-icon {
+        width: 54px;
+        height: 54px;
+        font-size: 21px;
+    }
+
+    .legal-category-card h3 {
+        font-size: 13px;
+    }
+
+    .legal-category-card p {
+        font-size: 9px;
+    }
+
+    .category-button {
+        min-width: 100px;
+        padding: 6px 5px;
+        font-size: 8px;
+    }
 }
 
 /* ========================================================= SMALL MOBILE ========================================================= */
 @media (max-width: 480px) {
-  .mobile_row{
-    margin-top: 25px !important;
-  }
   .legal-hero-section {
+    padding-top: 125px !important;
     padding-left: 8px;
     padding-right: 8px;
     margin-bottom: 40px;
@@ -695,6 +730,7 @@
   .legal-hero-content h1 {
     font-size: 25px;
     text-align: center !important;
+    padding-top: 15px;
   }
 
   .hero-description {
@@ -771,8 +807,8 @@ button[type='submit'] {
   padding: 12px 15px !important;
   color: #ffffff;
   border: none;
-  background-color: #EFB434 !important;
-  border: 1px solid #EFB434 !important;
+  background-color: #f2b33d !important;
+  border: 1px solid #f2b33d !important;
   border-radius: 10px;
 }
 

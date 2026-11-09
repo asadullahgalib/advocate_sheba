@@ -92,10 +92,14 @@
             color: #fff;
         }
         @media only screen and (min-width:320px) and (max-width:768px){
-                .footer-disclaimer-content{
-                    font-size: 12px !important;
-                    text-align: justify !important;
-                }
+            .trusted_logo_mobile{
+                width: 140px !important;
+                height: 140px !important;
+            }
+            .footer-disclaimer-content{
+                font-size: 12px !important;
+                text-align: justify !important;
+            }
             .mobile_top_login{
                 display: none !important;
             }

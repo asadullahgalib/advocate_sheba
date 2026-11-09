@@ -55,7 +55,7 @@
     }
 
     .pdf-section-icon {
-        background: #129AF7;
+        background: #103C6D;
     }
 
     .legal-section-heading {
@@ -112,13 +112,13 @@
     }
 
     .document-icon-box i {
-        color: #129AF7;
+        color: #103C6D;
         font-size: 48px;
         transition: all 0.3s ease;
     }
 
     .document-link:hover .document-icon-box {
-        border-color: #129AF7;
+        border-color: #103C6D;
         transform: translateY(-3px);
         box-shadow: 0 5px 15px rgba(18, 154, 247, 0.15);
     }
@@ -141,7 +141,7 @@
     }
 
     .document-link:hover .document-title a {
-        color: #129AF7;
+        color: #103C6D;
     }
 
 
@@ -172,8 +172,8 @@
 
     .section-bottom-btn a:hover {
         color: #fff;
-        background: #129AF7;
-        border-color: #129AF7;
+        background: #103C6D;
+        border-color: #103C6D;
     }
 
 

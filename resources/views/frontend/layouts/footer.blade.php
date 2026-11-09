@@ -208,16 +208,37 @@
                 ================================== -->
                 <div class="footer-social">
 
-                    <a title="Facebook" href="#" target="_blank">
+                    <!-- Facebook -->
+                    <a class="social-facebook"
+                       title="Facebook"
+                       href="#"
+                       target="_blank"
+                       aria-label="Facebook">
+
                         <i class="fa fa-facebook"></i>
+
                     </a>
 
-                    <a title="Instagram" href="#" target="_blank">
+                    <!-- Instagram -->
+                    <a class="social-instagram"
+                       title="Instagram"
+                       href="#"
+                       target="_blank"
+                       aria-label="Instagram">
+
                         <i class="fa fa-instagram"></i>
+
                     </a>
 
-                    <a title="Youtube" href="#" target="_blank">
+                    <!-- YouTube -->
+                    <a class="social-youtube"
+                       title="YouTube"
+                       href="#"
+                       target="_blank"
+                       aria-label="YouTube">
+
                         <i class="fa fa-youtube-play"></i>
+
                     </a>
 
                 </div>
@@ -586,43 +607,183 @@
 
     /* =========================================
        SOCIAL ICONS
-    ========================================== */
+    ========================================= */
 
     .footer-social {
+
         display: flex;
         justify-content: flex-end;
         align-items: center;
         gap: 10px;
+
     }
 
+
+    /* Common Social Icon Design */
+
     .footer-social a {
-        width: 30px;
-        height: 30px;
+
+        width: 36px;
+        height: 36px;
+
         display: inline-flex;
         align-items: center;
         justify-content: center;
+
+        border-radius: 50%;
+
         text-decoration: none;
-        color: #64748b !important;
-        font-size: 18px !important;
-        line-height: 30px !important;
+
+        transition: all 0.3s ease;
+
+        flex-shrink: 0;
+
     }
+
+
+    /* Common Icon */
 
     .footer-social a i {
+
         display: inline-block !important;
+
         font-family: FontAwesome !important;
+
         font-style: normal !important;
         font-weight: normal !important;
-        font-size: 18px !important;
+
+        font-size: 19px !important;
+
         line-height: 1 !important;
-        color: #64748b !important;
+
+        color: #ffffff !important;
+
     }
 
 
-    .footer-social a:hover {
+    /* =========================================
+       FACEBOOK
+    ========================================= */
 
-        color: #103c6d;
+    .footer-social .social-facebook {
 
-        transform: translateY(-2px);
+        background: #1877F2;
+
+        color: #ffffff !important;
+
+    }
+
+    .footer-social .social-facebook i {
+
+        font-size: 19px !important;
+
+    }
+
+    .footer-social .social-facebook:hover {
+
+        background: #0d65d9;
+
+        transform: translateY(-4px);
+
+        box-shadow: 0 4px 10px rgba(24, 119, 242, 0.30);
+
+    }
+
+
+    /* =========================================
+       INSTAGRAM
+    ========================================= */
+
+    .footer-social .social-instagram {
+
+        background: linear-gradient(
+            45deg,
+            #feda75,
+            #fa7e1e,
+            #d62976,
+            #962fbf,
+            #4f5bd5
+        );
+
+        color: #ffffff !important;
+
+    }
+
+    .footer-social .social-instagram i {
+
+        font-size: 20px !important;
+
+    }
+
+    .footer-social .social-instagram:hover {
+
+        background: linear-gradient(
+            45deg,
+            #feda75,
+            #fa7e1e,
+            #d62976,
+            #962fbf,
+            #4f5bd5
+        );
+
+        transform: translateY(-4px);
+
+        box-shadow: 0 4px 10px rgba(214, 41, 118, 0.30);
+
+    }
+
+
+    /* =========================================
+       YOUTUBE
+    ========================================= */
+
+    .footer-social .social-youtube {
+
+        background: #FF0000;
+
+        border-radius: 50%;
+
+        color: #ffffff !important;
+
+    }
+
+    .footer-social .social-youtube i {
+
+        font-size: 19px !important;
+
+    }
+
+    .footer-social .social-youtube:hover {
+
+        background: #cc0000;
+
+        transform: translateY(-4px);
+
+        box-shadow: 0 4px 10px rgba(255, 0, 0, 0.30);
+
+    }
+
+
+    /* =========================================
+       MOBILE RESPONSIVE
+    ========================================= */
+
+    @media (max-width: 767px) {
+
+        .footer-social {
+
+            justify-content: center;
+
+            gap: 10px;
+
+        }
+
+        .footer-social a {
+
+            width: 36px;
+            height: 36px;
+
+        }
 
     }
 

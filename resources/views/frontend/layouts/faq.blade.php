@@ -7,7 +7,7 @@
                     <div class="row align-items-center">
 
                         <div class="col-md-1 col-sm-2 text-center mb-3 mb-md-0">
-                            <img src="{{asset('uploads/dashboard_logo_images/'.@$logo->image2)}}" alt="Advocate Sheba Logo" />
+                            <img class="trusted_logo_mobile" src="{{asset('uploads/dashboard_logo_images/'.@$logo->image2)}}" alt="Advocate Sheba Logo" />
                         </div>
 
                         <div class="col-md-11 col-sm-10">

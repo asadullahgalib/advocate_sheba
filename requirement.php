@@ -115,8 +115,10 @@ Frequently Asked Questions (FAQ) aita advocate er jonno thakbe na.
 
 07/11/2026:
 ===========
-home page er 4 ta soto link e click korle 
+1. profile verified er width soto hobe.
+2. home page er 4 ta soto link e click korle.
+3. Nicher Social icon gula oi social er moto hobe.
+4. Trusted Health Information & Doctor Discovery Platform in Bangladesh er logo mobile view aro soto hobe.
 
 header menu: videos add hobe
 
-profile verified er width soto hobe.

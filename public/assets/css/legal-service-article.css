@@ -40,7 +40,7 @@
 
 .legal-title-area h2 {
     margin: 0;
-    color: #07382d;
+    color: #103C6D;
     font-size: 42px;
     font-weight: 700;
 }
@@ -75,14 +75,14 @@
     margin: 0;
     font-size: 25px;
     font-weight: 700;
-    color: #07382d;
+    color: #103C6D;
 }
 
 .section-small-icon {
     width: 42px;
     height: 42px;
 
-    background: #07382d;
+    background: #103C6D;
     color: #c59a43;
 
     border-radius: 7px;
@@ -104,7 +104,7 @@
 .view-all-btn {
     text-decoration: none;
 
-    color: #07382d;
+    color: #103C6D;
     font-size: 16px;
     font-weight: 600;
 
@@ -121,7 +121,7 @@
 }
 
 .view-all-btn:hover {
-    background: #07382d;
+    background: #103C6D;
     color: #ffffff;
 }
 
@@ -210,7 +210,7 @@
 
 .topic-icon i {
     font-size: 55px;
-    color: #07382d;
+    color: #103C6D;
 }
 
 
@@ -256,7 +256,7 @@
 
     text-decoration: none;
 
-    color: #07382d;
+    color: #103C6D;
 
     font-size: 15px;
 
@@ -286,7 +286,7 @@
 }
 
 .view-all-articles {
-    color: #07382d;
+    color: #103C6D;
 
     text-decoration: none;
 
@@ -440,7 +440,7 @@
 ===================================== */
 
 .read-more {
-    color: #07382d;
+    color: #103C6D;
 
     text-decoration: none;
 
