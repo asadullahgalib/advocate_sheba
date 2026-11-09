@@ -19,9 +19,13 @@
                     </p>
                     <p class="hero-description hero-count">
                         @if(@$page_type == 'find_advocate')
-                            Discover 2,000 Advocates
+                            Discover 4,000 Advocates
                         @elseif(@$page_type == 'find_barrister')
-                            Discover 2,000 Barristers
+                            Discover 2,500 Barristers
+                        @elseif(@$page_type == 'find_consultant')
+                            Discover 3,000 Legal Consultants
+                        @elseif(@$page_type == 'find_law_firm')
+                            Discover 1,000 Law Firms
                         @endif
                     </p>
 

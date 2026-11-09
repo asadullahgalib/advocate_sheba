@@ -330,7 +330,7 @@ class FrontenController extends Controller
 
     // Legal Services Data (Home Page Maximum 12 Cards)
     $data['laws'] = Law::orderBy('id', 'asc')
-    ->take(12)
+    ->take(10)
     ->get();
 
     return view('frontend.layouts.home', $data);
@@ -395,7 +395,7 @@ class FrontenController extends Controller
         $data['categories']     = Category::all();
         $data['departments']    = Department::orderBy('sort','asc')->get();
         $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
-        $data['page_type'] = 'find_consultant';
+        $data['page_type'] = 'find_law_firm';
         return view('frontend.single_pages.find_law_firm_list',$data);
     }
 
