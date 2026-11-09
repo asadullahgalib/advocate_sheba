@@ -17,8 +17,12 @@
                     <p class="hero-description">
                         আপনার প্রয়োজনের জন্য সঠিক আইনজীবী ও আইনি পরামর্শদাতা খুঁজে নিন
                     </p>
-                    <p class="hero-description" style="margin: -17px 0px 8px 0px;color: #fff;font-weight: bold;font-size: 15px;">
-                         Discover 2,000 Advocates
+                    <p class="hero-description hero-count">
+                        @if(@$page_type == 'find_advocate')
+                            Discover 2,000 Advocates
+                        @elseif(@$page_type == 'find_barrister')
+                            Discover 2,000 Barristers
+                        @endif
                     </p>
 
 
@@ -26,8 +30,7 @@
                          SEARCH AREA
                     ================================================== -->
 
-                    <form class="legal-search-form"
-                          style="padding: 5px 10px; border-radius: 15px;">
+                    <form class="legal-search-form">
 
                         <!-- =========================================
                              FIRST SEARCH ROW
@@ -40,16 +43,8 @@
                                    placeholder="Search by Name, Enrollment Number, Bar Number">
 
                             <!-- Search Button -->
-                            <button type="submit"
-                                    class="btn main-search-button"
-                                    style="font-size: 16px;
-                                           font-weight: 700;
-                                           padding: 8px 10px;
-                                           background: #103C6D !important;
-                                           border: 1px solid #103C6D !important;">
-
+                            <button type="submit" class="btn main-search-button">
                                 <i class="fa fa-search"></i>
-
                             </button>
 
                         </div>
@@ -229,872 +224,436 @@
 </section>
 
 <style>
+    
+    /* =========================================================
+       LEGAL HERO SECTION - SINGLE PAGES
+    ========================================================= */
 
-/* ========================================================= HERO CONTENT ========================================================= */
-.hero-3 {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -ms-flex-preferred-size: content;
-    flex-basis: content;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    background: #103C6D !important;
-    background-size: cover;
-    height: 450px;
-}
+    .legal-hero-section.hero-3 {
+        display: block !important;
+        width: 100%;
+        height: auto !important;
+        min-height: 0 !important;
 
-@media (max-width: 480px) {
-    .legal-hero-section {
-        padding-top: 0px !important;
-    }
-}
+        padding: 25px 0 30px !important;
 
-.legal-hero-content {
-  width: 100%;
-  max-width: 760px;
-  margin-left: 0;
-  text-align: left;
-}
-
-button.advanced-search-button:hover{
-    background-color: #103C6D !important;
-}
-
-/* ========================================================= HEADING ========================================================= */
-.legal-hero-content h1 {
-  margin: 0 0 5px;
-  color: #ffffff;
-  font-size: 42px;
-  font-weight: 700;
-  line-height: 1.15;
-}
-
-.legal-hero-content h1 span {
-  display: block;
-  color: #f2b33d;
-}
-
-/* ========================================================= DESCRIPTION ========================================================= */
-.hero-description {
-  margin: 0 0 20px;
-  color: #ffffff;
-  font-size: 15px;
-  line-height: 1.5;
-}
-
-/* ========================================================= SEARCH FORM ========================================================= */
-.legal-search-form {
-  width: 100%;
-  max-width: 700px;
-}
-
-/* ========================================================= FIRST / MAIN SEARCH ROW ========================================================= */
-.main-search-row {
-  display: grid;
-  grid-template-columns: 1fr 115px;
-  gap: 7px;
-  width: 100%;
-  margin-bottom: 7px;
-}
-
-/* Main Search Input */
-.main-search-row .form-control {
-  width: 100%;
-  height: 48px;
-  padding: 0 14px;
-  border: 1px solid #e2e5e9;
-  border-radius: 6px;
-  outline: none;
-  font-size: 13px;
-  color: #555f70;
-  box-shadow: none;
-}
-
-/* Placeholder */
-.main-search-row .form-control::placeholder {
-  color: #8b95a5;
-}
-
-/* Main Search Button */
-.main-search-button {
-  width: 100%;
-  height: 48px;
-  padding: 0 10px;
-  border: 1px solid #123b6d !important;
-  border-radius: 6px !important;
-  background-color: #123b6d !important;
-  color: #ffffff;
-  font-size: 15px;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-}
-
-.main-search-button:hover {
-  background-color: #087fd0 !important;
-  border-color: #087fd0 !important;
-}
-
-/* ========================================================= SECOND SEARCH ROW ========================================================= */
-.advanced-search-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 115px;
-  gap: 7px;
-  width: 100%;
-}
-
-/* ========================================================= SELECT BOX ========================================================= */
-.search-select {
-  position: relative;
-  width: 100%;
-}
-
-.search-select select {
-  width: 100%;
-  height: 48px;
-  padding: 0 35px 0 12px;
-  border: 1px solid #e2e5e9;
-  border-radius: 6px;
-  outline: none;
-  appearance: none;
-  -webkit-appearance: none;
-  background-color: #ffffff;
-  color: #555f70;
-  font-size: 12px;
-  cursor: pointer;
-}
-
-.search-select i {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #778292;
-  font-size: 9px;
-  pointer-events: none;
-}
-
-/* ========================================================= SECOND SEARCH BUTTON ========================================================= */
-.advanced-search-button {
-  width: 100%;
-  height: 48px;
-  padding: 0 9px;
-  color: #ffffff;
-  border: 1px solid #123b6d !important;
-  background-color: #123b6d !important;
-  border-radius: 6px !important;
-  font-size: 15px;
-  font-weight: 500;
-  white-space: nowrap;
-  transition: all 0.3s ease;
-}
-
-.advanced-search-button:hover {
-  background-color: #087fd0 !important;
-  border-color: #087fd0 !important;
-}
-
-/* ========================================================= CATEGORY LINKS ========================================================= */
-.legal-category-links {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 17px;
-  width: 100%;
-}
-
-/* Category Button */
-.legal-category-links a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 36px;
-  padding: 7px 16px;
-  min-width: 120px;
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  border-radius: 15px;
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1.2;
-  transition: all 0.25s ease;
-}
-
-/* Hover */
-.legal-category-links a:hover {
-  color: #ffffff;
-  background: #f2b33d;
-  border-color: #f2b33d;
-  transform: translateY(-2px);
-}
-
-/* Active */
-.legal-category-links a.active {
-  color: #000;
-  background: #CDDFFC;
-  border-color: #CDDFFC;
-}
-
-/* Separator যদি কোথাও থাকে */
-.legal-category-links span {
-  display: none;
-}
-
-/* ========================================================= FOUR CATEGORY SECTION ========================================================= */
-.legal-category-section {
-  position: relative;
-  z-index: 10;
-  margin-top: -45px;
-  padding-bottom: 15px;
-}
-
-/* ========================================================= CARD ========================================================= */
-.legal-category-card {
-  width: 100%;
-  min-height: 235px;
-  padding: 18px 12px 15px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 9px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.13);
-  transition: all 0.3s ease;
-}
-
-.legal-category-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
-}
-
-/* ========================================================= ICON ========================================================= */
-.category-icon {
-  width: 65px;
-  height: 65px;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  color: #ffffff;
-  font-size: 25px;
-}
-
-/* Individual Icon Colors */
-.advocates-icon {
-  background: #123b6d;
-}
-
-.barristers-icon {
-  background: #b7861c;
-}
-
-.consultants-icon {
-  background: #2a8c67;
-}
-
-.law-firms-icon {
-  background: #51419a;
-}
-
-/* ========================================================= CARD TITLE ========================================================= */
-.legal-category-card h3 {
-  min-height: 23px;
-  margin: 0 0 7px;
-  color: #17264a;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.35;
-}
-
-/* ========================================================= CARD DESCRIPTION ========================================================= */
-.legal-category-card p {
-  min-height: 38px;
-  margin: 0 0 12px;
-  color: #6c7484;
-  font-size: 10px;
-  line-height: 1.5;
-}
-
-/* ========================================================= CARD BUTTON ========================================================= */
-.category-button {
-  margin-top: auto;
-  min-width: 120px;
-  padding: 7px 9px;
-  border-radius: 4px;
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 10px;
-  font-weight: 600;
-  transition: 0.2s;
-}
-
-.category-button:hover {
-  color: #ffffff;
-  opacity: 0.88;
-}
-
-.category-button i {
-  margin-left: 4px;
-  font-size: 8px;
-}
-
-.advocates-button {
-  background: #123b6d;
-}
-
-.barristers-button {
-  background: #b7861c;
-}
-
-.consultants-button {
-  background: #2a8c67;
-}
-
-.law-firms-button {
-  background: #51419a;
-}
-
-/* ========================================================= TABLET ========================================================= */
-@media (max-width: 991px) {
-  .legal-hero-section {
-    min-height: 400px;
-    padding-bottom: 95px;
-  }
-
-  .legal-hero-content {
-    max-width: 680px;
-  }
-
-  .legal-hero-content h1 {
-    font-size: 36px;
-  }
-
-  .advanced-search-row {
-    grid-template-columns: 1fr 1fr 1fr 105px;
-  }
-}
-
-/* =========================================================
-   MOBILE RESPONSIVE
-========================================================= */
-
-@media (max-width: 767px) {
-
-    /* Hero Section */
-    .legal-hero-section {
-        min-height: auto;
-
-        /* Navbar এর জন্য উপরে জায়গা রাখা */
-        padding: 135px 12px 100px !important;
-
-        background-position: center center;
-        position: relative;
+        background: #103C6D !important;
+        background-image: none !important;
     }
 
-    /* Hero Content */
+    /* =========================================================
+       HERO CONTENT
+    ========================================================= */
+
     .legal-hero-content {
         width: 100%;
-        max-width: 100%;
-
-        /* Margin দিয়ে আর উপরে-নিচে সরানোর প্রয়োজন নেই */
-        margin: 0 auto !important;
-
-        text-align: center;
+        max-width: 760px;
+        margin: 0;
+        text-align: left;
     }
+
+    /* =========================================================
+       HEADING
+    ========================================================= */
 
     .legal-hero-content h1 {
-        font-size: 29px;
-        text-align: center;
+        margin: 0 0 5px;
+        color: #ffffff;
+        font-size: 42px;
+        font-weight: 700;
+        line-height: 1.15;
     }
+
+    .legal-hero-content h1 span {
+        display: block;
+        color: #f2b33d;
+    }
+
+    /* =========================================================
+       DESCRIPTION
+    ========================================================= */
 
     .hero-description {
-        font-size: 12px;
-        margin-bottom: 18px;
-        text-align: center;
+        margin: 0 0 6px;
+        color: #ffffff;
+        font-size: 15px;
+        line-height: 1.5;
     }
 
-    /* Main Search */
-    .main-search-row {
-        grid-template-columns: 1fr 55px;
-        gap: 5px;
-    }
-
-    .main-search-row .form-control {
-        height: 44px;
-        font-size: 12px;
-        padding: 0 10px;
-    }
-
-    .main-search-button {
-        height: 44px;
-        font-size: 13px;
-    }
-
-    /* Advanced Search */
-    .advanced-search-row {
-        grid-template-columns: 1fr 1fr;
-        gap: 5px;
-    }
-
-    .advanced-search-row .court-select,
-    .advanced-search-row .advanced-search-button {
-        grid-column: 1 / -1;
-    }
-
-    .advanced-search-button {
-        height: 44px;
-        width: 100%;
+    .hero-description.hero-count {
+        margin: 0 0 10px;
+        color: #ffffff;
         font-size: 15px;
         font-weight: bold;
     }
 
-    /* Category Links */
+    /* =========================================================
+       SEARCH FORM
+    ========================================================= */
 
-    .legal-category-links {
-        justify-content: center;
-        align-items: center;
+    .legal-search-form {
+        width: 100%;
+        max-width: 700px;
+
+        padding: 5px 10px;
+        margin: 0;
+
+        background: #ffffff;
+        border-radius: 15px;
+        box-sizing: border-box;
+    }
+
+    /* =========================================================
+       MAIN SEARCH ROW
+    ========================================================= */
+
+    .main-search-row {
+        display: grid;
+        grid-template-columns: 1fr 115px;
         gap: 7px;
-        margin-top: 15px;
-        margin-bottom: 40px;
+        width: 100%;
+        margin-bottom: 7px;
+    }
+
+    .main-search-row .form-control {
+        width: 100%;
+        height: 48px;
+        padding: 0 14px;
+
+        border: 1px solid #e2e5e9;
+        border-radius: 6px;
+
+        outline: none;
+        box-shadow: none;
+
+        font-size: 13px;
+        color: #555f70;
+    }
+
+    .main-search-row .form-control::placeholder {
+        color: #8b95a5;
+    }
+
+    /* Main Search Button */
+
+    .legal-search-form .main-search-button {
+        width: 100%;
+        height: 48px;
+        padding: 0 10px !important;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: #103C6D !important;
+        border: 1px solid #103C6D !important;
+        border-radius: 6px !important;
+
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    .legal-search-form .main-search-button:hover {
+        background: #087fd0 !important;
+        border-color: #087fd0 !important;
+    }
+
+    /* =========================================================
+       ADVANCED SEARCH ROW
+    ========================================================= */
+
+    .advanced-search-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 115px;
+        gap: 7px;
         width: 100%;
     }
 
-    .legal-category-links a {
-        min-height: 34px;
-        padding: 6px 12px;
-        font-size: 10px;
-        border-radius: 5px;
-        text-align: center;
+    /* =========================================================
+       CUSTOM SELECT
+    ========================================================= */
+
+    .custom-select {
+        position: relative;
+        width: 100%;
     }
-
-    /* Category Cards */
-    .legal-category-section {
-        margin-top: -25px;
-        padding-left: 8px;
-        padding-right: 8px;
-    }
-
-    .legal-category-card {
-        min-height: 210px;
-        padding: 14px 6px;
-    }
-
-    .category-icon {
-        width: 54px;
-        height: 54px;
-        font-size: 21px;
-    }
-
-    .legal-category-card h3 {
-        font-size: 13px;
-    }
-
-    .legal-category-card p {
-        font-size: 9px;
-    }
-
-    .category-button {
-        min-width: 100px;
-        padding: 6px 5px;
-        font-size: 8px;
-    }
-}
-
-/* ========================================================= SMALL MOBILE ========================================================= */
-@media (max-width: 480px) {
-  .legal-hero-section {
-    padding-top: 125px !important;
-    padding-left: 8px;
-    padding-right: 8px;
-    margin-bottom: 40px;
-  }
-
-  .legal-hero-content h1 {
-    font-size: 25px;
-    text-align: center !important;
-    padding-top: 15px;
-  }
-
-  .hero-description {
-    font-size: 11px;
-    text-align: center;
-    margin-top: 9px;
-  }
-
-  .main-search-box input {
-    font-size: 11px;
-  }
-
-  /* Keep Practice Area + Location in two columns */
-  .advanced-search-row {
-    grid-template-columns: 1fr 1fr;
-    gap: 5px;
-  }
-
-  /* Court = full two-column width */
-  .advanced-search-row .court-select {
-    grid-column: 1 / -1;
-  }
-
-  /* Search = full two-column width */
-  .advanced-search-row .advanced-search-button {
-    grid-column: 1 / -1;
-  }
-
-  .search-select select {
-    font-size: 9px;
-  }
-
-  .legal-search-button {
-    font-size: 10px;
-  }
-
-  /* Category buttons */
-  .legal-category-links {
-    justify-content: center;
-    gap: 6px;
-    margin-top: 20px;
-  }
-
-  .legal-category-links a {
-    padding: 6px 15px;
-    font-size: 15px;
-    min-height: 32px;
-    font-weight: bold;
-    border-radius: 15px;
-    margin: 3px 5px;
-    /*min-width: 160px;*/
-  }
-
-  .legal-category-card {
-    min-height: 195px;
-  }
-
-  .category-icon {
-    width: 50px;
-    height: 50px;
-    font-size: 19px;
-  }
-
-  .legal-category-card h3 {
-    font-size: 12px;
-  }
-}
-
-/* ========================================================= GENERAL SUBMIT BUTTON ========================================================= */
-button.submit,
-button[type='submit'] {
-  font-size: 16px;
-  font-weight: 500;
-  padding: 12px 15px !important;
-  color: #ffffff;
-  border: none;
-  background-color: #f2b33d !important;
-  border: 1px solid #f2b33d !important;
-  border-radius: 10px;
-}
-
-/* =========================================================
-   CUSTOM SELECT DROPDOWN
-========================================================= */
-
-.custom-select {
-
-    position: relative;
-
-    width: 100%;
-
-}
-
-
-/* =========================================================
-   SELECT BOX
-========================================================= */
-
-.custom-select-box {
-
-    width: 100%;
-
-    height: 48px;
-
-    padding: 0 35px 0 12px;
-
-    border: 1px solid #e2e5e9;
-
-    border-radius: 6px;
-
-    background-color: #ffffff;
-
-    color: #555f70;
-
-    font-size: 12px;
-
-    cursor: pointer;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    position: relative;
-
-    transition: all 0.2s ease;
-
-}
-
-
-.custom-select-box:hover {
-
-    border-color: #cfd5dc;
-
-}
-
-
-/* Selected Text */
-
-.custom-select-box .selected-text {
-
-    display: block;
-
-    width: 100%;
-
-    white-space: nowrap;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-
-}
-
-
-/* Arrow */
-
-.custom-select-box i {
-
-    position: absolute;
-
-    right: 12px;
-
-    top: 50%;
-
-    transform: translateY(-50%);
-
-    color: #778292;
-
-    font-size: 9px;
-
-    pointer-events: none;
-
-    transition: transform 0.2s ease;
-
-}
-
-
-/* Arrow when open */
-
-.custom-select.open .custom-select-box i {
-
-    transform: translateY(-50%) rotate(180deg);
-
-}
-
-
-/* =========================================================
-   DROPDOWN OPTIONS
-========================================================= */
-
-.custom-options {
-
-    position: absolute;
-
-    top: calc(100% + 4px);
-
-    left: 0;
-
-    width: 100%;
-
-    background: #ffffff;
-
-    border: 1px solid #e2e5e9;
-
-    border-radius: 6px;
-
-    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-
-    overflow: hidden;
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    transform: translateY(-5px);
-
-    transition: all 0.2s ease;
-
-    z-index: 9999;
-
-}
-
-
-/* Open Dropdown */
-
-.custom-select.open .custom-options {
-
-    opacity: 1;
-
-    visibility: visible;
-
-    transform: translateY(0);
-
-}
-
-
-/* =========================================================
-   OPTION
-========================================================= */
-
-.custom-option {
-
-    width: 100%;
-
-    min-height: 42px;
-
-    padding: 2px 12px;
-
-    display: flex;
-
-    align-items: center;
-
-    background: #ffffff;
-
-    color: #555f70;
-
-    font-size: 12px;
-
-    cursor: pointer;
-
-    transition: all 0.2s ease;
-
-}
-
-
-.custom-option:hover {
-
-    background: #f4f7fb;
-
-    color: #123b6d;
-
-}
-
-
-/* Selected Option */
-
-.custom-option.selected {
-
-    background: #f0f5fb;
-
-    color: #123b6d;
-
-    font-weight: 600;
-
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 767px) {
 
     .custom-select-box {
+        position: relative;
 
-        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
 
-        font-size: 11px;
+        width: 100%;
+        height: 48px;
+        padding: 0 35px 0 12px;
 
-        padding: 0 30px 0 10px;
-
-    }
-
-
-    .custom-select-box i {
-
-        right: 10px;
-
-        font-size: 8px;
-
-    }
-
-
-    .custom-options {
-
-        top: calc(100% + 4px);
-
+        background: #ffffff;
+        border: 1px solid #e2e5e9;
         border-radius: 6px;
 
-        max-height: 220px;
+        color: #555f70;
+        font-size: 12px;
+        cursor: pointer;
 
+        transition: border-color 0.2s ease;
+        box-sizing: border-box;
+    }
+
+    .custom-select-box:hover {
+        border-color: #cfd5dc;
+    }
+
+    .custom-select-box .selected-text {
+        display: block;
+        width: 100%;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .custom-select-box i {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+
+        transform: translateY(-50%);
+        color: #778292;
+        font-size: 9px;
+
+        pointer-events: none;
+        transition: transform 0.2s ease;
+    }
+
+    .custom-select.open .custom-select-box i {
+        transform: translateY(-50%) rotate(180deg);
+    }
+
+    /* Dropdown Options */
+
+    .custom-options {
+        position: absolute;
+        top: calc(100% + 4px);
+        left: 0;
+
+        width: 100%;
+        max-height: 220px;
         overflow-y: auto;
 
+        background: #ffffff;
+        border: 1px solid #e2e5e9;
+        border-radius: 6px;
+
+        box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-5px);
+
+        transition: all 0.2s ease;
+        z-index: 9999;
     }
 
+    .custom-select.open .custom-options {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    /* Individual Option */
 
     .custom-option {
+        display: flex;
+        align-items: center;
 
-        min-height: 7px;
+        width: 100%;
+        min-height: 42px;
+        padding: 8px 12px;
 
-        padding: 0px 8px;
+        background: #ffffff;
+        color: #555f70;
 
-        font-size: 10px;
+        font-size: 12px;
+        cursor: pointer;
 
+        transition: background 0.2s ease;
+        box-sizing: border-box;
     }
 
-}
+    .custom-option:hover {
+        background: #f4f7fb;
+        color: #123b6d;
+    }
 
-
-/* =========================================================
-   SMALL MOBILE
-========================================================= */
-
-@media (max-width: 480px) {
-
-    .custom-select-box {
-        height: 44px;
-        font-size: 11px;
+    .custom-option.selected {
+        background: #f0f5fb;
+        color: #123b6d;
         font-weight: 600;
     }
 
+    /* =========================================================
+       ADVANCED SEARCH BUTTON
+    ========================================================= */
 
-    .custom-option {
+    .legal-search-form .advanced-search-button {
+        width: 100%;
+        height: 48px;
+        padding: 0 9px !important;
 
-        min-height: 38px;
+        background: #f2b33d !important;
+        border: 1px solid #f2b33d !important;
+        border-radius: 6px !important;
 
-        padding: 8px 10px;
+        color: #ffffff;
+        font-size: 15px;
+        font-weight: 600;
+        white-space: nowrap;
 
-        font-size: 9px;
-
+        transition: all 0.3s ease;
     }
 
-}
+    .legal-search-form .advanced-search-button:hover {
+        background: #103C6D !important;
+        border-color: #103C6D !important;
+    }
+
+    /* =========================================================
+       TABLET
+    ========================================================= */
+
+    @media (max-width: 991px) {
+
+        .legal-hero-section.hero-3 {
+            padding: 22px 0 25px !important;
+        }
+
+        .legal-hero-content {
+            max-width: 680px;
+        }
+
+        .legal-hero-content h1 {
+            font-size: 36px;
+        }
+
+        .advanced-search-row {
+            grid-template-columns: 1fr 1fr 1fr 105px;
+        }
+    }
+
+    /* =========================================================
+       MOBILE
+    ========================================================= */
+
+    @media (max-width: 767px) {
+
+        .legal-hero-section.hero-3 {
+            padding: 20px 12px 25px !important;
+        }
+
+        .legal-hero-content {
+            max-width: 100%;
+            margin: 0;
+            text-align: center;
+        }
+
+        .legal-hero-content h1 {
+            font-size: 28px;
+            text-align: center;
+        }
+
+        .hero-description {
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .hero-description.hero-count {
+            font-size: 12px;
+            margin-bottom: 9px;
+        }
+
+        .legal-search-form {
+            max-width: 100%;
+            padding: 5px 7px;
+        }
+
+        /* Main Search */
+
+        .main-search-row {
+            grid-template-columns: 1fr 55px;
+            gap: 5px;
+        }
+
+        .main-search-row .form-control,
+        .legal-search-form .main-search-button {
+            height: 44px;
+        }
+
+        .main-search-row .form-control {
+            font-size: 12px;
+            padding: 0 10px;
+        }
+
+        /* Advanced Search */
+
+        .advanced-search-row {
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+        }
+
+        .custom-select-box {
+            height: 44px;
+            padding: 0 30px 0 10px;
+            font-size: 11px;
+        }
+
+        .custom-select-box i {
+            right: 10px;
+            font-size: 8px;
+        }
+
+        .custom-option {
+            min-height: 38px;
+            padding: 8px 10px;
+            font-size: 10px;
+        }
+
+        .advanced-search-row .court-select,
+        .advanced-search-row .advanced-search-button {
+            grid-column: 1 / -1;
+        }
+
+        .legal-search-form .advanced-search-button {
+            height: 44px;
+            font-size: 14px;
+        }
+    }
+
+    /* =========================================================
+       SMALL MOBILE
+    ========================================================= */
+
+    @media (max-width: 480px) {
+
+        .legal-hero-section.hero-3 {
+            padding: 16px 8px 20px !important;
+        }
+
+        .legal-hero-content h1 {
+            font-size: 25px;
+        }
+
+        .hero-description {
+            font-size: 11px;
+        }
+
+        .hero-description.hero-count {
+            font-size: 11px;
+        }
+
+    }
 
 </style>
 
