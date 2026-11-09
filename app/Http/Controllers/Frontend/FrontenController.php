@@ -256,27 +256,40 @@ class FrontenController extends Controller
     }
 
     
-    public function lawDetails($slug)
-{
-    $data['categories'] = Category::all();
+        public function lawDetails($slug)
+    {
+        $data['categories'] = Category::all();
 
-    $data['departments'] = Department::orderBy('sort', 'asc')->get();
+        $data['departments'] = Department::orderBy('sort', 'asc')->get();
 
-    $data['doctors'] = User::where('user_category', 'doctor')
-        ->where('department_id', '57')
-        ->where('status', '1')
-        ->paginate(8);
+        $data['doctors'] = User::where('user_category', 'doctor')
+            ->where('department_id', '57')
+            ->where('status', '1')
+            ->paginate(8);
 
-    $data['law'] = Law::with(['lawDetails' => function ($query) {
-        $query->orderBy('serial', 'asc');
-    }])
-    ->where('slug', $slug)
-    ->firstOrFail();
+        $data['law'] = Law::with(['lawDetails' => function ($query) {
+            $query->orderBy('serial', 'asc');
+        }])
+        ->where('slug', $slug)
+        ->firstOrFail();
 
-    $data['page_type'] = 'law_details';
+        $data['page_type'] = 'law_details';
 
-    return view('frontend.law.law_details', $data);
-}
+        return view('frontend.law.law_details', $data);
+    }
+
+    public function lawList()
+    {
+        $data['categories'] = Category::all();
+
+        $data['departments'] = Department::orderBy('sort', 'asc')->get();
+
+        $data['laws'] = Law::orderBy('id', 'asc')->get();
+
+        $data['page_type'] = 'law_list';
+
+        return view('frontend.law.law_list', $data);
+    }
 
 
 // Legal Information ends

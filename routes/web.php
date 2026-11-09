@@ -67,14 +67,16 @@ Route::get('/legal/form/{slug}', 'Frontend\FrontenController@legalForm')
 // Legal Information
 Route::get('/legal-topic/{slug}','Frontend\FrontenController@legalInformationDetails')->name('legal.information.details');
 
-// পুরনো static route (এগুলো এখন নতুন পেজে redirect করে)
 Route::get('/legal/information/rights','Frontend\FrontenController@legalInformationRights')->name('legal.information.rights');
 Route::get('/legal/information/terms','Frontend\FrontenController@legalInformationTerms')->name('legal.information.terms');
 Route::get('/legal/information/laws','Frontend\FrontenController@legalInformationLaws')->name('legal.information.laws');
 Route::get('/legal/information/procudures','Frontend\FrontenController@legalInformationProcudures')->name('legal.information.procudures');
 
-Route::get('/law/details/{slug}', 'Frontend\FrontenController@lawDetails')
-    ->name('law.details');
+// Legal Services list page
+Route::get('/law', 'Frontend\FrontenController@lawList')->name('law.list');
+
+// Legal Service details page (slug দিয়ে)
+Route::get('/law/{slug}', 'Frontend\FrontenController@lawDetails')->name('law.details');
 
 
 Route::get('/advocate-list','Frontend\FrontenController@advocateList')->name('our.advocate-list');
