@@ -1,4 +1,3 @@
-
 @extends('backend.layouts.master')
 @section('content')
 
@@ -59,12 +58,12 @@
                     </div>
 
 
-                    <!-- Law Description -->
+                    <!-- Law Subtitle -->
 
                     <div class="form-group col-md-12">
 
                         <label for="description_en">
-                            Description (English)
+                            Subtitle
                             <span style="color:red;">*</span>
                         </label>
 
@@ -73,6 +72,7 @@
                             id="description_en"
                             class="form-control"
                             rows="5"
+                            placeholder="Enter Law Subtitle"
                         >{{ old('description_en', @$editData->description_en) }}</textarea>
 
                     </div>
@@ -99,26 +99,6 @@
     </div>
 
 </div>
-
-
-<!-- CKEditor -->
-
-<script type="text/javascript">
-
-    $(document).ready(function(){
-
-        var editor2 = CKEDITOR.replace('description_en');
-
-        CKFinder.setupCKEditor(editor2, '/ckfinder/');
-
-        editor2.on('change', function() {
-            editor2.updateElement();
-            $('#description_en').valid();
-        });
-
-    });
-
-</script>
 
 
 <!-- Form Validation -->
@@ -150,7 +130,7 @@
                 },
 
                 description_en: {
-                    required: "Please enter the law description",
+                    required: "Please enter the law subtitle",
                 }
 
             },

@@ -15,6 +15,15 @@
         padding: 15px 10px;
         font-size: 19px;
     }
+
+    /* title_en: বাংলা title-এর মতোই একই size, weight ও color */
+    .faq-question .faq-title-en {
+        display: block;
+        font-size: inherit;
+        font-weight: inherit;
+        color: inherit;
+        line-height: inherit;
+    }
 </style>
 
 <div class="doctors-blog-page" style="margin-bottom: 20px;">
@@ -64,7 +73,10 @@
                         <button class="faq-question" type="button">
 
                             <span>
-                                {{ $detail->title_en ?? $detail->title_bn }}
+                                {{ $detail->title_bn ?: $detail->title_en }}
+                                @if($detail->title_bn && $detail->title_en)
+                                    <span class="faq-title-en">{{ $detail->title_en }}</span>
+                                @endif
                             </span>
 
                             <i class="bi {{ $key == 0 ? 'bi-chevron-up' : 'bi-chevron-down' }}"></i>

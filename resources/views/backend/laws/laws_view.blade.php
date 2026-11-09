@@ -15,6 +15,7 @@
               <tr class="text-center">
                 <th>Sl.</th>
                 <th>Title</th>
+                <th>Subtitle</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -23,11 +24,24 @@
               <tr class="text-center">
                 <td>{{$key+1}}</td>
                 <td>{{$law->title_en}}</td>
+                <td style="white-space: normal; text-align: left; min-width: 300px;">
+                  {{ \Illuminate\Support\Str::limit(strip_tags($law->description_en), 150) }}
+                </td>
                 <td>
                   <!-- Edit Button -->
                   <a class="btn btn-sm btn-success" title="Edit" href="{{route('laws.edit',$law->id)}}">
                     <i class="fa fa-edit"></i>
-                  </a>  
+                  </a>
+
+                  <!-- Delete Button -->
+                  <a id="delete"
+                     href="{{ route('laws.delete') }}"
+                     data-token="{{csrf_token()}}"
+                     data-id="{{$law->id}}"
+                     class="btn btn-danger btn-sm"
+                     title="Delete">
+                    <i class="fa fa-trash"></i>
+                  </a>
                 </td>
               </tr>
               @endforeach

@@ -28,7 +28,7 @@
                     <div class="legal-topic-card">
 
                         <div class="topic-icon">
-                            <i class="fa-solid fa-scale-balanced"></i>
+                            <i class="{{ $law->icon ?: 'fa-solid fa-scale-balanced' }}"></i>
                         </div>
 
                         <h4>{{ $law->title_en }}</h4>
