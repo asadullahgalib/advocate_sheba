@@ -39,17 +39,37 @@
                     font-size: 19px !important;
                 }
             }
+            .password-toggle {
+                position: absolute;
+                right: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+                cursor: pointer;
+                font-size: 20px;
+                color: #777;
+                z-index: 10;
+            }
+
+            .password-toggle:hover {
+                color: #103C6D;
+            }
+
+            .password-wrapper {
+                position: relative;
+            }
         </style>                                                                                    
     </head>  
     <body class="hold-transition login-page">    
         <div class="login-box">            
             <div class="login-box-body">      
-                <div class="login-logo" style="margin-bottom: 5px;">
-                  <a href="{{url('')}}">
-                     <img src="{{asset('uploads/dashboard_logo_images/'.@$logo->image2)}}" alt="Logo" style="width:180px">
-                  </a>                    
+                <div class="login-logo" style="margin-bottom: -10px;">
+                    <a href="{{url('')}}">
+                     <img src="{{asset('uploads/dashboard_logo_images/'.@$logo->image2)}}" alt="Logo" style="width:180px;">
+                    </a>                    
                 </div><!-- /.login-logo -->
-                <!-- <h4 class="login-box-msg school_name" style="font-weight: bold;padding: 0px 0px 10px 0px;color: #000;">{{@$contact->name}}</h4>  -->
+
+                <!-- <h4 class="login-box-msg school_name" style="font-weight: bold;padding: 0px 0px 10px 0px;color: #000;">{{@$contact->name_en}}</h4>  -->
+
                 <h4 class="login-box-msg login_name" style="font-weight:bold;font-size: 25px;">User Login</h4>
                      @if($errors->any())
                        <div class="alert alert-danger alert-dismissible">
@@ -67,38 +87,62 @@
                      @endif
                     <!--Error_message-->
 
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{route('login')}}">
                         {{ csrf_field() }}
-
                         <div class="form-group has-feedback">
-                            <input type="text" name="email" class="form-control" id="email" placeholder="Enter Email Address" value="{{ old('email') }}">
+                            <input type="text" name="email" class="form-control" id="email" placeholder="Mobile No" value="{{ old('email') }}">
+                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}"></div>
                         </div>
+                        <div class="form-group has-feedback password-wrapper">
+                            <input type="password" name="password" class="form-control"
+                                   id="password" placeholder="Password"
+                                   style="padding-right: 45px;">
 
-                        <div class="form-group has-feedback">
-                            <input type="password" name="password" class="form-control" id="password" placeholder="Enter Your Password">
+                            <span class="password-toggle" id="togglePassword">
+                                <i class="fa fa-eye"></i>
+                            </span>
+
+                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}"></div>
                         </div>
-
-                        <!-- <div class="form-group has-feedback">
-                            <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                            @if(Cookie::get('remember_me') == 'true') checked @endif> 
-                            <label class="form-check-label" for="remember">
-                                {{ __('Remember Me') }}
-                            </label>
-                        </div> -->
-
                         <div class="row">
-                            <div style="text-align: center;">
-                                <div class="col-xs-12 text-center">
-                                    <input type="submit" class="btn btn-primary btn-block btn-flat" value="Log In" style="background-color:#53B4F2;">
-                                </div>
-                            </div>
+                            <div class="col-xs-4">
+                                <input type="submit" class="btn btn-primary btn-block btn-flat" value="Log In" style="background-color: #103C6D;border-color: #103C6D;">
+                            </div><!-- /.col -->
                         </div>
+                        <p style="text-align:left;font-weight: bold;padding-top: 15px;"><a href="https://popularsoftit.biz/" target="_blank">Developed By PopularSoft</a></p>
                     </form>
             </div><!-- /.login-box-body -->
         </div><!-- /.login-box -->    <!-- jQuery 2.1.4 -->
         <script src="{{asset('frontend/login/plugins/jQuery/jQuery-2.1.4.min.js')}}"></script>    <!-- Bootstrap 3.3.5 -->
         <script src="{{asset('frontend/login/bootstrap/js/bootstrap.min.js')}}"></script>    <!-- iCheck -->
         <script src="{{asset('frontend/login/plugins/iCheck/icheck.min.js')}}"></script>
+
+        <script>
+            $(document).ready(function () {
+
+                $('#togglePassword').click(function () {
+
+                    var passwordField = $('#password');
+                    var icon = $(this).find('i');
+
+                    if (passwordField.attr('type') === 'password') {
+
+                        passwordField.attr('type', 'text');
+
+                        icon.removeClass('fa-eye').addClass('fa-eye-slash');
+
+                    } else {
+
+                        passwordField.attr('type', 'password');
+
+                        icon.removeClass('fa-eye-slash').addClass('fa-eye');
+
+                    }
+
+                });
+
+            });
+        </script>
         
     </body>
 </html>
