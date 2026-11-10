@@ -807,62 +807,38 @@
 
                                         </div>
 
-                                        <!-- Action Buttons -->
+                                        <!-- ===================== Action Buttons ===================== -->
                                         <div class="doctor-action-buttons">
 
-                                            <!-- WhatsApp + Share -->
+                                            <!-- Call + WhatsApp -->
                                             <div class="row g-3 doctor-bottom-buttons" style="margin-bottom: 15px;">
 
-                                                <!-- WhatsApp -->
+                                                <!-- Call -->
                                                 <div class="col-6">
-
-                                                    <a href="tel:+8801700000000"
-                                                       class="doctor-outline-btn">
-
+                                                    <a href="tel:+8801700000000" class="doctor-outline-btn">
                                                         <i class="fa fa-phone"></i>
-
-                                                        <span>
-                                                            Call
-                                                        </span>
-
+                                                        <span>Call</span>
                                                     </a>
-
                                                 </div>
 
-
-                                                <!-- Share -->
+                                                <!-- WhatsApp (modal open) -->
                                                 <div class="col-6">
-
-                                                    <a href="https://wa.me/8801700000000" target="_blank"
-                                                       class="doctor-outline-btn">
-
-                                                        <i class="fa fa-whatsapp"></i>
-
-                                                        <span>
-                                                            WhatsApp
-                                                        </span>
-
+                                                    <a href="javascript:void(0)" onclick="openConsultModal()" class="doctor-outline-btn">
+                                                        <i class="fa-brands fa-whatsapp"></i>
+                                                        <span>WhatsApp</span>
                                                     </a>
-
                                                 </div>
 
                                             </div>
 
-                                            <!-- Appointment -->
+                                            <!-- Share Profile -->
                                             <div class="mb-3">
-
-                                                <a href="javascript:void(0)" onclick="shareDoctorProfile()"
-                                                    class="doctor-btn btn-appointment">
-
+                                                <a href="javascript:void(0)" onclick="shareDoctorProfile()" class="doctor-btn btn-appointment">
                                                     <i class="fa fa-share-alt"></i>
-
-                                                    <span>
-                                                        Share Profile
-                                                    </span>
-
+                                                    <span>Share Profile</span>
                                                 </a>
-
                                             </div>
+
                                         </div>
 
 
@@ -896,4 +872,5 @@
             </div>
         </div>
     </main>
+    @include('frontend.advocate.consult_modal')
 @endsection
