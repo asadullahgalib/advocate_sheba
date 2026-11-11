@@ -29,7 +29,7 @@
             </div>
             <div class="form-group col-md-6">
               <label for="email">Email</label>
-              <input type="email" name="email" value="{{$editData->email}}" class="form-control">
+              <input type="text" name="email" value="{{$editData->email}}" class="form-control">
               <font style="color: red">{{($errors->has('email'))?($errors->first('email')):''}}</font>
             </div>
             <div class="form-group col-md-6">
@@ -65,7 +65,6 @@
           },
           email: {
             required: true,
-            email: true,
           }
         },
         messages: {

@@ -207,7 +207,7 @@
                         charges and your rights.
                     </p>
 
-                    <a href="{{route('law.details')}}">
+                    <a href="#">
                         Explore Articles
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -234,7 +234,7 @@
                         disputes and remedies.
                     </p>
 
-                    <a href="{{route('law.details')}}">
+                    <a href="#">
                         Explore Articles
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -261,7 +261,7 @@
                         maintenance and more.
                     </p>
 
-                    <a href="{{route('law.details')}}">
+                    <a href="#">
                         Explore Articles
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -288,7 +288,7 @@
                         ownership and disputes.
                     </p>
 
-                    <a href="{{route('law.details')}}">
+                    <a href="#">
                         Explore Articles
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -315,7 +315,7 @@
                         rights and disputes.
                     </p>
 
-                    <a href="{{route('law.details')}}">
+                    <a href="#">
                         Explore Articles
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -342,7 +342,7 @@
                         contracts and governance.
                     </p>
 
-                    <a href="{{route('law.details')}}">
+                    <a href="#">
                         Explore Articles
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -369,7 +369,7 @@
                         data protection and more.
                     </p>
 
-                    <a href="{{route('law.details')}}">
+                    <a href="#">
                         Explore Articles
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -396,7 +396,7 @@
                         practices and legal remedies.
                     </p>
 
-                    <a href="{{route('law.details')}}">
+                    <a href="#">
                         Explore Articles
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -423,7 +423,7 @@
                         planning and compliance.
                     </p>
 
-                    <a href="{{route('law.details')}}">
+                    <a href="#">
                         Explore Articles
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -450,7 +450,7 @@
                         marriage and other matters.
                     </p>
 
-                    <a href="{{route('law.details')}}">
+                    <a href="#">
                         Explore Articles
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -778,7 +778,7 @@
 
     .legal-title-area h2 {
         margin: 0;
-        color: #07382d;
+        color: #103C6D;
         font-size: 42px;
         font-weight: 700;
     }
@@ -813,14 +813,14 @@
         margin: 0;
         font-size: 25px;
         font-weight: 700;
-        color: #07382d;
+        color: #103C6D;
     }
 
     .section-small-icon {
         width: 42px;
         height: 42px;
 
-        background: #07382d;
+        background: #103C6D;
         color: #c59a43;
 
         border-radius: 7px;
@@ -842,7 +842,7 @@
     .view-all-btn {
         text-decoration: none;
 
-        color: #07382d;
+        color: #103C6D;
         font-size: 16px;
         font-weight: 600;
 
@@ -859,7 +859,7 @@
     }
 
     .view-all-btn:hover {
-        background: #07382d;
+        background: #103C6D;
         color: #ffffff;
     }
 
@@ -948,7 +948,7 @@
 
     .topic-icon i {
         font-size: 55px;
-        color: #07382d;
+        color: #103C6D;
     }
 
 
@@ -994,7 +994,7 @@
 
         text-decoration: none;
 
-        color: #07382d;
+        color: #103C6D;
 
         font-size: 15px;
 
@@ -1024,7 +1024,7 @@
     }
 
     .view-all-articles {
-        color: #07382d;
+        color: #103C6D;
 
         text-decoration: none;
 
@@ -1178,7 +1178,7 @@
     ===================================== */
 
     .read-more {
-        color: #07382d;
+        color: #103C6D;
 
         text-decoration: none;
 

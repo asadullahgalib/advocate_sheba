@@ -122,3 +122,12 @@ Frequently Asked Questions (FAQ) aita advocate er jonno thakbe na.
 
 header menu: videos add hobe
 
+10/11/2026:
+===========
+1. home page 4 ta link er upore & niche soman faka thakbe.
+2. Top e join as a advocate hobe hobe join advocatesheba.
+3. search er color code hobe #3df282 (আপনার প্রয়োজনের জন্য সঠিক আইনজীবী ও আইনি পরামর্শদাতা খুঁজে নিন)
+4. Admin side artical kono law er under e thakbe na. 
+5. Meta Title, Meta Description, Meta Keywords (Sob page er jonno entry hobe).
+
+

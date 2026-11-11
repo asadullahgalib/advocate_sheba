@@ -9,24 +9,26 @@
 
                     <!-- Heading -->
                     <h1>
-                        Find the Right
-                        <span>Legal Professional</span>
+                        Find the right 
+                        <span>legal expert near you</span>
                     </h1>
 
                     <!-- Description -->
                     <p class="hero-description">
                         আপনার প্রয়োজনের জন্য সঠিক আইনজীবী ও আইনি পরামর্শদাতা খুঁজে নিন
                     </p>
-                    <p class="hero-description hero-count">
+                    <p class="hero-description hero-count" style="word-spacing: 2px;">
                         @if(@$page_type == 'find_advocate')
-                            Discover 4,000 Advocates
+                            Search advocate profile 12,00+
                         @elseif(@$page_type == 'find_barrister')
-                            Discover 2,500 Barristers
+                            Search barrister profile 12,00+
                         @elseif(@$page_type == 'find_consultant')
-                            Discover 3,000 Legal Consultants
+                            Search Consultants profile 12,00+
                         @elseif(@$page_type == 'find_law_firm')
-                            Discover 1,000 Law Firms
+                            Search law Firms profile 12,00+
                         @endif
+
+                        by location, court and practice area.
                     </p>
 
 
