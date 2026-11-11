@@ -288,6 +288,16 @@ Route::group(['middleware'=>['auth','admin']],function(){
 			Route::post('/delete','Backend\DocumentController@delete')->name('documents.delete');
 		});
 
+		// Legal Professional Description
+		Route::prefix('legal-professional-details')->group(function(){
+			Route::get('/view','Backend\LegalDescriptionController@view')->name('legal-professional-details.view');
+			Route::get('/add','Backend\LegalDescriptionController@add')->name('legal-professional-details.add');
+			Route::post('/store','Backend\LegalDescriptionController@store')->name('legal-professional-details.store');
+			Route::get('/edit/{id}','Backend\LegalDescriptionController@edit')->name('legal-professional-details.edit');
+			Route::post('/update/{id}','Backend\LegalDescriptionController@update')->name('legal-professional-details.update');
+			Route::post('/delete','Backend\LegalDescriptionController@delete')->name('legal-professional-details.delete');
+		});
+
 		Route::prefix('advertisements')->group(function(){
 			// Headlines
 			Route::get('/headline/view','Backend\ContactController@promotionView')->name('human-resource.hrm.promotion.view');
