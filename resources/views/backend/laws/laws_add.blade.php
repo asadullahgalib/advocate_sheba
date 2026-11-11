@@ -10,15 +10,15 @@
             <h3 class="card-title">
 
                 @if(isset($editData))
-                    Update Add
+                    Update Law
                 @else
-                    Add New Add
+                    Add New Law
                 @endif
 
                 <a class="btn btn-success float-right btn-sm custom_btn"
-                   href="{{ route('adds.view') }}">
+                   href="{{ route('laws.view') }}">
 
-                    <i class="fa fa-list"></i> Adds List
+                    <i class="fa fa-list"></i> Laws List
 
                 </a>
 
@@ -30,132 +30,92 @@
         <div class="card-body">
 
             <form method="post"
-                  action="{{ isset($editData) ? route('adds.update', $editData->id) : route('adds.store') }}"
-                  id="myForm"
-                  enctype="multipart/form-data">
+                  action="{{ isset($editData) ? route('laws.update', $editData->id) : route('laws.store') }}"
+                  id="myForm">
 
                 @csrf
 
                 <div class="form-row">
 
-                    <!-- Add Title -->
-
+                    <!-- Law Title -->
                     <div class="form-group col-md-12">
-
-                        <label for="title">
+                        <label for="title_en">
                             Title
                             <span style="color:red;">*</span>
                         </label>
-
                         <input
                             type="text"
-                            name="title"
-                            id="title"
+                            name="title_en"
+                            id="title_en"
                             class="form-control form-control-sm"
-                            value="{{ old('title', @$editData->title) }}"
-                            placeholder="Enter Add Title"
+                            value="{{ old('title_en', @$editData->title_en) }}"
+                            placeholder="Enter Law Title"
                         >
-
                     </div>
 
-
-                    <!-- Add Position -->
-
-                    <div class="form-group col-md-6">
-
-                        <label for="add_position_id">
-                            Add Position
+                    <!-- Law Description -->
+                    <div class="form-group col-md-12">
+                        <label for="description_en">
+                            Subtitle
                             <span style="color:red;">*</span>
                         </label>
-
-                        <select name="add_position_id" id="add_position_id" class="form-control form-control-sm">
-
-                            <option value="">Select Position</option>
-
-                            @foreach($positions as $position)
-                                <option value="{{ $position->id }}"
-                                    {{ old('add_position_id', @$editData->add_position_id) == $position->id ? 'selected' : '' }}>
-                                    {{ $position->name }}
-                                </option>
-                            @endforeach
-
-                        </select>
-
+                        <textarea
+                            name="description_en"
+                            id="description_en"
+                            class="form-control form-control-sm"
+                            rows="8"
+                            placeholder="Enter Law Description"
+                        >{{ old('description_en', @$editData->description_en) }}</textarea>
                     </div>
 
-
-                    <!-- Image -->
-
-                    <div class="form-group col-sm-4">
-
-                        <label for="image">
-                            Image (300px X 300px)
-                            @if(!isset($editData))
-                                <span style="color:red;">*</span>
-                            @endif
+                    <!-- Meta Title -->
+                    <div class="form-group col-md-12">
+                        <label for="meta_title">
+                            Meta Title <span style="color:red;">*</span>
                         </label>
-
-                        <input type="file" name="image" id="image" class="form-control form-control-sm">
-
-                    </div>
-
-                    <div class="form-group col-sm-2">
-
-                        <label>&nbsp;</label>
-
-                        <img id="showImage"
-                             src="{{ (isset($editData) && $editData->image) ? url('uploads/adds_images/'.$editData->image) : url('uploads/no_image.png') }}"
-                             style="width:100px;height:100px;object-fit:cover;border:1px solid #ced4da;display:block;">
-
-                    </div>
-
-
-                    <!-- Link -->
-
-                    <div class="form-group col-md-9">
-
-                        <label for="link">Link</label>
-
                         <input
                             type="text"
-                            name="link"
-                            id="link"
+                            name="meta_title"
+                            id="meta_title"
                             class="form-control form-control-sm"
-                            value="{{ old('link', @$editData->link) }}"
-                            placeholder="https://example.com"
+                            value="{{ old('meta_title', @$editData->meta_title) }}"
+                            placeholder="Enter Meta Title"
                         >
-
                     </div>
 
-
-                    <!-- Serial -->
-
-                    <div class="form-group col-md-3">
-
-                        <label for="serial">Serial</label>
-
-                        <input
-                            type="number"
-                            name="serial"
-                            id="serial"
-                            class="form-control form-control-sm"
-                            value="{{ old('serial', @$editData->serial) }}"
-                            placeholder="1"
-                        >
-
+                    <!-- Meta Description -->
+                    <div class="form-group col-md-12">
+                        <label for="meta_description">
+                            Meta Description <span style="color:red;">*</span>
+                        </label>
+                        <textarea
+                            name="meta_description"
+                            id="meta_description"
+                            class="form-control"
+                            rows="4"
+                            placeholder="Enter Meta Description"
+                        >{{ old('meta_description', @$editData->meta_description) }}</textarea>
                     </div>
 
+                    <!-- Meta Keyword -->
+                    <div class="form-group col-md-12">
+                        <label for="meta_keyword">
+                            Meta Keyword <span style="color:red;">*</span>
+                        </label>
+                        <textarea
+                            name="meta_keyword"
+                            id="meta_keyword"
+                            class="form-control"
+                            rows="4"
+                            placeholder="Enter Meta Keywords"
+                        >{{ old('meta_keyword', @$editData->meta_keyword) }}</textarea>
+                    </div>
 
                     <!-- Submit Button -->
-
                     <div class="form-group col-md-3">
-
                         <button type="submit" class="btn btn-primary btn-sm">
-
                             {{ isset($editData) ? 'Update' : 'Submit' }}
-
                         </button>
-
                     </div>
 
                 </div>
@@ -170,19 +130,9 @@
 
 
 <!-- Form Validation -->
-
 <script type="text/javascript">
 
     $(document).ready(function () {
-
-        // Image live preview
-        $('#image').change(function (e) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#showImage').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(e.target.files['0']);
-        });
 
         $('#myForm').validate({
 
@@ -190,37 +140,49 @@
 
             rules: {
 
-                title: {
+                title_en: {
                     required: true,
                 },
 
-                add_position_id: {
+                description_en: {
                     required: true,
                 },
 
-                @if(!isset($editData))
-                image: {
+                meta_title: {
                     required: true,
                 },
-                @endif
+
+                meta_description: {
+                    required: true,
+                },
+
+                meta_keyword: {
+                    required: true,
+                }
 
             },
 
             messages: {
 
-                title: {
-                    required: "Please enter the add title",
+                title_en: {
+                    required: "Please enter the law title",
                 },
 
-                add_position_id: {
-                    required: "Please select a position",
+                description_en: {
+                    required: "Please enter the law description",
                 },
 
-                @if(!isset($editData))
-                image: {
-                    required: "Please select an image",
+                meta_title: {
+                    required: "Please enter the meta title",
                 },
-                @endif
+
+                meta_description: {
+                    required: "Please enter the meta description",
+                },
+
+                meta_keyword: {
+                    required: "Please enter the meta keywords",
+                }
 
             },
 

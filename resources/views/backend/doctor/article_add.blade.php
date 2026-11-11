@@ -20,40 +20,58 @@
           <div class="card-body">
             <div class="form-row">
 
+              <!-- Title Field (Full Width) -->
               <div class="form-group col-md-12">
                 <label for="title">Title <span style="color:red">*</span> </label>
-                <input type="text" name="title" id="title" class="form-control form-control-sm" value="{{ @$editData->title }}" placeholder="Enter Title"> 
-              </div>
-
-              <div class="form-group col-md-4">
-                <label for="law_id">Select Law <span style="color:red">*</span> </label>
-                <select name="law_id" id="law_id" class="form-control form-control-sm select2">
-                  <option value="">Select Law</option>
-                  @foreach($laws as $law)
-                  <option value="{{$law->id}}" {{(@$editData->law_id==$law->id)?"selected":""}}>{{$law->title_en}}</option> 
-                  @endforeach
-                </select>
+                <input type="text" name="title" id="title" class="form-control form-control-sm" value="{{ old('title', @$editData->title) }}" placeholder="Enter Title"> 
               </div>
               
+              <!-- Date Field (3 Columns) -->
               <div class="form-group col-md-3">
                 <label for="date">Date <span style="color:red">*</span></label>
-                <input type="text" name="date" id="date" class="form-control form-control-sm singledatepicker" value="{{ @$editData->date }}" autocomplete="off" placeholder="DD-MM-YYYY">
+                <input type="text" name="date" id="date" class="form-control form-control-sm singledatepicker" value="{{ old('date', @$editData->date) }}" autocomplete="off" placeholder="DD-MM-YYYY">
               </div>
               
-              <div class="form-group col-sm-3">
+              <!-- Image Upload Field (4 Columns) -->
+              <div class="form-group col-md-4">
                 <label for="image">Image <span style="color:red;">(700px X 500px)</span></label>
                 <input type="file" name="image" id="image" class="form-control form-control-sm">
               </div>
               
-              <div class="form-group col-sm-2" style="z-index: 100;">
-                <img id="showImage" src="{{(!empty($editData->image)) ? url('uploads/news_images/'.$editData->image) : url('uploads/no_image.png')}}" style="width: 100px; height: 80px; object-fit: cover; border:1px solid #000;" class="form-control">
+              <!-- Image Preview Field (5 Columns - Total 3+4+5=12 Columns completed) -->
+              <div class="form-group col-md-5" style="z-index: 100;">
+                <label>Image Preview</label>
+                <div>
+                  <img id="showImage" src="{{(!empty($editData->image)) ? url('uploads/news_images/'.$editData->image) : url('uploads/no_image.png')}}" style="width: 120px; height: 80px; object-fit: cover; border:1px solid #ddd; padding: 2px; border-radius: 4px;" class="img-thumbnail">
+                </div>
               </div>
+
+              <!-- Description Field (Full Width) -->
               <div class="form-group col-md-12">
                 <label for="description_en">Description (English) <span style="color:red;">*</span></label>
-                <textarea name="description_en" id="description_en" class="form-control" rows="5">{{@$editData->description_en}}</textarea>
+                <textarea name="description_en" id="description_en" class="form-control" rows="5">{{ old('description_en', @$editData->description_en) }}</textarea>
+              </div>
+
+              <!-- Meta Title -->
+              <div class="form-group col-md-12">
+                <label for="meta_title">Meta Title <span style="color:red;">*</span></label>
+                <input type="text" name="meta_title" id="meta_title" class="form-control form-control-sm" value="{{ old('meta_title', @$editData->meta_title) }}" placeholder="Enter Meta Title">
+              </div>
+
+              <!-- Meta Description -->
+              <div class="form-group col-md-12">
+                <label for="meta_description">Meta Description <span style="color:red;">*</span></label>
+                <textarea name="meta_description" id="meta_description" class="form-control" rows="4" placeholder="Enter Meta Description">{{ old('meta_description', @$editData->meta_description) }}</textarea>
+              </div>
+
+              <!-- Meta Keyword -->
+              <div class="form-group col-md-12">
+                <label for="meta_keyword">Meta Keyword <span style="color:red;">*</span></label>
+                <textarea name="meta_keyword" id="meta_keyword" class="form-control" rows="4" placeholder="Enter Meta Keywords">{{ old('meta_keyword', @$editData->meta_keyword) }}</textarea>
               </div>
               
-              <div class="form-group col-md-3" style="padding-top:30px;">
+              <!-- Submit Button -->
+              <div class="form-group col-md-12" style="padding-top:10px;">
                 <button type="submit" class="btn btn-primary btn-sm">@if(isset($editData)) Update @else Submit @endif</button>
               </div>
             </div>
@@ -96,9 +114,6 @@
         ignore : [],
         debug : false,
         rules: {
-          law_id: {
-            required: true,
-          },
           title: {
             required: true,
           },
@@ -107,12 +122,18 @@
           },
           description_en: {
             required: true,
+          },
+          meta_title: {
+            required: true,
+          },
+          meta_description: {
+            required: true,
+          },
+          meta_keyword: {
+            required: true,
           }
         },
         messages: {
-          law_id: {
-            required: "Please select law name",
-          },
           title: {
             required: "Please enter the title",
           },
@@ -121,6 +142,15 @@
           },
           description_en: {
             required: "Please enter the description",
+          },
+          meta_title: {
+            required: "Please enter the meta title",
+          },
+          meta_description: {
+            required: "Please enter the meta description",
+          },
+          meta_keyword: {
+            required: "Please enter the meta keywords",
           }
         },
         errorElement: 'span',

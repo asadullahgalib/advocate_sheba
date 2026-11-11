@@ -18,6 +18,9 @@ class CreateFaqsTable extends Migration
             $table->integer('serial')->nullable();
             $table->string('question')->nullable();
             $table->longText('answer')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->longText('meta_description')->nullable();
+            $table->longText('meta_keyword')->nullable();
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
             $table->timestamps();

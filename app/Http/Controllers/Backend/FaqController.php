@@ -9,10 +9,11 @@ use Auth;
 
 class FaqController extends Controller
 {
-    // ১. FAQ View লিস্ট পেজ
+    // ১. FAQ View List
     public function view()
     {
         $data['allData'] = Faq::orderBy('serial', 'asc')->get();
+
         return view('backend.faqs.faqs_view', $data);
     }
 
@@ -28,22 +29,30 @@ class FaqController extends Controller
         $this->validate($request, [
             'question' => 'required',
             'answer' => 'required',
+            // 'meta_title' => 'required|string|max:255',
+            // 'meta_description' => 'required|string',
+            // 'meta_keyword' => 'required|string',
         ]);
 
         $data = new Faq();
         $data->serial = $request->serial;
         $data->question = $request->question;
         $data->answer = $request->answer;
-        $data->created_by = Auth::user()->id;
+        // $data->meta_title = $request->meta_title;
+        // $data->meta_description = $request->meta_description;
+        // $data->meta_keyword = $request->meta_keyword;
+        $data->created_by = Auth::user()->id ?? null;
         $data->save();
 
-        return redirect()->route('faqs.view')->with('success','Data Inserted successfully');
+        return redirect()->route('faqs.view')
+            ->with('success', 'Data Inserted successfully');
     }
 
     // ৪. FAQ Edit
     public function edit($id)
     {
-        $data['editData'] = Faq::find($id);
+        $data['editData'] = Faq::findOrFail($id);
+
         return view('backend.faqs.faqs_add', $data);
     }
 
@@ -53,24 +62,32 @@ class FaqController extends Controller
         $this->validate($request, [
             'question' => 'required',
             'answer' => 'required',
+            // 'meta_title' => 'required|string|max:255',
+            // 'meta_description' => 'required|string',
+            // 'meta_keyword' => 'required|string',
         ]);
 
-        $data = Faq::find($id);
+        $data = Faq::findOrFail($id);
         $data->serial = $request->serial;
         $data->question = $request->question;
         $data->answer = $request->answer;
-        $data->updated_by = Auth::user()->id;
+        // $data->meta_title = $request->meta_title;
+        // $data->meta_description = $request->meta_description;
+        // $data->meta_keyword = $request->meta_keyword;
+        $data->updated_by = Auth::user()->id ?? null;
         $data->save();
 
-        return redirect()->route('faqs.view')->with('success','Data Inserted successfully');
+        return redirect()->route('faqs.view')
+            ->with('success', 'Data Updated successfully');
     }
 
-    // ৬. FAQ Delete 
+    // ৬. FAQ Delete
     public function delete(Request $request)
     {
-        $data = Faq::find($request->id);
+        $data = Faq::findOrFail($request->id);
         $data->delete();
 
-        return redirect()->route('faqs.view')->with('success', 'FAQ deleted successfully!');
+        return redirect()->route('faqs.view')
+            ->with('success', 'FAQ deleted successfully!');
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Model\Term; // Model name dynamic hole check kore niben
+use App\Model\Term;
 use Auth;
 
 class TermsController extends Controller
@@ -13,14 +13,12 @@ class TermsController extends Controller
     public function view()
     {
         $allData = Term::all();
-        // Path adjusted to backend.doctor.terms_view
         return view('backend.doctor.terms_view', compact('allData'));
     }
 
     // 2. Show Add Form
     public function add()
     {
-        // Path adjusted to backend.doctor.terms_add
         return view('backend.doctor.terms_add');
     }
 
@@ -30,25 +28,30 @@ class TermsController extends Controller
         $request->validate([
             'name' => 'nullable|string|max:255',
             'description_en' => 'nullable|string',
+            'meta_title' => 'required|string|max:255',
+            'meta_description' => 'required|string',
+            'meta_keyword' => 'required|string',
         ]);
 
         $data = new Term();
         $data->name = $request->name;
         $data->description_en = $request->description_en;
-        $data->created_by = Auth::user()->id ?? null; // User login thakle ID bosbe
+        $data->meta_title = $request->meta_title;
+        $data->meta_description = $request->meta_description;
+        $data->meta_keyword = $request->meta_keyword;
+        $data->created_by = Auth::user()->id ?? null;
         $data->save();
 
-        return redirect()->route('terms.view')->with('success', 'Terms inserted successfully!');
+        return redirect()->route('terms.view')
+            ->with('success', 'Terms inserted successfully!');
     }
 
-    // 4. Show Edit Form (Same blade map variable reference validation structure)
+    // 4. Show Edit Form
     public function edit($id)
     {
         $editData = Term::findOrFail($id);
-        // Add ebong Edit duitar jonnoi aie eki blade return hobe
         return view('backend.doctor.terms_add', compact('editData'));
     }
-
 
     // 5. Update Data
     public function update(Request $request, $id)
@@ -56,15 +59,22 @@ class TermsController extends Controller
         $request->validate([
             'name' => 'nullable|string|max:255',
             'description_en' => 'nullable|string',
+            'meta_title' => 'required|string|max:255',
+            'meta_description' => 'required|string',
+            'meta_keyword' => 'required|string',
         ]);
 
         $data = Term::findOrFail($id);
         $data->name = $request->name;
         $data->description_en = $request->description_en;
+        $data->meta_title = $request->meta_title;
+        $data->meta_description = $request->meta_description;
+        $data->meta_keyword = $request->meta_keyword;
         $data->updated_by = Auth::user()->id ?? null;
         $data->save();
 
-        return redirect()->route('terms.view')->with('success', 'Terms updated successfully!');
+        return redirect()->route('terms.view')
+            ->with('success', 'Terms updated successfully!');
     }
 
     // 6. Delete Data
@@ -73,6 +83,7 @@ class TermsController extends Controller
         $data = Term::findOrFail($request->id);
         $data->delete();
 
-        return redirect()->route('terms.view')->with('success', 'Terms deleted successfully!');
+        return redirect()->route('terms.view')
+            ->with('success', 'Terms deleted successfully!');
     }
 }

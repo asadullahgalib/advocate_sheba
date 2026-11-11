@@ -22,16 +22,34 @@
             <!-- Title Field (Max 191) -->
             <div class="form-group col-md-12">
               <label>Title <span style="color:red;">*</span></label>
-              <input type="text" name="title_en" id="title_en" class="form-control form-control-sm" value="{{@$editData->title_en}}" placeholder="Enter Title" maxlength="191">
+              <input type="text" name="title_en" id="title_en" class="form-control form-control-sm" value="{{ old('title_en', @$editData->title_en) }}" placeholder="Enter Title" maxlength="191">
             </div>
             
             <!-- Subtitle Field (Max 100 ক্যারেক্টার লক করা হয়েছে) -->
             <div class="form-group col-md-12">
               <label>Subtitle <span style="color:red;">*</span></label>
-              <input type="text" name="description_en" id="description_en" class="form-control form-control-sm" value="{{@$editData->description_en}}" placeholder="Enter Subtitle" maxlength="100">
+              <input type="text" name="description_en" id="description_en" class="form-control form-control-sm" value="{{ old('description_en', @$editData->description_en) }}" placeholder="Enter Subtitle" maxlength="100">
             </div>
 
-            <div class="form-group col-md-3">
+            <!-- Meta Title -->
+            <div class="form-group col-md-12">
+              <label for="meta_title">Meta Title <span style="color:red;">*</span></label>
+              <input type="text" name="meta_title" id="meta_title" class="form-control form-control-sm" value="{{ old('meta_title', @$editData->meta_title) }}" placeholder="Enter Meta Title">
+            </div>
+
+            <!-- Meta Description -->
+            <div class="form-group col-md-12">
+              <label for="meta_description">Meta Description <span style="color:red;">*</span></label>
+              <textarea name="meta_description" id="meta_description" class="form-control" rows="4" placeholder="Enter Meta Description">{{ old('meta_description', @$editData->meta_description) }}</textarea>
+            </div>
+
+            <!-- Meta Keyword -->
+            <div class="form-group col-md-12">
+              <label for="meta_keyword">Meta Keyword <span style="color:red;">*</span></label>
+              <textarea name="meta_keyword" id="meta_keyword" class="form-control" rows="4" placeholder="Enter Meta Keywords">{{ old('meta_keyword', @$editData->meta_keyword) }}</textarea>
+            </div>
+
+            <div class="form-group col-md-3" style="padding-top:10px;">
               <button type="submit" class="btn btn-primary btn-sm">{{(@$editData)?"Update":"Submit"}}</button>
             </div>
           </div>
@@ -51,7 +69,16 @@
           },
           description_en: {
             required: true,
-            maxlength: 100 // ১০০ ক্যারেক্টার লিমিট
+            maxlength: 100
+          },
+          meta_title: {
+            required: true
+          },
+          meta_description: {
+            required: true
+          },
+          meta_keyword: {
+            required: true
           }
         },
         messages: {
@@ -61,7 +88,16 @@
           },
           description_en: {
             required: "Please enter the subtitle",
-            maxlength: "Subtitle cannot be longer than 100 characters" // এরর মেসেজ
+            maxlength: "Subtitle cannot be longer than 100 characters"
+          },
+          meta_title: {
+            required: "Please enter the meta title"
+          },
+          meta_description: {
+            required: "Please enter the meta description"
+          },
+          meta_keyword: {
+            required: "Please enter the meta keywords"
           }
         },
         errorElement: 'span',

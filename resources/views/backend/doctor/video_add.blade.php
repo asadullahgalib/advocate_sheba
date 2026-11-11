@@ -1,3 +1,4 @@
+
 @extends('backend.layouts.master')
 @section('content')
 
@@ -114,20 +115,94 @@
 
                     <!-- Image Input Field -->
                     <div class="form-group col-sm-4">
-                        <label>Image <span style="color:red;">(500px X 300px)</span></label>
-                        <input type="file" name="image" id="image" class="form-control form-control-sm" accept="image/*">
+
+                        <label>
+                            Image <span style="color:red;">(500px X 300px)</span>
+                        </label>
+
+                        <input type="file"
+                               name="image"
+                               id="image"
+                               class="form-control form-control-sm"
+                               accept="image/*">
+
                     </div>
-              
+
                     <!-- Image Preview Area -->
                     <div class="form-group col-sm-2" style="z-index: 100;">
-                        <img id="showImage" src="{{ (!empty($editData->image)) ? url('uploads/video_images/'.$editData->image) : url('uploads/no_image.png') }}" style="width: 100px; height: 80px; object-fit: cover; border:1px solid #000;" class="form-control">
+
+                        <img id="showImage"
+                             src="{{ (!empty($editData->image)) ? url('uploads/video_images/'.$editData->image) : url('uploads/no_image.png') }}"
+                             style="width: 100px; height: 80px; object-fit: cover; border:1px solid #000;"
+                             class="form-control">
+
                     </div>
-              
+
+                    <!-- Meta Title -->
+                    <div class="form-group col-md-12">
+
+                        <label for="meta_title">
+                            Meta Title <span style="color:red;">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            name="meta_title"
+                            id="meta_title"
+                            class="form-control form-control-sm"
+                            value="{{ old('meta_title', @$editData->meta_title) }}"
+                            placeholder="Enter Meta Title"
+                        >
+
+                    </div>
+
+                    <!-- Meta Description -->
+                    <div class="form-group col-md-12">
+
+                        <label for="meta_description">
+                            Meta Description <span style="color:red;">*</span>
+                        </label>
+
+                        <textarea
+                            name="meta_description"
+                            id="meta_description"
+                            class="form-control"
+                            rows="4"
+                            placeholder="Enter Meta Description"
+                        >{{ old('meta_description', @$editData->meta_description) }}</textarea>
+
+                    </div>
+
+                    <!-- Meta Keyword -->
+                    <div class="form-group col-md-12">
+
+                        <label for="meta_keyword">
+                            Meta Keyword <span style="color:red;">*</span>
+                        </label>
+
+                        <textarea
+                            name="meta_keyword"
+                            id="meta_keyword"
+                            class="form-control"
+                            rows="4"
+                            placeholder="Enter Meta Keywords"
+                        >{{ old('meta_keyword', @$editData->meta_keyword) }}</textarea>
+
+                    </div>
+
                     <!-- Submit Button -->
                     <div class="form-group col-md-3" style="padding-top:30px;">
+
                         <button type="submit" class="btn btn-primary btn-sm">
-                            @if(isset($editData)) Update @else Submit @endif
+
+                            @if(isset($editData))
+                                Update
+                            @else
+                                Submit
+                            @endif
+
                         </button>
+
                     </div>
 
                 </div>
@@ -152,6 +227,7 @@
 
         editor2.on('change', function() {
             editor2.updateElement();
+            $('#description_en').valid();
         });
 
     });
@@ -161,53 +237,105 @@
 
 <!-- Image Live Preview & Form Validation Scripts -->
 <script type="text/javascript">
-  $(document).ready(function () {  
-    
-    // ফাইল সিলেক্ট করার সাথে সাথে থাম্বনেইল লাইভ চেঞ্জ হওয়ার ফাংশন
-    $('#image').change(function(e){
-      var reader = new FileReader();
-      reader.onload = function(e){
-        $('#showImage').attr('src', e.target.result);
-      }
-      reader.readAsDataURL(e.target.files['0']);
+
+    $(document).ready(function () {
+
+        // Image Live Preview
+        $('#image').change(function(e){
+
+            var reader = new FileReader();
+
+            reader.onload = function(e){
+                $('#showImage').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(e.target.files['0']);
+
+        });
+
+
+        // Form Validation
+        $('#myForm').validate({
+
+            ignore: [],
+
+            rules: {
+
+                @if(in_array(Auth::user()->user_category, ['admin', 'Developer']))
+                user_id: {
+                    required: true,
+                },
+                @endif
+
+                link: {
+                    required: true,
+                },
+
+                meta_title: {
+                    required: true,
+                },
+
+                meta_description: {
+                    required: true,
+                },
+
+                meta_keyword: {
+                    required: true,
+                }
+
+            },
+
+            messages: {
+
+                @if(in_array(Auth::user()->user_category, ['admin', 'Developer']))
+                user_id: {
+                    required: "Please select doctor or nurse name",
+                },
+                @endif
+
+                link: {
+                    required: "Please enter the video link",
+                },
+
+                meta_title: {
+                    required: "Please enter the meta title",
+                },
+
+                meta_description: {
+                    required: "Please enter the meta description",
+                },
+
+                meta_keyword: {
+                    required: "Please enter the meta keyword",
+                }
+
+            },
+
+            errorElement: 'span',
+
+            errorPlacement: function (error, element) {
+
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+
+            },
+
+            highlight: function (element, errorClass, validClass) {
+
+                $(element).addClass('is-invalid');
+
+            },
+
+            unhighlight: function (element, errorClass, validClass) {
+
+                $(element).removeClass('is-invalid');
+
+            }
+
+        });
+
     });
 
-    // ফর্ম ভ্যালিডেশন 
-    $('#myForm').validate({
-      ignore: [],
-      rules: {
-        @if(in_array(Auth::user()->user_category, ['admin', 'Developer']))
-        user_id: {
-          required: true,
-        },           
-        @endif
-        link: {
-          required: true,
-        }    
-      },
-      messages: { 
-        @if(in_array(Auth::user()->user_category, ['admin', 'Developer']))
-        user_id: {
-          required: "Please select doctor or nurse name",
-        },
-        @endif
-        link: {
-          required: "Please enter the video link",
-        }
-      },
-      errorElement: 'span',
-      errorPlacement: function (error, element) {
-        error.addClass('invalid-feedback');
-        element.closest('.form-group').append(error);
-      },
-      highlight: function (element, errorClass, validClass) {
-        $(element).addClass('is-invalid');
-      },
-      unhighlight: function (element, errorClass, validClass) {
-        $(element).removeClass('is-invalid');
-      }
-    });
-  });
 </script>
 
 @endsection

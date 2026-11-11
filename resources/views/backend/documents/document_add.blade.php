@@ -78,6 +78,24 @@
               <input type="text" name="sub_title" value="{{isset($editData) ? $editData->sub_title : old('sub_title')}}" class="form-control form-control-sm">
             </div>
 
+            <!-- Meta Title -->
+            <div class="form-group col-md-12">
+              <label for="meta_title">Meta Title <span style="color:red;">*</span></label>
+              <input type="text" name="meta_title" id="meta_title" class="form-control form-control-sm" value="{{isset($editData) ? $editData->meta_title : old('meta_title')}}" placeholder="Enter Meta Title">
+            </div>
+
+            <!-- Meta Description -->
+            <div class="form-group col-md-12">
+              <label for="meta_description">Meta Description <span style="color:red;">*</span></label>
+              <textarea name="meta_description" id="meta_description" class="form-control" rows="4" placeholder="Enter Meta Description">{{isset($editData) ? $editData->meta_description : old('meta_description')}}</textarea>
+            </div>
+
+            <!-- Meta Keyword -->
+            <div class="form-group col-md-12">
+              <label for="meta_keyword">Meta Keyword <span style="color:red;">*</span></label>
+              <textarea name="meta_keyword" id="meta_keyword" class="form-control" rows="4" placeholder="Enter Meta Keywords">{{isset($editData) ? $editData->meta_keyword : old('meta_keyword')}}</textarea>
+            </div>
+
             <div class="form-group col-md-6">
               <label>Attachment <span style="color:red">(PDF)</span> </label>
               <input type="file" name="pdf_file" id="docfile" class="form-control form-control-sm" accept="application/pdf">
@@ -113,11 +131,29 @@
         rules: {
           title: {
             required: true,
+          },
+          meta_title: {
+            required: true,
+          },
+          meta_description: {
+            required: true,
+          },
+          meta_keyword: {
+            required: true,
           }
         },
         messages: {
           title: {
             required: "Please enter the title",
+          },
+          meta_title: {
+            required: "Please enter the meta title",
+          },
+          meta_description: {
+            required: "Please enter the meta description",
+          },
+          meta_keyword: {
+            required: "Please enter the meta keywords",
           }
         },
         errorElement: 'span',

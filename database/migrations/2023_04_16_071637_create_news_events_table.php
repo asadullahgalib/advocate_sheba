@@ -22,6 +22,9 @@ class CreateNewsEventsTable extends Migration
             $table->string('slug', 191)->nullable()->unique();
             $table->date('date')->nullable();
             $table->longText('description_en')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->longText('meta_description')->nullable();
+            $table->longText('meta_keyword')->nullable();
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
             $table->timestamps();

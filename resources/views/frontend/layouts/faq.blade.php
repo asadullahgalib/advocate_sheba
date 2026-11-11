@@ -3,6 +3,7 @@
         <div class="row">
             <div class="col-xl-10 offset-xl-1 col-lg-12">
 
+                @if($trustedTerm)
                 <div class="info-banner alert">
                     <div class="row align-items-center">
 
@@ -13,24 +14,17 @@
                         <div class="col-md-11 col-sm-10">
 
                             <h3 class="banner-title">
-                                Trusted Health Information & Doctor Discovery Platform in Bangladesh
+                                {{ $trustedTerm->name }}
                             </h3>
 
-                            <p class="banner-text">
-                                advocatesSheba is a Bangladesh-based health information and doctor discovery platform that helps people find the right doctors, explore healthcare facilities, and access reliable health information.
-                            </p>
-
-                            <p class="banner-text">
-                                Doctor profiles and hospital listings are created using publicly available information and submitted professional credentials to improve transparency, accessibility, and informed healthcare decisions.
-                            </p>
-
-                            <p class="banner-text mb-0">
-                                Users can search doctors by specialty, location, hospital, or medical condition, explore healthcare facilities, and access expert-led health education content — all in one trusted platform.
-                            </p>
+                            <div class="banner-description">
+                                {!! $trustedTerm->description_en !!}
+                            </div>
 
                         </div>
                     </div>
                 </div>
+                @endif
 
                 <!-- FAQ Heading -->
                 <h3 style="text-align: left; margin-bottom: 35px; font-size: 22px; color: #1c2d42; font-weight: bold;">
@@ -117,11 +111,21 @@
         text-align: left;
     }
 
-    .banner-text {
+    /* Dynamic description (Term theke asha HTML) */
+    .banner-description p {
         color: #e9ecef;
         font-size: 14px;
         line-height: 1.6;
         margin-bottom: 12px;
+    }
+
+    .banner-description p:last-child {
+        margin-bottom: 0;
+    }
+
+    .banner-description a {
+        color: #ffffff;
+        text-decoration: underline;
     }
 
 </style>

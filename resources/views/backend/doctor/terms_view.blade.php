@@ -28,9 +28,6 @@
                   <a class="btn btn-sm btn-success" title="Edit" href="{{route('terms.edit',$term->id)}}">
                     <i class="fa fa-edit"></i>
                   </a>
-                  <a id="delete" href="{{ route('terms.delete') }}" data-token="{{ csrf_token() }}" data-id="{{ $term->id }}" class="btn btn-danger btn-sm" title="Delete">
-                  <i class="fa fa-trash"></i>
-                </a> 
                 </td>
               </tr>
               @endforeach

@@ -59,30 +59,27 @@ class FrontenController extends Controller
 
 
     //Term Show
-    public function term()
-    {
-        $route = request()->route()->getName();
+public function term()
+{
+    $route = request()->route()->getName();
 
-        $ids = [
-            'for.advocate'     => 1,
-            'how.it.works'     => 2,
-            'user.guide'       => 3,
-            'contact'          => 4,
-            'privacy.policy'   => 5,
-            'terms.of.use'     => 7,
-            'disclaimer'       => 6,
-            'editorial.policy' => 8,
-        ];
+    $ids = [
+        'for.advocate'     => 1,
+        'how.it.works'     => 2,
+        'user.guide'       => 3,
+        'contact'          => 4,
+        'privacy.policy'   => 5,
+        'terms.of.use'     => 7,
+        'disclaimer'       => 6,
+        'editorial.policy' => 8,
+        'about'            => 21,
+    ];
 
-        if ($route === 'about') {
-            $term = Term::where('name', 'like', '%About%')->firstOrFail();
-        } else {
-            $id = $ids[$route] ?? abort(404);
-            $term = Term::findOrFail($id);
-        }
+    $id = $ids[$route] ?? abort(404);
+    $term = Term::findOrFail($id);
 
-        return view('frontend.term.term', compact('term'));
-    }
+    return view('frontend.term.term', compact('term'));
+}
 
     //Registration
     public function registration(){
@@ -305,9 +302,7 @@ class FrontenController extends Controller
 
 // Legal Information ends
 
-    // Legal Information ends
-
-    public function index(){
+public function index(){
 
     $data['categories']     = Category::all();
     $data['departments']    = Department::orderBy('sort','asc')->get();
@@ -327,6 +322,9 @@ class FrontenController extends Controller
 
     // FAQ Data
     $data['faqs'] = Faq::orderBy('serial', 'asc')->get();
+
+    // Trusted Platform Banner Data (Term table theke, id = 23)
+    $data['trustedTerm'] = Term::find(23);
 
     // Video Gallery Data
     $data['videos'] = VideoGallery::orderBy('id', 'desc')
@@ -349,9 +347,9 @@ class FrontenController extends Controller
         ->get();
 
     $data['adds'] = Add::orderBy('serial', 'asc')
-    ->orderBy('id', 'desc')
-    ->get()
-    ->groupBy('add_position_id');
+        ->orderBy('id', 'desc')
+        ->get()
+        ->groupBy('add_position_id');
 
     return view('frontend.layouts.home', $data);
 }

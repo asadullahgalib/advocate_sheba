@@ -202,6 +202,9 @@ class ContactController extends Controller
     }
 
     // Video Gallery
+    
+// Video Gallery
+
     public function videoView()
     {
         $user = Auth::user();
@@ -248,6 +251,9 @@ class ContactController extends Controller
             'title' => 'nullable|string|max:255',
             'link' => 'required|string',
             'description_en' => 'nullable|string',
+            'meta_title' => 'required|string|max:255',
+            'meta_description' => 'required|string',
+            'meta_keyword' => 'required|string',
             'user_id' => 'required_if:user_category,admin|nullable|exists:users,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
@@ -256,16 +262,23 @@ class ContactController extends Controller
 
         $data->title = $request->title;
 
-        // স্যারের নিয়মে slug (title ফাঁকা হলে "video" ধরা হবে)
+        // Slug
         $slug = rand(0000, 9999);
         $slugBase = Str::slug((string) $request->title);
+
         if ($slugBase == '') {
             $slugBase = 'video';
         }
+
         $data->slug = $slugBase . $slug . date('His');
 
         $data->link = $request->link;
         $data->description_en = $request->description_en;
+
+        // SEO Fields
+        $data->meta_title = $request->meta_title;
+        $data->meta_description = $request->meta_description;
+        $data->meta_keyword = $request->meta_keyword;
 
         if (in_array($user->user_category, ['admin', 'Developer'])) {
 
@@ -355,24 +368,35 @@ class ContactController extends Controller
             'title' => 'nullable|string|max:255',
             'link' => 'required|string',
             'description_en' => 'nullable|string',
+            'meta_title' => 'required|string|max:255',
+            'meta_description' => 'required|string',
+            'meta_keyword' => 'required|string',
             'user_id' => 'required_if:user_category,admin|nullable|exists:users,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
 
         $data->title = $request->title;
 
-        // slug আগে থেকে থাকলে বদলাবে না (লিংক ঠিক রাখতে), ফাঁকা থাকলে শুধু তখন বানাবে
+        // Slug
         if (empty($data->slug)) {
+
             $slug = rand(0000, 9999);
             $slugBase = Str::slug((string) $request->title);
+
             if ($slugBase == '') {
                 $slugBase = 'video';
             }
+
             $data->slug = $slugBase . $slug . date('His');
         }
 
         $data->link = $request->link;
         $data->description_en = $request->description_en;
+
+        // SEO Fields
+        $data->meta_title = $request->meta_title;
+        $data->meta_description = $request->meta_description;
+        $data->meta_keyword = $request->meta_keyword;
 
         if (in_array($user->user_category, ['admin', 'Developer'])) {
 
@@ -444,7 +468,7 @@ class ContactController extends Controller
         return redirect()->route('doctor-profile.video.view')
             ->with('success', 'Data Deleted successfully');
     }
-        
+
 
     // Photo Gallery
 
@@ -530,14 +554,15 @@ class ContactController extends Controller
         return redirect()->route('doctor-profile.photo.view')->with('success','Data Deleted successfully');
     }
 
-    // news and event
+    
+// news and event
     public function newsView(){
-    if(@Auth::user()->user_category=='admin' || @Auth::user()->user_category=='Developer'){
-        $data['allData'] = NewsEvent::orderBy('id','desc')->get();
-    }if(@Auth::user()->user_category=='doctor' || @Auth::user()->user_category=='nurse'){
-        $data['allData'] = NewsEvent::where('user_id',@Auth::user()->id)->orderBy('id','desc')->get();
-    }
-    return view('backend.doctor.article_view',$data);
+        if(@Auth::user()->user_category=='admin' || @Auth::user()->user_category=='Developer'){
+            $data['allData'] = NewsEvent::orderBy('id','desc')->get();
+        }if(@Auth::user()->user_category=='doctor' || @Auth::user()->user_category=='nurse'){
+            $data['allData'] = NewsEvent::where('user_id',@Auth::user()->id)->orderBy('id','desc')->get();
+        }
+        return view('backend.doctor.article_view',$data);
     }
 
     public function newsAdd(){
@@ -547,6 +572,13 @@ class ContactController extends Controller
     }
 
     public function newsStore(Request $request){
+
+        $request->validate([
+            'meta_title' => 'required|string|max:255',
+            'meta_description' => 'required|string',
+            'meta_keyword' => 'required|string',
+        ]);
+
         $slug = rand(0000, 9999);
 
         $data = new NewsEvent();
@@ -557,6 +589,11 @@ class ContactController extends Controller
         
         $data->date = date('Y-m-d',strtotime($request->date));
         $data->description_en = $request->description_en;
+
+        // SEO Fields
+        $data->meta_title = $request->meta_title;
+        $data->meta_description = $request->meta_description;
+        $data->meta_keyword = $request->meta_keyword;
         
         if(@Auth::user()->user_category=='admin' || @Auth::user()->user_category=='Developer'){
             $user_id = $request->user_id;
@@ -592,6 +629,13 @@ class ContactController extends Controller
     }
 
     public function newsUpdate(Request $request,$id){
+
+        $request->validate([
+            'meta_title' => 'required|string|max:255',
+            'meta_description' => 'required|string',
+            'meta_keyword' => 'required|string',
+        ]);
+
         $data = NewsEvent::find($id);
         $data->title = $request->title;
 
@@ -605,6 +649,11 @@ class ContactController extends Controller
         
         $data->date = date('Y-m-d',strtotime($request->date));
         $data->description_en = $request->description_en;
+
+        // SEO Fields
+        $data->meta_title = $request->meta_title;
+        $data->meta_description = $request->meta_description;
+        $data->meta_keyword = $request->meta_keyword;
         
         if(@Auth::user()->user_category=='admin' || @Auth::user()->user_category=='Developer'){
             $user_id = $request->user_id;
@@ -639,12 +688,8 @@ class ContactController extends Controller
         $data->delete();
         return redirect()->route('doctor-profile.news.view')->with('success','Data Deleted successfully');
     }
-    // Package
+// Package
 
-    public function packageView(){
-        $data['allData'] = Package::orderBy('id','desc')->get();
-        return view('backend.setups.department.package_view',$data);
-    }
 
     public function packageAdd(){
         return view('backend.setups.department.package_add');

@@ -28,6 +28,9 @@ class DocumentController extends Controller
         $request->validate([
             'pdf_file' => 'nullable|mimes:pdf|max:10000', 
             'title' => 'required',
+            'meta_title' => 'required|string|max:255',
+            'meta_description' => 'required|string',
+            'meta_keyword' => 'required|string',
         ]);
 
         $slug = rand(0000, 9999);
@@ -36,6 +39,12 @@ class DocumentController extends Controller
         $data->title = $request->title;
         $data->slug = Str::slug($request->title) . $slug . date('His');
         $data->sub_title = $request->sub_title;
+
+        // SEO / Meta Fields
+        $data->meta_title = $request->meta_title;
+        $data->meta_description = $request->meta_description;
+        $data->meta_keyword = $request->meta_keyword;
+
         $data->created_by = Auth::user()->id;
 
         // ================= PDF File Upload =================
@@ -64,11 +73,20 @@ class DocumentController extends Controller
         $request->validate([
             'pdf_file' => 'nullable|mimes:pdf|max:10000',
             'title' => 'required',
+            'meta_title' => 'required|string|max:255',
+            'meta_description' => 'required|string',
+            'meta_keyword' => 'required|string',
         ]);
         
         $data = Document::find($id);
         $data->title = $request->title;
         $data->sub_title = $request->sub_title;
+
+        // SEO / Meta Fields Update
+        $data->meta_title = $request->meta_title;
+        $data->meta_description = $request->meta_description;
+        $data->meta_keyword = $request->meta_keyword;
+
         $data->updated_by = Auth::user()->id;
 
         // slug আগে থেকে থাকলে বদলাবে না (লিংক ঠিক রাখতে), ফাঁকা থাকলে শুধু তখন বানাবে
