@@ -327,6 +327,36 @@ Route::group(['middleware'=>['auth','admin']],function(){
 				Route::post('/delete','Backend\MegazineController@delete')->name('megazines.delete');
 			});
 		});
+
+		// Courts
+		Route::prefix('courts')->group(function(){
+			Route::get('/view','Backend\CourtController@view')->name('courts.view');
+			Route::get('/add','Backend\CourtController@add')->name('courts.add');
+			Route::post('/store','Backend\CourtController@store')->name('courts.store');
+			Route::get('/edit/{id}','Backend\CourtController@edit')->name('courts.edit');
+			Route::post('/update/{id}','Backend\CourtController@update')->name('courts.update');
+			Route::post('/delete','Backend\CourtController@delete')->name('courts.delete');
+		});
+
+		// Sub Courts
+		Route::prefix('sub-courts')->group(function(){
+			Route::get('/view','Backend\SubCourtController@view')->name('sub-courts.view');
+			Route::get('/add','Backend\SubCourtController@add')->name('sub-courts.add');
+			Route::post('/store','Backend\SubCourtController@store')->name('sub-courts.store');
+			Route::get('/edit/{id}','Backend\SubCourtController@edit')->name('sub-courts.edit');
+			Route::post('/update/{id}','Backend\SubCourtController@update')->name('sub-courts.update');
+			Route::post('/delete','Backend\SubCourtController@delete')->name('sub-courts.delete');
+		});
+
+		// Courts Details
+		Route::prefix('sub-court-details')->group(function(){
+			Route::get('/view','Backend\SubCourtDetailsController@view')->name('sub-court-details.view');
+			Route::get('/add','Backend\SubCourtDetailsController@add')->name('sub-court-details.add');
+			Route::post('/store','Backend\SubCourtDetailsController@store')->name('sub-court-details.store');
+			Route::get('/edit/{id}','Backend\SubCourtDetailsController@edit')->name('sub-court-details.edit');
+			Route::post('/update/{id}','Backend\SubCourtDetailsController@update')->name('sub-court-details.update');
+			Route::post('/delete','Backend\SubCourtDetailsController@delete')->name('sub-court-details.delete');
+		});
 		
 		Route::prefix('setups')->group(function(){
 			//Logo
