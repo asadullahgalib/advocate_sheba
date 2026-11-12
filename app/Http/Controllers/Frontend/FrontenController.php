@@ -44,6 +44,7 @@ use App\Model\legalInformationDetails;
 use App\Model\Law;
 use App\Model\Megazine;
 use App\Model\Add;
+use App\Model\LegalProfessionalDetail;
 use Auth;
 use DateTime;
 use PDF;
@@ -353,14 +354,42 @@ public function index(){
 
     return view('frontend.layouts.home', $data);
 }
+
+        // Advocate = designation id 5
     public function advocateList(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
-        $data['page_type'] = 'advocate';
-        return view('frontend.single_pages.advocate_list',$data);
+        $data = $this->professionalPageData(5, 'advocate');
+        return view('frontend.single_pages.professional_info', $data);
     }
 
+    // Barristers = designation id 2
+    public function barristerList(){
+        $data = $this->professionalPageData(2, 'barrister');
+        return view('frontend.single_pages.professional_info', $data);
+    }
+
+    // Legal Consultants = designation id 3
+    public function consultantList(){
+        $data = $this->professionalPageData(3, 'consultant');
+        return view('frontend.single_pages.professional_info', $data);
+    }
+
+    // Law Firms / Chambers = designation id 4
+    public function lawFirmList(){
+        $data = $this->professionalPageData(4, 'law_firm');
+        return view('frontend.single_pages.professional_info', $data);
+    }
+
+    // চারটা পেজের common ডাটা এখানে আনা হয়
+    private function professionalPageData($designationId, $pageType){
+        $data['categories']  = Category::all();
+        $data['departments'] = Department::orderBy('sort','asc')->get();
+        $data['doctors']     = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
+        $data['page_type']   = $pageType;
+        $data['designation'] = Designation::where('id', $designationId)->first();
+        $data['designation_details'] = LegalProfessionalDetail::where('designation_id', $designationId)->orderBy('sort','asc')->get();
+        return $data;
+    }
+    
     public function findAdvocateList(){
         $data['categories']     = Category::all();
         $data['departments']    = Department::orderBy('sort','asc')->get();
@@ -369,13 +398,6 @@ public function index(){
         return view('frontend.single_pages.find_advocate_list',$data);
     }
 
-    public function barristerList(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
-        $data['page_type'] = 'barrister';
-        return view('frontend.single_pages.barrister_list',$data);
-    }
 
     public function findBarristerList(){
         $data['categories']     = Category::all();
@@ -385,13 +407,6 @@ public function index(){
         return view('frontend.single_pages.find_barrister_list',$data);
     }
 
-    public function consultantList(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
-        $data['page_type'] = 'consultant';
-        return view('frontend.single_pages.consultant_list',$data);
-    }
 
     public function findConsultantList(){
         $data['categories']     = Category::all();
@@ -401,13 +416,6 @@ public function index(){
         return view('frontend.single_pages.find_consultant_list',$data);
     }
 
-    public function lawFirmList(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
-        $data['page_type'] = 'law_firm';
-        return view('frontend.single_pages.law_firm_list',$data);
-    }
 
     public function findLawFirmList(){
         $data['categories']     = Category::all();
