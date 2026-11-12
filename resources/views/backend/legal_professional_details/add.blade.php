@@ -18,16 +18,6 @@
           {{csrf_field()}}
           <div class="card-body">
 
-            @if ($errors->any())
-              <div class="alert alert-danger">
-                <ul class="mb-0">
-                  @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                  @endforeach
-                </ul>
-              </div>
-            @endif
-
             <div class="show_module_more_event">
               <div class="form-row">
 
@@ -72,6 +62,7 @@
                   <textarea name="description_en" id="description_en" class="form-control" rows="5" placeholder="Enter English Description">{{ old('description_en', @$editData->description_en) }}</textarea>
                 </div>
 
+                {{--
                 <!-- Meta Title -->
                 <div class="form-group col-md-12">
                   <label class="control-label" for="meta_title">Meta Title <span style="color:red;">*</span></label>
@@ -89,6 +80,7 @@
                   <label class="control-label" for="meta_keyword">Meta Keyword <span style="color:red;">*</span></label>
                   <textarea name="meta_keyword" id="meta_keyword" class="form-control" rows="3" placeholder="Enter Meta Keyword (comma separated)">{{ old('meta_keyword', @$editData->meta_keyword) }}</textarea>
                 </div>
+                --}}
 
               </div>
             </div>
@@ -143,16 +135,16 @@
           },
           description_en: {
             required: true,
-          },
-          meta_title: {
-            required: true,
-          },
-          meta_description: {
-            required: true,
-          },
-          meta_keyword: {
-            required: true,
           }
+          // meta_title: {
+          //   required: true,
+          // },
+          // meta_description: {
+          //   required: true,
+          // },
+          // meta_keyword: {
+          //   required: true,
+          // }
         },
         messages: {
           designation_id: {
@@ -173,16 +165,16 @@
           },
           description_en: {
             required: "Please enter the description",
-          },
-          meta_title: {
-            required: "Please enter the meta title",
-          },
-          meta_description: {
-            required: "Please enter the meta description",
-          },
-          meta_keyword: {
-            required: "Please enter the meta keyword",
           }
+          // meta_title: {
+          //   required: "Please enter the meta title",
+          // },
+          // meta_description: {
+          //   required: "Please enter the meta description",
+          // },
+          // meta_keyword: {
+          //   required: "Please enter the meta keyword",
+          // }
         },
         errorElement: 'span',
         errorPlacement: function (error, element) {

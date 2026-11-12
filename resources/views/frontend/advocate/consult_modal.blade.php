@@ -1,12 +1,21 @@
-```html
+{{-- ==========================================
+     TEST SETTING (ekhon nijer number diye test korar jonno)
+     Dynamic korar somoy ei duita line bodle dibo:
+     $consultPhone = $advocate->phone ?? '';
+========================================== --}}
+@php
+    $consultPhone = '01341-115353';
+    $consultName  = $advocate->name ?? 'আইনজীবী';
+@endphp
+
 {{-- ==========================================
      PROFESSIONAL ADVOCATE CONSULTATION MODAL
 ========================================== --}}
 
 <div class="consultation-overlay"
      id="consultOverlay"
-     data-phone="{{ preg_replace('/\D/', '', $advocate->phone ?? '') }}"
-     data-advocate="{{ $advocate->name ?? '' }}"
+     data-phone="{{ preg_replace('/\D/', '', $consultPhone) }}"
+     data-advocate="{{ $consultName }}"
      aria-hidden="true">
 
     <div class="consultation-modal"
@@ -51,7 +60,7 @@
                        maxlength="100">
 
                 <small class="consult-error" id="cmNameError">
-                    দয়া করে আপনার নাম লিখুন।
+                    দয়া করে আপনার নাম লিখুন।
                 </small>
 
             </div>
@@ -61,7 +70,7 @@
             <div class="consult-field">
 
                 <label for="cmTopic" class="form-label">
-                    পরামর্শের বিষয়
+                    পরামর্শের বিষয়
                 </label>
 
                 <select id="cmTopic" class="form-select">
@@ -104,7 +113,7 @@
             <div class="consult-field">
 
                 <label class="form-label">
-                    পরামর্শের সময়কাল
+                    পরামর্শের সময়কাল
                 </label>
 
                 <div class="consult-duration">
@@ -140,7 +149,7 @@
             <div class="consult-field">
 
                 <label class="form-label">
-                    পছন্দের তারিখ ও সময়
+                    পছন্দের তারিখ ও সময়
                 </label>
 
                 <div class="row g-2">
@@ -159,8 +168,8 @@
                         <input type="text"
                                id="cmTime"
                                class="form-control"
-                               placeholder="আপনার সময় লিখুন"
-                               aria-label="পছন্দের সময়"
+                               placeholder="আপনার সময় লিখুন"
+                               aria-label="পছন্দের সময়"
                                maxlength="50">
 
                     </div>
@@ -168,7 +177,7 @@
                 </div>
 
                 <small class="consult-hint">
-                    সময়টি আইনজীবীর সঙ্গে আলোচনা করে নিশ্চিত করতে হবে।
+                    সময়টি আইনজীবীর সঙ্গে আলোচনা করে নিশ্চিত করতে হবে।
                 </small>
 
             </div>
@@ -181,7 +190,7 @@
 
                 <i class="fa-brands fa-whatsapp"></i>
 
-                <span>WhatsApp-এ চালিয়ে যান</span>
+                <span>WhatsApp-এ চালিয়ে যান</span>
 
                 <i class="fa fa-arrow-right submit-arrow"></i>
 
@@ -713,6 +722,32 @@ body.consult-lock {
 
 
     // ======================================
+    // PHONE NUMBER NORMALIZE (wa.me er jonno)
+    // 01712345678  -> 8801712345678
+    // 1712345678   -> 8801712345678
+    // +880 1712-345678 -> 8801712345678
+    // ======================================
+
+    function normalizePhone(raw) {
+
+        var number = String(raw || '').replace(/\D/g, '');
+
+        if (number.indexOf('00') === 0) {
+            number = number.slice(2);
+        }
+
+        if (number.length === 11 && number.indexOf('01') === 0) {
+            number = '88' + number;
+        } else if (number.length === 10 && number.indexOf('1') === 0) {
+            number = '880' + number;
+        }
+
+        return number;
+
+    }
+
+
+    // ======================================
     // OPEN MODAL
     // ======================================
 
@@ -794,14 +829,14 @@ body.consult-lock {
 
     function send() {
 
-        var phone = overlay.getAttribute('data-phone');
+        var phone = normalizePhone(overlay.getAttribute('data-phone'));
         var advocate = overlay.getAttribute('data-advocate');
 
         if (!validateName()) return;
 
-        if (!phone) {
+        if (!phone || phone.length < 10) {
 
-            alert('এই আইনজীবীর WhatsApp নম্বর পাওয়া যায়নি।');
+            alert('এই আইনজীবীর WhatsApp নম্বর পাওয়া যায়নি বা নম্বরটি সঠিক নয়।');
 
             return;
 
@@ -825,7 +860,7 @@ body.consult-lock {
 
         var time = document.getElementById('cmTime').value.trim();
 
-        var when = 'যেকোনো সময়';
+        var when = 'যেকোনো সময়';
 
         if (date) {
 
@@ -850,9 +885,9 @@ body.consult-lock {
             'আসসালামু আলাইকুম ' + advocate + ',\n\n' +
             'আমি আপনার কাছ থেকে আইনি পরামর্শ নিতে আগ্রহী।\n\n' +
             '👤 নাম: ' + name + '\n' +
-            '📌 পরামর্শের বিষয়: ' + topic + '\n' +
-            '⏱ সময়কাল: ' + duration + '\n' +
-            '📅 পছন্দের সময়: ' + when;
+            '📌 পরামর্শের বিষয়: ' + topic + '\n' +
+            '⏱ সময়কাল: ' + duration + '\n' +
+            '📅 পছন্দের সময়: ' + when;
 
         if (details) {
 

@@ -30,6 +30,9 @@ class DesignationController extends Controller
             'title' => 'required|string|max:255',
             'icon' => 'required|string|max:255',
             'description' => 'required|string',
+            'meta_title' => 'required|string|max:255',
+            'meta_description' => 'required|string',
+            'meta_keyword' => 'required|string',
         ]);
 
         $designations = new Designation();
@@ -37,6 +40,9 @@ class DesignationController extends Controller
         $designations->title = $request->title;
         $designations->icon = $request->icon;
         $designations->description = $request->description;
+        $designations->meta_title = $request->meta_title;
+        $designations->meta_description = $request->meta_description;
+        $designations->meta_keyword = $request->meta_keyword;
         $designations->created_by = Auth::user()->id;
         $designations->save();
 
@@ -56,16 +62,22 @@ class DesignationController extends Controller
         $designations = Designation::find($id);
 
         $this->validate($request, [
-        'name' => 'required|string|max:255|unique:designations,name,'.$designations->id,
-        'title' => 'required|string|max:255',
-        'icon' => 'required|string|max:255',
-        'description' => 'required|string',
-    ]);
+            'name' => 'required|string|max:255|unique:designations,name,'.$designations->id,
+            'title' => 'required|string|max:255',
+            'icon' => 'required|string|max:255',
+            'description' => 'required|string',
+            'meta_title' => 'required|string|max:255',
+            'meta_description' => 'required|string',
+            'meta_keyword' => 'required|string',
+        ]);
 
         $designations->name = $request->name;
         $designations->title = $request->title;
         $designations->icon = $request->icon;
         $designations->description = $request->description;
+        $designations->meta_title = $request->meta_title;
+        $designations->meta_description = $request->meta_description;
+        $designations->meta_keyword = $request->meta_keyword;
         $designations->updated_by = Auth::user()->id;
         $designations->save();
 

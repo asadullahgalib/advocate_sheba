@@ -81,17 +81,18 @@
                                 <li><a class="{{(@$page_type=='consultant')?'custom_menu':''}}" href="{{route('our.consultant-list')}}">Legal Consultants</a></li>
                                 <li><a class="{{(@$page_type=='law_firm')?'custom_menu':''}}" href="{{route('our.law-firm-list')}}">Law Firms</a></li>
                                 <li><a class="{{(@$page_type=='legal_information')?'custom_menu':''}}" href="{{route('our.legal-information')}}">Legal Information</a></li>
+                                
+                                {{-- Courts মেনু --}}
                                 <li><a class="{{(@$page_type=='courts')?'custom_menu':''}}" href="{{route('our.courts')}}">Courts</a></li>
-                                <li><a class="{{(@$page_type=='legal_news')?'custom_menu':''}}" href="{{route('our.legal-news')}}">Legal News</a></li>
+                                
+                                {{-- Legal News মেনু (নতুন রুট) --}}
+                                <li><a class="{{(@$page_type=='legal_article')?'custom_menu':''}}" href="{{route('legal.article.list')}}">Legal News</a></li>
+                                
                                 <li><a class="{{(@$page_type=='video')?'custom_menu':''}}" href="{{route('video.list')}}">Videos</a></li>
                             </ul>
                         </nav>
                     </div>
                 </div>
-                <!-- <div class="hotline d-none d-lg-flex">
-                    <a class="doctor_sign_up" href="{{url('/login')}}" title="Join as a Doctor" style="font-size: 18px;font-weight: bold;border: 3px solid #129AF7;padding: 5px 10px;border-radius: 20px;"> Join as a Doctor
-                    </a>
-                </div> -->
                 <div class="header-action-icon-2 d-block d-lg-none">
                     <div class="burger-icon burger-icon-white">
                         <span class="burger-icon-top"></span>
@@ -136,8 +137,13 @@
                         <li><a class="menu-item-has-children" href="{{route('our.consultant-list')}}">Legal Consultants</a></li>
                         <li><a class="menu-item-has-children" href="{{route('our.law-firm-list')}}">Law Firms</a></li>
                         <li><a class="menu-item-has-children" href="{{route('our.legal-information')}}">Legal Information</a></li>
+                        
+                        {{-- Courts মেনু --}}
                         <li><a class="menu-item-has-children" href="{{route('our.courts')}}">Courts</a></li>
-                        <li><a class="menu-item-has-children" href="{{route('our.legal-news')}}">Legal News</a></li>
+                        
+                        {{-- Legal News মেনু (নতুন রুট) --}}
+                        <li><a class="menu-item-has-children" href="{{route('legal.article.list')}}">Legal News</a></li>
+                        
                         <li><a class="menu-item-has-children" href="{{route('video.list')}}">Videos</a></li>
                     </ul>
                 </nav>
@@ -225,7 +231,7 @@
                         <input type="hidden" name="location" value="">
                     </div>
 
-                    <!-- Court -->
+                    <!-- Court (Dynamic from Database) -->
                     <div class="hs-select hs-court">
                         <div class="hs-select-box">
                             <span class="hs-selected-text">Court</span>
@@ -233,9 +239,16 @@
                         </div>
                         <div class="hs-options">
                             <div class="hs-option" data-value="">Court</div>
-                            <div class="hs-option" data-value="supreme-court">Supreme Court</div>
-                            <div class="hs-option" data-value="high-court">High Court</div>
-                            <div class="hs-option" data-value="district-court">District Court</div>
+                            
+                            {{-- ডাটাবেস থেকে ডাইনামিক কোর্ট লোড --}}
+                            @php
+                                $searchCourts = \App\Model\Court::where('status', 1)->get();
+                            @endphp
+                            
+                            @foreach($searchCourts as $sCourt)
+                                <div class="hs-option" data-value="{{ $sCourt->slug ?? $sCourt->id }}">{{ $sCourt->name }}</div>
+                            @endforeach
+                            
                         </div>
                         <input type="hidden" name="court" value="">
                     </div>

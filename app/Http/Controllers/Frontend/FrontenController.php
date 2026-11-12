@@ -45,6 +45,9 @@ use App\Model\Law;
 use App\Model\Megazine;
 use App\Model\Add;
 use App\Model\LegalProfessionalDetail;
+use App\Model\Court;
+use App\Model\SubCourt;
+use\Model\SubCourtDetail;
 use Auth;
 use DateTime;
 use PDF;
@@ -138,41 +141,34 @@ public function term()
         return view('frontend.registration.advocate_join',$data);
     }
 
-    // Court & Jurisdictions started
+            // Court Details Dynamic
+    public function courtDetails($slug){
+        // Court Name এবং Overview এর জন্য (slug বা id দুটোই সাপোর্ট করবে)
+        $data['court'] = Court::where('slug', $slug)->orWhere('id', $slug)->firstOrFail();
 
-    public function supremeCourt(){
+        // Court এর অধীনে থাকা Sub Courts (Tabs এর জন্য)
+        $data['subCourts'] = SubCourt::where('court_id', $data['court']->id)
+                                ->where('status', 1)
+                                ->get();
+
+        // আপনার আগের ডাটাগুলো ঠিক রেখে দিলাম
         $data['categories']     = Category::all();
         $data['departments']    = Department::orderBy('sort','asc')->get();
         $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
         $data['page_type']      = 'court';
-        return view('frontend.courts.supreme_court',$data);
+
+        return view('frontend.courts.court_details', $data);
     }
 
-    public function villageCourt(){
+        // Courts Main Page (List of Courts)
+    public function courtsList(){
         $data['categories']     = Category::all();
         $data['departments']    = Department::orderBy('sort','asc')->get();
         $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
-        $data['page_type']      = 'village_court';
-        return view('frontend.courts.village_court',$data);
-    }
+        $data['page_type']      = 'courts'; // হেডারে Courts মেনু হাইলাইট হবে
 
-    public function districtCourt(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
-        $data['page_type']      = 'districtcourt';
-        return view('frontend.courts.district_court',$data);
+        return view('frontend.courts.courts_list', $data);
     }
-
-    public function tribunalsCourt(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
-        $data['page_type']      = 'tribunals';
-        return view('frontend.courts.tribunals',$data);
-    }
-
-    // Court & Jurisdictions ends
 
 // ==========================================
 // LEGAL DOCUMENTS & FORMS - LIST PAGE

@@ -18,6 +18,7 @@ class CreateCourtsTable extends Migration
             $table->string('name')->unique();
             $table->string('icon')->nullable();
             $table->longText('description_en')->nullable();
+            $table->string('slug')->nullable();
             $table->string('meta_title')->nullable();
             $table->longText('meta_description')->nullable();
             $table->longText('meta_keyword')->nullable();

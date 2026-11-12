@@ -19,6 +19,9 @@ class CreateDesignationsTable extends Migration
             $table->string('title')->nullable();
             $table->string('icon')->nullable();
             $table->longText('description')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->longText('meta_description')->nullable();
+            $table->longText('meta_keyword')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();

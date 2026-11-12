@@ -48,11 +48,11 @@ Route::get('/join-law-firm','Frontend\FrontenController@joinLawFirm')->name('joi
 Route::get('/registration','Frontend\FrontenController@registration')->name('registration');
 Route::get('/advocate-join','Frontend\FrontenController@advocateJoin')->name('advocate.join');
 
-// Courts
-Route::get('/supreme-court','Frontend\FrontenController@supremeCourt')->name('supreme.court');
-Route::get('/district-court','Frontend\FrontenController@districtCourt')->name('district.court');
-Route::get('/tribunals-court','Frontend\FrontenController@tribunalsCourt')->name('tribunals.courts');
-Route::get('/village-court','Frontend\FrontenController@villageCourt')->name('village.court');
+/// Courts Main Page (Card List)
+Route::get('/courts', 'Frontend\FrontenController@courtsList')->name('our.courts');
+
+// Court Details Page
+Route::get('/court/{slug}', 'Frontend\FrontenController@courtDetails')->name('court.details');
 
 // ==========================================
 // LEGAL DOCUMENTS & FORMS
@@ -91,8 +91,6 @@ Route::get('/find-law-firm-list','Frontend\FrontenController@findLawFirmList')->
 Route::get('/law-firm-details','Frontend\FrontenController@lawFirmDetails')->name('our.law-firm-details');
 Route::get('/legal-information','Frontend\FrontenController@legalInformation')->name('our.legal-information');
 Route::get('/legal-information/details','Frontend\FrontenController@legalInformationDetails')->name('our.legal-information.details');
-Route::get('/courts','Frontend\FrontenController@courts')->name('our.courts');
-Route::get('/legal-news','Frontend\FrontenController@legalNews')->name('our.legal-news');
 Route::get('/location-wise-list','Frontend\FrontenController@locationWiseList')->name('our.location-wise-list');
 Route::get('/practice-area-wise-list','Frontend\FrontenController@practiceAreaWiseList')->name('our.practice-area-wise-list');
 Route::get('/profile','Frontend\FrontenController@profile')->name('advocate-profile');
@@ -348,7 +346,7 @@ Route::group(['middleware'=>['auth','admin']],function(){
 			Route::post('/delete','Backend\SubCourtController@delete')->name('sub-courts.delete');
 		});
 
-		// Courts Details
+				// Courts Details
 		Route::prefix('sub-court-details')->group(function(){
 			Route::get('/view','Backend\SubCourtDetailsController@view')->name('sub-court-details.view');
 			Route::get('/add','Backend\SubCourtDetailsController@add')->name('sub-court-details.add');
@@ -356,6 +354,7 @@ Route::group(['middleware'=>['auth','admin']],function(){
 			Route::get('/edit/{id}','Backend\SubCourtDetailsController@edit')->name('sub-court-details.edit');
 			Route::post('/update/{id}','Backend\SubCourtDetailsController@update')->name('sub-court-details.update');
 			Route::post('/delete','Backend\SubCourtDetailsController@delete')->name('sub-court-details.delete');
+			Route::get('/get-sub-courts/{court_id}','Backend\SubCourtDetailsController@getSubCourts')->name('sub-court-details.get-sub-courts');
 		});
 		
 		Route::prefix('setups')->group(function(){
