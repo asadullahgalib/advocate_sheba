@@ -302,7 +302,7 @@
 .consult-heading p {
     margin: 5px 0 0;
 
-    color: #829099;
+    color: #000;
 
     font-size: 12px;
     line-height: 1.5;
@@ -520,7 +520,7 @@
 
     margin-top: 7px;
 
-    color: #87949c;
+    color: #000;
     font-size: 11px;
 }
 
@@ -589,7 +589,7 @@
 
     margin: 12px 0 0;
 
-    color: #8b989f;
+    color: #000;
 
     font-size: 11px;
     text-align: center;

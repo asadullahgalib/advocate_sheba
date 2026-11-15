@@ -5,7 +5,7 @@
     <div class="card">
       <div class="card-header">
         <h5>Terms & Conditions List
-            <a class="btn btn-sm btn-success float-right" href="{{route('terms.add')}}"><i class="fa fa-plus-circle"></i> Add Terms</a>
+            <!-- <a class="btn btn-sm btn-success float-right" href="{{route('terms.add')}}"><i class="fa fa-plus-circle"></i> Add Terms</a> -->
           </h5>
       </div>
 

@@ -73,10 +73,10 @@ public function term()
         'user.guide'       => 3,
         'contact'          => 4,
         'privacy.policy'   => 5,
-        'terms.of.use'     => 7,
         'disclaimer'       => 6,
+        'terms.of.use'     => 7,
         'editorial.policy' => 8,
-        'about'            => 21,
+        'about'            => 9,
     ];
 
     $id = $ids[$route] ?? abort(404);
@@ -322,7 +322,7 @@ public function index(){
     $data['faqs'] = Faq::orderBy('serial', 'asc')->get();
 
     // Trusted Platform Banner Data (Term table theke, id = 23)
-    $data['trustedTerm'] = Term::find(23);
+    $data['trustedTerm'] = Term::find(10);
 
     // Video Gallery Data
     $data['videos'] = VideoGallery::orderBy('id', 'desc')
