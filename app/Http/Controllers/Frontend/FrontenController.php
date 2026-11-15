@@ -224,13 +224,14 @@ public function term()
 
     // ====== slug দিয়ে dynamic details পেজ ======
     public function legalInformationDetails($slug){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
-        $data['page_type']      = 'legal_information_details';
-        $data['legalInfo']      = LegalInformation::with('details')->where('slug', $slug)->firstOrFail();
-        return view('frontend.legal_information.details',$data);
-    }
+    $data['categories']     = Category::all();
+    $data['departments']    = Department::orderBy('sort','asc')->get();
+    $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
+    $data['page_type']      = 'legal_information_details';
+    $data['legalInfo']      = LegalInformation::with('details')->where('slug', $slug)->firstOrFail();
+    
+    return view('frontend.legal_information.details', $data);
+}
 
     // ====== পুরনো ৪টা লিংক নতুন dynamic পেজে পাঠায় ======
     public function legalInformationRights(){
@@ -386,11 +387,23 @@ public function index(){
         return $data;
     }
     
-    public function findAdvocateList(){
+        public function findAdvocateList(){
         $data['categories']     = Category::all();
         $data['departments']    = Department::orderBy('sort','asc')->get();
         $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
+        
+        // নতুন যোগ করা হলো: Legal Articles এবং Videos ডাটা
+        $data['legalArticles'] = NewsEvent::with('law')
+            ->orderBy('date', 'desc')
+            ->take(4)
+            ->get();
+
+        $data['videos'] = VideoGallery::orderBy('id', 'desc')
+            ->take(4)
+            ->get();
+
         $data['page_type'] = 'find_advocate';
+        
         return view('frontend.single_pages.find_advocate_list',$data);
     }
 
@@ -399,6 +412,17 @@ public function index(){
         $data['categories']     = Category::all();
         $data['departments']    = Department::orderBy('sort','asc')->get();
         $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
+        $data['page_type'] = 'find_barrister';
+        // নতুন যোগ করা হলো: Legal Articles এবং Videos ডাটা
+        $data['legalArticles'] = NewsEvent::with('law')
+            ->orderBy('date', 'desc')
+            ->take(4)
+            ->get();
+
+        $data['videos'] = VideoGallery::orderBy('id', 'desc')
+            ->take(4)
+            ->get();
+
         $data['page_type'] = 'find_barrister';
         return view('frontend.single_pages.find_barrister_list',$data);
     }
@@ -409,6 +433,18 @@ public function index(){
         $data['departments']    = Department::orderBy('sort','asc')->get();
         $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
         $data['page_type'] = 'find_consultant';
+
+        // নতুন যোগ করা হলো: Legal Articles এবং Videos ডাটা
+        $data['legalArticles'] = NewsEvent::with('law')
+            ->orderBy('date', 'desc')
+            ->take(4)
+            ->get();
+
+        $data['videos'] = VideoGallery::orderBy('id', 'desc')
+            ->take(4)
+            ->get();
+
+        $data['page_type'] = 'find_consultant';
         return view('frontend.single_pages.find_consultant_list',$data);
     }
 
@@ -417,6 +453,18 @@ public function index(){
         $data['categories']     = Category::all();
         $data['departments']    = Department::orderBy('sort','asc')->get();
         $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
+        $data['page_type'] = 'find_law_firm';
+
+        // নতুন যোগ করা হলো: Legal Articles এবং Videos ডাটা
+        $data['legalArticles'] = NewsEvent::with('law')
+            ->orderBy('date', 'desc')
+            ->take(4)
+            ->get();
+
+        $data['videos'] = VideoGallery::orderBy('id', 'desc')
+            ->take(4)
+            ->get();
+
         $data['page_type'] = 'find_law_firm';
         return view('frontend.single_pages.find_law_firm_list',$data);
     }
@@ -434,6 +482,14 @@ public function index(){
         $data['departments']    = Department::orderBy('sort','asc')->get();
         $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
         $data['page_type'] = 'legal_information';
+        // Legal Articles Data
+    $data['legalArticles'] = NewsEvent::with('law')
+        ->orderBy('date', 'desc')
+        ->take(4)
+        ->get();
+        
+    // Legal Services Data
+    $data['laws'] = Law::orderBy('id', 'asc')->take(10)->get();
         return view('frontend.single_pages.legal_information',$data);
     }
 
@@ -523,6 +579,10 @@ public function index(){
         }
 
         $data['relatedArticles'] = $related;
+
+        $data['videos'] = VideoGallery::orderBy('id', 'desc')
+            ->take(4)
+            ->get();
 
         return view('frontend.single_pages.legal_article_details', $data);
     }
