@@ -31,7 +31,7 @@ Route::get('/for-advocate', 'Frontend\FrontenController@term')->name('for.advoca
 Route::get('/how-it-works', 'Frontend\FrontenController@term')->name('how.it.works');
 Route::get('/user-guide', 'Frontend\FrontenController@term')->name('user.guide');
 Route::get('/about', 'Frontend\FrontenController@term')->name('about');
-Route::get('/contact', 'Frontend\FrontenController@term')->name('contact');
+Route::get('/contact', 'Frontend\FrontenController@contact')->name('contact');
 
 Route::get('/privacy-policy', 'Frontend\FrontenController@term')->name('privacy.policy');
 Route::get('/terms-of-use', 'Frontend\FrontenController@term')->name('terms.of.use');

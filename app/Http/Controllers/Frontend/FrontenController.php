@@ -71,7 +71,6 @@ public function term()
         'for.advocate'     => 1,
         'how.it.works'     => 2,
         'user.guide'       => 3,
-        'contact'          => 4,
         'privacy.policy'   => 5,
         'disclaimer'       => 6,
         'terms.of.use'     => 7,
