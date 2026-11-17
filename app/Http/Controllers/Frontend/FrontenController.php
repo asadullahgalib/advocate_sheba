@@ -63,28 +63,28 @@ class FrontenController extends Controller
 
 
     //Term Show
-public function term()
-{
-    $route = request()->route()->getName();
+    public function term()
+    {
+        $route = request()->route()->getName();
 
-    $ids = [
-        'for.advocate'     => 1,
-        'how.it.works'     => 2,
-        'user.guide'       => 3,
-        'privacy.policy'   => 5,
-        'disclaimer'       => 6,
-        'terms.of.use'     => 7,
-        'editorial.policy' => 8,
-        'about'            => 9,
-    ];
+        $ids = [
+            'for.advocate'     => 1,
+            'how.it.works'     => 2,
+            'user.guide'       => 3,
+            'privacy.policy'   => 5,
+            'disclaimer'       => 6,
+            'terms.of.use'     => 7,
+            'editorial.policy' => 8,
+            'about'            => 9,
+        ];
 
-    $id = $ids[$route] ?? abort(404);
-    $term = Term::findOrFail($id);
+        $id = $ids[$route] ?? abort(404);
+        $term = Term::findOrFail($id);
 
-    return view('frontend.term.term', compact('term'));
-}
+        return view('frontend.term.term', compact('term'));
+    }
 
-        public function contact(){
+    public function contact(){
         $data['contactInfo'] = Contact::first();
         return view('frontend.contact.contact',$data);
     }
