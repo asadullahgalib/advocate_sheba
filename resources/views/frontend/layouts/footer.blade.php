@@ -12,9 +12,7 @@
 
                 <span>
                     <strong>Disclaimer:</strong>
-                    Information on AdvocateSheba is for general educational purposes only
-                    and does not replace professional medical advice, diagnosis, or treatment.
-                    Consult a qualified doctor or healthcare provider.
+                    Information on Advocate Sheba is for general awareness and to help you find lawyers only. It is not legal advice. Advocate Sheba is not your lawyer. For any specific legal matter, please consult a qualified lawyer.
                 </span>
 
             </div>
@@ -44,10 +42,10 @@
 
                     <div class="footer-feature-content">
 
-                        <h4>Verified Information</h4>
+                        <h4>Verified Profiles</h4>
 
                         <p>
-                            Reviewed from public records &amp; credentials
+                            Checked against Bar Council records & credentials.
                         </p>
 
                     </div>
@@ -69,7 +67,7 @@
                         <h4>Find Nearby</h4>
 
                         <p>
-                            Search doctors by specialty &amp; location
+                            Search lawyers by practice area & location.
                         </p>
 
                     </div>
@@ -88,10 +86,10 @@
 
                     <div class="footer-feature-content">
 
-                        <h4>Trusted by Clients</h4>
+                        <h4>Informed Choices</h4>
 
                         <p>
-                            Helps clients make informed decisions
+                            Helps you compare and choose lawyers more confidently.
                         </p>
 
                     </div>
@@ -110,10 +108,10 @@
 
                     <div class="footer-feature-content">
 
-                        <h4>Secure &amp; Private</h4>
+                        <h4>Secure & Private</h4>
 
                         <p>
-                            Protected by strict data standards
+                            Protected by strict data standards.
                         </p>
 
                     </div>
@@ -132,10 +130,10 @@
 
                     <div class="footer-feature-content">
 
-                        <h4>Easy Appointment</h4>
+                        <h4>Easy Consultation</h4>
 
                         <p>
-                            Connect with doctors and request appointments easily
+                            Connect with lawyers and request consultations easily.
                         </p>
 
                     </div>
