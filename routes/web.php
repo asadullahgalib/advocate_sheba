@@ -346,7 +346,7 @@ Route::group(['middleware'=>['auth','admin']],function(){
 			Route::post('/delete','Backend\SubCourtController@delete')->name('sub-courts.delete');
 		});
 
-				// Courts Details
+		// Courts Details
 		Route::prefix('sub-court-details')->group(function(){
 			Route::get('/view','Backend\SubCourtDetailsController@view')->name('sub-court-details.view');
 			Route::get('/add','Backend\SubCourtDetailsController@add')->name('sub-court-details.add');
@@ -355,6 +355,26 @@ Route::group(['middleware'=>['auth','admin']],function(){
 			Route::post('/update/{id}','Backend\SubCourtDetailsController@update')->name('sub-court-details.update');
 			Route::post('/delete','Backend\SubCourtDetailsController@delete')->name('sub-court-details.delete');
 			Route::get('/get-sub-courts/{court_id}','Backend\SubCourtDetailsController@getSubCourts')->name('sub-court-details.get-sub-courts');
+		});
+
+		// Philosophy
+		Route::prefix('philosophies')->group(function(){
+			Route::get('/view','Backend\PhilosophyController@view')->name('philosophies.view');
+			Route::get('/add','Backend\PhilosophyController@add')->name('philosophies.add');
+			Route::post('/store','Backend\PhilosophyController@store')->name('philosophies.store');
+			Route::get('/edit/{id}','Backend\PhilosophyController@edit')->name('philosophies.edit');
+			Route::post('/update/{id}','Backend\PhilosophyController@update')->name('philosophies.update');
+			Route::post('/delete','Backend\PhilosophyController@delete')->name('philosophies.delete');
+		});
+
+		// Law Firms
+		Route::prefix('law-firms')->group(function(){
+			Route::get('/view','Backend\LawFirmController@view')->name('law-firms.view');
+			Route::get('/add','Backend\LawFirmController@add')->name('law-firms.add');
+			Route::post('/store','Backend\LawFirmController@store')->name('law-firms.store');
+			Route::get('/edit/{id}','Backend\LawFirmController@edit')->name('law-firms.edit');
+			Route::post('/update/{id}','Backend\LawFirmController@update')->name('law-firms.update');
+			Route::post('/delete','Backend\LawFirmController@delete')->name('law-firms.delete');
 		});
 		
 		Route::prefix('setups')->group(function(){
