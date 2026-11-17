@@ -19,6 +19,7 @@ class CreateContactsTable extends Migration
             $table->string('mobile_no')->nullable();
             $table->string('email')->nullable();
             $table->string('facebook')->nullable();
+            $table->string('youtube')->nullable();
             $table->string('twitter')->nullable();
             $table->string('instagram')->nullable();
             $table->string('linkedin')->nullable();

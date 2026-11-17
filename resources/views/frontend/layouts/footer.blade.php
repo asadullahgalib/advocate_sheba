@@ -204,45 +204,57 @@
 
 
                 <!-- =================================
-                     SOCIAL ICONS
-                ================================== -->
-                <div class="footer-social">
+     SOCIAL ICONS
+================================== -->
+@php
+    $footerContact = App\Model\Contact::first();
+@endphp
 
-                    <!-- Facebook -->
-                    <a class="social-facebook"
-                       title="Facebook"
-                       href="#"
-                       target="_blank"
-                       aria-label="Facebook">
+<div class="footer-social">
 
-                        <i class="fa fa-facebook"></i>
+    <!-- Facebook -->
+    @if(@$footerContact->facebook)
+    <a class="social-facebook"
+       title="Facebook"
+       href="{{ $footerContact->facebook }}"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="Facebook">
 
-                    </a>
+        <i class="fa fa-facebook"></i>
 
-                    <!-- Instagram -->
-                    <a class="social-instagram"
-                       title="Instagram"
-                       href="#"
-                       target="_blank"
-                       aria-label="Instagram">
+    </a>
+    @endif
 
-                        <i class="fa fa-instagram"></i>
+    <!-- Instagram -->
+    @if(@$footerContact->instagram)
+    <a class="social-instagram"
+       title="Instagram"
+       href="{{ $footerContact->instagram }}"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="Instagram">
 
-                    </a>
+        <i class="fa fa-instagram"></i>
 
-                    <!-- YouTube -->
-                    <a class="social-youtube"
-                       title="YouTube"
-                       href="#"
-                       target="_blank"
-                       aria-label="YouTube">
+    </a>
+    @endif
 
-                        <i class="fa fa-youtube-play"></i>
+    <!-- YouTube -->
+    @if(@$footerContact->youtube)
+    <a class="social-youtube"
+       title="YouTube"
+       href="{{ $footerContact->youtube }}"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="YouTube">
 
-                    </a>
+        <i class="fa fa-youtube-play"></i>
 
-                </div>
+    </a>
+    @endif
 
+</div>
 
             </div>
 

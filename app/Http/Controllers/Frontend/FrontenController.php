@@ -84,6 +84,11 @@ public function term()
     return view('frontend.term.term', compact('term'));
 }
 
+        public function contact(){
+        $data['contactInfo'] = Contact::first();
+        return view('frontend.contact.contact',$data);
+    }
+
     //Registration
     public function registration(){
         $data['categories']     = Category::all();
