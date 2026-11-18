@@ -194,6 +194,8 @@ class AdvocateController extends Controller
     public function details($id) 
     {
         $data['details'] = User::find($id);
+        $data['designations'] = Designation::all();
+        $data['departments'] = Department::all();
         $data['page_title'] = 'statement';
         return view('backend.advocate.advocate_details', $data);
     }
@@ -267,6 +269,7 @@ class AdvocateController extends Controller
     public function aboutDetails($id) 
     {
         $data['details'] = User::find($id);
+        $data['designations'] = Designation::all();
         $data['page_title'] = 'abouts';
         return view('backend.advocate.about_details', $data);
     }
@@ -283,6 +286,7 @@ class AdvocateController extends Controller
     public function educationDetails($id) 
     {
         $data['details'] = User::find($id);
+        $data['designations'] = Designation::all();
         $data['page_title'] = 'education';
         return view('backend.advocate.education_details', $data);
     }
@@ -299,6 +303,7 @@ class AdvocateController extends Controller
     public function trainingDetails($id) 
     {
         $data['details'] = User::find($id);
+        $data['designations'] = Designation::all();
         $data['page_title'] = 'training';
         return view('backend.advocate.training_details', $data);
     }
@@ -315,6 +320,7 @@ class AdvocateController extends Controller
     public function membershipDetails($id) 
     {
         $data['details'] = User::find($id);
+        $data['designations'] = Designation::all();
         $data['page_title'] = 'membership';
         return view('backend.advocate.membership_details', $data);
     }
@@ -331,6 +337,7 @@ class AdvocateController extends Controller
     public function engagementDetails($id) 
     {
         $data['details'] = User::find($id);
+        $data['designations'] = Designation::all();
         $data['page_title'] = 'engagement';
         return view('backend.advocate.engagement_details', $data);
     }
@@ -347,6 +354,7 @@ class AdvocateController extends Controller
     public function chamberDetails($id) 
     {
         $data['details'] = User::find($id);
+        $data['designations'] = Designation::all();
         $data['page_title'] = 'chamber';
         return view('backend.advocate.chamber_details', $data);
     }
@@ -363,6 +371,7 @@ class AdvocateController extends Controller
     public function mapDetails($id) 
     {
         $data['details'] = User::find($id);
+        $data['designations'] = Designation::all();
         $data['page_title'] = 'map';
         return view('backend.advocate.map_details', $data);
     }
@@ -379,6 +388,7 @@ class AdvocateController extends Controller
     public function galleryDetails($id)
     {
         $data['details'] = User::find($id);
+        $data['designations'] = Designation::all();
         $data['gallery_details'] = PhotoGallery::where('user_id', $id)->orderBy('id', 'asc')->get();
         $data['page_title'] = 'gallery';
         return view('backend.advocate.gallery_details', $data);
