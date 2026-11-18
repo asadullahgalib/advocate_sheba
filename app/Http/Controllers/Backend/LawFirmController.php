@@ -8,25 +8,24 @@ use App\Model\LawFirm;
 use App\Model\User;
 use App\Model\District;
 use Auth;
+use Illuminate\Support\Str; // স্লাগ জেনারেট করার জন্য
 
 class LawFirmController extends Controller
 {
     // ১. View List
     public function view()
     {
-        $allData = LawFirm::with(['leader', 'district'])->orderBy('id', 'desc')->get();
+        $allData = LawFirm::with(['leader'])->orderBy('id', 'desc')->get();
         return view('backend.law_firms.law_firms_view', compact('allData'));
     }
 
-        // ২. Add Form
+    // ২. Add Form
     public function add()
     {
-        // 'Advocate' এর জায়গায় 'advocate' ছোট হাতের অক্ষরে দিলাম
         $leaders = User::where('user_category', 'advocate')->get(); 
-        $districts = District::orderBy('name', 'asc')->get();
-        return view('backend.law_firms.law_firms_add', compact('leaders', 'districts'));
+        // $districts = District::orderBy('name', 'asc')->get(); // স্যার বলেছেন ডিস্ট্রিক্ট বাদ, তাই এটাও বাদ
+        return view('backend.law_firms.law_firms_add', compact('leaders'));
     }
-
 
     // ৩. Store Data
     public function store(Request $request)
@@ -38,8 +37,11 @@ class LawFirmController extends Controller
 
         $data = new LawFirm();
         $data->leader_id = $request->leader_id;
-        $data->district_id = $request->district_id;
         $data->firm_name = $request->firm_name;
+        
+        $slug = rand(0000, 9999);
+        $data->slug = Str::slug($request->firm_name) . $slug . date('His');
+        
         $data->court_name = $request->court_name;
         $data->established = $request->established;
         $data->abouts = $request->abouts;
@@ -62,10 +64,8 @@ class LawFirmController extends Controller
     public function edit($id)
     {
         $editData = LawFirm::find($id);
-        // এখানেও একই পরিবর্তন
         $leaders = User::where('user_category', 'advocate')->get();
-        $districts = District::orderBy('name', 'asc')->get();
-        return view('backend.law_firms.law_firms_add', compact('editData', 'leaders', 'districts'));
+        return view('backend.law_firms.law_firms_add', compact('editData', 'leaders'));
     }
 
     // ৫. Update Data
@@ -78,8 +78,14 @@ class LawFirmController extends Controller
 
         $data = LawFirm::find($id);
         $data->leader_id = $request->leader_id;
-        $data->district_id = $request->district_id;
         $data->firm_name = $request->firm_name;
+        
+        // স্লাগ আগে থেকে না থাকলে জেনারেট হবে
+        if (empty($data->slug)) {
+            $slug = rand(0000, 9999);
+            $data->slug = Str::slug($request->firm_name) . $slug . date('His');
+        }
+        
         $data->court_name = $request->court_name;
         $data->established = $request->established;
         $data->abouts = $request->abouts;
@@ -109,10 +115,10 @@ class LawFirmController extends Controller
     }
 
     // ==========================================
-    // ট্যাব ভিত্তিক মেথড (Tabs)
+    // ট্যাব ভিত্তিক মেথড (Tabs) - এখানে id দিয়েই কাজ করছি 
+    // (ব্যাকএন্ডে id দিয়েই কাজ করা ভালো, ফ্রন্টএন্ডে slug ব্যবহার করব)
     // ==========================================
 
-    // Details / Official ট্যাব
     public function details($id)
     {
         $details = LawFirm::find($id);
@@ -120,7 +126,6 @@ class LawFirmController extends Controller
         return view('backend.law_firms.law_firm_details', compact('details', 'page_title'));
     }
 
-    // Abouts ট্যাব
     public function aboutDetails($id)
     {
         $details = LawFirm::find($id);
@@ -128,7 +133,6 @@ class LawFirmController extends Controller
         return view('backend.law_firms.law_firm_abouts', compact('details', 'page_title'));
     }
 
-    // Qualification ট্যাব
     public function qualificationDetails($id)
     {
         $details = LawFirm::find($id);
@@ -136,7 +140,6 @@ class LawFirmController extends Controller
         return view('backend.law_firms.law_firm_qualification', compact('details', 'page_title'));
     }
 
-    // Training ট্যাব
     public function trainingDetails($id)
     {
         $details = LawFirm::find($id);
@@ -144,7 +147,6 @@ class LawFirmController extends Controller
         return view('backend.law_firms.law_firm_training', compact('details', 'page_title'));
     }
 
-    // Membership ট্যাব
     public function membershipDetails($id)
     {
         $details = LawFirm::find($id);
@@ -152,7 +154,6 @@ class LawFirmController extends Controller
         return view('backend.law_firms.law_firm_membership', compact('details', 'page_title'));
     }
 
-    // Social ট্যাব
     public function socialDetails($id)
     {
         $details = LawFirm::find($id);
@@ -160,7 +161,6 @@ class LawFirmController extends Controller
         return view('backend.law_firms.law_firm_social', compact('details', 'page_title'));
     }
 
-    // Chamber ট্যাব
     public function chamberDetails($id)
     {
         $details = LawFirm::find($id);
@@ -168,7 +168,6 @@ class LawFirmController extends Controller
         return view('backend.law_firms.law_firm_chamber', compact('details', 'page_title'));
     }
 
-    // Map ট্যাব
     public function mapDetails($id)
     {
         $details = LawFirm::find($id);

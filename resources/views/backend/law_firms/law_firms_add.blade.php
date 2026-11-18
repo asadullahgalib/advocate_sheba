@@ -31,21 +31,16 @@
                 </select>
               </div>
 
-              <!-- District Dropdown -->
-              <div class="form-group col-md-6">
-                <label class="control-label" for="district_id">Select District <span style="color:red;">*</span></label>
-                <select name="district_id" id="district_id" class="form-control form-control-sm">
-                  <option value="">Select District</option>
-                  @foreach($districts as $district)
-                    <option value="{{ $district->id }}" {{ (old('district_id', @$editData->district_id) == $district->id) ? 'selected' : '' }}>{{ $district->name }}</option>
-                  @endforeach
-                </select>
-              </div>
-
               <!-- Firm Name -->
               <div class="form-group col-md-6">
                 <label class="control-label" for="firm_name">Firm Name <span style="color:red;">*</span></label>
                 <input type="text" name="firm_name" id="firm_name" class="form-control form-control-sm" value="{{ old('firm_name', @$editData->firm_name) }}" placeholder="Enter Firm Name">
+              </div>
+
+              <!-- Court Name -->
+              <div class="form-group col-md-6">
+                <label class="control-label" for="court_name">Court Name</label>
+                <input type="text" name="court_name" id="court_name" class="form-control form-control-sm" value="{{ old('court_name', @$editData->court_name) }}" placeholder="Enter Court Name">
               </div>
 
               <!-- Established -->
@@ -53,21 +48,6 @@
                 <label class="control-label" for="established">Established</label>
                 <input type="text" name="established" id="established" class="form-control form-control-sm" value="{{ old('established', @$editData->established) }}" placeholder="Enter Established Year">
               </div>
-
-              <!-- Court Name -->
-              <div class="form-group col-md-12">
-                <label class="control-label" for="court_name">Court Name</label>
-                <input type="text" name="court_name" id="court_name" class="form-control form-control-sm" value="{{ old('court_name', @$editData->court_name) }}" placeholder="Enter Court Name">
-              </div>
-
-              <!-- Status -->
-              <!-- <div class="form-group col-md-6">
-                <label class="control-label" for="status">Status</label>
-                <select name="status" id="status" class="form-control form-control-sm">
-                  <option value="1" {{ old('status', @$editData->status) == 1 ? 'selected' : '' }}>Active</option>
-                  <option value="0" {{ old('status', @$editData->status) == 0 ? 'selected' : '' }}>Inactive</option>
-                </select>
-              </div> -->
 
               <!-- Abouts with CKEditor -->
               <div class="form-group col-md-12">
@@ -112,13 +92,11 @@
         debug : false,
         rules: {
           leader_id: { required: true },
-          district_id: { required: true },
           firm_name: { required: true },
           abouts: { required: true }
         },
         messages: {
           leader_id: { required: "Please select a leader" },
-          district_id: { required: "Please select a district" },
           firm_name: { required: "Please enter the firm name" },
           abouts: { required: "Please enter firm details" }
         },

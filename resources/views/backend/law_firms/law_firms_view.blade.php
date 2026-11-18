@@ -38,7 +38,6 @@
                 <th style="width: 8%;">Sl.</th>
                 <th>Firm Name</th>
                 <th>Leader</th>
-                <th>District</th>
                 <th style="width: 15%;">Action</th>
               </tr>
             </thead>
@@ -46,10 +45,9 @@
               @foreach($allData as $key => $value)
               <tr class="text-center">
                 <td>{{$key+1}}</td>
-                <td class="text-left">{{ $value->firm_name }}</td>
-                <!-- এখানে name_en এর জায়গায় name বসানো হয়েছে -->
-                <td class="text-left">{{ $value['leader']['name'] ?? 'N/A' }}</td>
-                <td class="text-left">{{ $value['district']['name'] ?? 'N/A' }}</td>
+                <!-- class="text-left" সরিয়ে শুধু নাম দেওয়া হয়েছে -->
+                <td>{{ $value->firm_name }}</td>
+                <td>{{ $value['leader']['name'] ?? 'N/A' }}</td>
                 <td>
                   <!-- Details Button -->
                   <a class="btn btn-sm btn-info" title="Details" href="{{route('law-firms.details', $value->id)}}"><i class="fa fa-eye"></i></a>
