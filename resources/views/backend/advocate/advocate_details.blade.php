@@ -58,74 +58,114 @@
     <div class="card-body">
       <div class="row">
         <div class="col-md-12">
-          <!-- ফর্ম অ্যাকশন রুটটি aboutDetailsStore মেথড অনুযায়ী ঠিক করা হলো -->
-          <form method="post" action="{{route('advocates.about.details.store',$details->id)}}" id="myForm">
-            @csrf
-            <div class="form-row">
-              
-              <div class="form-group col-md-12">
-                <label for="abouts">Description <span style="color:red;">*</span></label>
-                <!-- ডাটাবেজের abouts কলাম থেকে আনএসকেপড ব্লেড সিনট্যাক্সে ডাটা শো করানো হলো -->
-                <textarea name="abouts" id="abouts" class="form-control" rows="5">{!! @$details->abouts !!}</textarea>
-              </div>
-
-              <div class="form-group col-md-3">
-                <button type="submit" class="btn btn-primary btn-sm">Update</button>
-              </div>
-            </div>
-          </form>
+          <table style="width:100%;padding: 3px;">
+            <tr>
+              <td colspan="2"><h6><strong style="text-decoration: underline;">Official Info :</strong></h6></td>
+            </tr>
+            <tr>
+              <td width="20%"><strong>Designation</strong> </td>
+              <td>: {{ @$details['designation']['name'] }}</td>
+            </tr>
+            <tr>
+              <td width="20%"><strong>Join Date</strong> </td>
+              <td>: {{ date('d-m-Y',strtotime(@$details->join_date)) }}</td>
+            </tr>
+            <tr>
+              <td width="20%"><strong>Department</strong> </td>
+              <td>: {{ @$details['department']['name'] }}</td>
+            </tr>
+            <tr>
+              <td width="20%"><strong>BMDC No</strong> </td>
+              <td>: {{ @$details->mbbs_fcp }}</td>
+            </tr>
+            <tr>
+              <td width="20%"><strong>Qualification</strong> </td>
+              <td>: {{ @$details->qualification }}</td>
+            </tr>
+            <tr>
+              <td width="20%"><strong>Experience</strong> </td>
+              <td>: {{ @$details->experience }}</td>
+            </tr>
+            <tr>
+              <td width="20%"><strong>Consultation Fee</strong> </td>
+              <td>: {{ @$details->consultation_fee }}</td>
+            </tr>
+            <tr>
+              <td width="20%"><strong>Follow-up Fee</strong> </td>
+              <td>: {{ @$details->follow_up_fee }}</td>
+            </tr>
+            <tr>
+              <td width="20%"><strong>IMO/What's App</strong> </td>
+              <td>: {{ @$details->appointment_contact }}</td>
+            </tr>
+            <tr>
+              <td colspan="2"><h6><strong style="text-decoration: underline;">Personal Info :</strong></h6></td>
+            </tr>
+            <tr>
+              <td width="20%"><strong>Fathers' Name</strong> </td>
+              <td>: {{ @$details->fname }}</td>
+            </tr>
+            <tr>
+              <td width="20%"><strong>Mother's Name</strong> </td>
+              <td>: {{$details->mname}}</td>
+            <tr>
+              <td width="20%"><strong>Date of Birth</strong> </td>
+              <td>: {{date('d-m-Y',strtotime(@$details->dob))}}</td>
+            </tr>
+            </tr>
+            <tr>
+              <td width="20%"><strong>Gender</strong> </td>
+              <td>: {{@$details->gender}}</td>
+            </tr>
+            <tr>
+              <td width="20%"><strong>Religion</strong> </td>
+              <td>: {{@$details['religion']['name']}}</td>
+            </tr>
+            <tr>
+              <td width="20%"><strong>Nationality</strong> </td>
+              <td>: {{@$details->nationality}}</td>
+            </tr>
+            <tr>
+              <td width="20%"><strong>NID No</strong> </td>
+              <td>: {{@$details->nid_no}}</td>
+            </tr>
+            <tr>
+              <td width="20%"><strong>Blood Group</strong> </td>
+              <td>: {{@$details->blood_group}}</td>
+            </tr>
+            <tr>
+              <td width="20%"><strong>Marrital Status</strong> </td>
+              <td>: {{@$details->marital_status}}</td>
+            </tr>
+            <tr>
+              <td colspan="2"><h6><strong style="text-decoration: underline;">Mailing Info :</strong></h6></td>
+            </tr>
+            <tr>
+              <td width="20%"><strong>Present Address</strong> </td>
+              <td>: {{@$details->present_address}}</td>
+            </tr>
+            <tr>
+              <td width="20%"><strong>Permanent Address</strong> </td>
+              <td>: {{@$details->permanent_address}}</td>
+            </tr>
+            <tr>
+              <td width="20%"><strong>Emergency Contact Person</strong> </td>
+              <td>: {{@$details->emergency_contact_name}}</td>
+            </tr>
+            <tr>
+              <td width="20%"><strong>Relation With Emergency Contact Person</strong> </td>
+              <td>: {{@$details->relation_with}}</td>
+            </tr>
+            <tr>
+              <td width="20%"><strong>Emergency Contact Person Mobile</strong> </td>
+              <td>: {{@$details->emergency_contact_no}}</td>
+            </tr>
+          </table>
         </div>
       </div>
     </div>
 
     </div>
   </div>
-
-  <script type="text/javascript">
-  $(document).ready(function(){
-    // CKEDITOR আইডি 'abouts' এ বাইন্ড করা হলো
-    var editor2 = CKEDITOR.replace('abouts');
-    CKFinder.setupCKEditor(editor2, '/ckfinder/');
-    
-    editor2.on('change', function() {
-        editor2.updateElement();
-        $('#myForm').validate().element('#abouts');
-    });
-  });
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-      $('textarea[name="abouts"]').each(function(){
-          $(this).val($(this).val().trim());
-      });
-
-      $('#myForm').validate({
-        ignore : [],
-        debug : false,
-        rules: {
-          abouts: {
-            required: true,
-          }
-        },
-        messages: {
-          abouts: {
-            required: "Please enter the description",
-          }
-        },
-        errorElement: 'span',
-        errorPlacement: function (error, element) {
-          error.addClass('invalid-feedback');
-          element.closest('.form-group').append(error);
-        },
-        highlight: function (element, errorClass, validClass) {
-          $(element).addClass('is-invalid');
-        },
-        unhighlight: function (element, errorClass, validClass) {
-          $(element).removeClass('is-invalid');
-        }
-      });
-    });
-</script>
 
 @endsection
