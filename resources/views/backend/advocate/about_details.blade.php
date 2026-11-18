@@ -68,6 +68,17 @@
                 <!-- ডাটাবেজের abouts কলাম থেকে আনএসকেপড ব্লেড সিনট্যাক্সে ডাটা শো করানো হলো -->
                 <textarea name="abouts" id="abouts" class="form-control" rows="5">{!! @$details->abouts !!}</textarea>
               </div>
+              <div class="form-group col-md-12">
+                <label>Laws <span style="color:red;">*</span></label>
+
+                <select name="law_id[]" class="form-control form-control-sm select2" multiple required>
+                  @foreach($laws as $law)
+                  <option value="{{ $law->id }}" {{ in_array($law->id, $law_array) ? 'selected' : '' }}>
+                      {{ $law->title_en }}
+                  </option>
+                  @endforeach
+                </select>
+              </div>
 
               <div class="form-group col-md-3">
                 <button type="submit" class="btn btn-primary btn-sm">Update</button>

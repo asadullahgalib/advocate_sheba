@@ -27,6 +27,12 @@ use App\Model\PhotoGallery;
 use App\Model\NewsEvent;
 use App\Model\VideoGallery;
 use App\Model\DoctorBooking;
+use App\Model\AdvocateLaw;
+use App\Model\AdvocateLocation;
+use App\Model\AdvocatePracticeArea;
+use App\Model\District;
+use App\Model\Practice;
+use App\Model\Law;
 use App\Exports\EmployeeExport;
 use Maatwebsite\Excel\Facades\Excel;
 use DB;
@@ -270,7 +276,15 @@ class AdvocateController extends Controller
     {
         $data['details'] = User::find($id);
         $data['designations'] = Designation::all();
+        $data['districts'] = District::all();
+        $data['practice_areas'] = Practice::all();
+        $data['laws'] = Law::all();
         $data['page_title'] = 'abouts';
+
+        $data['law_array'] = AdvocateLaw::where('user_id', $id)
+            ->pluck('law_id')
+            ->toArray();
+
         return view('backend.advocate.about_details', $data);
     }
 
@@ -279,6 +293,21 @@ class AdvocateController extends Controller
         $data = User::find($id);
         $data->abouts = $request->abouts;
         $data->save();
+
+        $law = $request->law_id;
+        if(!empty($law)){
+           AdvocateLaw::where('user_id',$id)->delete();
+        }
+
+        if(!empty($law)){
+            foreach ($law as $lw) {
+                $mylaw = new AdvocateLaw();
+                $mylaw->user_id = $id;
+                $mylaw->law_id = $lw;
+                $mylaw->save();
+            }
+        }
+
         return redirect()->back()->with('success', 'About details updated successfully');
     }
 
