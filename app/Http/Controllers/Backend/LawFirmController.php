@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Model\LawFirm;
 use App\Model\User;
 use App\Model\District;
+use App\Model\LawFirmGallery;
+use Image;
 use Auth;
 use Illuminate\Support\Str; // স্লাগ জেনারেট করার জন্য
 
@@ -233,5 +235,58 @@ class LawFirmController extends Controller
         $data->map = $request->map;
         $data->save();
         return redirect()->back()->with('success', 'Map updated successfully');
+    }
+
+        // ==========================================
+    // Photo Gallery মেথডসমূহ
+    // ==========================================
+
+    // গ্যালারি লিস্ট এবং অ্যাড পেজ (একই পেজে)
+    public function galleryDetails($id)
+    {
+        $details = LawFirm::find($id);
+        $gallery_details = LawFirmGallery::where('law_firm_id', $id)->orderBy('id', 'desc')->get();
+        $page_title = 'gallery';
+        return view('backend.law_firms.law_firm_gallery', compact('details', 'gallery_details', 'page_title'));
+    }
+
+    // নতুন ছবি আপলোড
+    public function galleryDetailsStore(Request $request, $id)
+    {
+        $this->validate($request, [
+            'image' => 'required|image|mimes:jpeg,png,jpg,webp'
+        ]);
+
+        $data = new LawFirmGallery();
+        $data->law_firm_id = $id;
+        $data->title = $request->caption;
+        $data->created_by = Auth::user()->id;
+
+        if ($request->file('image')) {
+            $file = $request->file('image');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('uploads/law_firm_gallery_images'), $filename);
+            
+            $file = Image::make(public_path('uploads/law_firm_gallery_images/').$filename);
+            $file->resize(600, 400)->save(public_path('uploads/law_firm_gallery_images/').$filename);
+            
+            $data->image = $filename;
+        } else {
+            $data->image = 'no_image.png';
+        }
+        
+        $data->save();
+        return redirect()->back()->with('success', 'Gallery image uploaded successfully');
+    }
+
+    // ছবি ডিলিট
+    public function galleryDetailsDelete(Request $request)
+    {
+        $gallery = LawFirmGallery::find($request->id);
+        if (!empty($gallery->image) && $gallery->image != 'no_image.png' && file_exists(public_path('uploads/law_firm_gallery_images/' . $gallery->image))) {
+            @unlink(public_path('uploads/law_firm_gallery_images/' . $gallery->image));
+        }
+        $gallery->delete();
+        return redirect()->back()->with('success', 'Image deleted successfully!');
     }
 }

@@ -15,7 +15,7 @@
         <div class="card-header">
             <h3 class="card-title">
                 Law Firm Details
-                <a href="{{ route('law-firms.view') }}" class="btn btn-success float-right btn-sm custom_btn"><i class="fa fa-list"> Law Firm List</i></a>
+                <a href="{{ route('law-firms.view') }}" class="btn btn-success float-right btn-sm"><i class="fa fa-list"></i> Law Firm List</a>
             </h3>
         </div>
 

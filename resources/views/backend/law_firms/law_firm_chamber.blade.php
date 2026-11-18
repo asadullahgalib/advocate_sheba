@@ -3,7 +3,7 @@
 <div class="col-md-12" style="padding-top: 40px;">
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Law Firm Details <a href="{{ route('law-firms.view') }}" class="btn btn-success float-right btn-sm"><i class="fa fa-list"></i> List</a></h3>
+            <h3 class="card-title">Law Firm Details <a href="{{ route('law-firms.view') }}" class="btn btn-success float-right btn-sm"><i class="fa fa-list"></i> Law Firm List</a></h3>
         </div>
         <div class="card-body">
             

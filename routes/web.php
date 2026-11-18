@@ -367,34 +367,39 @@ Route::group(['middleware'=>['auth','admin']],function(){
 			Route::post('/delete','Backend\PhilosophyController@delete')->name('philosophies.delete');
 		});
 
-		// Law Firms
-Route::prefix('law-firms')->group(function(){
-    Route::get('/view','Backend\LawFirmController@view')->name('law-firms.view');
-    Route::get('/add','Backend\LawFirmController@add')->name('law-firms.add');
-    Route::post('/store','Backend\LawFirmController@store')->name('law-firms.store');
-    Route::get('/edit/{id}','Backend\LawFirmController@edit')->name('law-firms.edit');
-    Route::post('/update/{id}','Backend\LawFirmController@update')->name('law-firms.update');
-    Route::post('/delete','Backend\LawFirmController@delete')->name('law-firms.delete');
-    
-    // Tabs Routes
-    Route::get('/details/{id}','Backend\LawFirmController@details')->name('law-firms.details');
-    Route::get('/abouts/{id}','Backend\LawFirmController@aboutDetails')->name('law-firms.abouts');
-    Route::get('/qualification/{id}','Backend\LawFirmController@qualificationDetails')->name('law-firms.qualification');
-    Route::get('/training/{id}','Backend\LawFirmController@trainingDetails')->name('law-firms.training');
-    Route::get('/membership/{id}','Backend\LawFirmController@membershipDetails')->name('law-firms.membership');
-    Route::get('/social/{id}','Backend\LawFirmController@socialDetails')->name('law-firms.social');
-    Route::get('/chamber/{id}','Backend\LawFirmController@chamberDetails')->name('law-firms.chamber');
-    Route::get('/map/{id}','Backend\LawFirmController@mapDetails')->name('law-firms.map');
+				// Law Firms
+		Route::prefix('law-firms')->group(function(){
+		    Route::get('/view','Backend\LawFirmController@view')->name('law-firms.view');
+		    Route::get('/add','Backend\LawFirmController@add')->name('law-firms.add');
+		    Route::post('/store','Backend\LawFirmController@store')->name('law-firms.store');
+		    Route::get('/edit/{id}','Backend\LawFirmController@edit')->name('law-firms.edit');
+		    Route::post('/update/{id}','Backend\LawFirmController@update')->name('law-firms.update');
+		    Route::post('/delete','Backend\LawFirmController@delete')->name('law-firms.delete');
+		    
+		    // Tabs Routes
+		    Route::get('/details/{id}','Backend\LawFirmController@details')->name('law-firms.details');
+		    Route::get('/abouts/{id}','Backend\LawFirmController@aboutDetails')->name('law-firms.abouts');
+		    Route::get('/qualification/{id}','Backend\LawFirmController@qualificationDetails')->name('law-firms.qualification');
+		    Route::get('/training/{id}','Backend\LawFirmController@trainingDetails')->name('law-firms.training');
+		    Route::get('/membership/{id}','Backend\LawFirmController@membershipDetails')->name('law-firms.membership');
+		    Route::get('/social/{id}','Backend\LawFirmController@socialDetails')->name('law-firms.social');
+		    Route::get('/chamber/{id}','Backend\LawFirmController@chamberDetails')->name('law-firms.chamber');
+		    Route::get('/map/{id}','Backend\LawFirmController@mapDetails')->name('law-firms.map');
 
-    // Tabs Store Routes
-    Route::post('/abouts-store/{id}','Backend\LawFirmController@aboutsStore')->name('law-firms.abouts.store');
-    Route::post('/qualification-store/{id}','Backend\LawFirmController@qualificationStore')->name('law-firms.qualification.store');
-    Route::post('/training-store/{id}','Backend\LawFirmController@trainingStore')->name('law-firms.training.store');
-    Route::post('/membership-store/{id}','Backend\LawFirmController@membershipStore')->name('law-firms.membership.store');
-    Route::post('/social-store/{id}','Backend\LawFirmController@socialStore')->name('law-firms.social.store');
-    Route::post('/chamber-store/{id}','Backend\LawFirmController@chamberStore')->name('law-firms.chamber.store');
-    Route::post('/map-store/{id}','Backend\LawFirmController@mapStore')->name('law-firms.map.store');
-});
+		    // Tabs Store Routes
+		    Route::post('/abouts-store/{id}','Backend\LawFirmController@aboutsStore')->name('law-firms.abouts.store');
+		    Route::post('/qualification-store/{id}','Backend\LawFirmController@qualificationStore')->name('law-firms.qualification.store');
+		    Route::post('/training-store/{id}','Backend\LawFirmController@trainingStore')->name('law-firms.training.store');
+		    Route::post('/membership-store/{id}','Backend\LawFirmController@membershipStore')->name('law-firms.membership.store');
+		    Route::post('/social-store/{id}','Backend\LawFirmController@socialStore')->name('law-firms.social.store');
+		    Route::post('/chamber-store/{id}','Backend\LawFirmController@chamberStore')->name('law-firms.chamber.store');
+		    Route::post('/map-store/{id}','Backend\LawFirmController@mapStore')->name('law-firms.map.store');
+
+		    // Law Firm Photo Gallery Routes
+			Route::get('/gallery/details/{id}', 'Backend\LawFirmController@galleryDetails')->name('law-firms.gallery.details');
+			Route::post('/gallery/details/store/{id}', 'Backend\LawFirmController@galleryDetailsStore')->name('law-firms.gallery.details.store');
+			Route::post('/gallery/details/delete', 'Backend\LawFirmController@galleryDetailsDelete')->name('law-firms.gallery.details.delete');
+		});
 		
 		Route::prefix('setups')->group(function(){
 			//Logo
