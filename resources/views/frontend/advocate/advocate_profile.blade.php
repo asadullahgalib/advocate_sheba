@@ -1,6 +1,31 @@
 @extends('frontend.layouts.master')
 @section('content')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script>
+    function shareDoctorProfile() {
+        if (navigator.share) {
+            navigator.share({
+                title: 'Advocate Profile',
+                text: 'Check out this advocate profile',
+                url: window.location.href
+            }).then(() => {
+                console.log('Successfully shared');
+            }).catch((error) => {
+                console.log('Error sharing', error);
+            });
+        } else {
+            // যদি ব্রাউজার শেয়ার সাপোর্ট না করে, তবে লিংক কপি করে দিবে
+            var dummy = document.createElement('input'),
+                text = window.location.href;
+            document.body.appendChild(dummy);
+            dummy.value = text;
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+            alert('Profile link copied to clipboard!');
+        }
+    }
+</script>
     <style>
 
         /* =========================================
@@ -815,7 +840,7 @@
 
                                                 <!-- Call -->
                                                 <div class="col-6">
-                                                    <a href="tel:+8801700000000" class="doctor-outline-btn">
+                                                    <a href="tel:+8801700000000" class="doctor-outline-btn" onclick="return confirm('Do you want to call +8801700000000?');">
                                                         <i class="fa fa-phone"></i>
                                                         <span>Call</span>
                                                     </a>

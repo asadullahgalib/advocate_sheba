@@ -23,7 +23,7 @@
             </h1>
 
             <div class="text-muted border-top border-bottom py-2 my-2"
-                 style="font-size:13px;font-weight:500;background-color:#fafafa;color:#000;">
+                 style="font-size:13px;font-weight:500;background-color:#fafafa;color:#103C6D;">
 
                 Format:
                 <span class="fw-bold text-success">PDF</span>
@@ -38,7 +38,7 @@
         @if(!empty($document->sub_title))
 
             <div class="p-2 mb-3 text-secondary rounded-3 border-start border-primary border-4"
-                 style="font-size:0.82rem;font-weight:500;background-color:#f4f7f9;color:#000;">
+                 style="font-size:0.82rem;font-weight:500;background-color:#f4f7f9;color:#103C6D;">
 
                 {{ $document->sub_title }}
 
@@ -98,7 +98,7 @@
                 <a href="{{ $pdfUrl }}"
                    download
                    class="btn btn-primary btn-sm py-2 fw-bold shadow-sm rounded-3"
-                   style="background-color:#063d31;border-color:#063d31;">
+                   style="background-color:#103C6D;border-color:#103C6D#103C6D;">
 
                     Download Full PDF
                     <i class="fa-solid fa-download ms-1"></i>
@@ -199,7 +199,7 @@
                class="practice-area-card text-decoration-none">
 
                 <div class="card-1 p-3 text-center"
-                     style="min-height:50px;background-color:#000;">
+                     style="min-height:50px;background-color:#103C6D;">
 
                     <h6 class="mb-0" style="font-size:14px;color:#fff;">
                         Find Advocates
@@ -218,7 +218,7 @@
                class="practice-area-card text-decoration-none">
 
                 <div class="card-1 p-3 text-center"
-                     style="min-height:50px;background-color:#000;">
+                     style="min-height:50px;background-color:#103C6D;">
 
                     <h6 class="mb-0" style="font-size:14px;color:#fff;">
                         Find Barristers
@@ -237,7 +237,7 @@
                class="practice-area-card text-decoration-none">
 
                 <div class="card-1 p-3 text-center"
-                     style="min-height:50px;background-color:#000;">
+                     style="min-height:50px;background-color:#103C6D;">
 
                     <h6 class="mb-0" style="font-size:14px;color:#fff;">
                         Find Legal Consultants
@@ -256,7 +256,7 @@
                class="practice-area-card text-decoration-none">
 
                 <div class="card-1 p-3 text-center"
-                     style="min-height:50px;background-color:#000;">
+                     style="min-height:50px;background-color:#103C6D;">
 
                     <h6 class="mb-0" style="font-size:14px;color:#fff;">
                         Find Law Firms

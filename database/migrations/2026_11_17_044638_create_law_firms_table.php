@@ -18,6 +18,7 @@ class CreateLawFirmsTable extends Migration
             $table->integer('leader_id')->nullable()->comment('user_id=leader_id');
             $table->integer('district_id')->nullable();
             $table->string('firm_name')->nullable();
+            $table->string('slug')->nullable();
             $table->text('court_name')->nullable();
             $table->string('established')->nullable();
             $table->longText('abouts')->nullable();

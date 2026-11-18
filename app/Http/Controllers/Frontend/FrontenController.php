@@ -627,9 +627,7 @@ public function index(){
         return view('frontend.advocate.advocate_profile',$data);
     }
 
-    // ==========================================
 // VIDEO GALLERY - LIST PAGE
-// ==========================================
 
     public function videoList()
     {
