@@ -15,6 +15,7 @@ class CreateLawFirmMembersTable extends Migration
     {
         Schema::create('law_firm_members', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('law_firm_id')->nullable();
             $table->integer('user_id')->nullable();
             $table->timestamps();
         });

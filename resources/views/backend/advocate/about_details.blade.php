@@ -58,23 +58,45 @@
     <div class="card-body">
       <div class="row">
         <div class="col-md-12">
-          <!-- ফর্ম অ্যাকশন রুটটি aboutDetailsStore মেথড অনুযায়ী ঠিক করা হলো -->
           <form method="post" action="{{route('advocates.about.details.store',$details->id)}}" id="myForm">
             @csrf
             <div class="form-row">
               
               <div class="form-group col-md-12">
                 <label for="abouts">Description <span style="color:red;">*</span></label>
-                <!-- ডাটাবেজের abouts কলাম থেকে আনএসকেপড ব্লেড সিনট্যাক্সে ডাটা শো করানো হলো -->
                 <textarea name="abouts" id="abouts" class="form-control" rows="5">{!! @$details->abouts !!}</textarea>
               </div>
+              
               <div class="form-group col-md-12">
                 <label>Laws <span style="color:red;">*</span></label>
-
                 <select name="law_id[]" class="form-control form-control-sm select2" multiple required>
                   @foreach($laws as $law)
                   <option value="{{ $law->id }}" {{ in_array($law->id, $law_array) ? 'selected' : '' }}>
                       {{ $law->title_en }}
+                  </option>
+                  @endforeach
+                </select>
+              </div>
+
+              <!-- Practice Areas (নতুন) -->
+              <div class="form-group col-md-12">
+                <label>Practice Areas <span style="color:red;">*</span></label>
+                <select name="practice_id[]" class="form-control form-control-sm select2" multiple required>
+                  @foreach($practice_areas as $practice)
+                  <option value="{{ $practice->id }}" {{ in_array($practice->id, $practice_array) ? 'selected' : '' }}>
+                      {{ $practice->name }}
+                  </option>
+                  @endforeach
+                </select>
+              </div>
+
+              <!-- Locations / Districts (নতুন) -->
+              <div class="form-group col-md-12">
+                <label>Locations <span style="color:red;">*</span></label>
+                <select name="district_id[]" class="form-control form-control-sm select2" multiple required>
+                  @foreach($districts as $district)
+                  <option value="{{ $district->id }}" {{ in_array($district->id, $district_array) ? 'selected' : '' }}>
+                      {{ $district->name }}
                   </option>
                   @endforeach
                 </select>
@@ -94,7 +116,6 @@
 
   <script type="text/javascript">
   $(document).ready(function(){
-    // CKEDITOR আইডি 'abouts' এ বাইন্ড করা হলো
     var editor2 = CKEDITOR.replace('abouts');
     CKFinder.setupCKEditor(editor2, '/ckfinder/');
     

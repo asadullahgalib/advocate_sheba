@@ -55,34 +55,6 @@
           @include('backend.advocate.advocate_tab')
         </div>
       </div>
-
-      <div class="card-body">
-        <table class="table table-bordered table-sm">
-          <thead>
-          <tr>
-            <th width="8%">SL</th>
-            <th>Title</th>
-            <th>Image</th>
-            <th width="13%">Action</th>
-          </tr>
-          </thead>
-          <tbody>
-          @foreach($gallery_details as $key=> $value)
-            <tr class="text-center">
-              <td>{{ $key + 1 }}</td>
-              <td>{{ $value->title }}</td>
-              <td>
-                <img src="{{(!empty(@$value->image))?url('uploads/gallery_images/'.@$value->image):url('uploads/no_image.png')}}" width="50%">
-              </td>
-              <td>
-                <a href="{{ route('human-resource.hrm.slider.edit',$value->id) }}" class="btn btn-info btn-sm" title="Edit"><i class="fa fa-edit"></i></a>     
-                <a id="delete" href="{{ route('human-resource.hrm.slider.delete') }}" data-token="{{csrf_token()}}" data-id="{{$value->id}}" class="btn btn-danger btn-sm" title="Delete"><i class="fa fa-trash"></i></a>
-              </td>
-            </tr> 
-          @endforeach               
-          </tbody>
-        </table>
-      </div>
     
       <!-- নতুন ছবি আপলোড করার ফর্ম -->
       <div class="card-body">
@@ -140,7 +112,7 @@
           @endforeach
         @else
           <div class="col-md-12 text-center">
-            <p class="text-muted">এই ইউজারের গ্যালারিতে কোনো ছবি পাওয়া যায়নি।</p>
+            <p class="text-muted">এই ইউজারের গ্যালারিতে কোনো ছবি পাওয়া যায়নি।</p>
           </div>
         @endif
       </div>

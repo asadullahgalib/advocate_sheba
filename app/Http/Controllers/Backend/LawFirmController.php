@@ -6,11 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\LawFirm;
 use App\Model\User;
-use App\Model\District;
 use App\Model\LawFirmGallery;
+use App\Model\LawFirmMember;
 use Image;
 use Auth;
-use Illuminate\Support\Str; // স্লাগ জেনারেট করার জন্য
+use Illuminate\Support\Str;
 
 class LawFirmController extends Controller
 {
@@ -25,7 +25,6 @@ class LawFirmController extends Controller
     public function add()
     {
         $leaders = User::where('user_category', 'advocate')->get(); 
-        // $districts = District::orderBy('name', 'asc')->get(); // স্যার বলেছেন ডিস্ট্রিক্ট বাদ, তাই এটাও বাদ
         return view('backend.law_firms.law_firms_add', compact('leaders'));
     }
 
@@ -82,7 +81,6 @@ class LawFirmController extends Controller
         $data->leader_id = $request->leader_id;
         $data->firm_name = $request->firm_name;
         
-        // স্লাগ আগে থেকে না থাকলে জেনারেট হবে
         if (empty($data->slug)) {
             $slug = rand(0000, 9999);
             $data->slug = Str::slug($request->firm_name) . $slug . date('His');
@@ -117,10 +115,10 @@ class LawFirmController extends Controller
     }
 
     // ==========================================
-    // ট্যাব ভিত্তিক মেথড (Tabs) - এখানে id দিয়েই কাজ করছি 
-    // (ব্যাকএন্ডে id দিয়েই কাজ করা ভালো, ফ্রন্টএন্ডে slug ব্যবহার করব)
+    // ট্যাব ভিত্তিক মেথড (Tabs)
     // ==========================================
 
+    // Details Tab
     public function details($id)
     {
         $details = LawFirm::find($id);
@@ -128,65 +126,65 @@ class LawFirmController extends Controller
         return view('backend.law_firms.law_firm_details', compact('details', 'page_title'));
     }
 
+    // Abouts Tab (মেম্বার সহ)
     public function aboutDetails($id)
     {
         $details = LawFirm::find($id);
         $page_title = 'abouts';
-        return view('backend.law_firms.law_firm_abouts', compact('details', 'page_title'));
+
+        // যারা অন্য কোনো ফার্মে আছে, তাদের বাদ দিতে হবে
+        $taken_advocates = LawFirmMember::where('law_firm_id', '!=', $id)->pluck('user_id')->toArray();
+        
+        // শুধু ফ্রি অ্যাডভোকেটরা (যারা কোনো ফার্মে নেই)
+        $available_advocates = User::where('user_category', 'advocate')
+                                   ->whereNotIn('id', $taken_advocates)
+                                   ->get();
+                                   
+        // এই ফার্মের বর্তমান মেম্বারদের আইডি
+        $current_member_ids = LawFirmMember::where('law_firm_id', $id)->pluck('user_id')->toArray();
+        
+        // এই ফার্মের বর্তমান মেম্বার
+        $members = LawFirmMember::with('user')->where('law_firm_id', $id)->get();
+
+        return view('backend.law_firms.law_firm_abouts', compact('details', 'page_title', 'available_advocates', 'members', 'current_member_ids'));
     }
 
-    public function qualificationDetails($id)
-    {
-        $details = LawFirm::find($id);
-        $page_title = 'qualification';
-        return view('backend.law_firms.law_firm_qualification', compact('details', 'page_title'));
-    }
-
-    public function trainingDetails($id)
-    {
-        $details = LawFirm::find($id);
-        $page_title = 'training';
-        return view('backend.law_firms.law_firm_training', compact('details', 'page_title'));
-    }
-
-    public function membershipDetails($id)
-    {
-        $details = LawFirm::find($id);
-        $page_title = 'membership';
-        return view('backend.law_firms.law_firm_membership', compact('details', 'page_title'));
-    }
-
-    public function socialDetails($id)
-    {
-        $details = LawFirm::find($id);
-        $page_title = 'social';
-        return view('backend.law_firms.law_firm_social', compact('details', 'page_title'));
-    }
-
-    public function chamberDetails($id)
-    {
-        $details = LawFirm::find($id);
-        $page_title = 'chamber';
-        return view('backend.law_firms.law_firm_chamber', compact('details', 'page_title'));
-    }
-
-    public function mapDetails($id)
-    {
-        $details = LawFirm::find($id);
-        $page_title = 'map';
-        return view('backend.law_firms.law_firm_map', compact('details', 'page_title'));
-    }
-
-    // ==========================================
-    // ডাটা সেভ (Store) করার মেথডগুলো
-    // ==========================================
-    
+    // Abouts Store (একদম Advocate-এর মতো)
     public function aboutsStore(Request $request, $id)
     {
         $data = LawFirm::find($id);
         $data->abouts = $request->abouts;
         $data->save();
-        return redirect()->back()->with('success', 'Abouts updated successfully');
+
+        // অ্যাডভোকেট লিস্ট
+        $advocates = $request->user_id;
+
+        // আগের মেম্বার ডিলিট
+        if(!empty($advocates)){
+           LawFirmMember::where('law_firm_id', $id)->delete();
+        }
+
+        // নতুন মেম্বার অ্যাড
+        if(!empty($advocates)){
+            foreach ($advocates as $adv) {
+                $member = new LawFirmMember();
+                $member->law_firm_id = $id;
+                $member->user_id = $adv;
+                $member->save();
+            }
+        }
+
+        return redirect()->back()->with('success', 'Abouts and Members updated successfully');
+    }
+
+    // ==========================================
+    // অন্যান্য ট্যাবের মেথড (Qualification, Training, etc)
+    // ==========================================
+    public function qualificationDetails($id)
+    {
+        $details = LawFirm::find($id);
+        $page_title = 'qualification';
+        return view('backend.law_firms.law_firm_qualification', compact('details', 'page_title'));
     }
 
     public function qualificationStore(Request $request, $id)
@@ -197,12 +195,26 @@ class LawFirmController extends Controller
         return redirect()->back()->with('success', 'Qualification updated successfully');
     }
 
+    public function trainingDetails($id)
+    {
+        $details = LawFirm::find($id);
+        $page_title = 'training';
+        return view('backend.law_firms.law_firm_training', compact('details', 'page_title'));
+    }
+
     public function trainingStore(Request $request, $id)
     {
         $data = LawFirm::find($id);
         $data->training = $request->training;
         $data->save();
         return redirect()->back()->with('success', 'Training updated successfully');
+    }
+
+    public function membershipDetails($id)
+    {
+        $details = LawFirm::find($id);
+        $page_title = 'membership';
+        return view('backend.law_firms.law_firm_membership', compact('details', 'page_title'));
     }
 
     public function membershipStore(Request $request, $id)
@@ -213,12 +225,26 @@ class LawFirmController extends Controller
         return redirect()->back()->with('success', 'Membership updated successfully');
     }
 
+    public function socialDetails($id)
+    {
+        $details = LawFirm::find($id);
+        $page_title = 'social';
+        return view('backend.law_firms.law_firm_social', compact('details', 'page_title'));
+    }
+
     public function socialStore(Request $request, $id)
     {
         $data = LawFirm::find($id);
         $data->social = $request->social;
         $data->save();
         return redirect()->back()->with('success', 'Social updated successfully');
+    }
+
+    public function chamberDetails($id)
+    {
+        $details = LawFirm::find($id);
+        $page_title = 'chamber';
+        return view('backend.law_firms.law_firm_chamber', compact('details', 'page_title'));
     }
 
     public function chamberStore(Request $request, $id)
@@ -229,6 +255,13 @@ class LawFirmController extends Controller
         return redirect()->back()->with('success', 'Chamber updated successfully');
     }
 
+    public function mapDetails($id)
+    {
+        $details = LawFirm::find($id);
+        $page_title = 'map';
+        return view('backend.law_firms.law_firm_map', compact('details', 'page_title'));
+    }
+
     public function mapStore(Request $request, $id)
     {
         $data = LawFirm::find($id);
@@ -237,11 +270,9 @@ class LawFirmController extends Controller
         return redirect()->back()->with('success', 'Map updated successfully');
     }
 
-        // ==========================================
-    // Photo Gallery মেথডসমূহ
     // ==========================================
-
-    // গ্যালারি লিস্ট এবং অ্যাড পেজ (একই পেজে)
+    // Photo Gallery
+    // ==========================================
     public function galleryDetails($id)
     {
         $details = LawFirm::find($id);
@@ -250,7 +281,6 @@ class LawFirmController extends Controller
         return view('backend.law_firms.law_firm_gallery', compact('details', 'gallery_details', 'page_title'));
     }
 
-    // নতুন ছবি আপলোড
     public function galleryDetailsStore(Request $request, $id)
     {
         $this->validate($request, [
@@ -279,7 +309,6 @@ class LawFirmController extends Controller
         return redirect()->back()->with('success', 'Gallery image uploaded successfully');
     }
 
-    // ছবি ডিলিট
     public function galleryDetailsDelete(Request $request)
     {
         $gallery = LawFirmGallery::find($request->id);

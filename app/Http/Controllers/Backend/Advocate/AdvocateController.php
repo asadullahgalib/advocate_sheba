@@ -50,18 +50,19 @@ class AdvocateController extends Controller
         return view('backend.advocate.advocate_view',$data);
     }
 
+    // ২. Add Form (id = 3 wala designation dropdown e show hobe na)
     public function add()
     {       
-        $data['designations'] = Designation::all();
+        $data['designations'] = Designation::whereNotIn('id', [4])->get();
         $data['departments'] = Department::all();
         return view('backend.advocate.advocate_add', $data);
     }
 
-    // ৪. Edit Form
+    // ৪. Edit Form (same form, tai ekhaneo id = 3 bad)
     public function edit($id)
     {
         $data['editData'] = User::find($id);
-        $data['designations'] = Designation::all();
+        $data['designations'] = Designation::whereNotIn('id', [4])->get();
         $data['departments'] = Department::all();
         return view('backend.advocate.advocate_add', $data);
     }
@@ -271,7 +272,7 @@ class AdvocateController extends Controller
         return redirect()->back()->with('success', 'Official details and image updated successfully!');
     }
 
-    // ৮. About Details
+      // ৮. About Details
     public function aboutDetails($id) 
     {
         $data['details'] = User::find($id);
@@ -281,19 +282,31 @@ class AdvocateController extends Controller
         $data['laws'] = Law::all();
         $data['page_title'] = 'abouts';
 
+        // Laws এর ডাটা
         $data['law_array'] = AdvocateLaw::where('user_id', $id)
             ->pluck('law_id')
+            ->toArray();
+
+        // Practice Areas এর ডাটা
+        $data['practice_array'] = AdvocatePracticeArea::where('user_id', $id)
+            ->pluck('practice_id')
+            ->toArray();
+
+        // Locations (Districts) এর ডাটা
+        $data['district_array'] = AdvocateLocation::where('user_id', $id)
+            ->pluck('district_id')
             ->toArray();
 
         return view('backend.advocate.about_details', $data);
     }
 
-    public function aboutDetailsStore(Request $request, $id) 
+     public function aboutDetailsStore(Request $request, $id) 
     {
         $data = User::find($id);
         $data->abouts = $request->abouts;
         $data->save();
 
+        // ================= Laws =================
         $law = $request->law_id;
         if(!empty($law)){
            AdvocateLaw::where('user_id',$id)->delete();
@@ -305,6 +318,36 @@ class AdvocateController extends Controller
                 $mylaw->user_id = $id;
                 $mylaw->law_id = $lw;
                 $mylaw->save();
+            }
+        }
+
+        // ================= Practice Areas =================
+        $practice = $request->practice_id;
+        if(!empty($practice)){
+           AdvocatePracticeArea::where('user_id',$id)->delete();
+        }
+
+        if(!empty($practice)){
+            foreach ($practice as $pr) {
+                $mypractice = new AdvocatePracticeArea();
+                $mypractice->user_id = $id;
+                $mypractice->practice_id = $pr;
+                $mypractice->save();
+            }
+        }
+
+        // ================= Locations (Districts) =================
+        $district = $request->district_id;
+        if(!empty($district)){
+           AdvocateLocation::where('user_id',$id)->delete();
+        }
+
+        if(!empty($district)){
+            foreach ($district as $dis) {
+                $mylocation = new AdvocateLocation();
+                $mylocation->user_id = $id;
+                $mylocation->district_id = $dis;
+                $mylocation->save();
             }
         }
 
