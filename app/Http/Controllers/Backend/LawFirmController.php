@@ -318,4 +318,25 @@ class LawFirmController extends Controller
         $gallery->delete();
         return redirect()->back()->with('success', 'Image deleted successfully!');
     }
+
+    // Office Hour Details
+    public function officeHourDetails($id)
+    {
+        $data['page_title'] = 'office-hour';
+        $data['details'] = LawFirm::findOrFail($id);
+
+        return view('backend.law_firms.office_hour', $data);
+    }
+
+    // Office Hour Store
+    public function officeHourStore(Request $request, $id)
+    {
+        $lawFirm = LawFirm::findOrFail($id);
+
+        $lawFirm->office_hour = $request->office_hour;
+        $lawFirm->updated_by = Auth::user()->id;
+        $lawFirm->save();
+
+        return redirect()->back()->with('success', 'Office Hour Updated Successfully');
+    }
 }

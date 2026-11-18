@@ -35,6 +35,7 @@ use App\Model\Practice;
 use App\Model\Law;
 use App\Exports\EmployeeExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Str;
 use DB;
 use PDF;
 use Auth;
@@ -80,8 +81,13 @@ class AdvocateController extends Controller
         $user->status = '1';
         $user->role = '2';
         $user->name = $request->name;
+        $slug = rand(0000, 9999);
+        $user->slug = Str::slug($request->name) . $slug . date('His');
         $user->name_bn = $request->name_bn;
         $user->email = $request->email;
+        $user->short_qualification = $request->short_qualification;
+        $user->enrollment_no = $request->enrollment_no;
+        $user->bar_association = $request->bar_association;
         $user->employee_type = $request->employee_type;
         $user->booking_status = $request->booking_status;
         $user->mobile = $request->mobile;
@@ -127,7 +133,7 @@ class AdvocateController extends Controller
         return redirect()->route('advocates.view')->with('success','Data inserted successfully!');
     }
 
-    // ৫. Update Data
+        // ৫. Update Data
     public function update(Request $request, $id)
     {
         $user = User::find($id);
@@ -136,8 +142,18 @@ class AdvocateController extends Controller
         ]);
         
         $user->name = $request->name;
+
+        // স্লাগ জেনারেট (যদি আগে থেকে না থাকে)
+        if (empty($user->slug)) {
+            $slug = rand(0000, 9999);
+            $user->slug = Str::slug($request->name) . $slug . date('His');
+        }
+
         $user->name_bn = $request->name_bn;
         $user->email = $request->email;
+        $user->short_qualification = $request->short_qualification;
+        $user->enrollment_no = $request->enrollment_no;
+        $user->bar_association = $request->bar_association;
         $user->employee_type = $request->employee_type;
         $user->booking_status = $request->booking_status;
         $user->mobile = $request->mobile;
@@ -157,38 +173,23 @@ class AdvocateController extends Controller
 
         if ($request->hasFile('image')) {
 
-            /*
-            |--------------------------------------------------------------------------
-            | Old Image Delete
-            |--------------------------------------------------------------------------
-            | শুধু তখনই unlink হবে যখন database-এ পুরাতন image-এর নাম আছে
-            */
+            // পুরনো ছবি ডিলিট
             if (!empty($user->image)) {
-
                 $oldImage = public_path('uploads/advocates_images/' . $user->image);
-
                 if (file_exists($oldImage) && is_file($oldImage)) {
                     unlink($oldImage);
                 }
             }
 
-            /*
-            |--------------------------------------------------------------------------
-            | New Image Upload
-            |--------------------------------------------------------------------------
-            */
+            // নতুন ছবি আপলোড
             $image = $request->file('image');
-
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-
             $destinationPath = public_path('uploads/advocates_images/');
 
-            // Resize + Save
             Image::make($image)
                 ->resize(300, 300)
                 ->save($destinationPath . $imageName);
 
-            // DB তে নতুন image name save
             $user->image = $imageName;
         }
 
@@ -219,6 +220,7 @@ class AdvocateController extends Controller
     }
 
     // ৭.২ Official Details Store (POST)
+       // ৭.২ Official Details Store (POST)
     public function officialDetailsStore(Request $request, $id) 
     {
         $user = User::find($id);
@@ -229,6 +231,11 @@ class AdvocateController extends Controller
         $user->email = $request->email;
         $user->experience = $request->experience;
         $user->appointment_contact = $request->appointment_contact;
+        
+        // নতুন ৩টি ফিল্ড সেভ করা হচ্ছে
+        $user->short_qualification = $request->short_qualification;
+        $user->enrollment_no = $request->enrollment_no;
+        $user->bar_association = $request->bar_association;
 
         if ($request->hasFile('image')) {
 
@@ -403,6 +410,26 @@ class AdvocateController extends Controller
         $data->membership = $request->membership;
         $data->save();
         return redirect()->back()->with('success', 'Membership details updated successfully');
+    }
+
+    // Office Hour Details
+    public function officeHourDetails($id)
+    {
+        $data['page_title'] = 'office-hour';
+        $data['details'] = User::findOrFail($id);
+
+        return view('backend.advocate.office_hour', $data);
+    }
+
+    // Office Hour Details Store
+    public function officeHourDetailsStore(Request $request, $id)
+    {
+        $advocate = User::findOrFail($id);
+
+        $advocate->office_hour = $request->office_hour;
+        $advocate->save();
+
+        return redirect()->back()->with('success', 'Office Hour Updated Successfully');
     }
 
     // ১২. Engagement Details

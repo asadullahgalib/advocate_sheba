@@ -17,4 +17,7 @@
     <a href="{{route('law-firms.chamber', @$details->id)}}" class="btn btn-primary btn-sm {{(@$page_title=='chamber')?'btn_active':''}}" title="Chamber"> Chamber</a>
     <a href="{{route('law-firms.map', @$details->id)}}" class="btn btn-primary btn-sm {{(@$page_title=='map')?'btn_active':''}}" title="Map"> Google Map</a>
     <a href="{{ route('law-firms.gallery.details', @$details->id) }}" class="btn btn-primary btn-sm {{(@$page_title=='gallery')?'btn_active':''}}" title="Gallery"> Photo Gallery</a>
+    <a href="{{route('law-firms.office-hour', @$details->id)}}"
+   class="btn btn-primary btn-sm {{(@$page_title=='office-hour')?'btn_active':''}}"
+   title="Office Hour"> Office Hour</a>
 </div>

@@ -385,6 +385,7 @@ Route::group(['middleware'=>['auth','admin']],function(){
 		    Route::get('/social/{id}','Backend\LawFirmController@socialDetails')->name('law-firms.social');
 		    Route::get('/chamber/{id}','Backend\LawFirmController@chamberDetails')->name('law-firms.chamber');
 		    Route::get('/map/{id}','Backend\LawFirmController@mapDetails')->name('law-firms.map');
+		    Route::get('/office-hour/{id}','Backend\LawFirmController@officeHourDetails')->name('law-firms.office-hour');
 
 		    // Tabs Store Routes
 		    Route::post('/abouts-store/{id}','Backend\LawFirmController@aboutsStore')->name('law-firms.abouts.store');
@@ -394,6 +395,7 @@ Route::group(['middleware'=>['auth','admin']],function(){
 		    Route::post('/social-store/{id}','Backend\LawFirmController@socialStore')->name('law-firms.social.store');
 		    Route::post('/chamber-store/{id}','Backend\LawFirmController@chamberStore')->name('law-firms.chamber.store');
 		    Route::post('/map-store/{id}','Backend\LawFirmController@mapStore')->name('law-firms.map.store');
+		    Route::post('/office-hour-store/{id}','Backend\LawFirmController@officeHourStore')->name('law-firms.office-hour.store');
 
 		    // Law Firm Photo Gallery Routes
 			Route::get('/gallery/details/{id}', 'Backend\LawFirmController@galleryDetails')->name('law-firms.gallery.details');
@@ -528,6 +530,11 @@ Route::group(['middleware'=>['auth','admin']],function(){
 
 			Route::get('/map/details/{id}', 'Backend\Advocate\AdvocateController@mapDetails')->name('advocates.map.details');
 			Route::post('/map/details/store/{id}', 'Backend\Advocate\AdvocateController@mapDetailsStore')->name('advocates.map.details.store');
+
+			// Office Hour
+			Route::get('/office-hour/details/{id}', 'Backend\Advocate\AdvocateController@officeHourDetails')->name('advocates.office-hour.details');
+
+			Route::post('/office-hour/details/store/{id}', 'Backend\Advocate\AdvocateController@officeHourDetailsStore')->name('advocates.office-hour.details.store');
 
 			// Photo Gallery Routes
 			Route::get('/gallery/details/{id}', 'Backend\Advocate\AdvocateController@galleryDetails')->name('advocates.gallery.details');

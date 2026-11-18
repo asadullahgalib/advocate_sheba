@@ -304,59 +304,85 @@ class FrontenController extends Controller
 
 // Legal Information ends
 
-public function index(){
+    public function index(){
 
-    $data['categories']     = Category::all();
-    $data['departments']    = Department::orderBy('sort','asc')->get();
-    $data['sliders']        = Slider::all();
-    $data['logo']           = Logo::first();
-    $data['doctors']        = User::where('user_category','advocate')->where('status','1')->orderBy('sort','asc')->get()->take(20);
+        $data['categories']     = Category::all();
+        $data['departments']    = Department::orderBy('sort','asc')->get();
+        $data['sliders']        = Slider::all();
+        $data['logo']           = Logo::first();
+        $data['doctors']        = User::where('user_category','advocate')->where('status','1')->orderBy('sort','asc')->get()->take(20);
 
-    $data['legalArticles'] = NewsEvent::with('law')
-        ->orderBy('date', 'desc')
-        ->take(4)
-        ->get();
+        $data['legalArticles'] = NewsEvent::with('law')
+            ->orderBy('date', 'desc')
+            ->take(4)
+            ->get();
 
-    // Legal Information Data (home-এ সর্বোচ্চ ৪টা কার্ড)
-    $data['legalInformations'] = LegalInformation::orderBy('id', 'asc')
-        ->take(4)
-        ->get();
+        // Legal Information Data (home-এ সর্বোচ্চ ৪টা কার্ড)
+        $data['legalInformations'] = LegalInformation::orderBy('id', 'asc')
+            ->take(4)
+            ->get();
 
-    // FAQ Data
-    $data['faqs'] = Faq::orderBy('serial', 'asc')->get();
+        // FAQ Data
+        $data['faqs'] = Faq::orderBy('serial', 'asc')->get();
 
-    // Trusted Platform Banner Data (Term table theke, id = 23)
-    $data['trustedTerm'] = Term::find(10);
+        // Trusted Platform Banner Data (Term table theke, id = 23)
+        $data['trustedTerm'] = Term::find(10);
 
-    // Video Gallery Data
-    $data['videos'] = VideoGallery::orderBy('id', 'desc')
-        ->take(4)
-        ->get();
+        // Video Gallery Data
+        $data['videos'] = VideoGallery::orderBy('id', 'desc')
+            ->take(4)
+            ->get();
 
-    $data['documents'] = Document::orderBy('id','desc')
-        ->take(12)
-        ->get();
+        $data['documents'] = Document::orderBy('id','desc')
+            ->take(12)
+            ->get();
 
-    // Notice Bar (Promotion) Data
-    $data['promotions'] = Promotion::where('status', 1)
-        ->orderBy('serial', 'asc')
-        ->orderBy('id', 'desc')
-        ->get();
+        // Notice Bar (Promotion) Data
+        $data['promotions'] = Promotion::where('status', 1)
+            ->orderBy('serial', 'asc')
+            ->orderBy('id', 'desc')
+            ->get();
 
-    $data['page_type'] = 'home';
+        $data['page_type'] = 'home';
 
-    // Legal Services Data (Home Page Maximum 12 Cards)
-    $data['laws'] = Law::orderBy('id', 'asc')
-        ->take(10)
-        ->get();
+        // Legal Services Data (Home Page Maximum 12 Cards)
+        $data['laws'] = Law::orderBy('id', 'asc')
+            ->take(10)
+            ->get();
 
-    $data['adds'] = Add::orderBy('serial', 'asc')
-        ->orderBy('id', 'desc')
-        ->get()
-        ->groupBy('add_position_id');
+        $data['adds'] = Add::orderBy('serial', 'asc')
+            ->orderBy('id', 'desc')
+            ->get()
+            ->groupBy('add_position_id');
 
-    return view('frontend.layouts.home', $data);
-}
+
+        // ==========================================
+        // Dynamic Advocate, Consultant, Barrister
+        // ==========================================
+        
+        // ১. Advocate (ধরে নিচ্ছি designation_id = 1)
+        $data['advocates'] = User::where('user_category', 'advocate')
+                         ->where('designation_id', 5)
+                         ->orderBy('id', 'desc')
+                         ->take(10)
+                         ->get();
+
+        // ২. Legal Consultant (ধরে নিচ্ছি designation_id = 2)
+        $data['consultants'] = User::where('user_category', 'advocate')
+                           ->where('designation_id', 3)
+                           ->orderBy('id', 'desc')
+                           ->take(10)
+                           ->get();
+
+        // ৩. Barrister (ধরে নিচ্ছি designation_id = 3)
+        $data['barristers'] = User::where('user_category', 'advocate')
+                          ->where('designation_id', 2)
+                          ->orderBy('id', 'desc')
+                          ->take(10)
+                          ->get();
+
+        return view('frontend.layouts.home', $data);
+    }
 
         // Advocate = designation id 5
     public function advocateList(){

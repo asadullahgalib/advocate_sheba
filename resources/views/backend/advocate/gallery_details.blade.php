@@ -70,7 +70,7 @@
                 </div>
 
                 <div class="form-group col-md-4">
-                  <label for="image">Upload Gallery Photo <span style="color:red;">*</span></label>
+                  <label for="image">Upload Gallery Photo <span style="color:red;">(500px X 500px)*</span></label>
                   <input type="file" name="image" id="image" class="form-control form-control-sm" required>
                 </div>
 

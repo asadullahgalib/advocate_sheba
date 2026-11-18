@@ -39,13 +39,7 @@
                   {{($errors->has('mobile'))?($errors->first('mobile')):''}} 
                 </font>                 
               </div>
-              <!-- <div class="form-group col-md-12">
-                <label for="name">Qualification <span style="color:red">*</span></label>
-                <input type="text" name="qualification" class="form-control form-control-sm" value="{{@$editData->qualification}}"> 
-                <font style="color: red"> 
-                  {{($errors->has('qualification'))?($errors->first('qualification')):''}} 
-                </font>                 
-              </div> -->
+              
               <div class="form-group col-md-3">
                 <label for="designation_id">Designation <span style="color:red">*</span></label>
                 <select name="designation_id" class="form-control form-control-sm select2">
@@ -74,37 +68,24 @@
               <div class="form-group col-sm-2" style="z-index: 100;">
                 <img id="showImage" src="{{(!empty($editData->image)) ? url('uploads/advocates_images/'.$editData->image) : url('uploads/no_image.png')}}" style="width: 100px; height: 80px; object-fit: cover; border:1px solid #000;" class="form-control">
               </div>
-              <!-- <div class="form-group col-md-3">
-                <label>Department <span style="color:red">*</span></label>
-                <select name="department_id" class="form-control select2">
-                  <option value="">Select Department</option>
-                  @foreach($departments as $department)
-                    <option value="{{ $department->id }}" {{(@$editData->department_id == $department->id)?"selected":""}}>{{ $department->name }}</option>
-                  @endforeach
-                </select> 
-                <font style="color: red"> 
-                  {{($errors->has('department_id'))?($errors->first('department_id')):''}} 
-                </font>                 
-              </div> -->
-              <!-- <div class="form-group col-md-3">
-                <label for="join_date">Join Date </label>
-                <input type="text" name="join_date" class="form-control form-control-sm singledatepicker" placeholder="DD-MM-YYYY" value="{{ @$editData->join_date }}" autocomplete="off"> 
-                <font style="color: red"> 
-                  {{($errors->has('join_date'))?($errors->first('join_date')):''}} 
-                </font>                 
-              </div> -->
-              <!-- <div class="form-group col-md-3">
-                <label>BMDC No <span style="color:red">*</span></label>
-                <input type="text" name="mbbs_fcp" class="form-control form-control-sm" value="{{ @$editData->mbbs_fcp }}"> 
-              </div> -->
-              <!-- <div class="form-group col-md-2">
-                <label>Consultation Fee <span style="color:red">*</span></label>
-                <input type="text" name="consultation_fee" class="form-control form-control-sm" value="{{ @$editData->consultation_fee }}"> 
-              </div> -->
-              <!-- <div class="form-group col-md-2">
-                <label>Follow-up Fee <span style="color:red">*</span></label>
-                <input type="text" name="follow_up_fee" class="form-control form-control-sm" value="{{ @$editData->follow_up_fee }}"> 
-              </div> -->
+
+              <!-- ================= নতুন ৩টি ফিল্ড শুরু ================= -->
+              <div class="form-group col-md-4">
+                <label for="short_qualification">Short Qualification (For Card) <span style="color:red">*</span></label>
+                <input type="text" name="short_qualification" class="form-control form-control-sm" placeholder="e.g. LL.B, LL.M" value="{{ @$editData->short_qualification }}">
+              </div>
+
+              <div class="form-group col-md-4">
+                <label for="enrollment_no">Enrollment No <span style="color:red">*</span></label>
+                <input type="text" name="enrollment_no" class="form-control form-control-sm" placeholder="Enter Enrollment No" value="{{ @$editData->enrollment_no }}">
+              </div>
+
+              <div class="form-group col-md-4">
+                <label for="bar_association">Bar Association <span style="color:red">*</span></label>
+                <input type="text" name="bar_association" class="form-control form-control-sm" placeholder="Enter Bar Association" value="{{ @$editData->bar_association }}">
+              </div>
+              <!-- ================= নতুন ৩টি ফিল্ড শেষ ================= -->
+              
               <div class="form-group col-md-5">
                 <label>Total Experience <span style="color:red">*</span></label>
                 <input type="text" name="experience" class="form-control form-control-sm" value="{{ @$editData->experience }}"> 
@@ -113,41 +94,6 @@
                 <label>IMO/What's App </label>
                 <input type="text" name="appointment_contact" class="form-control form-control-sm" value="{{ @$editData->appointment_contact }}" placeholder="Contact No"> 
               </div>
-              <!-- @if(@Auth::user()->role=='1')
-              <div class="form-group col-md-3">
-                <label for="name">Employee Type <span style="color:red">*</span></label>
-                <select name="employee_type" class="form-control form-control-sm">
-                  <option value="">Select Type</option>
-                  <option value="1" {{(@$editData->employee_type == "1")?"selected":""}}>Internal</option>
-                  <option value="2" {{(@$editData->employee_type == "2")?"selected":""}}>External</option>
-                </select>
-              </div> -->
-              <!-- <div class="form-group col-md-3">
-                <label for="name">Booking Status <span style="color:red">*</span></label>
-                <select name="booking_status" class="form-control form-control-sm">
-                  <option value="">Select Type</option>
-                  <option value="1" {{(@$editData->booking_status == "1")?"selected":""}}>Yes</option>
-                  <option value="2" {{(@$editData->booking_status == "2")?"selected":""}}>No</option>
-                </select>
-              </div> -->
-              <!-- <div class="form-group col-md-3">
-                <label>Bkash No </label>
-                <input type="text" name="bkash_number" class="form-control form-control-sm" value="{{ @$editData->bkash_number }}"> 
-              </div> -->
-              <!-- <div class="form-group col-md-3">
-                <label>Nagad No </label>
-                <input type="text" name="nagad_number" class="form-control form-control-sm" value="{{ @$editData->nagad_number }}"> 
-              </div> -->
-              <!-- <div class="form-group col-md-3">
-                <label>Rocket No </label>
-                <input type="text" name="rocket_number" class="form-control form-control-sm" value="{{ @$editData->rocket_number }}"> 
-              </div> -->
-              <!-- <div class="form-group col-md-3">
-                <label>Sort Order </label>
-                <input type="number" name="sort" class="form-control form-control-sm" value="{{ @$editData->sort }}" required> 
-              </div> -->
-              
-              @endif
               
               <div class="form-group col-md-8">
                 <button type="submit" class="btn btn-primary btn-sm">@if(isset($editData)) Update @else Submit @endif</button>
@@ -171,47 +117,24 @@
 
     $('#MyForm').validate({
       rules:{
-        name:{
-          required:true
-        },
-        department_id:{
-          required:true
-        },
-        designation_id:{
-          required:true
-        },
-        email:{
-          required:true
-        },
-        mbbs_fcp:{
-          required:true
-        },
-        employee_type:{
-          required:true
-        },
-        booking_status:{
-          required:true
-        },
-        consultation_fee:{
-          required:true
-        },
-        follow_up_fee:{
-          required:true
-        },
-        qualification:{
-          required:true
-        },
-        experience:{
-          required:true
-        },
-        sort:{
-          required:true
-        },
-        work_place:{
-          required:true
-        }
+        name:{ required:true },
+        name_bn:{ required:true },
+        designation_id:{ required:true },
+        email:{ required:true, email:true },
+        short_qualification:{ required:true },
+        enrollment_no:{ required:true },
+        bar_association:{ required:true },
+        experience:{ required:true }
       },
       messages: {      
+        name: { required: "Please enter English name" },
+        name_bn: { required: "Please enter Bangla name" },
+        designation_id: { required: "Please select a designation" },
+        email: { required: "Please enter email address", email: "Please enter a valid email" },
+        short_qualification: { required: "Please enter short qualification" },
+        enrollment_no: { required: "Please enter enrollment no" },
+        bar_association: { required: "Please enter bar association" },
+        experience: { required: "Please enter total experience" }
       },
       errorElement: 'span',
       errorPlacement: function (error, element) {

@@ -82,6 +82,22 @@
               <td width="20%"><strong>Qualification</strong> </td>
               <td>: {{ @$details->qualification }}</td>
             </tr>
+
+            <!-- ================= নতুন ৩টি ফিল্ড শুরু ================= -->
+            <tr>
+              <td width="20%"><strong>Short Qualification</strong> </td>
+              <td>: {{ @$details->short_qualification }}</td>
+            </tr>
+            <tr>
+              <td width="20%"><strong>Enrollment No</strong> </td>
+              <td>: {{ @$details->enrollment_no }}</td>
+            </tr>
+            <tr>
+              <td width="20%"><strong>Bar Association</strong> </td>
+              <td>: {{ @$details->bar_association }}</td>
+            </tr>
+            <!-- ================= নতুন ৩টি ফিল্ড শেষ ================= -->
+
             <tr>
               <td width="20%"><strong>Experience</strong> </td>
               <td>: {{ @$details->experience }}</td>
@@ -107,11 +123,11 @@
             </tr>
             <tr>
               <td width="20%"><strong>Mother's Name</strong> </td>
-              <td>: {{$details->mname}}</td>
+              <td>: {{ @$details->mname }}</td>
+            </tr>
             <tr>
               <td width="20%"><strong>Date of Birth</strong> </td>
-              <td>: {{date('d-m-Y',strtotime(@$details->dob))}}</td>
-            </tr>
+              <td>: {{ date('d-m-Y',strtotime(@$details->dob)) }}</td>
             </tr>
             <tr>
               <td width="20%"><strong>Gender</strong> </td>

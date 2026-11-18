@@ -36,6 +36,7 @@
                     @csrf
                     <div class="form-group">
                         <label for="map">Location & Map (Iframe)</label>
+                        <!-- এখানে CKEditor এর class সরিয়ে সাধারণ form-control দেওয়া হলো -->
                         <textarea name="map" id="map" class="form-control" rows="5">{!! @$details->map !!}</textarea>
                     </div>
                     <button type="submit" class="btn btn-primary btn-sm">Update Map</button>
@@ -45,12 +46,4 @@
         </div>
     </div>
 </div>
-<!-- CKEditor -->
-<script type="text/javascript">
-  $(document).ready(function(){
-    var editor2 = CKEDITOR.replace('map');
-    CKFinder.setupCKEditor(editor2, '/ckfinder/');
-    editor2.on('change', function() { editor2.updateElement(); });
-  });
-</script>
 @endsection
