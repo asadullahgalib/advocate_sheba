@@ -333,7 +333,9 @@ public function index(){
         ->take(4)
         ->get();
 
-    $data['documents'] = Document::orderBy('id','desc')->get();
+    $data['documents'] = Document::orderBy('id','desc')
+        ->take(12)
+        ->get();
 
     // Notice Bar (Promotion) Data
     $data['promotions'] = Promotion::where('status', 1)

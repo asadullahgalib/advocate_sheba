@@ -135,9 +135,11 @@
 
     .document-title a {
         color: #111;
-        font-size: 16px;
+        font-size: 13px;
         font-weight: 500;
         text-decoration: none;
+        padding: 0px 20px;
+        text-align: center;
     }
 
     .document-link:hover .document-title a {
