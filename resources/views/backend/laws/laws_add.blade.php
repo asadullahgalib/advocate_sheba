@@ -38,7 +38,7 @@
                 <div class="form-row">
 
                     <!-- Law Title -->
-                    <div class="form-group col-md-12">
+                    <div class="form-group col-md-10">
                         <label for="title_en">
                             Title
                             <span style="color:red;">*</span>
@@ -49,6 +49,25 @@
                             id="title_en"
                             class="form-control form-control-sm"
                             value="{{ old('title_en', @$editData->title_en) }}"
+                            placeholder="Enter Law Title"
+                        >
+                        <font style="color: red"> 
+                          {{($errors->has('title_en'))?($errors->first('title_en')):''}} 
+                        </font>
+                    </div>
+
+                    <!-- Law Title -->
+                    <div class="form-group col-md-2">
+                        <label for="title_en">
+                            Sorting
+                            <span style="color:red;">*</span>
+                        </label>
+                        <input
+                            type="number"
+                            name="sort"
+                            id="sort"
+                            class="form-control form-control-sm"
+                            value="{{ old('sort', @$editData->sort) }}"
                             placeholder="Enter Law Title"
                         >
                     </div>

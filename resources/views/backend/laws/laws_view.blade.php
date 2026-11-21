@@ -27,8 +27,9 @@
 
                 <thead>
                     <tr class="text-center">
-                        <th>Sl.</th>
+                        <th>SL</th>
                         <th>Title</th>
+                        <th>Sorting</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -36,12 +37,16 @@
                 <tbody>
 
                     @foreach($allData as $key => $law)
+                    <?php
+                        $count_law = App\Model\LawDetail::where('law_id',$law->id)->count();
+                    ?>
 
                     <tr class="text-center">
 
                         <td>{{ $key + 1 }}</td>
 
                         <td>{{ $law->title_en }}</td>
+                        <td>{{ $law->sort }}</td>
 
                         <td>
 
@@ -53,6 +58,7 @@
                             </a>
 
                             <!-- Delete Button -->
+                            @if($count_law < 1)
                             <a id="delete"
                                href="{{ route('laws.delete') }}"
                                data-token="{{ csrf_token() }}"
@@ -61,6 +67,7 @@
                                title="Delete">
                                 <i class="fa fa-trash"></i>
                             </a>
+                            @endif
 
                         </td>
 

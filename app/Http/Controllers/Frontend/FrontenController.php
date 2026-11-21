@@ -266,16 +266,11 @@ class FrontenController extends Controller
     }
 
     
-        public function lawDetails($slug)
+    public function lawDetails($slug)
     {
         $data['categories'] = Category::all();
 
         $data['departments'] = Department::orderBy('sort', 'asc')->get();
-
-        $data['doctors'] = User::where('user_category', 'doctor')
-            ->where('department_id', '57')
-            ->where('status', '1')
-            ->paginate(8);
 
         $data['law'] = Law::with(['lawDetails' => function ($query) {
             $query->orderBy('serial', 'asc');
@@ -346,7 +341,7 @@ class FrontenController extends Controller
         $data['page_type'] = 'home';
 
         // Legal Services Data (Home Page Maximum 12 Cards)
-        $data['laws'] = Law::orderBy('id', 'asc')
+        $data['laws'] = Law::orderBy('sort', 'asc')
             ->take(10)
             ->get();
 

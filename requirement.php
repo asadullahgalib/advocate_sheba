@@ -134,3 +134,18 @@ header menu: videos add hobe
 18/11/2026:
 ===========
 1. Law Form & Documents Button.
+
+
+21/11/2026:
+============
+1. Practice Area er jonno meta hobe aita all practice area r jonno.
+2. Location er jonno meta hobe aita all location er jonno.
+3. Advocate er jonno meta hobe.
+4. Menu bar theke legal consultant thakbe na & kotaw o thakbe na.
+5. uporer white part(top bar) upore thakbe na.
+6. uporer top bar ta menu bar e chole asbe, search just icon hobe & tar pashe login & join us chole asbe.
+7. Profile theke Philosophy thakbe na badh hoye jabe.
+8. Profile Government engagement thakbe na badh hoye jabe.
+9. Profile photo gallery r niche related advocate hobe.
+10. Law firm profile theke Philosophy & Social engagement thakbe na badh hoye jabe.
+11. Law er modde sort hobe & sort wise data asbe.

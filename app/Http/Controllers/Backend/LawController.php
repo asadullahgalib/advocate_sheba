@@ -13,7 +13,7 @@ class LawController extends Controller
     // ১. View List
     public function view()
     {
-        $allData = Law::all();
+        $allData = Law::orderBy('sort','asc')->get();
         return view('backend.laws.laws_view', compact('allData'));
     }
 
@@ -27,7 +27,7 @@ class LawController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title_en'         => 'required|string|max:255',
+            'title_en'         => 'required|string|max:255|unique:laws,title_en',
             'description_en'   => 'required',
             'meta_title'       => 'required|string|max:255',
             'meta_description' => 'required|string',
@@ -38,6 +38,7 @@ class LawController extends Controller
 
         $data = new Law();
         $data->title_en = $request->title_en;
+        $data->sort = $request->sort;
         $data->slug = Str::slug($request->title_en) . $slug . date('His');
         $data->description_en = $request->description_en;
 
@@ -64,17 +65,19 @@ class LawController extends Controller
     // ৫. Update Data
     public function update(Request $request, $id)
     {
+        $data = Law::find($id);
+        
         $this->validate($request, [
-            'title_en'         => 'required|string|max:255',
+            'title_en'         => 'required|string|max:255|unique:laws,title_en,'.$data->id,
             'description_en'   => 'required',
             'meta_title'       => 'required|string|max:255',
             'meta_description' => 'required|string',
             'meta_keyword'     => 'required|string',
         ]);
 
-        $data = Law::find($id);
 
         $data->title_en = $request->title_en;
+        $data->sort = $request->sort;
 
         // Slug আগে থেকে থাকলে পরিবর্তন হবে না
         if (empty($data->slug)) {
