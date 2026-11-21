@@ -379,45 +379,18 @@ class FrontenController extends Controller
         return view('frontend.layouts.home', $data);
     }
 
-        // Advocate = designation id 5
-    public function advocateList(){
-        $data = $this->professionalPageData(5, 'advocate');
-        return view('frontend.single_pages.professional_info', $data);
-    }
-
-    // Barristers = designation id 2
-    public function barristerList(){
-        $data = $this->professionalPageData(2, 'barrister');
-        return view('frontend.single_pages.professional_info', $data);
-    }
-
-    // Legal Consultants = designation id 3
-    public function consultantList(){
-        $data = $this->professionalPageData(3, 'consultant');
-        return view('frontend.single_pages.professional_info', $data);
-    }
-
-    // Law Firms / Chambers = designation id 4
-    public function lawFirmList(){
-        $data = $this->professionalPageData(4, 'law_firm');
-        return view('frontend.single_pages.professional_info', $data);
-    }
-
-    // চারটা পেজের common ডাটা এখানে আনা হয়
-    private function professionalPageData($designationId, $pageType){
-        $data['categories']  = Category::all();
-        $data['departments'] = Department::orderBy('sort','asc')->get();
-        $data['doctors']     = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
-        $data['page_type']   = $pageType;
-        $data['designation'] = Designation::where('id', $designationId)->first();
-        $data['designation_details'] = LegalProfessionalDetail::where('designation_id', $designationId)->orderBy('sort','asc')->get();
-        return $data;
-    }
     
         public function findAdvocateList(){
         $data['categories']     = Category::all();
         $data['departments']    = Department::orderBy('sort','asc')->get();
         $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
+
+        $data['advocates'] = User::with('designation')
+        ->where('user_category', 'advocate')
+        ->where('status', 1)
+        ->where('designation_id', 5)
+        ->orderBy('id', 'desc')
+        ->paginate(12);
         
         // নতুন যোগ করা হলো: Legal Articles এবং Videos ডাটা
         $data['legalArticles'] = NewsEvent::with('law')
@@ -440,6 +413,13 @@ class FrontenController extends Controller
         $data['departments']    = Department::orderBy('sort','asc')->get();
         $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
         $data['page_type'] = 'find_barrister';
+
+        $data['advocates'] = User::with('designation')
+        ->where('user_category', 'advocate')
+        ->where('status', 1)
+        ->where('designation_id', 2)
+        ->orderBy('id', 'desc')
+        ->paginate(12);
         // নতুন যোগ করা হলো: Legal Articles এবং Videos ডাটা
         $data['legalArticles'] = NewsEvent::with('law')
             ->orderBy('date', 'desc')
@@ -460,6 +440,13 @@ class FrontenController extends Controller
         $data['departments']    = Department::orderBy('sort','asc')->get();
         $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
         $data['page_type'] = 'find_consultant';
+
+        $data['advocates'] = User::with('designation')
+        ->where('user_category', 'advocate')
+        ->where('status', 1)
+        ->where('designation_id', 3)
+        ->orderBy('id', 'desc')
+        ->paginate(12);
 
         // নতুন যোগ করা হলো: Legal Articles এবং Videos ডাটা
         $data['legalArticles'] = NewsEvent::with('law')
@@ -650,6 +637,44 @@ class FrontenController extends Controller
         return view('frontend.advocate.advocate_profile',$data);
     }
 
+    public function advocateGroupList($type)
+    {
+        // type অনুযায়ী designation_id ও শিরোনাম (হোমের index() এর সাথে মিল রাখা হয়েছে)
+        $types = [
+            'advocates'   => [
+                'designation_id' => 5,
+                'title'          => 'Legal Advocates',
+                'subtitle'       => 'Explore Our Legal Advocates',
+            ],
+            'barristers'  => [
+                'designation_id' => 2,
+                'title'          => 'Verified Legal Barristers',
+                'subtitle'       => 'Explore Our Legal Barristers',
+            ],
+            'consultants' => [
+                'designation_id' => 3,
+                'title'          => 'Legal Consultants',
+                'subtitle'       => 'Explore Our Legal Consultants',
+            ],
+        ];
+
+        if (!isset($types[$type])) {
+            abort(404);
+        }
+
+        $data['advocates'] = User::with('designation')
+            ->where('user_category', 'advocate')
+            ->where('status', 1)
+            ->where('designation_id', $types[$type]['designation_id'])
+            ->orderBy('id', 'desc')
+            ->paginate(12);
+
+        $data['list_title']    = $types[$type]['title'];
+        $data['list_subtitle'] = $types[$type]['subtitle'];
+        $data['page_type']     = 'advocate_list';
+
+        return view('frontend.advocate.advocate_list', $data);
+    }
 // VIDEO GALLERY - LIST PAGE
 
     public function videoList()

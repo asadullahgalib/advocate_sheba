@@ -1,97 +1,263 @@
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/rating.css')}}">
 
 <style>
-    /* Registration / Login pill button (top bar) */
-    .header-info .auth-pill-btn {
-        display: inline-flex;
+    /* ===== Header Bar (ছোট ও minimal) ===== */
+    .header-style-1 .hs-header-bar,
+    .header-style-1 .sticky-bar.stick.hs-header-bar {
+        background: #103C6D !important;
+        border-top: 0 !important;
+        border-bottom: 0 !important;
+    }
+
+    /* চওড়া সীমিত: মাঝখানে থাকবে */
+    .hs-header-bar .container {
+        max-width: 1320px !important;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .hs-header-bar .hs-nav-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        gap: 16px;
+        min-height: 72px;
+    }
+
+    /* Logo */
+    .hs-header-bar .hs-logo {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+    }
+
+    .hs-header-bar .hs-logo img {
+        max-height: 70px;
+        width: auto;
+        display: block;
+    }
+
+    /* Menu */
+    .hs-header-bar .hs-menu {
+        flex: 1 1 auto;
+        display: flex;
+        justify-content: center;
+    }
+
+    .hs-header-bar .hs-menu ul {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: nowrap;
+        gap: 0;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .hs-header-bar .hs-menu ul li {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* --hs-pad = লিংকের দুই পাশের ফাঁকা (কমালে লিংক আরও কাছাকাছি হবে) */
+    .hs-header-bar .hs-menu ul li a {
+        --hs-pad: 11px;
+        position: relative;
+        display: block;
+        padding: 8px var(--hs-pad) !important;
+        color: #ffffff !important;
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 0;
+        line-height: 1.3 !important;
+        white-space: nowrap;
+        border-bottom: 0 !important;
+        text-decoration: none !important;
+        transition: color 0.25s ease;
+    }
+
+    /* ছোট সোনালি দাগ (শুরুতে অদৃশ্য) */
+    .hs-header-bar .hs-menu ul li a::after {
+        content: "";
+        position: absolute;
+        left: var(--hs-pad);
+        right: var(--hs-pad);
+        bottom: 0;
+        height: 2px;
+        background: #f2b33d;
+        border-radius: 2px;
+        transform: scaleX(0);
+        transform-origin: center;
+        transition: transform 0.25s ease;
+    }
+
+    .hs-header-bar .hs-menu ul li a:hover,
+    .hs-header-bar .hs-menu ul li a.custom_menu {
+        color: #f2b33d !important;
+    }
+
+    .hs-header-bar .hs-menu ul li a:hover::after,
+    .hs-header-bar .hs-menu ul li a.custom_menu::after {
+        transform: scaleX(1);
+    }
+
+    /* Right side buttons */
+    .hs-header-bar .hs-actions {
+        flex: 0 0 auto;
+        display: flex;
         align-items: center;
         gap: 8px;
-        background: #103C6D;
-        color: #ffffff;
+    }
+
+    .hs-header-bar .hs-search-icon {
+        width: 38px;
+        height: 38px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        color: #f2b33d;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.25s ease;
+    }
+
+    .hs-header-bar .hs-search-icon:hover {
+        background: #f2b33d;
+        color: #103C6D;
+        border-color: #f2b33d;
+    }
+
+    .hs-header-bar .hs-pill-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 16px;
+        border-radius: 30px;
         font-size: 14px;
         font-weight: 600;
-        padding: 7px 16px;
-        border-radius: 30px;
-        border: 1px solid #103C6D;
         text-decoration: none;
         white-space: nowrap;
         transition: all 0.25s ease;
     }
 
-    .header-info .auth-pill-btn i {
-        font-size: 12px;
+    .hs-header-bar .hs-pill-btn i {
+        font-size: 11px;
     }
 
-    .header-info .auth-pill-btn:hover {
+    /* Join as Advocate = outline */
+    .hs-header-bar .hs-pill-outline {
+        background: transparent;
+        color: #ffffff;
+        border: 1px solid #ffffff;
+    }
+
+    .hs-header-bar .hs-pill-outline:hover {
         background: #ffffff;
         color: #103C6D;
+    }
+
+    /* Login = gold */
+    .hs-header-bar .hs-pill-gold {
+        background: #f2b33d;
+        color: #103C6D;
+        border: 1px solid #f2b33d;
+    }
+
+    .hs-header-bar .hs-pill-gold:hover {
+        background: #ffffff;
+        border-color: #ffffff;
+        color: #103C6D;
+    }
+
+    /* ছোট ল্যাপটপ */
+    @media (max-width: 1299px) {
+        .hs-header-bar .hs-menu ul li a {
+            --hs-pad: 8px;
+            font-size: 14px;
+        }
+
+        .hs-header-bar .hs-pill-btn {
+            padding: 7px 13px;
+            font-size: 13px;
+        }
+
+        .hs-header-bar .hs-logo img {
+            max-height: 50px;
+        }
+    }
+
+    @media (max-width: 1099px) {
+        .hs-header-bar .hs-menu ul li a {
+            --hs-pad: 6px;
+            font-size: 13px;
+        }
+    }
+
+    /* Mobile menu এর Join বাটন */
+    .mobile-join-btn {
+        display: inline-flex !important;
+        align-items: center;
+        gap: 8px;
+        margin-top: 10px;
+        padding: 8px 18px !important;
+        background: #103C6D;
+        color: #ffffff !important;
+        border-radius: 30px;
+        font-weight: 600;
     }
 </style>
 
 <header class="header-area header-style-1 header-height-2">
-    <div class="header-top header-top-ptb-1 d-lg-block">
+    <div class="header-bottom header-bottom-bg-color sticky-bar hs-header-bar">
         <div class="container">
-            <div class="row align-items-center" style="padding: 5px 0px;">
-                <div class="col-xl-12 col-lg-12">
-                    <div class="header-info header-info-right">
-                        <ul>
-                            <li> 
-                                <a class="search-btn" data-bs-toggle="modal" data-bs-target="#searchModal">
-                                    <i class="fa fa-search" aria-hidden="true" style="color:#f2b33d !important;"></i> Search
-                                </a> 
-                            </li>
-                            <li> 
-                                <a class="auth-pill-btn" href="{{route('registration')}}">
-                                    Join as a Advocate <i class="fa-solid fa-arrow-right"></i>
-                                </a> 
-                            </li>
-                            <li class="mobile_top_login"> 
-                                <a class="auth-pill-btn" href="{{route('login')}}">
-                                    <i class="fa fa-user" aria-hidden="true"></i> Login <i class="fa-solid fa-arrow-right"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="header-bottom header-bottom-bg-color sticky-bar" style="background-color: #103C6D;
-    border-bottom: 1px solid #103C6D;border-top: 1px solid #103C6D;">
-        <div class="container">
-            <div class="header-wrap header-space-between position-relative">
-                <div class="logo logo-width-1 d-block d-lg-none">
+            {{-- ===== Desktop ===== --}}
+            <div class="hs-nav-wrap d-none d-lg-flex">
+
+                <div class="hs-logo">
                     <a href="{{url('')}}">
-                        <img src="{{asset('uploads/logo_images/'.@$logo->image)}}" alt="Shastho Plus logo" />
+                        <img src="{{asset('uploads/logo_images/'.@$logo->image)}}" alt="Advocate Sheba logo">
                     </a>
                 </div>
-                <div class="header-nav d-none d-lg-flex">
-                    <div class="main-categori-wrap d-none d-lg-block">
-                    </div>
-                    <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
-                        <nav>
-                            <ul>
-                                <a href="{{url('')}}">
-                                    <img src="{{asset('uploads/logo_images/'.@$logo->image)}}" style="margin-bottom: -30px;">
-                                </a>
-                                <li><a class="{{(@$page_type=='home')?'custom_menu':''}}" href="{{url('')}}">Home</a></li>
-                                <li><a class="{{(@$page_type=='advocate')?'custom_menu':''}}" href="{{route('our.advocate-list')}}">Advocate</a></li>
-                                <li><a class="{{(@$page_type=='barrister')?'custom_menu':''}}" href="{{route('our.barrister-list')}}">Barristers</a></li>
-                                <li><a class="{{(@$page_type=='consultant')?'custom_menu':''}}" href="{{route('our.consultant-list')}}">Legal Consultants</a></li>
-                                <li><a class="{{(@$page_type=='law_firm')?'custom_menu':''}}" href="{{route('our.law-firm-list')}}">Law Firms</a></li>
-                                <li><a class="{{(@$page_type=='legal_information')?'custom_menu':''}}" href="{{route('our.legal-information')}}">Legal Information</a></li>
-                                
-                                {{-- Courts মেনু --}}
-                                <li><a class="{{(@$page_type=='courts')?'custom_menu':''}}" href="{{route('our.courts')}}">Courts</a></li>
-                                
-                                {{-- Legal News মেনু (নতুন রুট) --}}
-                                <li><a class="{{(@$page_type=='legal_article')?'custom_menu':''}}" href="{{route('legal.article.list')}}">Legal News</a></li>
-                                
-                                <li><a class="{{(@$page_type=='video')?'custom_menu':''}}" href="{{route('video.list')}}">Videos</a></li>
-                            </ul>
-                        </nav>
-                    </div>
+
+                <div class="hs-menu font-heading">
+                    <nav>
+                        <ul>
+                            <li><a class="{{(@$page_type=='home')?'custom_menu':''}}" href="{{url('')}}">Home</a></li>
+                            <li><a class="{{(@$page_type=='advocate')?'custom_menu':''}}" href="{{route('our.advocate-list')}}">Advocate</a></li>
+                            <li><a class="{{(@$page_type=='barrister')?'custom_menu':''}}" href="{{route('our.barrister-list')}}">Barristers</a></li>
+                            <li><a class="{{(@$page_type=='law_firm')?'custom_menu':''}}" href="{{route('our.law-firm-list')}}">Law Firms</a></li>
+                            <li><a class="{{(@$page_type=='legal_information')?'custom_menu':''}}" href="{{route('our.legal-information')}}">Legal Information</a></li>
+                            <li><a class="{{(@$page_type=='courts')?'custom_menu':''}}" href="{{route('our.courts')}}">Courts</a></li>
+                            <li><a class="{{(@$page_type=='legal_article')?'custom_menu':''}}" href="{{route('legal.article.list')}}">Legal News</a></li>
+                            <li><a class="{{(@$page_type=='video')?'custom_menu':''}}" href="{{route('video.list')}}">Videos</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="hs-actions">
+                    <a class="hs-search-icon" data-bs-toggle="modal" data-bs-target="#searchModal" title="Search">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </a>
+                    <a class="hs-pill-btn hs-pill-outline" href="{{route('registration')}}">
+                        Join as a Advocate <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a class="hs-pill-btn hs-pill-gold" href="{{route('login')}}">
+                        <i class="fa fa-user" aria-hidden="true"></i> Login
+                    </a>
+                </div>
+            </div>
+
+            {{-- ===== Mobile ===== --}}
+            <div class="header-wrap header-space-between position-relative d-flex d-lg-none" style="min-height:60px;">
+                <div class="logo logo-width-1 d-block d-lg-none">
+                    <a href="{{url('')}}">
+                        <img src="{{asset('uploads/logo_images/'.@$logo->image)}}" alt="Advocate Sheba logo" />
+                    </a>
                 </div>
                 <div class="header-action-icon-2 d-block d-lg-none">
                     <div class="burger-icon burger-icon-white">
@@ -110,14 +276,16 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </header>
+
 <div class="mobile-header-active mobile-header-wrapper-style">
     <div class="mobile-header-wrapper-inner">
         <div class="mobile-header-top">
             <div class="mobile-header-logo">
-                <a href="{{url('')}}"><img src="{{asset('uploads/logo_images/'.@$logo->image)}}" alt="Shastho Plus logo" /></a>
+                <a href="{{url('')}}"><img src="{{asset('uploads/logo_images/'.@$logo->image)}}" alt="Advocate Sheba logo" /></a>
             </div>
             <div class="mobile-menu-close close-style-wrap close-style-position-inherit">
                 <button class="close-style search-close">
@@ -134,17 +302,21 @@
                         <li class="menu-item-has-children"><a href="{{url('')}}">Home</a></li>
                         <li><a class="menu-item-has-children" href="{{route('our.advocate-list')}}">Advocate</a></li>
                         <li><a class="menu-item-has-children" href="{{route('our.barrister-list')}}">Barristers</a></li>
-                        <li><a class="menu-item-has-children" href="{{route('our.consultant-list')}}">Legal Consultants</a></li>
                         <li><a class="menu-item-has-children" href="{{route('our.law-firm-list')}}">Law Firms</a></li>
                         <li><a class="menu-item-has-children" href="{{route('our.legal-information')}}">Legal Information</a></li>
-                        
-                        {{-- Courts মেনু --}}
                         <li><a class="menu-item-has-children" href="{{route('our.courts')}}">Courts</a></li>
-                        
-                        {{-- Legal News মেনু (নতুন রুট) --}}
                         <li><a class="menu-item-has-children" href="{{route('legal.article.list')}}">Legal News</a></li>
-                        
                         <li><a class="menu-item-has-children" href="{{route('video.list')}}">Videos</a></li>
+                        <li>
+                            <a class="mobile-join-btn" href="{{route('registration')}}">
+                                Join as a Advocate <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="mobile-join-btn" data-bs-toggle="modal" data-bs-target="#searchModal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- mobile menu end -->

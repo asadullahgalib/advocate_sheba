@@ -22,6 +22,7 @@ class CreateLawsTable extends Migration
             $table->string('meta_title')->nullable();
             $table->longText('meta_description')->nullable();
             $table->longText('meta_keyword')->nullable();
+            $table->integer('sort')->default(0);
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
             $table->timestamps();
