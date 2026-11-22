@@ -956,7 +956,7 @@
 
 <!-- ================= VIDEO DETAILS PAGE END ================= -->
 
-@include('frontend.layouts.find_professional')
+@include('frontend.layouts.advocate_barrister_firm_link')
 
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/legal-service-article.css') }}">
 

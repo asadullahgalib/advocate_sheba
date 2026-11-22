@@ -145,7 +145,6 @@ class FrontenController extends Controller
         return view('frontend.registration.advocate_join',$data);
     }
 
-            // Court Details Dynamic
     public function courtDetails($slug){
         // Court Name এবং Overview এর জন্য (slug বা id দুটোই সাপোর্ট করবে)
         $data['court'] = Court::where('slug', $slug)->orWhere('id', $slug)->firstOrFail();
@@ -155,52 +154,27 @@ class FrontenController extends Controller
                                 ->where('status', 1)
                                 ->get();
 
-        // আপনার আগের ডাটাগুলো ঠিক রেখে দিলাম
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
         $data['page_type']      = 'court';
 
         return view('frontend.courts.court_details', $data);
     }
 
-        // Courts Main Page (List of Courts)
     public function courtsList(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
-        $data['page_type']      = 'courts'; // হেডারে Courts মেনু হাইলাইট হবে
+
+        $data['page_type']      = 'courts';
 
         return view('frontend.courts.courts_list', $data);
     }
 
-// ==========================================
-// LEGAL DOCUMENTS & FORMS - LIST PAGE
-// ==========================================
-
     public function legalFormList()
     {
-        $data['categories'] = Category::all();
-
-        $data['departments'] = Department::orderBy('sort', 'asc')->get();
-
-        $data['doctors'] = User::where('user_category', 'doctor')
-            ->where('department_id', '57')
-            ->where('status', '1')
-            ->paginate(8);
 
         $data['page_type'] = 'legal_form';
-
         $data['documents'] = Document::orderBy('id', 'desc')
             ->get();
 
         return view('frontend.document_forms.legal_form_list', $data);
     }
-
-
-// ==========================================
-// LEGAL DOCUMENTS & FORMS - DETAILS PAGE
-// ==========================================
 
     public function legalForm($slug)
     {
@@ -228,14 +202,11 @@ class FrontenController extends Controller
 
     // ====== slug দিয়ে dynamic details পেজ ======
     public function legalInformationDetails($slug){
-    $data['categories']     = Category::all();
-    $data['departments']    = Department::orderBy('sort','asc')->get();
-    $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
-    $data['page_type']      = 'legal_information_details';
-    $data['legalInfo']      = LegalInformation::with('details')->where('slug', $slug)->firstOrFail();
-    
-    return view('frontend.legal_information.details', $data);
-}
+        $data['page_type']      = 'legal_information_details';
+        $data['legalInfo']      = LegalInformation::with('details')->where('slug', $slug)->firstOrFail();
+        
+        return view('frontend.legal_information.details', $data);
+    }
 
     // ====== পুরনো ৪টা লিংক নতুন dynamic পেজে পাঠায় ======
     public function legalInformationRights(){
@@ -264,13 +235,9 @@ class FrontenController extends Controller
 
         return redirect()->route('legal.information.details', $info->slug);
     }
-
     
     public function lawDetails($slug)
     {
-        $data['categories'] = Category::all();
-
-        $data['departments'] = Department::orderBy('sort', 'asc')->get();
 
         $data['law'] = Law::with(['lawDetails' => function ($query) {
             $query->orderBy('serial', 'asc');
@@ -289,7 +256,7 @@ class FrontenController extends Controller
 
         $data['departments'] = Department::orderBy('sort', 'asc')->get();
 
-        $data['laws'] = Law::orderBy('id', 'asc')->get();
+        $data['laws'] = Law::orderBy('sort', 'asc')->get();
 
         $data['page_type'] = 'law_list';
 
@@ -305,9 +272,9 @@ class FrontenController extends Controller
         $data['departments']    = Department::orderBy('sort','asc')->get();
         $data['sliders']        = Slider::all();
         $data['logo']           = Logo::first();
-        $data['doctors']        = User::where('user_category','advocate')->where('status','1')->orderBy('sort','asc')->get()->take(20);
+        $data['page_type']      = 'home';
 
-        $data['legalArticles'] = NewsEvent::with('law')
+        $data['legalArticles']  = NewsEvent::with('law')
             ->orderBy('date', 'desc')
             ->take(4)
             ->get();
@@ -338,8 +305,6 @@ class FrontenController extends Controller
             ->orderBy('id', 'desc')
             ->get();
 
-        $data['page_type'] = 'home';
-
         // Legal Services Data (Home Page Maximum 12 Cards)
         $data['laws'] = Law::orderBy('sort', 'asc')
             ->take(10)
@@ -350,28 +315,22 @@ class FrontenController extends Controller
             ->get()
             ->groupBy('add_position_id');
 
-
         // ==========================================
-        // Dynamic Advocate, Consultant, Barrister
+        // Dynamic Advocate, Barrister
         // ==========================================
         
-        // ১. Advocate (ধরে নিচ্ছি designation_id = 1)
+        // ১. Advocate (ধরে নিচ্ছি designation_id = 5)
         $data['advocates'] = User::where('user_category', 'advocate')
                          ->where('designation_id', 5)
+                         ->where('status','1')
                          ->orderBy('id', 'desc')
                          ->take(10)
                          ->get();
 
-        // ২. Legal Consultant (ধরে নিচ্ছি designation_id = 2)
-        $data['consultants'] = User::where('user_category', 'advocate')
-                           ->where('designation_id', 3)
-                           ->orderBy('id', 'desc')
-                           ->take(10)
-                           ->get();
-
-        // ৩. Barrister (ধরে নিচ্ছি designation_id = 3)
+        // ২. Barrister (ধরে নিচ্ছি designation_id = 2)
         $data['barristers'] = User::where('user_category', 'advocate')
                           ->where('designation_id', 2)
+                          ->where('status','1')
                           ->orderBy('id', 'desc')
                           ->take(10)
                           ->get();
@@ -379,11 +338,28 @@ class FrontenController extends Controller
         return view('frontend.layouts.home', $data);
     }
 
-    
-        public function findAdvocateList(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
+    public function advocateProfile($slug){
+        $id = '1';
+        $data['doctors']            = User::where('user_category','doctor')->where('status','1')->where('booking_status','2')->orderBy('sort','asc')->get()->take(20);
+        $data['departments']        = Department::all();
+        $data['qualifications']     = Education::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
+        $data['experiences']        = Experience::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
+        $data['trainings']          = Achievement::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
+        $data['specialities']       = Speciality::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
+        $data['profile_times']      = ProfileTime::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
+        $data['work_places']        = WorkPlace::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
+        $data['chambers']           = Chamber::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
+        $data['news_events']        = NewsEvent::where('user_id',@$data['doctor']->id)->orderBy('id','desc')->get();
+        $data['photo_galleries']    = PhotoGallery::where('user_id',@$data['doctor']->id)->orderBy('id','desc')->get();
+        $data['video_galleries']    = VideoGallery::where('user_id',@$data['doctor']->id)->orderBy('id','desc')->get();
+        $data['social_medias']      = SocialMedia::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
+        $data['payment_number']     = PaymentNumber::first();
+        $data['page_type']          = 'doctor';
+        
+        return view('frontend.advocate.advocate_profile',$data);
+    }
+
+    public function findAdvocateList(){
 
         $data['advocates'] = User::with('designation')
         ->where('user_category', 'advocate')
@@ -407,12 +383,7 @@ class FrontenController extends Controller
         return view('frontend.single_pages.find_advocate_list',$data);
     }
 
-
     public function findBarristerList(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
-        $data['page_type'] = 'find_barrister';
 
         $data['advocates'] = User::with('designation')
         ->where('user_category', 'advocate')
@@ -420,6 +391,7 @@ class FrontenController extends Controller
         ->where('designation_id', 2)
         ->orderBy('id', 'desc')
         ->paginate(12);
+
         // নতুন যোগ করা হলো: Legal Articles এবং Videos ডাটা
         $data['legalArticles'] = NewsEvent::with('law')
             ->orderBy('date', 'desc')
@@ -434,40 +406,7 @@ class FrontenController extends Controller
         return view('frontend.single_pages.find_barrister_list',$data);
     }
 
-
-    public function findConsultantList(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
-        $data['page_type'] = 'find_consultant';
-
-        $data['advocates'] = User::with('designation')
-        ->where('user_category', 'advocate')
-        ->where('status', 1)
-        ->where('designation_id', 3)
-        ->orderBy('id', 'desc')
-        ->paginate(12);
-
-        // নতুন যোগ করা হলো: Legal Articles এবং Videos ডাটা
-        $data['legalArticles'] = NewsEvent::with('law')
-            ->orderBy('date', 'desc')
-            ->take(4)
-            ->get();
-
-        $data['videos'] = VideoGallery::orderBy('id', 'desc')
-            ->take(4)
-            ->get();
-
-        $data['page_type'] = 'find_consultant';
-        return view('frontend.single_pages.find_consultant_list',$data);
-    }
-
-
     public function findLawFirmList(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
-        $data['page_type'] = 'find_law_firm';
 
         // নতুন যোগ করা হলো: Legal Articles এবং Videos ডাটা
         $data['legalArticles'] = NewsEvent::with('law')
@@ -480,6 +419,7 @@ class FrontenController extends Controller
             ->get();
 
         $data['page_type'] = 'find_law_firm';
+
         return view('frontend.single_pages.find_law_firm_list',$data);
     }
 
@@ -492,18 +432,17 @@ class FrontenController extends Controller
     }
 
     public function legalInformation(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
         $data['page_type'] = 'legal_information';
+
         // Legal Articles Data
-    $data['legalArticles'] = NewsEvent::with('law')
+        $data['legalArticles'] = NewsEvent::with('law')
         ->orderBy('date', 'desc')
         ->take(4)
         ->get();
         
-    // Legal Services Data
-    $data['laws'] = Law::orderBy('id', 'asc')->take(10)->get();
+        // Legal Services Data
+        $data['laws'] = Law::orderBy('id', 'asc')->take(10)->get();
+
         return view('frontend.single_pages.legal_information',$data);
     }
 
@@ -523,37 +462,15 @@ class FrontenController extends Controller
         return view('frontend.single_pages.courts',$data);
     }
 
-    // ==========================================
-// LEGAL ARTICLES - LIST PAGE
-// ==========================================
-
     public function legalArticleList()
     {
-        $data['categories'] = Category::all();
-
-        $data['departments'] = Department::orderBy('sort', 'asc')->get();
-
-        $data['doctors'] = User::where('user_category', 'doctor')
-            ->where('department_id', '57')
-            ->where('status', '1')
-            ->paginate(8, ['*'], 'doctors_page');
 
         $data['page_type'] = 'legal_article';
-
         $data['articles'] = NewsEvent::with('law')
             ->orderBy('date', 'desc')->get();
 
         return view('frontend.single_pages.legal_article_list', $data);
     }
-
-
-// ==========================================
-// LEGAL ARTICLES - DETAILS PAGE
-// ==========================================
-
-    // ==========================================
-// LEGAL ARTICLES - DETAILS PAGE
-// ==========================================
 
     public function legalArticleDetails($slug)
     {
@@ -617,26 +534,6 @@ class FrontenController extends Controller
         return view('frontend.single_pages.practice-area-wise-advocate',$data);
     }
 
-    public function profile(){
-        $id = '1';
-        $data['doctors']        = User::where('user_category','doctor')->where('status','1')->where('booking_status','2')->orderBy('sort','asc')->get()->take(20);
-        $data['departments']        = Department::all();
-        $data['qualifications']     = Education::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
-        $data['experiences']        = Experience::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
-        $data['trainings']          = Achievement::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
-        $data['specialities']       = Speciality::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
-        $data['profile_times']      = ProfileTime::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
-        $data['work_places']        = WorkPlace::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
-        $data['chambers']           = Chamber::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
-        $data['news_events']        = NewsEvent::where('user_id',@$data['doctor']->id)->orderBy('id','desc')->get();
-        $data['photo_galleries']    = PhotoGallery::where('user_id',@$data['doctor']->id)->orderBy('id','desc')->get();
-        $data['video_galleries']    = VideoGallery::where('user_id',@$data['doctor']->id)->orderBy('id','desc')->get();
-        $data['social_medias']      = SocialMedia::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
-        $data['payment_number']     = PaymentNumber::first();
-        $data['page_type']          = 'doctor';
-        return view('frontend.advocate.advocate_profile',$data);
-    }
-
     public function advocateGroupList($type)
     {
         // type অনুযায়ী designation_id ও শিরোনাম (হোমের index() এর সাথে মিল রাখা হয়েছে)
@@ -696,21 +593,8 @@ class FrontenController extends Controller
         return view('frontend.single_pages.video_list', $data);
     }
 
-
-// ==========================================
-// VIDEO GALLERY - DETAILS PAGE
-// ==========================================
-
     public function videoDetails($slug)
     {
-        $data['categories'] = Category::all();
-
-        $data['departments'] = Department::orderBy('sort', 'asc')->get();
-
-        $data['doctors'] = User::where('user_category', 'doctor')
-            ->where('department_id', '57')
-            ->where('status', '1')
-            ->paginate(8);
 
         // Selected Video Data
         $data['video'] = VideoGallery::where('slug', $slug)->firstOrFail();

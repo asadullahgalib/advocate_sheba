@@ -101,11 +101,11 @@
 
         </div>
 
-        @include('frontend.layouts.find_professional_single')
-
     </div>
 
 </div>
+
+@include('frontend.layouts.advocate_barrister_firm_link')
 
 <!-- =========================================================
      FAQ JAVASCRIPT

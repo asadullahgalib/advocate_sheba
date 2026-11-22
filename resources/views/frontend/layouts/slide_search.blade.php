@@ -237,10 +237,6 @@
                             Barristers
                         </a>
 
-                        <a href="{{route('our.consultant-list')}}">
-                            Legal Consultants
-                        </a>
-
                         <a href="{{route('our.law-firm-list')}}">
                             Law Firms
                         </a>
@@ -269,7 +265,7 @@
                      ADVOCATES
                 ================================================ -->
 
-                <div class="col-lg-3 col-md-6 col-6">
+                <div class="col-lg-4 col-md-6 col-6">
 
                     <div class="legal-category-card">
 
@@ -304,7 +300,7 @@
                      BARRISTERS
                 ================================================ -->
 
-                <div class="col-lg-3 col-md-6 col-6">
+                <div class="col-lg-4 col-md-6 col-6">
 
                     <div class="legal-category-card">
 
@@ -334,47 +330,11 @@
 
                 </div>
 
-
-                <!-- ===============================================
-                     LEGAL CONSULTANTS
-                ================================================ -->
-
-                <div class="col-lg-3 col-md-6 col-6">
-
-                    <div class="legal-category-card">
-
-                        <div class="category-icon consultants-icon">
-                            <i class="fa fa-user"></i>
-                        </div>
-
-                        <h3>
-                            Legal Consultants
-                        </h3>
-
-                        <p>
-                            Find legal consultants
-                            for professional guidance
-                        </p>
-
-                        <a href="{{route('find.our.consultant-list')}}"
-                           class="category-button consultants-button">
-
-                            Find Consultants
-
-                            <i class="fa fa-arrow-right"></i>
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-
                 <!-- ===============================================
                      LAW FIRMS
                 ================================================ -->
 
-                <div class="col-lg-3 col-md-6 col-6">
+                <div class="col-lg-4 col-md-6 col-6">
 
                     <div class="legal-category-card">
 

@@ -1096,21 +1096,6 @@
             </a>
         </div>
 
-        <!-- Card 3: Legal Consultant -->
-        <div class="col-md-4 col-lg-3">
-            <a href="{{route('find.our.consultant-list')}}" class="practice-area-card" style="text-decoration: none !important;">
-                <div class="card-1 find_more_div"
-                     onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(0, 32, 91, 0.35)';"
-                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0, 32, 91, 0.2)';">
-                    
-                    <h6 style="font-size: 15px; color: #fff; font-family: 'Georgia', serif; font-weight: bold; margin: 0; letter-spacing: 0.5px;">
-                        Find Legal Consultants
-                    </h6>
-                    <span style="color: #fff; font-size: 18px; font-weight: bold; line-height: 1;">&rarr;</span>
-                </div>
-            </a>
-        </div>
-
     </div>
 </section>
 

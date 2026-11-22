@@ -9,7 +9,6 @@
 @include('frontend.layouts.courts')
 @include('frontend.layouts.law_firm')
 @include('frontend.layouts.legal_service')
-@include('frontend.layouts.consultants')
 @include('frontend.layouts.faq_add')
 @include('frontend.layouts.document_forms')
 @include('frontend.layouts.legal_articles')

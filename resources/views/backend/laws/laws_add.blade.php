@@ -49,7 +49,6 @@
                             id="title_en"
                             class="form-control form-control-sm"
                             value="{{ old('title_en', @$editData->title_en) }}"
-                            placeholder="Enter Law Title"
                         >
                         <font style="color: red"> 
                           {{($errors->has('title_en'))?($errors->first('title_en')):''}} 
@@ -59,7 +58,7 @@
                     <!-- Law Title -->
                     <div class="form-group col-md-2">
                         <label for="title_en">
-                            Sorting
+                            Sorting Order
                             <span style="color:red;">*</span>
                         </label>
                         <input
@@ -68,7 +67,6 @@
                             id="sort"
                             class="form-control form-control-sm"
                             value="{{ old('sort', @$editData->sort) }}"
-                            placeholder="Enter Law Title"
                         >
                     </div>
 
@@ -78,13 +76,11 @@
                             Subtitle
                             <span style="color:red;">*</span>
                         </label>
-                        <textarea
+                        <input type="text" 
                             name="description_en"
                             id="description_en"
-                            class="form-control form-control-sm"
-                            rows="8"
-                            placeholder="Enter Law Description"
-                        >{{ old('description_en', @$editData->description_en) }}</textarea>
+                            class="form-control form-control-sm" value="{{ old('description_en', @$editData->description_en) }}" 
+                        >
                     </div>
 
                     <!-- Meta Title -->
@@ -160,6 +156,9 @@
             rules: {
 
                 title_en: {
+                    required: true,
+                },
+                sort: {
                     required: true,
                 },
 

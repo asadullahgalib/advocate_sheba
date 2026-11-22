@@ -1,0 +1,1109 @@
+
+/* =====================================================
+   ADVOCATE SHEBA
+   HEADER + SEARCH MODAL CSS
+===================================================== */
+
+
+/* =====================================================
+   1. HEADER BAR
+===================================================== */
+
+.header-style-1 .hs-header-bar,
+.header-style-1 .sticky-bar.stick.hs-header-bar {
+
+    background: #103C6D !important;
+    border-top: 0 !important;
+    border-bottom: 0 !important;
+    height: 70px;
+}
+
+@media only screen and (max-width: 768px) {
+    .header-bottom {
+        padding: 0px 0 !important;
+    }
+}
+
+
+.hs-header-bar .container {
+
+    max-width: 1320px !important;
+    padding-left: 20px;
+    padding-right: 20px;
+
+}
+
+
+.hs-header-bar .hs-nav-wrap {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 16px;
+    min-height: 72px;
+
+}
+
+
+
+/* =====================================================
+   2. LOGO
+===================================================== */
+
+.hs-header-bar .hs-logo {
+
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+
+}
+
+
+.hs-header-bar .hs-logo img {
+
+    max-height: 70px;
+    width: auto;
+    display: block;
+
+}
+
+
+
+/* =====================================================
+   3. DESKTOP MENU
+===================================================== */
+
+.hs-header-bar .hs-menu {
+
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+
+}
+
+
+.hs-header-bar .hs-menu ul {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+}
+
+
+.hs-header-bar .hs-menu ul li {
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+}
+
+
+.hs-header-bar .hs-menu ul li a {
+
+    --hs-pad: 11px;
+
+    position: relative;
+    display: block;
+    padding: 8px var(--hs-pad) !important;
+
+    color: #ffffff !important;
+
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.3 !important;
+
+    white-space: nowrap;
+
+    border-bottom: 0 !important;
+    text-decoration: none !important;
+
+    transition: color 0.25s ease;
+
+}
+
+
+.hs-header-bar .hs-menu ul li a::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: var(--hs-pad);
+    right: var(--hs-pad);
+    bottom: 0;
+
+    height: 2px;
+
+    background: #f2b33d;
+
+    border-radius: 2px;
+
+    transform: scaleX(0);
+    transform-origin: center;
+
+    transition: transform 0.25s ease;
+
+}
+
+
+.hs-header-bar .hs-menu ul li a:hover,
+.hs-header-bar .hs-menu ul li a.custom_menu {
+
+    color: #f2b33d !important;
+
+}
+
+
+.hs-header-bar .hs-menu ul li a:hover::after,
+.hs-header-bar .hs-menu ul li a.custom_menu::after {
+
+    transform: scaleX(1);
+
+}
+
+
+
+/* =====================================================
+   4. DESKTOP ACTION BUTTONS
+===================================================== */
+
+.hs-header-bar .hs-actions {
+
+    flex: 0 0 auto;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+}
+
+
+
+/* =====================================================
+   5. COMMON SEARCH ICON
+===================================================== */
+
+.hs-header-bar .hs-search-icon {
+
+    width: 38px;
+    height: 38px;
+
+    flex: 0 0 38px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255, 255, 255, 0.35);
+
+    color: #f2b33d;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    text-decoration: none !important;
+
+    transition: all 0.25s ease;
+
+}
+
+
+.hs-header-bar .hs-search-icon:hover {
+
+    background: #f2b33d;
+
+    color: #103C6D;
+
+    border-color: #f2b33d;
+
+}
+
+
+
+/* =====================================================
+   6. DESKTOP PILL BUTTONS
+===================================================== */
+
+.hs-header-bar .hs-pill-btn {
+
+    display: inline-flex;
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 8px 16px;
+
+    border-radius: 30px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+
+    transition: all 0.25s ease;
+
+}
+
+
+.hs-header-bar .hs-pill-btn i {
+
+    font-size: 11px;
+
+}
+
+
+
+/* Join as Advocate */
+
+.hs-header-bar .hs-pill-outline {
+
+    background: transparent;
+
+    color: #ffffff;
+
+    border: 1px solid #ffffff;
+
+}
+
+
+.hs-header-bar .hs-pill-outline:hover {
+
+    background: #ffffff;
+
+    color: #103C6D;
+
+}
+
+
+
+/* Login */
+
+.hs-header-bar .hs-pill-gold {
+
+    background: #f2b33d;
+
+    color: #103C6D;
+
+    border: 1px solid #f2b33d;
+
+}
+
+
+.hs-header-bar .hs-pill-gold:hover {
+
+    background: #ffffff;
+
+    border-color: #ffffff;
+
+    color: #103C6D;
+
+}
+
+
+
+/* =====================================================
+   7. MOBILE HEADER
+===================================================== */
+
+.hs-mobile-header {
+
+    min-height: 72px;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: space-between !important;
+
+    gap: 8px;
+
+}
+
+
+
+/* Mobile Menu Icon */
+
+.hs-mobile-header .hs-mobile-menu-icon {
+
+    flex: 0 0 auto;
+
+    display: flex;
+    align-items: center;
+
+}
+
+
+
+/* Mobile Logo */
+
+.hs-mobile-header .hs-mobile-logo {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex: 1 1 auto;
+
+    min-width: 0;
+
+}
+
+
+.hs-mobile-header .hs-mobile-logo img {
+
+    max-height: 48px;
+
+    width: auto;
+
+    max-width: 100%;
+
+    object-fit: contain;
+
+    display: block;
+
+}
+
+
+
+/* Mobile Right Side */
+
+.hs-mobile-header .hs-mobile-right {
+
+    flex: 0 0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+}
+
+
+
+/* Search + Login Container */
+
+.hs-mobile-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+
+}
+
+
+
+/* =====================================================
+   8. MOBILE SEARCH ICON
+===================================================== */
+
+.hs-mobile-header .hs-mobile-search-icon {
+
+    width: 36px;
+    height: 36px;
+
+    flex: 0 0 36px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 15px;
+
+    color: #f2b33d;
+
+    border: 1px solid rgba(255,255,255,0.45);
+
+    border-radius: 50%;
+
+    text-decoration: none !important;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+
+}
+
+
+.hs-mobile-header .hs-mobile-search-icon:hover,
+.hs-mobile-header .hs-mobile-search-icon:focus {
+
+    background: #f2b33d;
+
+    color: #103C6D;
+
+    border-color: #f2b33d;
+
+}
+
+
+
+/* =====================================================
+   9. MOBILE LOGIN
+===================================================== */
+
+.hs-mobile-login {
+
+    display: inline-flex !important;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    color: #ffffff !important;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    text-decoration: none !important;
+
+}
+
+
+.hs-mobile-login i {
+
+    font-size: 18px;
+
+    color: #ffffff;
+
+}
+
+
+
+/* =====================================================
+   10. MOBILE JOIN BUTTON
+===================================================== */
+
+.mobile-join-btn {
+
+    display: inline-flex !important;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 10px;
+
+    padding: 8px 18px !important;
+
+    background: #103C6D;
+
+    color: #ffffff !important;
+
+    border-radius: 30px;
+
+    font-weight: 600;
+
+}
+
+
+
+/* =====================================================
+   11. SMALL LAPTOP
+===================================================== */
+
+@media (max-width: 1299px) {
+
+    .hs-header-bar .hs-menu ul li a {
+
+        --hs-pad: 8px;
+
+        font-size: 14px;
+
+    }
+
+
+    .hs-header-bar .hs-pill-btn {
+
+        padding: 7px 13px;
+
+        font-size: 13px;
+
+    }
+
+
+    .hs-header-bar .hs-logo img {
+
+        max-height: 50px;
+
+    }
+
+}
+
+
+@media (max-width: 1099px) {
+
+    .hs-header-bar .hs-menu ul li a {
+
+        --hs-pad: 6px;
+
+        font-size: 13px;
+
+    }
+
+}
+
+
+
+/* =====================================================
+   12. VERY SMALL MOBILE
+===================================================== */
+
+@media (max-width: 380px) {
+
+    .hs-header-bar .container {
+
+        padding-left: 12px;
+
+        padding-right: 12px;
+
+    }
+
+
+    .hs-mobile-actions {
+
+        gap: 8px;
+
+    }
+
+
+    .hs-mobile-login {
+
+        font-size: 14px;
+
+    }
+
+
+    .hs-mobile-header .hs-mobile-logo img {
+
+        max-height: 42px;
+
+    }
+
+
+    .hs-mobile-header .hs-mobile-search-icon {
+
+        width: 33px;
+
+        height: 33px;
+
+        flex-basis: 33px;
+
+    }
+
+}
+
+
+
+/* =====================================================
+   13. SEARCH MODAL
+===================================================== */
+
+.hs-search-modal .hs-modal-dialog {
+
+    max-width: 760px;
+
+}
+
+
+.hs-search-modal .hs-modal-content {
+
+    position: relative;
+
+    padding: 25px 20px 20px;
+
+    background: #103C6D;
+
+    border: 0;
+
+    border-radius: 15px;
+
+    overflow: visible;
+
+}
+
+
+
+/* Modal Close Button */
+
+.hs-modal-close {
+
+    position: absolute;
+
+    top: 6px;
+
+    right: 14px;
+
+    background: transparent;
+
+    border: 0;
+
+    font-size: 28px;
+
+    line-height: 1;
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+}
+
+
+
+/* =====================================================
+   14. MODAL HEADING
+===================================================== */
+
+.hs-modal-heading {
+
+    text-align: left;
+
+    margin-bottom: 12px;
+
+}
+
+
+.hs-modal-heading h2 {
+
+    margin: 0 0 5px;
+
+    color: #ffffff;
+
+    font-size: 36px;
+
+    font-weight: 700;
+
+    line-height: 1.15;
+
+}
+
+
+.hs-modal-heading h2 span {
+
+    display: block;
+
+    color: #f2b33d;
+
+}
+
+
+.hs-modal-heading .hs-desc {
+
+    margin: 0 0 6px;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    line-height: 1.5;
+
+}
+
+
+.hs-modal-heading .hs-count {
+
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    line-height: 1.5;
+
+}
+
+
+
+/* =====================================================
+   15. SEARCH FORM
+===================================================== */
+
+.hs-search-form {
+
+    padding: 8px 10px;
+
+    background: #ffffff;
+
+    border-radius: 15px;
+
+}
+
+
+
+/* Main Search Row */
+
+.hs-main-row {
+
+    display: grid;
+
+    grid-template-columns: 1fr 115px;
+
+    gap: 7px;
+
+    margin-bottom: 7px;
+
+}
+
+
+.hs-main-row .form-control {
+
+    height: 48px;
+
+    padding: 0 14px;
+
+    border: 1px solid #e2e5e9;
+
+    border-radius: 6px;
+
+    box-shadow: none;
+
+    font-size: 13px;
+
+    color: #555f70;
+
+}
+
+
+.hs-main-btn {
+
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #103C6D !important;
+
+    border: 1px solid #103C6D !important;
+
+    color: #ffffff !important;
+
+    border-radius: 6px !important;
+
+}
+
+
+.hs-main-btn:hover {
+
+    background: #087fd0 !important;
+
+    border-color: #087fd0 !important;
+
+}
+
+
+
+/* =====================================================
+   16. ADVANCED SEARCH ROW
+===================================================== */
+
+.hs-advanced-row {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr 1fr 115px;
+
+    gap: 7px;
+
+}
+
+
+
+/* Custom Select */
+
+.hs-select {
+
+    position: relative;
+
+}
+
+
+.hs-select-box {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    height: 48px;
+
+    padding: 0 32px 0 12px;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e5e9;
+
+    border-radius: 6px;
+
+    color: #555f70;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+
+}
+
+
+.hs-selected-text {
+
+    display: block;
+
+    width: 100%;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+}
+
+
+.hs-select-box i {
+
+    position: absolute;
+
+    right: 12px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #778292;
+
+    font-size: 9px;
+
+    transition: transform 0.2s ease;
+
+}
+
+
+.hs-select.open .hs-select-box i {
+
+    transform: translateY(-50%) rotate(180deg);
+
+}
+
+
+
+/* Dropdown Options */
+
+.hs-options {
+
+    position: absolute;
+
+    top: calc(100% + 4px);
+
+    left: 0;
+
+    width: 100%;
+
+    max-height: 220px;
+
+    overflow-y: auto;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e5e9;
+
+    border-radius: 6px;
+
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateY(-5px);
+
+    transition: all 0.2s ease;
+
+    z-index: 9999;
+
+}
+
+
+.hs-select.open .hs-options {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+
+}
+
+
+.hs-option {
+
+    padding: 10px 12px;
+
+    color: #555f70;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+}
+
+
+.hs-option:hover {
+
+    background: #f4f7fb;
+
+    color: #123b6d;
+
+}
+
+
+.hs-option.selected {
+
+    background: #f0f5fb;
+
+    color: #123b6d;
+
+    font-weight: 600;
+
+}
+
+
+
+/* Advanced Search Button */
+
+.hs-advanced-btn {
+
+    height: 48px;
+
+    padding: 0 9px !important;
+
+    background: #f2b33d !important;
+
+    border: 1px solid #f2b33d !important;
+
+    border-radius: 6px !important;
+
+    color: #ffffff !important;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+
+}
+
+
+.hs-advanced-btn:hover {
+
+    background: #103C6D !important;
+
+    border-color: #103C6D !important;
+
+}
+
+
+
+/* =====================================================
+   17. MOBILE SEARCH MODAL
+===================================================== */
+
+@media (max-width: 767px) {
+
+
+    .hs-search-modal .hs-modal-dialog {
+
+        margin: 10px;
+
+    }
+
+
+    .hs-search-modal .hs-modal-content {
+
+        padding: 25px 12px 15px;
+
+        border-radius: 12px;
+
+    }
+
+
+    .hs-modal-heading {
+
+        text-align: center;
+
+    }
+
+
+    .hs-modal-heading h2 {
+
+        font-size: 26px;
+
+    }
+
+
+    .hs-modal-heading .hs-desc,
+    .hs-modal-heading .hs-count {
+
+        font-size: 12px;
+
+    }
+
+
+    .hs-main-row {
+
+        grid-template-columns: 1fr 55px;
+
+    }
+
+
+    .hs-main-row .form-control {
+
+        font-size: 12px;
+
+        padding: 0 10px;
+
+    }
+
+
+    .hs-advanced-row {
+
+        grid-template-columns: 1fr 1fr;
+
+    }
+
+
+    .hs-court,
+    .hs-advanced-btn {
+
+        grid-column: 1 / -1;
+
+    }
+
+}

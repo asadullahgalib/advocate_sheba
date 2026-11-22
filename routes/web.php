@@ -74,10 +74,10 @@ Route::get('/legal/information/laws','Frontend\FrontenController@legalInformatio
 Route::get('/legal/information/procudures','Frontend\FrontenController@legalInformationProcudures')->name('legal.information.procudures');
 
 // Legal Services list page
-Route::get('/law', 'Frontend\FrontenController@lawList')->name('law.list');
+Route::get('/legal-service', 'Frontend\FrontenController@lawList')->name('law.list');
 
 // Legal Service details page (slug দিয়ে)
-Route::get('/law/{slug}', 'Frontend\FrontenController@lawDetails')->name('law.details');
+Route::get('/legal-service/{slug}', 'Frontend\FrontenController@lawDetails')->name('law.details');
 
 
 Route::get('/advocate-list','Frontend\FrontenController@advocateList')->name('our.advocate-list');
@@ -93,7 +93,7 @@ Route::get('/legal-information','Frontend\FrontenController@legalInformation')->
 Route::get('/legal-information/details','Frontend\FrontenController@legalInformationDetails')->name('our.legal-information.details');
 Route::get('/location-wise-list','Frontend\FrontenController@locationWiseList')->name('our.location-wise-list');
 Route::get('/practice-area-wise-list','Frontend\FrontenController@practiceAreaWiseList')->name('our.practice-area-wise-list');
-Route::get('/profile','Frontend\FrontenController@profile')->name('advocate-profile');
+Route::get('/legal/professional/profile/{slug}','Frontend\FrontenController@advocateProfile')->name('advocate-profile');
 // ==========================================
 // LEGAL ARTICLES
 // ==========================================

@@ -149,3 +149,11 @@ header menu: videos add hobe
 9. Profile photo gallery r niche related advocate hobe.
 10. Law firm profile theke Philosophy & Social engagement thakbe na badh hoye jabe.
 11. Law er modde sort hobe & sort wise data asbe.
+
+Note:
+=====
+1. Law Firm Dynamic Hoi Nai.
+2. Navbar theke Legal Information Dynamic Hoi Nai.
+3. Navbar theke Courts Dynamic hoi nai.
+4. Legal Service Details er Article & Video Gallery Dynamic Hoi nai.
+5. 
