@@ -47,6 +47,9 @@ use App\Model\Add;
 use App\Model\LegalProfessionalDetail;
 use App\Model\Court;
 use App\Model\SubCourt;
+use App\Model\AdvocateLaw;
+use App\Model\AdvocatePracticeArea;
+use App\Model\AdvocateLocation;
 use\Model\SubCourtDetail;
 use Auth;
 use DateTime;
@@ -337,21 +340,150 @@ class FrontenController extends Controller
 
         return view('frontend.layouts.home', $data);
     }
+    
+    public function advocateProfile($slug)
+    {
+        // Advocate Profile
+        $data['advocate'] = User::where('user_category', 'advocate')
+            ->where('slug', $slug)
+            ->first();
 
-    public function advocateProfile($slug){
-        $data['advocate']                   = User::where('user_category','advocate')->where('slug',$slug)->first();
-        $data['advocate_laws']              = AdvocateLaw::where('user_id',@$data['advocate']->id)->first();
-        $data['advocate_practice_areas']    = AdvocatePracticeArea::where('user_id',@$data['advocate']->id)->first();
-        $data['advocate_locations']         = AdvocateLocation::where('user_id',@$data['advocate']->id)->first();
-        $data['related_advocates']          = User::where('user_category', 'advocate')
-                                         ->where('designation_id', 5)
-                                         ->where('status','1')
-                                         ->orderBy('id', 'desc')
-                                         ->take(10)
-                                         ->get();
+        if (!$data['advocate']) {
+            abort(404);
+        }
 
-        return view('frontend.advocate.advocate_profile',$data);
+        $userId = $data['advocate']->id;
+
+        // Advocate Laws
+        $data['advocate_laws'] = AdvocateLaw::where('user_id', $userId)->get();
+
+        // Advocate Practice Areas
+        $data['advocate_practice_areas'] = AdvocatePracticeArea::where('user_id', $userId)->get();
+
+        // Advocate Locations
+        $data['advocate_locations'] = AdvocateLocation::where('user_id', $userId)->get();
+
+
+        // Current Advocate's Matching IDs
+        $lawIds = $data['advocate_laws']
+            ->pluck('law_id')->unique()->values()->toArray();
+
+        $practiceAreaIds = $data['advocate_practice_areas']
+            ->pluck('practice_area_id')->unique()->values()->toArray();
+
+        $locationIds = $data['advocate_locations']
+            ->pluck('location_id')->unique()->values()->toArray();
+
+
+        // Same Designation Advocates
+        $relatedAdvocates = User::where('user_category', 'advocate')
+            ->where('designation_id', $data['advocate']->designation_id)
+            ->where('status', '1')
+            ->where('id', '!=', $userId)
+            ->orderBy('id', 'desc')
+            ->get();
+
+        dd($relatedAdvocates->toArray());
+
+
+        // Matching Law Count
+        $lawMatches = collect();
+
+        if (!empty($lawIds)) {
+            $lawMatches = \DB::table('advocate_laws')
+                ->whereIn('law_id', $lawIds)
+                ->selectRaw('user_id, COUNT(DISTINCT law_id) as matched')
+                ->groupBy('user_id')
+                ->pluck('matched', 'user_id');
+        }
+
+
+        // Matching Practice Area Count
+        $practiceMatches = collect();
+
+        if (!empty($practiceAreaIds)) {
+            $practiceMatches = \DB::table('advocate_practice_areas')
+                ->whereIn('practice_area_id', $practiceAreaIds)
+                ->selectRaw('user_id, COUNT(DISTINCT practice_area_id) as matched')
+                ->groupBy('user_id')
+                ->pluck('matched', 'user_id');
+        }
+
+
+        // Matching Location Count
+        $locationMatches = collect();
+
+        if (!empty($locationIds)) {
+            $locationMatches = \DB::table('advocate_locations')
+                ->whereIn('location_id', $locationIds)
+                ->selectRaw('user_id, COUNT(DISTINCT location_id) as matched')
+                ->groupBy('user_id')
+                ->pluck('matched', 'user_id');
+        }
+
+
+        // Calculate Matching Score
+        $relatedAdvocates = $relatedAdvocates->map(function ($advocate) use (
+            $lawMatches,
+            $practiceMatches,
+            $locationMatches
+        ) {
+
+            $lawCount = (int) $lawMatches->get($advocate->id, 0);
+
+            $practiceCount = (int) $practiceMatches->get($advocate->id, 0);
+
+            $locationCount = (int) $locationMatches->get($advocate->id, 0);
+
+            // Total Matching Score
+            $advocate->matching_score = $lawCount + $practiceCount + $locationCount;
+
+            // Matching Category Count
+            $advocate->matching_categories =
+                ($lawCount > 0 ? 1 : 0) +
+                ($practiceCount > 0 ? 1 : 0) +
+                ($locationCount > 0 ? 1 : 0);
+
+            $advocate->matched_laws = $lawCount;
+            $advocate->matched_practice_areas = $practiceCount;
+            $advocate->matched_locations = $locationCount;
+
+            return $advocate;
+        });
+
+
+        // Priority Based Related Advocates
+        $data['related_advocates'] = $relatedAdvocates
+
+            // At least one category must match
+            ->filter(function ($advocate) {
+                return $advocate->matching_score > 0;
+            })
+
+            // First: More Matching Categories
+            // Second: Higher Matching Score
+            // Third: Latest Advocate
+            ->sort(function ($a, $b) {
+
+                if ($a->matching_categories != $b->matching_categories) {
+                    return $b->matching_categories <=> $a->matching_categories;
+                }
+
+                if ($a->matching_score != $b->matching_score) {
+                    return $b->matching_score <=> $a->matching_score;
+                }
+
+                return $b->id <=> $a->id;
+            })
+
+            ->take(10)
+            ->values();
+
+        dd($data['related_advocates']->toArray());
+
+        return view('frontend.advocate.advocate_profile', $data);
     }
+
 
     public function findAdvocateList(){
 
