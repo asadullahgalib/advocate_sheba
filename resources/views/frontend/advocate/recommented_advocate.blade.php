@@ -213,7 +213,7 @@
 
                                 <!-- VIEW PROFILE -->
 
-                                <a href="{{route('advocate-profile')}}"
+                                <a href=""
                                    class="lpc-profile-button">
 
                                     <i class="fa fa-eye"></i>
@@ -350,7 +350,7 @@
                                 </div>
 
 
-                                <a href="{{route('advocate-profile')}}"
+                                <a href=""
                                    class="lpc-profile-button">
 
                                     <i class="fa fa-eye"></i>
@@ -486,7 +486,7 @@
                                 </div>
 
 
-                                <a href="{{route('advocate-profile')}}"
+                                <a href=""
                                    class="lpc-profile-button">
 
                                     <i class="fa fa-eye"></i>
@@ -622,7 +622,7 @@
                                 </div>
 
 
-                                <a href="{{route('advocate-profile')}}"
+                                <a href=""
                                    class="lpc-profile-button">
 
                                     <i class="fa fa-eye"></i>
@@ -758,7 +758,7 @@
                                 </div>
 
 
-                                <a href="{{route('advocate-profile')}}"
+                                <a href=""
                                    class="lpc-profile-button">
 
                                     <i class="fa fa-eye"></i>
@@ -894,7 +894,7 @@
                                 </div>
 
 
-                                <a href="{{route('advocate-profile')}}"
+                                <a href=""
                                    class="lpc-profile-button">
 
                                     <i class="fa fa-eye"></i>

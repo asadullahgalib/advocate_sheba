@@ -93,7 +93,7 @@ Route::get('/legal-information','Frontend\FrontenController@legalInformation')->
 Route::get('/legal-information/details','Frontend\FrontenController@legalInformationDetails')->name('our.legal-information.details');
 Route::get('/location-wise-list','Frontend\FrontenController@locationWiseList')->name('our.location-wise-list');
 Route::get('/practice-area-wise-list','Frontend\FrontenController@practiceAreaWiseList')->name('our.practice-area-wise-list');
-Route::get('/legal/professional/profile/{slug}','Frontend\FrontenController@advocateProfile')->name('advocate-profile');
+Route::get('/legal-professional/profile/{slug}','Frontend\FrontenController@advocateProfile')->name('advocate-profile');
 // ==========================================
 // LEGAL ARTICLES
 // ==========================================

@@ -339,23 +339,17 @@ class FrontenController extends Controller
     }
 
     public function advocateProfile($slug){
-        $id = '1';
-        $data['doctors']            = User::where('user_category','doctor')->where('status','1')->where('booking_status','2')->orderBy('sort','asc')->get()->take(20);
-        $data['departments']        = Department::all();
-        $data['qualifications']     = Education::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
-        $data['experiences']        = Experience::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
-        $data['trainings']          = Achievement::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
-        $data['specialities']       = Speciality::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
-        $data['profile_times']      = ProfileTime::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
-        $data['work_places']        = WorkPlace::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
-        $data['chambers']           = Chamber::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
-        $data['news_events']        = NewsEvent::where('user_id',@$data['doctor']->id)->orderBy('id','desc')->get();
-        $data['photo_galleries']    = PhotoGallery::where('user_id',@$data['doctor']->id)->orderBy('id','desc')->get();
-        $data['video_galleries']    = VideoGallery::where('user_id',@$data['doctor']->id)->orderBy('id','desc')->get();
-        $data['social_medias']      = SocialMedia::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
-        $data['payment_number']     = PaymentNumber::first();
-        $data['page_type']          = 'doctor';
-        
+        $data['advocate']                   = User::where('user_category','advocate')->where('slug',$slug)->first();
+        $data['advocate_laws']              = AdvocateLaw::where('user_id',@$data['advocate']->id)->first();
+        $data['advocate_practice_areas']    = AdvocatePracticeArea::where('user_id',@$data['advocate']->id)->first();
+        $data['advocate_locations']         = AdvocateLocation::where('user_id',@$data['advocate']->id)->first();
+        $data['related_advocates']          = User::where('user_category', 'advocate')
+                                         ->where('designation_id', 5)
+                                         ->where('status','1')
+                                         ->orderBy('id', 'desc')
+                                         ->take(10)
+                                         ->get();
+
         return view('frontend.advocate.advocate_profile',$data);
     }
 
