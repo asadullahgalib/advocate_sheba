@@ -404,6 +404,34 @@ Route::group(['middleware'=>['auth','admin']],function(){
 			    Route::post('/gallery/details/store/{id}', 'Backend\LawFirmController@galleryDetailsStore')->name('law-firms.gallery.details.store');
 			    Route::post('/gallery/details/delete', 'Backend\LawFirmController@galleryDetailsDelete')->name('law-firms.gallery.details.delete');
 			});
+
+		// Meta
+		Route::prefix('main-meta')->group(function(){
+			Route::get('/view','Backend\MainMetaController@view')->name('main-meta.view');
+			Route::get('/add','Backend\MainMetaController@add')->name('main-meta.add');
+			Route::post('/store','Backend\MainMetaController@store')->name('main-meta.store');
+			Route::get('/edit/{id}','Backend\MainMetaController@edit')->name('main-meta.edit');
+			Route::post('/update/{id}','Backend\MainMetaController@update')->name('main-meta.update');
+			Route::post('/delete','Backend\MainMetaController@delete')->name('main-meta.delete');
+		});
+
+		Route::prefix('location-meta')->group(function(){
+			Route::get('/view','Backend\LocationMetaController@view')->name('location-meta.view');
+			Route::get('/add','Backend\LocationMetaController@add')->name('location-meta.add');
+			Route::post('/store','Backend\LocationMetaController@store')->name('location-meta.store');
+			Route::get('/edit/{id}','Backend\LocationMetaController@edit')->name('location-meta.edit');
+			Route::post('/update/{id}','Backend\LocationMetaController@update')->name('location-meta.update');
+			Route::post('/delete','Backend\LocationMetaController@delete')->name('location-meta.delete');
+		});
+
+		Route::prefix('practice-area-meta')->group(function(){
+			Route::get('/view','Backend\PracticeAreaMetaController@view')->name('practice-area-meta.view');
+			Route::get('/add','Backend\PracticeAreaMetaController@add')->name('practice-area-meta.add');
+			Route::post('/store','Backend\PracticeAreaMetaController@store')->name('practice-area-meta.store');
+			Route::get('/edit/{id}','Backend\PracticeAreaMetaController@edit')->name('practice-area-meta.edit');
+			Route::post('/update/{id}','Backend\PracticeAreaMetaController@update')->name('practice-area-meta.update');
+			Route::post('/delete','Backend\PracticeAreaMetaController@delete')->name('practice-area-meta.delete');
+		});
 					
 		Route::prefix('setups')->group(function(){
 			//Logo
