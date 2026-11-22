@@ -884,12 +884,10 @@
                         @include('frontend.advocate.office_hour')
                         @include('frontend.advocate.map')
                         @include('frontend.advocate.reviews')
-                        @include('frontend.advocate.social_engagement')
-                        @include('frontend.advocate.philosophy')
                         @include('frontend.advocate.photo_gallery')
+                        @include('frontend.advocate.recommented_advocate')
                         @include('frontend.advocate.legal_topics')
                         @include('frontend.advocate.video')
-                        @include('frontend.advocate.recommented_advocate')
 
                     </div>
                     <!--end vendor card-->

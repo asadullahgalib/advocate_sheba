@@ -341,6 +341,7 @@ class FrontenController extends Controller
         return view('frontend.layouts.home', $data);
     }
     
+    
     public function advocateProfile($slug)
     {
         // Advocate Profile
@@ -363,16 +364,27 @@ class FrontenController extends Controller
         // Advocate Locations
         $data['advocate_locations'] = AdvocateLocation::where('user_id', $userId)->get();
 
+        // Advocate galleries
+        $data['advocate_galleries'] = PhotoGallery::where('user_id', $userId)->get();
 
-        // Current Advocate's Matching IDs
+        // Current Advocate's Multiple IDs
         $lawIds = $data['advocate_laws']
-            ->pluck('law_id')->unique()->values()->toArray();
+            ->pluck('law_id')
+            ->unique()
+            ->values()
+            ->toArray();
 
-        $practiceAreaIds = $data['advocate_practice_areas']
-            ->pluck('practice_area_id')->unique()->values()->toArray();
+        $practiceIds = $data['advocate_practice_areas']
+            ->pluck('practice_id')
+            ->unique()
+            ->values()
+            ->toArray();
 
-        $locationIds = $data['advocate_locations']
-            ->pluck('location_id')->unique()->values()->toArray();
+        $districtIds = $data['advocate_locations']
+            ->pluck('district_id')
+            ->unique()
+            ->values()
+            ->toArray();
 
 
         // Same Designation Advocates
@@ -383,13 +395,12 @@ class FrontenController extends Controller
             ->orderBy('id', 'desc')
             ->get();
 
-        dd($relatedAdvocates->toArray());
-
 
         // Matching Law Count
         $lawMatches = collect();
 
         if (!empty($lawIds)) {
+
             $lawMatches = \DB::table('advocate_laws')
                 ->whereIn('law_id', $lawIds)
                 ->selectRaw('user_id, COUNT(DISTINCT law_id) as matched')
@@ -401,22 +412,24 @@ class FrontenController extends Controller
         // Matching Practice Area Count
         $practiceMatches = collect();
 
-        if (!empty($practiceAreaIds)) {
+        if (!empty($practiceIds)) {
+
             $practiceMatches = \DB::table('advocate_practice_areas')
-                ->whereIn('practice_area_id', $practiceAreaIds)
-                ->selectRaw('user_id, COUNT(DISTINCT practice_area_id) as matched')
+                ->whereIn('practice_id', $practiceIds)
+                ->selectRaw('user_id, COUNT(DISTINCT practice_id) as matched')
                 ->groupBy('user_id')
                 ->pluck('matched', 'user_id');
         }
 
 
-        // Matching Location Count
-        $locationMatches = collect();
+        // Matching District Count
+        $districtMatches = collect();
 
-        if (!empty($locationIds)) {
-            $locationMatches = \DB::table('advocate_locations')
-                ->whereIn('location_id', $locationIds)
-                ->selectRaw('user_id, COUNT(DISTINCT location_id) as matched')
+        if (!empty($districtIds)) {
+
+            $districtMatches = \DB::table('advocate_locations')
+                ->whereIn('district_id', $districtIds)
+                ->selectRaw('user_id, COUNT(DISTINCT district_id) as matched')
                 ->groupBy('user_id')
                 ->pluck('matched', 'user_id');
         }
@@ -426,64 +439,87 @@ class FrontenController extends Controller
         $relatedAdvocates = $relatedAdvocates->map(function ($advocate) use (
             $lawMatches,
             $practiceMatches,
-            $locationMatches
+            $districtMatches
         ) {
 
             $lawCount = (int) $lawMatches->get($advocate->id, 0);
 
             $practiceCount = (int) $practiceMatches->get($advocate->id, 0);
 
-            $locationCount = (int) $locationMatches->get($advocate->id, 0);
+            $districtCount = (int) $districtMatches->get($advocate->id, 0);
+
 
             // Total Matching Score
-            $advocate->matching_score = $lawCount + $practiceCount + $locationCount;
+            $advocate->matching_score = $lawCount + $practiceCount + $districtCount;
 
-            // Matching Category Count
+
+            // Matching Categories
             $advocate->matching_categories =
                 ($lawCount > 0 ? 1 : 0) +
                 ($practiceCount > 0 ? 1 : 0) +
-                ($locationCount > 0 ? 1 : 0);
+                ($districtCount > 0 ? 1 : 0);
+
 
             $advocate->matched_laws = $lawCount;
+
             $advocate->matched_practice_areas = $practiceCount;
-            $advocate->matched_locations = $locationCount;
+
+            $advocate->matched_locations = $districtCount;
+
 
             return $advocate;
         });
 
 
-        // Priority Based Related Advocates
-        $data['related_advocates'] = $relatedAdvocates
+        // Check: Any Advocate Found With Matching Skills?
+        $matchedAdvocates = $relatedAdvocates->filter(function ($advocate) {
+            return $advocate->matching_score > 0;
+        });
 
-            // At least one category must match
-            ->filter(function ($advocate) {
-                return $advocate->matching_score > 0;
-            })
 
-            // First: More Matching Categories
-            // Second: Higher Matching Score
-            // Third: Latest Advocate
-            ->sort(function ($a, $b) {
+        // If Matching Found, Show Matched Advocates
+        // Otherwise, Show All Same Designation Advocates
+        if ($matchedAdvocates->isNotEmpty()) {
 
-                if ($a->matching_categories != $b->matching_categories) {
-                    return $b->matching_categories <=> $a->matching_categories;
-                }
+            $data['related_advocates'] = $matchedAdvocates
+                ->sort(function ($a, $b) {
 
-                if ($a->matching_score != $b->matching_score) {
-                    return $b->matching_score <=> $a->matching_score;
-                }
+                    // First: More Matching Categories
+                    if ($a->matching_categories != $b->matching_categories) {
+                        return $b->matching_categories <=> $a->matching_categories;
+                    }
 
-                return $b->id <=> $a->id;
-            })
+                    // Second: Higher Matching Score
+                    if ($a->matching_score != $b->matching_score) {
+                        return $b->matching_score <=> $a->matching_score;
+                    }
 
-            ->take(10)
-            ->values();
+                    // Third: Latest Advocate
+                    return $b->id <=> $a->id;
+                })
+                ->take(10)
+                ->values();
 
-        dd($data['related_advocates']->toArray());
+        } else {
+
+            // Fallback: Same Designation Advocates
+            $data['related_advocates'] = $relatedAdvocates
+                ->take(10)
+                ->values();
+        }
+
+        $data['legalArticles']  = NewsEvent::with('law')
+            ->orderBy('date', 'desc')
+            ->take(4)
+            ->get();
+
+        // Video Gallery Data
+        $data['videos'] = VideoGallery::orderBy('id', 'desc')
+            ->take(4)
+            ->get();
 
         return view('frontend.advocate.advocate_profile', $data);
     }
-
 
     public function findAdvocateList(){
 
@@ -974,25 +1010,6 @@ class FrontenController extends Controller
         $pdf = PDF::loadView('frontend.single_pages.pdf.booking_pdf', $data);
         $pdf->SetProtection(['copy', 'print'], '', 'pass');
         return $pdf->stream('document.pdf');
-    }
-
-    public function doctorProfile($id){
-        $data['doctor']             = User::where('status','1')->where('id',$id)->first();
-        $data['departments']        = Department::all();
-        $data['qualifications']     = Education::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
-        $data['experiences']        = Experience::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
-        $data['trainings']          = Achievement::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
-        $data['specialities']       = Speciality::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
-        $data['profile_times']      = ProfileTime::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
-        $data['work_places']        = WorkPlace::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
-        $data['chambers']           = Chamber::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
-        $data['news_events']        = NewsEvent::where('user_id',@$data['doctor']->id)->orderBy('id','desc')->get();
-        $data['photo_galleries']    = PhotoGallery::where('user_id',@$data['doctor']->id)->orderBy('id','desc')->get();
-        $data['video_galleries']    = VideoGallery::where('user_id',@$data['doctor']->id)->orderBy('id','desc')->get();
-        $data['social_medias']      = SocialMedia::where('user_id',@$data['doctor']->id)->orderBy('id','asc')->get();
-        $data['payment_number']     = PaymentNumber::first();
-        $data['page_type']          = 'doctor';
-        return view('frontend.single_pages.doctor_profile',$data);
     }
 
     public function newsDetails($id){
