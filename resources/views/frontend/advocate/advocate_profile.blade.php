@@ -14,7 +14,6 @@
                 console.log('Error sharing', error);
             });
         } else {
-            // যদি ব্রাউজার শেয়ার সাপোর্ট না করে, তবে লিংক কপি করে দিবে
             var dummy = document.createElement('input'),
                 text = window.location.href;
             document.body.appendChild(dummy);
@@ -73,7 +72,7 @@
 
         /* =========================================
            Main Profile
-           সবসময় পাশাপাশি থাকবে
+           সবসময় পাশাপাশি থাকবে
         ========================================= */
 
         .doctor-main-profile {
@@ -170,12 +169,12 @@
             color: #111111;
             margin: 0;
 
-            /* নাম বেশি বড় হলে পরের লাইনে যাবে */
+            /* নাম বেশি বড় হলে পরের লাইনে যাবে */
             white-space: normal;
             overflow-wrap: break-word;
             word-wrap: break-word;
 
-            /* Available space অনুযায়ী নাম থাকবে */
+            /* Available space অনুযায়ী নাম থাকবে */
             flex: 1;
             min-width: 0;
 
@@ -386,7 +385,7 @@
 
 
         /* =========================================
-           Desktop - col-md-4 একটু বড় হলে
+           Desktop - col-md-4 একটু বড় হলে
         ========================================= */
 
         @media (min-width: 992px) {
@@ -682,6 +681,18 @@
         }
     </style>
 
+    @php
+        $callNumber = !empty($advocate->appointment_contact) ? $advocate->appointment_contact : $advocate->mobile;
+
+        $specializationText = $advocate_practice_areas
+            ->map(function ($item) {
+                return optional($item->practice)->name;
+            })
+            ->filter()
+            ->take(2)
+            ->implode(', ');
+    @endphp
+
     <main class="main pages" style="background-color: #f5f5f5;border-radius: 15px;margin-bottom: 10px;">
         <div class="page-content pt-50" style="padding:20px 0px 10px 0px !important">
             <div class="container">
@@ -691,186 +702,114 @@
                         <!-- Advocate Profile -->
                         <div class="col-lg-6 col-md-6 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
                             <div class="lpc-slide">
-
                                 <div class="lpc-card">
-
-
-                                    <!-- PROFILE IMAGE -->
-
                                     <div class="lpc-image-area">
-
                                         <div class="lpc-profile-image">
-
-                                            <img src="{{asset('frontend/adv.png')}}"
-                                                 alt="Adv. Rafiqul Islam">
-
+                                            <img src="{{ !empty($advocate->image) ? url('uploads/advocates_images/'.$advocate->image) : url('uploads/no_image.png') }}" alt="{{ $advocate->name }}">
                                         </div>
-
-
-                                        <!-- VERIFIED -->
-
                                         <div class="lpc-verified">
-
                                             <i class="fa fa-check"></i>
-
                                             Bar Council Verified
-
                                         </div>
-
                                     </div>
 
-
-
-                                    <!-- PROFILE BODY -->
-
                                     <div class="lpc-body">
-
-
                                         <h3 class="lpc-name">
-                                            Adv. Rafiqul Islam
+                                            {{ $advocate->name }}
                                         </h3>
-
-
                                         <div class="lpc-designation">
-                                            Legal Consultant
+                                            {{ $advocate->designation->name ?? '' }}
                                         </div>
-
-
-                                        <!-- RATING -->
 
                                         <div class="lpc-rating">
-
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
-
                                             <strong>4.8</strong>
-
-                                            <span>
-                                                (61 Reviews)
-                                            </span>
-
+                                            <span>(61 Reviews)</span>
                                         </div>
-
-
-                                        <!-- SPECIALIZATION -->
 
                                         <div class="lpc-specialization">
-                                            Corporate & Tax Advisory Specialist
+                                            {{ $specializationText }}
                                         </div>
 
-
-                                        <!-- COURT -->
-
                                         <div class="lpc-court">
-                                            Supreme Court of Bangladesh
+                                            {{ $advocate->court_name }}
                                         </div>
 
                                         <div class="lpc-court-location">
-                                            District & Sessions Judge Court, Dhaka
+                                            {{ $advocate->present_address }}
                                         </div>
-
-
-                                        <!-- DIVIDER -->
 
                                         <div class="lpc-divider"></div>
 
-
-                                        <!-- INFORMATION -->
-
                                         <div class="lpc-info">
-
-
-                                            <!-- LEFT -->
-
                                             <div class="lpc-info-column">
-
                                                 <div class="lpc-info-label">
                                                     Qualification:
                                                 </div>
-
                                                 <div class="lpc-info-value">
-                                                    LL.B, LL.M
+                                                    {{ $advocate->short_qualification }}
                                                 </div>
-
-
                                                 <div class="lpc-info-label">
                                                     Enrollment No:
                                                 </div>
-
                                                 <div class="lpc-info-value">
-                                                    BCB-XXXXXX
+                                                    {{ $advocate->enrollment_no }}
                                                 </div>
-
                                             </div>
 
-
-                                            <!-- RIGHT -->
-
                                             <div class="lpc-info-column">
-
                                                 <div class="lpc-info-label">
                                                     Experience:
                                                 </div>
-
                                                 <div class="lpc-info-value">
-                                                    15 Years of Experience
+                                                    {{ $advocate->experience }}
                                                 </div>
-
-
                                                 <div class="lpc-info-label">
                                                     Bar Association:
                                                 </div>
-
                                                 <div class="lpc-info-value">
-                                                    Dhaka Bar Association
+                                                    {{ $advocate->bar_association }}
                                                 </div>
-
                                             </div>
-
                                         </div>
 
-                                        <!-- ===================== Action Buttons ===================== -->
                                         <div class="doctor-action-buttons">
-
-                                            <!-- Call + WhatsApp -->
                                             <div class="row g-3 doctor-bottom-buttons" style="margin-bottom: 15px;">
-
-                                                <!-- Call -->
                                                 <div class="col-6">
-                                                    <a href="tel:+8801700000000" class="doctor-outline-btn" onclick="return confirm('Do you want to call +8801700000000?');">
-                                                        <i class="fa fa-phone"></i>
-                                                        <span>Call</span>
-                                                    </a>
+                                                    @if(!empty($callNumber))
+                                                        <a href="tel:{{ $callNumber }}" class="doctor-outline-btn" onclick="return confirm('Do you want to call {{ $callNumber }}?');">
+                                                            <i class="fa fa-phone"></i>
+                                                            <span>Call</span>
+                                                        </a>
+                                                    @else
+                                                        <a href="javascript:void(0)" class="doctor-outline-btn" style="opacity:0.5; cursor:not-allowed;">
+                                                            <i class="fa fa-phone"></i>
+                                                            <span>Call</span>
+                                                        </a>
+                                                    @endif
                                                 </div>
 
-                                                <!-- WhatsApp (modal open) -->
                                                 <div class="col-6">
                                                     <a href="javascript:void(0)" onclick="openConsultModal()" class="doctor-outline-btn">
                                                         <i class="fa-brands fa-whatsapp"></i>
                                                         <span>WhatsApp</span>
                                                     </a>
                                                 </div>
-
                                             </div>
 
-                                            <!-- Share Profile -->
                                             <div class="mb-3">
                                                 <a href="javascript:void(0)" onclick="shareDoctorProfile()" class="doctor-btn btn-appointment">
                                                     <i class="fa fa-share-alt"></i>
                                                     <span>Share Profile</span>
                                                 </a>
                                             </div>
-
                                         </div>
-
-
                                     </div>
-
                                 </div>
-
                             </div>
                         </div>
 
@@ -886,14 +825,16 @@
                         @include('frontend.advocate.reviews')
                         @include('frontend.advocate.photo_gallery')
                         @include('frontend.advocate.recommented_advocate')
-                        @include('frontend.advocate.legal_topics')
-                        @include('frontend.advocate.video')
-
-                    </div>
-                    <!--end vendor card-->
+                    </div> <!-- Row শেষ -->
                 </div>
             </div>
         </div>
     </main>
+
+    {{-- এই দুইটা সেকশন main এর বাইরে, একদম নিচে থাকবে --}}
+    @include('frontend.advocate.legal_topics')
+    @include('frontend.advocate.video')
+
+    {{-- মডাল সবসময় একদম শেষে --}}
     @include('frontend.advocate.consult_modal')
 @endsection
