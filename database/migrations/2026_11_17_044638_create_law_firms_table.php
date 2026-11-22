@@ -30,6 +30,10 @@ class CreateLawFirmsTable extends Migration
             $table->longText('office_hour')->nullable();
             $table->longText('map')->nullable();
             $table->longText('social')->nullable();
+            $table->string('enrollment_no')->nullable();
+            $table->string('bar_association')->nullable();
+            $table->integer('team_size')->nullable();
+            $table->string('image')->nullable();
             $table->integer('status')->default(1);
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
