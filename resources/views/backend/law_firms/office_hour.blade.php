@@ -1,4 +1,3 @@
-
 @extends('backend.layouts.master')
 @section('content')
 <div class="col-md-12" style="padding-top: 40px;">
@@ -13,30 +12,7 @@
 
         <div class="card-body">
 
-            <!-- ফার্মের বেসিক ইনফরমেশন -->
-            <div class="row mb-4">
-                <div class="col-md-12">
-                    <table>
-                        <tr>
-                            <td>
-                                <strong style="font-size:25px">{{ @$details->firm_name }}</strong>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>Leader:</strong> {{ @$details['leader']['name'] ?? 'N/A' }}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Court:</strong> {{ @$details->court_name ?? 'N/A' }}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Established:</strong> {{ @$details->established ?? 'N/A' }}</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-
-            <!-- ট্যাব মেনু -->
-            @include('backend.law_firms.law_firm_tab')
+            @include('backend.law_firms.law_firm_header')
 
             <!-- Office Hour Content -->
             <div class="mt-4">

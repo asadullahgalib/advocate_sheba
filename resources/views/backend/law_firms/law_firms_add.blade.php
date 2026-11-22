@@ -14,7 +14,7 @@
       </div>
 
       <!-- Form Start-->
-      <form method="post" action="{{!empty($editData->id) ? route('law-firms.update',$editData->id) : route('law-firms.store') }}" id="myForm">
+      <form method="post" action="{{!empty($editData->id) ? route('law-firms.update',$editData->id) : route('law-firms.store') }}" id="myForm" enctype="multipart/form-data">
         {{csrf_field()}}
         <div class="card-body">
           <div class="show_module_more_event">
@@ -35,6 +35,7 @@
               <div class="form-group col-md-6">
                 <label class="control-label" for="firm_name">Firm Name <span style="color:red;">*</span></label>
                 <input type="text" name="firm_name" id="firm_name" class="form-control form-control-sm" value="{{ old('firm_name', @$editData->firm_name) }}" placeholder="Enter Firm Name">
+                <font style="color: red">{{ ($errors->has('firm_name')) ? $errors->first('firm_name') : '' }}</font>
               </div>
 
               <!-- Court Name -->
@@ -47,6 +48,39 @@
               <div class="form-group col-md-6">
                 <label class="control-label" for="established">Established</label>
                 <input type="text" name="established" id="established" class="form-control form-control-sm" value="{{ old('established', @$editData->established) }}" placeholder="Enter Established Year">
+              </div>
+
+              <!-- Enrollment No -->
+              <div class="form-group col-md-4">
+                <label class="control-label" for="enrollment_no">Head Advocate Enrollment No <span style="color:red;">*</span></label>
+                <input type="text" name="enrollment_no" id="enrollment_no" class="form-control form-control-sm" value="{{ old('enrollment_no', @$editData->enrollment_no) }}" placeholder="e.g. BCB-123456">
+                <font style="color: red">{{ ($errors->has('enrollment_no')) ? $errors->first('enrollment_no') : '' }}</font>
+              </div>
+
+              <!-- Bar Association -->
+              <div class="form-group col-md-4">
+                <label class="control-label" for="bar_association">Bar Association <span style="color:red;">*</span></label>
+                <input type="text" name="bar_association" id="bar_association" class="form-control form-control-sm" value="{{ old('bar_association', @$editData->bar_association) }}" placeholder="e.g. Dhaka Bar Association">
+                <font style="color: red">{{ ($errors->has('bar_association')) ? $errors->first('bar_association') : '' }}</font>
+              </div>
+
+              <!-- Team Size -->
+              <div class="form-group col-md-4">
+                <label class="control-label" for="team_size">Team (Total Lawyers) <span style="color:red;">*</span></label>
+                <input type="number" min="0" name="team_size" id="team_size" class="form-control form-control-sm" value="{{ old('team_size', @$editData->team_size) }}" placeholder="e.g. 6">
+                <font style="color: red">{{ ($errors->has('team_size')) ? $errors->first('team_size') : '' }}</font>
+              </div>
+
+              <!-- Image -->
+              <div class="form-group col-md-4">
+                <label class="control-label">Image <span style="color:red;">(300px X 300px)</span></label>
+                <input type="file" name="image" id="image" class="form-control form-control-sm">
+                <font style="color: red">{{ ($errors->has('image')) ? $errors->first('image') : '' }}</font>
+              </div>
+
+              <!-- Image Preview -->
+              <div class="form-group col-md-2" style="z-index: 100;">
+                <img id="showImage" src="{{ (!empty($editData->image)) ? url('uploads/law_firm_images/'.$editData->image) : url('uploads/no_image.png') }}" style="width: 100px; height: 100px; object-fit: cover; border:1px solid #000;" class="form-control">
               </div>
 
               <!-- Abouts with CKEditor -->
@@ -84,6 +118,19 @@
   });
 </script>
 
+<!-- Live Image Preview -->
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#image').change(function(e){
+      var reader = new FileReader();
+      reader.onload = function(e){
+        $('#showImage').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(e.target.files['0']);
+    });
+  });
+</script>
+
 <!-- jQuery Validation Script -->
 <script type="text/javascript">
     $(document).ready(function () {
@@ -93,11 +140,17 @@
         rules: {
           leader_id: { required: true },
           firm_name: { required: true },
+          enrollment_no: { required: true },
+          bar_association: { required: true },
+          team_size: { required: true, number: true },
           abouts: { required: true }
         },
         messages: {
           leader_id: { required: "Please select a leader" },
           firm_name: { required: "Please enter the firm name" },
+          enrollment_no: { required: "Please enter enrollment no" },
+          bar_association: { required: "Please enter bar association" },
+          team_size: { required: "Please enter team size", number: "Please enter a number" },
           abouts: { required: "Please enter firm details" }
         },
         errorElement: 'span',

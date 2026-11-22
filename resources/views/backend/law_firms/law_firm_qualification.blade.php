@@ -1,15 +1,5 @@
 @extends('backend.layouts.master')
 @section('content')
-
-<style type="text/css">
-  .btn_active{
-    background: #F70F9E !important;
-    color: #fff !important;
-    text-decoration: underline !important;
-    border: 1px solid #F70F9E !important;
-  }
-</style>
-
 <div class="col-md-12" style="padding-top: 40px;">
     <div class="card">
         <div class="card-header">
@@ -20,29 +10,8 @@
         </div>
 
         <div class="card-body">
-            
-            <!-- ফার্মের বেসিক ইনফরমেশন (আইডি চেনার জন্য) -->
-            <div class="row mb-4">
-                <div class="col-md-12">
-                    <table>
-                        <tr>
-                            <td><strong style="font-size:25px">{{ @$details->firm_name }}</strong></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Leader:</strong> {{ @$details['leader']['name'] ?? 'N/A' }}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Court:</strong> {{ @$details->court_name ?? 'N/A' }}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Established:</strong> {{ @$details->established ?? 'N/A' }}</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
 
-            <!-- ট্যাব মেনু -->
-            @include('backend.law_firms.law_firm_tab')
+            @include('backend.law_firms.law_firm_header')
 
             <!-- ট্যাব কন্টেন্ট -->
             <div class="mt-4">
