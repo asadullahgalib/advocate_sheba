@@ -1,6 +1,31 @@
 @extends('frontend.layouts.master')
 @section('content')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script>
+    function shareDoctorProfile() {
+        if (navigator.share) {
+            navigator.share({
+                title: 'Law Firm Profile',
+                text: 'Check out this law firm profile',
+                url: window.location.href
+            }).then(() => {
+                console.log('Successfully shared');
+            }).catch((error) => {
+                console.log('Error sharing', error);
+            });
+        } else {
+            // যদি ব্রাউজার শেয়ার সাপোর্ট না করে, তবে লিংক কপি করে দিবে
+            var dummy = document.createElement('input'),
+                text = window.location.href;
+            document.body.appendChild(dummy);
+            dummy.value = text;
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+            alert('Profile link copied to clipboard!');
+        }
+    }
+    </script>
     <style>
 
         /* =========================================
@@ -48,7 +73,7 @@
 
         /* =========================================
            Main Profile
-           সবসময় পাশাপাশি থাকবে
+           সবসময় পাশাপাশি থাকবে
         ========================================= */
 
         .doctor-main-profile {
@@ -145,12 +170,12 @@
             color: #111111;
             margin: 0;
 
-            /* নাম বেশি বড় হলে পরের লাইনে যাবে */
+            /* নাম বেশি বড় হলে পরের লাইনে যাবে */
             white-space: normal;
             overflow-wrap: break-word;
             word-wrap: break-word;
 
-            /* Available space অনুযায়ী নাম থাকবে */
+            /* Available space অনুযায়ী নাম থাকবে */
             flex: 1;
             min-width: 0;
 
@@ -361,7 +386,7 @@
 
 
         /* =========================================
-           Desktop - col-md-4 একটু বড় হলে
+           Desktop - col-md-4 একটু বড় হলে
         ========================================= */
 
         @media (min-width: 992px) {
@@ -657,13 +682,43 @@
         }
     </style>
 
+    @php
+        // LawFirmController-এ ছবি যে ফোল্ডারে সেভ হয় সেটা এখানে দিন (শেষে / থাকবে)
+        $lawFirmImageFolder = 'uploads/law_firm_images/';
+
+        // লিডার অ্যাডভোকেট
+        $leader = $law_firm->leader;
+
+        // কল নাম্বার: লিডারের appointment_contact আগে, না থাকলে mobile
+        $callNumber = !empty(optional($leader)->appointment_contact)
+            ? $leader->appointment_contact
+            : optional($leader)->mobile;
+
+        // WhatsApp নাম্বার: শুধু সংখ্যা রেখে বাংলাদেশের কোড (88) যোগ
+        $waNumber = preg_replace('/[^0-9]/', '', (string) $callNumber);
+
+        if (!empty($waNumber)) {
+            if (substr($waNumber, 0, 3) === '880') {
+                // আগে থেকেই কান্ট্রি কোড আছে
+            } elseif (substr($waNumber, 0, 1) === '0') {
+                $waNumber = '88' . $waNumber;
+            } else {
+                $waNumber = '880' . $waNumber;
+            }
+        }
+
+        // Enrollment No ও Bar Association: ফার্মের নিজের থাকলে সেটা, না থাকলে লিডারের
+        $enrollmentNo   = !empty($law_firm->enrollment_no) ? $law_firm->enrollment_no : optional($leader)->enrollment_no;
+        $barAssociation = !empty($law_firm->bar_association) ? $law_firm->bar_association : optional($leader)->bar_association;
+    @endphp
+
     <main class="main pages" style="background-color: #f5f5f5;border-radius: 15px;margin-bottom: 10px;">
         <div class="page-content pt-50" style="padding:20px 0px 10px 0px !important">
             <div class="container">
                 <div class="archive-header-2">
 
                     <div class="row">
-                        <!-- Advocate Profile -->
+                        <!-- Law Firm Profile -->
                         <div class="col-lg-4 col-md-4 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
                             <div class="lpc-slide">
 
@@ -676,8 +731,8 @@
 
                                         <div class="lpc-profile-image">
 
-                                            <img src="{{ asset('frontend/firm_logo.png') }}"
-                                                 alt="Adv. Rafiqul Islam">
+                                            <img src="{{ !empty($law_firm->image) ? url($lawFirmImageFolder.$law_firm->image) : asset('frontend/firm_logo.png') }}"
+                                                 alt="{{ $law_firm->firm_name }}">
 
                                         </div>
 
@@ -702,7 +757,7 @@
 
 
                                         <h3 class="lpc-name">
-                                            গালিব ল অ্যাসোসিয়েটস
+                                            {{ $law_firm->firm_name }}
                                         </h3>
 
 
@@ -730,21 +785,24 @@
                                         </div>
 
 
-                                        <!-- SPECIALIZATION -->
+                                        <!-- LEADER -->
 
                                         <div class="lpc-specialization">
-                                            <strong>Led by Adv. Md. Asadullah Galib</strong>
+                                            @if(!empty($leader))
+                                                <strong>Led by {{ $leader->name }}</strong>
+                                            @endif
                                         </div>
 
 
                                         <!-- COURT -->
 
                                         <div class="lpc-court">
-                                            Supreme Court of Bangladesh
+                                            {{ $law_firm->court_name }}
                                         </div>
 
+                                        <!-- জেলা (একবারই দেখাবে) -->
                                         <div class="lpc-court-location">
-                                            District & Sessions Judge Court, Dhaka
+                                            {{ $firm_district_name }}
                                         </div>
 
 
@@ -767,7 +825,7 @@
                                                 </div>
 
                                                 <div class="lpc-info-value">
-                                                    2012
+                                                    {{ $law_firm->established }}
                                                 </div>
 
 
@@ -776,7 +834,7 @@
                                                 </div>
 
                                                 <div class="lpc-info-value">
-                                                    BCB-XXXXXX
+                                                    {{ $enrollmentNo }}
                                                 </div>
 
                                             </div>
@@ -791,7 +849,9 @@
                                                 </div>
 
                                                 <div class="lpc-info-value">
-                                                    6 Lawyers
+                                                    @if(!empty($law_firm->team_size))
+                                                        {{ $law_firm->team_size }} Lawyers
+                                                    @endif
                                                 </div>
 
 
@@ -800,7 +860,7 @@
                                                 </div>
 
                                                 <div class="lpc-info-value">
-                                                    Dhaka Bar Association
+                                                    {{ $barAssociation }}
                                                 </div>
 
                                             </div>
@@ -811,45 +871,74 @@
                                         <!-- Action Buttons -->
                                         <div class="doctor-action-buttons">
 
-                                            <!-- WhatsApp + Share -->
+                                            <!-- Call + WhatsApp -->
                                             <div class="row g-3 doctor-bottom-buttons" style="margin-bottom: 15px;">
 
-                                                <!-- WhatsApp -->
+                                                <!-- Call -->
                                                 <div class="col-6">
 
-                                                    <a href="tel:+8801700000000"
-                                                       class="doctor-outline-btn">
+                                                    @if(!empty($callNumber))
+                                                        <a href="tel:{{ $callNumber }}"
+                                                           class="doctor-outline-btn"
+                                                           onclick="return confirm('Do you want to call {{ $callNumber }}?');">
 
-                                                        <i class="fa fa-phone"></i>
+                                                            <i class="fa fa-phone"></i>
 
-                                                        <span>
-                                                            Call
-                                                        </span>
+                                                            <span>
+                                                                Call
+                                                            </span>
 
-                                                    </a>
+                                                        </a>
+                                                    @else
+                                                        <a href="javascript:void(0)"
+                                                           class="doctor-outline-btn"
+                                                           style="opacity:0.5; cursor:not-allowed;">
+
+                                                            <i class="fa fa-phone"></i>
+
+                                                            <span>
+                                                                Call
+                                                            </span>
+
+                                                        </a>
+                                                    @endif
 
                                                 </div>
 
 
-                                                <!-- Share -->
+                                                <!-- WhatsApp -->
                                                 <div class="col-6">
 
-                                                    <a href="https://wa.me/8801700000000" target="_blank"
-                                                       class="doctor-outline-btn">
+                                                    @if(!empty($waNumber))
+                                                        <a href="https://wa.me/{{ $waNumber }}" target="_blank"
+                                                           class="doctor-outline-btn">
 
-                                                        <i class="fa fa-whatsapp"></i>
+                                                            <i class="fa fa-whatsapp"></i>
 
-                                                        <span>
-                                                            WhatsApp
-                                                        </span>
+                                                            <span>
+                                                                WhatsApp
+                                                            </span>
 
-                                                    </a>
+                                                        </a>
+                                                    @else
+                                                        <a href="javascript:void(0)"
+                                                           class="doctor-outline-btn"
+                                                           style="opacity:0.5; cursor:not-allowed;">
+
+                                                            <i class="fa fa-whatsapp"></i>
+
+                                                            <span>
+                                                                WhatsApp
+                                                            </span>
+
+                                                        </a>
+                                                    @endif
 
                                                 </div>
 
                                             </div>
 
-                                            <!-- Appointment -->
+                                            <!-- Share Profile -->
                                             <div class="mb-3">
 
                                                 <a href="javascript:void(0)" onclick="shareDoctorProfile()"

@@ -1,4 +1,24 @@
-<!-- About Advocate -->
+@php
+    $leader = $law_firm->leader;
+
+    // ইংরেজি সংখ্যাকে বাংলায় বদলানোর তালিকা
+    $bnDigits = ['0'=>'০','1'=>'১','2'=>'২','3'=>'৩','4'=>'৪','5'=>'৫','6'=>'৬','7'=>'৭','8'=>'৮','9'=>'৯'];
+
+    // অভিজ্ঞতা: বর্তমান সাল - প্রতিষ্ঠার সাল
+    $firmYears = null;
+    if (!empty($law_firm->established) && is_numeric($law_firm->established)) {
+        $diff = (int) date('Y') - (int) $law_firm->established;
+        if ($diff > 0) {
+            $firmYears = $diff;
+        }
+    }
+
+    // লিডারের কাজের জেলার সংখ্যা
+    $districtCount = isset($leader_locations) ? $leader_locations->count() : 0;
+@endphp
+
+@if(!empty($leader))
+<!-- Law Firm Head / President -->
 <div class="col-lg-4 col-md-4 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
     <div class="lpc-slide">
 
@@ -13,35 +33,47 @@
 
                     <!-- Law Firm Heading -->
                     <div class="lf-team-heading">
-                        <h2>Galib Law Associates</h2>
+                        <h2>{{ $law_firm->firm_name }}</h2>
                         <p>
-                            District &amp; Sessions Judge Court, Dhaka
-                            <span>•</span>
-                            Supreme Court of Bangladesh
+                            @if(!empty($firm_district_name))
+                                {{ $firm_district_name }}
+                            @endif
+                            @if(!empty($firm_district_name) && !empty($law_firm->court_name))
+                                <span>•</span>
+                            @endif
+                            @if(!empty($law_firm->court_name))
+                                {{ $law_firm->court_name }}
+                            @endif
                         </p>
                     </div>
 
                     <!-- Statistics -->
                     <div class="lf-team-stats">
 
+                        @if(!empty($law_firm->team_size))
                         <div class="lf-stat-box">
-                            <div class="lf-stat-number">৫</div>
+                            <div class="lf-stat-number">{{ strtr((string) $law_firm->team_size, $bnDigits) }}</div>
                             <div class="lf-stat-label">অ্যাডভোকেট</div>
                         </div>
+                        @endif
 
+                        @if(!empty($firmYears))
                         <div class="lf-stat-box">
-                            <div class="lf-stat-number">১২+</div>
+                            <div class="lf-stat-number">{{ strtr((string) $firmYears, $bnDigits) }}+</div>
                             <div class="lf-stat-label">বছরের অভিজ্ঞতা</div>
                         </div>
+                        @endif
 
+                        @if($districtCount > 0)
                         <div class="lf-stat-box">
-                            <div class="lf-stat-number">৩</div>
-                            <div class="lf-stat-label">আদালত</div>
+                            <div class="lf-stat-number">{{ strtr((string) $districtCount, $bnDigits) }}</div>
+                            <div class="lf-stat-label">জেলা</div>
                         </div>
+                        @endif
 
                         <div class="lf-stat-box">
                             <div class="lf-stat-number">4.7</div>
-                            <div class="lf-stat-label">গড় রেটিং</div>
+                            <div class="lf-stat-label">গড় রেটিং</div>
                         </div>
 
                     </div>
@@ -49,13 +81,13 @@
                     <!-- Team Heading -->
                     <h3 class="lf-team-section-title">Our Team</h3>
 
-                    <!-- Advocate Profile -->
+                    <!-- Head Advocate Profile -->
                     <div class="lf-advocate-card">
 
                         <!-- Advocate Image -->
                         <div class="lf-advocate-image">
-                            <img src="{{asset('frontend/adv.png')}}"
-                                 alt="Adv. Md. Asadullah Galib">
+                            <img src="{{ !empty($leader->image) ? url('uploads/advocates_images/'.$leader->image) : url('uploads/no_image.png') }}"
+                                 alt="{{ $leader->name }}">
                         </div>
 
                         <!-- Verification Badge -->
@@ -72,12 +104,12 @@
 
                         <!-- Name -->
                         <h4 class="lf-advocate-name">
-                            Adv. Md. Asadullah Galib
+                            {{ $leader->name }}
                         </h4>
 
                         <!-- Designation -->
                         <p class="lf-advocate-designation">
-                            Founder &amp; Head of Chamber
+                            {{ optional($leader->designation)->name }}
                         </p>
 
                         <!-- Rating -->
@@ -90,11 +122,11 @@
                         <!-- Experience -->
                         <div class="lf-advocate-experience">
                             <i class="fa fa-map-marker"></i>
-                            <span>12 Years of Practice</span>
+                            <span>{{ $leader->experience }}</span>
                         </div>
 
                         <!-- View Profile Button -->
-                        <a href=""
+                        <a href="{{ !empty($leader->slug) ? route('advocate-profile', $leader->slug) : '#' }}"
                            class="lf-view-profile-btn">
                             View Profile
                         </a>
@@ -109,6 +141,7 @@
 
     </div>
 </div>
+@endif
 
 <style>
     /* =========================================

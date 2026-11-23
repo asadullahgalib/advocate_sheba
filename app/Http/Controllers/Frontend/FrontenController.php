@@ -42,6 +42,7 @@ use App\Model\Document;
 use App\Model\LegalInformation;
 use App\Model\legalInformationDetails;
 use App\Model\Law;
+use App\Model\LawFirm;
 use App\Model\Megazine;
 use App\Model\Add;
 use App\Model\LegalProfessionalDetail;
@@ -338,6 +339,13 @@ class FrontenController extends Controller
                           ->take(10)
                           ->get();
 
+        // Law Firms Data (Home Page Maximum 10 Cards)
+        $data['law_firms'] = LawFirm::with('leader')
+            ->where('status', 1)
+            ->orderBy('id', 'desc')
+            ->take(10)
+            ->get();
+
         return view('frontend.layouts.home', $data);
     }
        
@@ -603,7 +611,7 @@ class FrontenController extends Controller
 
     public function findLawFirmList(){
 
-        // নতুন যোগ করা হলো: Legal Articles এবং Videos ডাটা
+        // Legal Articles এবং Videos ডাটা
         $data['legalArticles'] = NewsEvent::with('law')
             ->orderBy('date', 'desc')
             ->take(4)
@@ -613,30 +621,219 @@ class FrontenController extends Controller
             ->take(4)
             ->get();
 
+        $data['law_firms'] = LawFirm::with('leader')
+        ->where('status', 1)
+        ->orderBy('id', 'desc')
+        ->paginate(12);
+
         $data['page_type'] = 'find_law_firm';
 
         return view('frontend.single_pages.find_law_firm_list',$data);
     }
 
-    public function lawFirmDetails(){
-        $data['page_type'] = 'find_consultant';
-        return view('frontend.law_firm.law_firm_profile',$data);
+    public function lawFirmDetails($slug = null){
+
+    // slug ছাড়া পুরোনো লিংকে এলে list পেজে পাঠিয়ে দেবে
+    if (empty($slug)) {
+        return redirect()->route('find.our.law-firm-list');
     }
 
-    public function legalInformation(){
-        $data['page_type'] = 'legal_information';
+    // ================= Law Firm Profile =================
+    $lawFirm = LawFirm::with('leader')
+        ->where('slug', $slug)
+        ->where('status', 1)
+        ->first();
 
-        // Legal Articles Data
-        $data['legalArticles'] = NewsEvent::with('law')
+    if (!$lawFirm) {
+        abort(404);
+    }
+
+    $data['law_firm'] = $lawFirm;
+
+    $leaderId = $lawFirm->leader_id;
+
+    // ================= লিডারের Laws =================
+    $data['leader_laws'] = !empty($leaderId)
+        ? \App\Model\AdvocateLaw::with('law')->where('user_id', $leaderId)->get()
+        : collect();
+
+    // ================= লিডারের Practice Areas =================
+    $data['leader_practice_areas'] = !empty($leaderId)
+        ? \App\Model\AdvocatePracticeArea::with('practice')->where('user_id', $leaderId)->get()
+        : collect();
+
+    // ================= লিডারের Locations =================
+    $data['leader_locations'] = !empty($leaderId)
+        ? \App\Model\AdvocateLocation::with('district')->where('user_id', $leaderId)->get()
+        : collect();
+
+    // ================= জেলা (প্রোফাইল কার্ডে একবারই দেখাবে) =================
+    $firmDistrict = null;
+
+    // ১. ফার্মের নিজের জেলা থাকলে সেটা
+    if (!empty($lawFirm->district_id)) {
+        $firmDistrict = \App\Model\District::find($lawFirm->district_id);
+    }
+
+    // ২. না থাকলে লিডারের প্রথম জেলা
+    if (!$firmDistrict && $data['leader_locations']->isNotEmpty()) {
+        $firmDistrict = optional($data['leader_locations']->first())->district;
+    }
+
+    $data['firm_district_name'] = optional($firmDistrict)->name;
+
+    // ================= Photo Gallery =================
+    // photo_galleries টেবিলে law_firm_id কলাম থাকলে তবেই আনবে (না থাকলে ফাঁকা)
+    $data['firm_galleries'] = collect();
+
+    if (\Illuminate\Support\Facades\Schema::hasColumn('photo_galleries', 'law_firm_id')) {
+        $data['firm_galleries'] = \App\Model\PhotoGallery::where('law_firm_id', $lawFirm->id)
+            ->orderBy('id', 'desc')
+            ->get();
+    }
+
+    // ================= বর্তমান লিডারের Multiple IDs =================
+    $lawIds = $data['leader_laws']
+        ->pluck('law_id')
+        ->unique()
+        ->values()
+        ->toArray();
+
+    $practiceIds = $data['leader_practice_areas']
+        ->pluck('practice_id')
+        ->unique()
+        ->values()
+        ->toArray();
+
+    $districtIds = $data['leader_locations']
+        ->pluck('district_id')
+        ->unique()
+        ->values()
+        ->toArray();
+
+    // ================= অন্যান্য Law Firm (নিজেকে বাদ দিয়ে) =================
+    $relatedFirms = LawFirm::with('leader')
+        ->where('status', 1)
+        ->where('id', '!=', $lawFirm->id)
+        ->orderBy('id', 'desc')
+        ->get();
+
+    // ================= Matching Law Count =================
+    $lawMatches = collect();
+
+    if (!empty($lawIds)) {
+
+        $lawMatches = \DB::table('advocate_laws')
+            ->whereIn('law_id', $lawIds)
+            ->selectRaw('user_id, COUNT(DISTINCT law_id) as matched')
+            ->groupBy('user_id')
+            ->pluck('matched', 'user_id');
+    }
+
+    // ================= Matching Practice Area Count =================
+    $practiceMatches = collect();
+
+    if (!empty($practiceIds)) {
+
+        $practiceMatches = \DB::table('advocate_practice_areas')
+            ->whereIn('practice_id', $practiceIds)
+            ->selectRaw('user_id, COUNT(DISTINCT practice_id) as matched')
+            ->groupBy('user_id')
+            ->pluck('matched', 'user_id');
+    }
+
+    // ================= Matching District Count =================
+    $districtMatches = collect();
+
+    if (!empty($districtIds)) {
+
+        $districtMatches = \DB::table('advocate_locations')
+            ->whereIn('district_id', $districtIds)
+            ->selectRaw('user_id, COUNT(DISTINCT district_id) as matched')
+            ->groupBy('user_id')
+            ->pluck('matched', 'user_id');
+    }
+
+    // ================= Matching Score হিসাব (প্রতিটা ফার্মের লিডার দিয়ে) =================
+    $relatedFirms = $relatedFirms->map(function ($firm) use (
+        $lawMatches,
+        $practiceMatches,
+        $districtMatches
+    ) {
+
+        $lawCount = (int) $lawMatches->get($firm->leader_id, 0);
+
+        $practiceCount = (int) $practiceMatches->get($firm->leader_id, 0);
+
+        $districtCount = (int) $districtMatches->get($firm->leader_id, 0);
+
+        // মোট Matching Score
+        $firm->matching_score = $lawCount + $practiceCount + $districtCount;
+
+        // কয়টা বিভাগে মিলেছে
+        $firm->matching_categories =
+            ($lawCount > 0 ? 1 : 0) +
+            ($practiceCount > 0 ? 1 : 0) +
+            ($districtCount > 0 ? 1 : 0);
+
+        $firm->matched_laws = $lawCount;
+
+        $firm->matched_practice_areas = $practiceCount;
+
+        $firm->matched_locations = $districtCount;
+
+        return $firm;
+    });
+
+    // ================= কারও সাথে মিল আছে কিনা =================
+    $matchedFirms = $relatedFirms->filter(function ($firm) {
+        return $firm->matching_score > 0;
+    });
+
+    // মিল থাকলে মিলগুলো, না থাকলে সব ফার্ম
+    if ($matchedFirms->isNotEmpty()) {
+
+        $data['related_law_firms'] = $matchedFirms
+            ->sort(function ($a, $b) {
+
+                // প্রথমে: বেশি বিভাগে মিল
+                if ($a->matching_categories != $b->matching_categories) {
+                    return $b->matching_categories <=> $a->matching_categories;
+                }
+
+                // তারপর: বেশি Score
+                if ($a->matching_score != $b->matching_score) {
+                    return $b->matching_score <=> $a->matching_score;
+                }
+
+                // সবশেষে: নতুন ফার্ম আগে
+                return $b->id <=> $a->id;
+            })
+            ->take(10)
+            ->values();
+
+    } else {
+
+        // Fallback: সব ফার্ম
+        $data['related_law_firms'] = $relatedFirms
+            ->take(10)
+            ->values();
+    }
+
+    // ================= Legal Articles ও Video =================
+    $data['legalArticles'] = NewsEvent::with('law')
         ->orderBy('date', 'desc')
         ->take(4)
         ->get();
-        
-        // Legal Services Data
-        $data['laws'] = Law::orderBy('id', 'asc')->take(10)->get();
 
-        return view('frontend.single_pages.legal_information',$data);
-    }
+    $data['videos'] = VideoGallery::orderBy('id', 'desc')
+        ->take(4)
+        ->get();
+
+    $data['page_type'] = 'find_consultant';
+
+    return view('frontend.law_firm.law_firm_profile', $data);
+}
 
     public function legalNews(){
         $data['categories']     = Category::all();
