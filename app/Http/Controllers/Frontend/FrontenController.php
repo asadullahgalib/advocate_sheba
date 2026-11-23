@@ -340,8 +340,7 @@ class FrontenController extends Controller
 
         return view('frontend.layouts.home', $data);
     }
-    
-    
+       
     public function advocateProfile($slug)
     {
         // Advocate Profile
@@ -364,8 +363,9 @@ class FrontenController extends Controller
         // Advocate Locations
         $data['advocate_locations'] = AdvocateLocation::where('user_id', $userId)->get();
 
-        // Advocate galleries
+        // Advocate Galleries
         $data['advocate_galleries'] = PhotoGallery::where('user_id', $userId)->get();
+
 
         // Current Advocate's Multiple IDs
         $lawIds = $data['advocate_laws']
@@ -471,54 +471,87 @@ class FrontenController extends Controller
         });
 
 
-        // Check: Any Advocate Found With Matching Skills?
-        $matchedAdvocates = $relatedAdvocates->filter(function ($advocate) {
-            return $advocate->matching_score > 0;
-        });
+        // Separate Matching Advocates
+        $matchedAdvocates = $relatedAdvocates
+            ->filter(function ($advocate) {
+                return $advocate->matching_score > 0;
+            })
+            ->sort(function ($a, $b) {
+
+                // First: More Matching Categories
+                if ($a->matching_categories != $b->matching_categories) {
+                    return $b->matching_categories <=> $a->matching_categories;
+                }
+
+                // Second: Higher Matching Score
+                if ($a->matching_score != $b->matching_score) {
+                    return $b->matching_score <=> $a->matching_score;
+                }
+
+                // Third: Latest Advocate
+                return $b->id <=> $a->id;
+            })
+            ->values();
 
 
-        // If Matching Found, Show Matched Advocates
-        // Otherwise, Show All Same Designation Advocates
-        if ($matchedAdvocates->isNotEmpty()) {
+        // Separate Non-Matching Advocates
+        $nonMatchedAdvocates = $relatedAdvocates
+            ->filter(function ($advocate) {
+                return $advocate->matching_score == 0;
+            })
+            ->sortByDesc('id')
+            ->values();
 
-            $data['related_advocates'] = $matchedAdvocates
-                ->sort(function ($a, $b) {
 
-                    // First: More Matching Categories
-                    if ($a->matching_categories != $b->matching_categories) {
-                        return $b->matching_categories <=> $a->matching_categories;
-                    }
+        // First: Matching Advocates
+        // Second: Same Designation Other Advocates
+        // Maximum: 10 Advocates
 
-                    // Second: Higher Matching Score
-                    if ($a->matching_score != $b->matching_score) {
-                        return $b->matching_score <=> $a->matching_score;
-                    }
+        $data['related_advocates'] = $matchedAdvocates
+            ->concat($nonMatchedAdvocates)
+            ->take(10)
+            ->values();
 
-                    // Third: Latest Advocate
-                    return $b->id <=> $a->id;
-                })
-                ->take(10)
-                ->values();
 
-        } else {
-
-            // Fallback: Same Designation Advocates
-            $data['related_advocates'] = $relatedAdvocates
-                ->take(10)
-                ->values();
-        }
-
-        $data['legalArticles']  = NewsEvent::with('law')
+        // Legal Articles
+        $data['legalArticles'] = NewsEvent::with('law')
             ->orderBy('date', 'desc')
             ->take(4)
             ->get();
+
 
         // Video Gallery Data
         $data['videos'] = VideoGallery::orderBy('id', 'desc')
             ->take(4)
             ->get();
 
+
         return view('frontend.advocate.advocate_profile', $data);
+    }
+
+    public function advocateList(){
+        $data = $this->professionalPageData(5, 'advocate');
+        return view('frontend.single_pages.professional_info', $data);
+    }
+
+    // Barristers = designation id 2
+    public function barristerList(){
+        $data = $this->professionalPageData(2, 'barrister');
+        return view('frontend.single_pages.professional_info', $data);
+    }
+
+    // Law Firms / Chambers = designation id 4
+    public function lawFirmList(){
+        $data = $this->professionalPageData(4, 'law_firm');
+        return view('frontend.single_pages.professional_info', $data);
+    }
+
+    // চারটা পেজের common ডাটা এখানে আনা হয়
+    private function professionalPageData($designationId, $pageType){
+        $data['page_type']   = $pageType;
+        $data['designation'] = Designation::where('id', $designationId)->first();
+        $data['designation_details'] = LegalProfessionalDetail::where('designation_id', $designationId)->orderBy('sort','asc')->get();
+        return $data;
     }
 
     public function findAdvocateList(){
@@ -586,9 +619,6 @@ class FrontenController extends Controller
     }
 
     public function lawFirmDetails(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
         $data['page_type'] = 'find_consultant';
         return view('frontend.law_firm.law_firm_profile',$data);
     }

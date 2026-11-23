@@ -411,7 +411,7 @@
     }
 </style>
 
-<div class="col-lg-4 col-md-4 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
+<div class="col-lg-3 col-md-3 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
     <div class="lpc-slide">
 
         <div class="lpc-card">
@@ -426,7 +426,7 @@
                 </div>
 
                 <div class="law-subtitle" style="text-align:left !important;">
-                    Professional Legal Services | Supreme Court Bar
+                    {{$advocate->chamber_office_title}}
                 </div>
 
                 <!-- ADDRESS -->
@@ -434,41 +434,10 @@
 
                     <div class="row">
 
-                        <!-- CHAMBER ADDRESS -->
-                        <div class="col-md-12" style="text-align:left;">
-                            <div class="address-column" style="padding-left: 0px !important;border-right:none !important;">
-
-                                <div class="address-title">
-                                    Chamber Address:
-                                </div>
-
-                                <div class="address-text">
-                                    Supreme Court Bar Building (8th Floor)<br>
-                                    Room No-810, Shahbagh, Dhaka-1000
-                                </div>
-
-                            </div>
-                        </div>
-
-
-                        <!-- OFFICE ADDRESS -->
-                        <div class="col-md-12" style="text-align:left;">
-                            <div class="address-column" style="padding-left: 0px !important;border-right:none !important;border-bottom: none !important;">
-
-                                <div class="address-title">
-                                    Office Address:
-                                </div>
-
-                                <div class="address-text">
-                                    Supreme Court Bar Building (8th Floor)<br>
-                                    Room No-810, Shahbagh, Dhaka-1000
-                                </div>
-
-                            </div>
-                        </div>
+                        {!! @$advocate->chamber !!}
 
                         <div class="col-md-12" style="text-align:left;">
-                            <a href="#" class="doctor-outline-btn" style="background-color: #153f70;color: #fff;">
+                            <a target="_blank" href="{{@$advocate->map}}" class="doctor-outline-btn" style="background-color: #153f70;color: #fff;">
 
                                 <i class="fa fa-map-marker" style="color:#fff"></i>
 

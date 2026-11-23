@@ -79,14 +79,13 @@ Route::get('/legal-service', 'Frontend\FrontenController@lawList')->name('law.li
 // Legal Service details page (slug দিয়ে)
 Route::get('/legal-service/{slug}', 'Frontend\FrontenController@lawDetails')->name('law.details');
 
+Route::get('/advocate-info','Frontend\FrontenController@advocateList')->name('our.advocate-list');
+Route::get('/barrister-info','Frontend\FrontenController@barristerList')->name('our.barrister-list');
+Route::get('/law-firm-info','Frontend\FrontenController@lawFirmList')->name('our.law-firm-list');
 
-Route::get('/advocate-list','Frontend\FrontenController@advocateList')->name('our.advocate-list');
 Route::get('/find-advocate-list','Frontend\FrontenController@findAdvocateList')->name('find.our.advocate-list');
-Route::get('/barrister-list','Frontend\FrontenController@barristerList')->name('our.barrister-list');
 Route::get('/find-barrister-list','Frontend\FrontenController@findBarristerList')->name('find.our.barrister-list');
-Route::get('/consultant-list','Frontend\FrontenController@consultantList')->name('our.consultant-list');
 Route::get('/find-consultant-list','Frontend\FrontenController@findConsultantList')->name('find.our.consultant-list');
-Route::get('/law-firm-list','Frontend\FrontenController@lawFirmList')->name('our.law-firm-list');
 Route::get('/law-firm/{slug}', 'Frontend\FrontenController@lawFirmDetails')->name('law.firm.details');
 Route::get('/find-law-firm-list','Frontend\FrontenController@findLawFirmList')->name('find.our.law-firm-list');
 Route::get('/law-firm-details','Frontend\FrontenController@lawFirmDetails')->name('our.law-firm-details');
@@ -574,32 +573,11 @@ Route::group(['middleware'=>['auth','admin']],function(){
 			Route::get('/passowrd/{id}','Backend\Advocate\AdvocateController@payrollEmployeeEditPassword')->name('payroll.employee.view.edit.passowrd');
 			Route::post('/passowrd/{id}','Backend\Advocate\AdvocateController@payrollEmployeeUpdatePassword')->name('payroll.employee.view.update.passowrd');
 	        Route::post('/delete', 'Backend\Advocate\AdvocateController@payrollEmployeeDestroy')->name('payroll.employee.view.destroy');
-			Route::get('/personal/details/{id}','Backend\Advocate\AdvocateController@payrollpersonalDetails')->name('payroll.employee.personal.details');
-			Route::get('/experience/details/{id}','Backend\Advocate\AdvocateController@payrollExperienceDetails')->name('payroll.employee.experience.details');
-			Route::get('/achievement/details/{id}','Backend\Advocate\AdvocateController@payrollAchievementDetails')->name('payroll.employee.achievement.details');
-			Route::get('/speciality/details/{id}','Backend\Advocate\AdvocateController@payrollSpecialityDetails')->name('payroll.employee.speciality.details');
-			Route::get('/daytime/details/{id}','Backend\Advocate\AdvocateController@payrollDayTimeDetails')->name('payroll.employee.daytime.details');
-			Route::get('/workplace/details/{id}','Backend\Advocate\AdvocateController@payrollWorkPlaceDetails')->name('payroll.employee.workplace.details');
-			Route::get('/time/details/{id}','Backend\Advocate\AdvocateController@payrollTimeSetupDetails')->name('payroll.employee.time.assign.details');
-			Route::get('/contact/details/{id}','Backend\Advocate\AdvocateController@payrollcontactDetails')->name('payroll.employee.contact.details');
-			Route::post('/details/official','Backend\Advocate\AdvocateController@payrollupdateOfficialInfo')->name('payroll.employee.details.official');
-			Route::post('/details/personal','Backend\Advocate\AdvocateController@payrollupdatePersonalInfo')->name('payroll.employee.details.personal');
-			Route::post('/details/educational','Backend\Advocate\AdvocateController@payrollupdateEducationalInfo')->name('payroll.employee.details.educational');
-			Route::post('/details/experiences','Backend\Advocate\AdvocateController@payrollupdateExperiencesInfo')->name('payroll.employee.details.experiences');
-			Route::post('/details/training','Backend\Advocate\AdvocateController@payrollupdateTrainingInfo')->name('payroll.employee.details.training');
-			Route::post('/details/speciality','Backend\Advocate\AdvocateController@payrollupdateSpecialityInfo')->name('payroll.employee.details.specialities');
-			Route::post('/details/daytimes','Backend\Advocate\AdvocateController@payrollupdateDayTimesInfo')->name('payroll.employee.details.daytimes');
-			Route::post('/details/workplace','Backend\Advocate\AdvocateController@payrollupdateWorkplaceInfo')->name('payroll.employee.details.workplace');
-			Route::post('/details/chamber','Backend\Advocate\AdvocateController@payrollupdateChamberInfo')->name('payroll.employee.details.chamber');
-			Route::post('/details/time','Backend\Advocate\AdvocateController@payrollupdateEducationalTimeAssign')->name('payroll.employee.details.time.assign');
-			Route::post('/details/contact','Backend\Advocate\AdvocateController@payrollupdateContactInfo')->name('payroll.employee.details.contact');
+			
 			Route::post('/employee-delete','Backend\Advocate\AdvocateController@payrollemployeeDelete')->name('payroll.employee.registration.delete');
 			Route::get('/print/{id}','Backend\Advocate\AdvocateController@payrollEmployeePrint')->name('payroll.employee.view.print');
 			Route::get('/employee-inactive/{id}', 'Backend\Advocate\AdvocateController@employeeInactive')->name('payroll.employee.inactive');
 	        Route::get('/employee-active/{id}', 'Backend\Advocate\AdvocateController@employeeActive')->name('payroll.employee.active');
-	        Route::get('/report', 'Backend\Advocate\AdvocateController@employeeReport')->name('payroll.employee.report');
-	        Route::get('/report/handlebar', 'Backend\Advocate\AdvocateController@employeeReportHandlebar')->name('payroll.employee.report.handlebar');
-	        Route::post('/employee/report/pdf', 'Backend\Advocate\AdvocateController@employeeReportPdf')->name('payroll.employee.report.pdf');
 	        //Doctor Booking
 	        Route::get('/booking/view', 'Backend\Advocate\AdvocateController@bookingView')->name('payroll.booking.view');
 	        Route::get('/booking/pdf/{id}', 'Backend\Advocate\AdvocateController@bookingPdf')->name('payroll.booking.pdf');

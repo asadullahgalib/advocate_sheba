@@ -27,34 +27,8 @@
         </h3>
       </div>
 
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-8 col-xs-6">
-            <table>
-              <tr>
-                <td><strong style="font-size:25px">{{@$details->name}} - {{@$details->name_bn}}</strong> </td>
-              </tr>
-              <tr>
-                <td>{{@$details->present_address}}</td>
-              </tr>
-              <tr>
-                <td><strong>Mobile No :</strong> {{@$details->mobile}}</td>
-              </tr>
-              <tr>
-                <td><strong>Email :</strong> {{@$details->email}}</td>
-              </tr>
-            </table>
-          </div>
-          <div class="col-md-4 col-xs-6">
-            <div class="profile-sidebar">
-            <div class="profile-userpic text-center">
-              <img src="{{(!empty(@$details->image))?url('uploads/advocates_images/'.@$details->image):url('uploads/no_image.png')}}" class="img-responsive" alt="">
-            </div>
-          </div>
-          </div>
-          @include('backend.advocate.advocate_tab')
-        </div>
-    </div>
+      @include('backend.advocate.advocate_tab')
+      
     <div class="card-body">
       <div class="row">
         <div class="col-md-12">
@@ -82,16 +56,29 @@
   </div>
 
   <script type="text/javascript">
-  $(document).ready(function(){
-    var editor2 = CKEDITOR.replace('qualification');
-    CKFinder.setupCKEditor(editor2, '/ckfinder/');
-    
-    editor2.on('change', function() {
-        editor2.updateElement();
-        $('#myForm').validate().element('#qualification');
+    $(document).ready(function(){
+
+        CKEDITOR.dtd.$removeEmpty['i'] = false;
+
+        var editor2 = CKEDITOR.replace('qualification', {
+            allowedContent: true,
+            fillEmptyBlocks: false,
+            basicEntities: false
+        });
+
+        CKFinder.setupCKEditor(editor2, '/ckfinder/');
+
+        editor2.on('change', function() {
+            editor2.updateElement();
+            $('#myForm').validate().element('#qualification');
+        });
+
+        $('#myForm').on('submit', function() {
+            editor2.updateElement();
+        });
+
     });
-  });
-</script>
+ </script>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -103,6 +90,9 @@
         ignore : [],
         debug : false,
         rules: {
+          chamber_office_title: {
+            required: true,
+          },
           qualification: {
             required: true,
           }

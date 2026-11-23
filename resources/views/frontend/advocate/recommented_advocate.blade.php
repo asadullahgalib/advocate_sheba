@@ -5,9 +5,11 @@
     $viewAllUrl = '#';
     if (isset($advocate)) {
         if ($advocate->designation_id == 5) {
+            $professional_name = 'Advocates';
             $viewAllUrl = route('find.our.advocate-list');
         } elseif ($advocate->designation_id == 2) {
             $viewAllUrl = route('find.our.barrister-list');
+            $professional_name = 'Barristers';
         } elseif ($advocate->designation_id == 3) {
             $viewAllUrl = route('find.our.consultant-list');
         }
@@ -25,10 +27,10 @@
               id="hospitals-by-location"
               class="text-lg md:text-xl font-semibold text-gray-800 dark:text-gray-100"
             >
-              Related Legal Professionals
+              Related Legal {{@$professional_name}}
             </h2>
             <p class="text-sm text-gray-600 dark:text-gray-400">
-              Explore Our Legal Professionals
+              Explore Our Legal {{@$professional_name}}
             </p>
           </div>
           <a
@@ -95,6 +97,7 @@
                                 <div class="lpc-specialization">{{ $related->experience }}</div>
 
                                 <div class="lpc-court">{{ $related->court_name }}</div>
+                                <!-- This is used for Bar Association -->
                                 <div class="lpc-court-location">{{ $related->present_address }}</div>
 
                                 <div class="lpc-divider"></div>

@@ -887,7 +887,6 @@
                         @include('frontend.law_firm.map')
                         @include('frontend.law_firm.reviews')
                         @include('frontend.law_firm.social_engagement')
-                        @include('frontend.law_firm.philosophy')
                         @include('frontend.law_firm.photo_gallery')
                         @include('frontend.law_firm.legal_topics')
                         @include('frontend.law_firm.video')

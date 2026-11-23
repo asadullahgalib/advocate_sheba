@@ -411,7 +411,9 @@
     }
 </style>
 
-<div class="col-lg-4 col-md-4 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
+
+@if(!empty($advocate->office_hour))
+<div class="col-lg-3 col-md-3 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
     <div class="lpc-slide">
 
         <div class="lpc-card">
@@ -429,53 +431,14 @@
                     Counseling & Consultation Times
                 </div>
 
-                <div class="hours-table">
-
-                    <div class="hours-row">
-                        <div class="hours-day closed" style="text-align:left;">
-                            Court Office
-                        </div>
-
-                        <div class="hours-separator"></div>
-
-                        <div class="hours-time" style="font-weight:bold;">
-                            10:00 AM – 7:00 PM
-                        </div>
-                    </div>
-
-
-                    <div class="hours-row">
-                        <div class="hours-day" style="text-align:left;    font-weight: normal;">
-                            Chamber
-                        </div>
-
-                        <div class="hours-separator"></div>
-
-                        <div class="hours-time" style="font-weight:bold;">
-                            10:00 AM – 7:00 PM
-                        </div>
-                    </div>
-
-
-                    <div class="hours-row">
-                        <div class="hours-day" style="text-align:left;    font-weight: normal;">
-                            Weekly Off
-                        </div>
-
-                        <div class="hours-separator"></div>
-
-                        <div class="hours-time" style="font-weight:bold;">
-                            Friday
-                        </div>
-                    </div>
-
-                </div>
+                {!! @$advocate->office_hour !!}
 
                 <button class="btn" style="background-color: #a0cae33d;color: black;border: 1px solid #a0cae33d;width: 100%;margin-bottom: 10px;border-radius: 10px;margin-top: 20px;">By Prior Appointment Only</button>
 
-                <button class="btn" style="background-color: white;color: black;border: 1px solid rgb(16, 60, 109);width: 100%;margin-bottom: 10px;border-radius: 10px;margin-top: 20px;">Email: <i class="fa fa-envelope"></i> info@lawchamber.com </button>
+                <button class="btn" style="background-color: white;color: black;border: 1px solid rgb(16, 60, 109);width: 100%;margin-bottom: 10px;border-radius: 10px;margin-top: 20px;">Email: <i class="fa fa-envelope"></i> {{@$advocate->email}} </button>
 
             </div>
         </div>
     </div>
 </div>
+@endif

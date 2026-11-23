@@ -27,34 +27,7 @@
         </h3>
       </div>
 
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-8 col-xs-6">
-            <table>
-              <tr>
-                <td><strong style="font-size:25px">{{@$details->name}} - {{@$details->name_bn}}</strong> </td>
-              </tr>
-              <tr>
-                <td>{{@$details->present_address}}</td>
-              </tr>
-              <tr>
-                <td><strong>Mobile No :</strong> {{@$details->mobile}}</td>
-              </tr>
-              <tr>
-                <td><strong>Email :</strong> {{@$details->email}}</td>
-              </tr>
-            </table>
-          </div>
-          <div class="col-md-4 col-xs-6">
-            <div class="profile-sidebar">
-            <div class="profile-userpic text-center">
-              <img src="{{(!empty(@$details->image))?url('uploads/advocates_images/'.@$details->image):url('uploads/no_image.png')}}" class="img-responsive" alt="">
-            </div>
-          </div>
-          </div>
-          @include('backend.advocate.advocate_tab')
-        </div>
-    </div>
+      @include('backend.advocate.advocate_tab')
     
     <div class="card-body">
       <div class="row">
@@ -63,10 +36,19 @@
           <form method="post" action="{{route('advocates.map.details.store',$details->id)}}">
             @csrf
             <div class="form-row">
-              
               <div class="form-group col-md-12">
-                <label for="map">Map Link / Location <span style="color:red;">*</span></label>
-                <textarea name="map" id="map" class="form-control" rows="5" required>{{ @$details->map }}</textarea>
+                <label for="map">Map Address <span style="color:red;">*</span></label>
+                <input type="text" name="map_address" class="form-control" value="{{@$details->map_address}}">
+              </div>
+
+              <div class="form-group col-md-12">
+                <label for="map">Map Link <span style="color:red;">*</span></label>
+                <input type="text" name="map" class="form-control" value="{{@$details->map}}">
+              </div>
+
+              <div class="form-group col-md-12">
+                <label for="map">Embed Link <span style="color:red;">*</span></label>
+                <textarea name="map_embed" id="map_embed" class="form-control" rows="5" required>{{ @$details->map_embed }}</textarea>
               </div>
 
               <div class="form-group col-md-3">

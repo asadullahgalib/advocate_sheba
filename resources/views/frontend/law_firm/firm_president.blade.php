@@ -94,7 +94,7 @@
                         </div>
 
                         <!-- View Profile Button -->
-                        <a href="{{ route('advocate-profile') }}"
+                        <a href=""
                            class="lf-view-profile-btn">
                             View Profile
                         </a>

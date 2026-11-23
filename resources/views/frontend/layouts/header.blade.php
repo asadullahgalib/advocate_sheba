@@ -367,9 +367,7 @@
 
                 <p class="hs-count">
 
-                    Barristers:1,500. Advocates:2,200. Law Firms:250.<br>
-
-                    Legal Consultant:3,700. Lawyers:7650.
+                    Barristers:1,500. Advocates:2,200. Law Firms:250. Lawyers:3950.
 
                 </p>
 

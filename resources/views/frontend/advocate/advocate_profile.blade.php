@@ -700,7 +700,7 @@
 
                     <div class="row">
                         <!-- Advocate Profile -->
-                        <div class="col-lg-6 col-md-6 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
+                        <div class="col-lg-4 col-md-4 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
                             <div class="lpc-slide">
                                 <div class="lpc-card">
                                     <div class="lpc-image-area">
@@ -718,7 +718,7 @@
                                             {{ $advocate->name }}
                                         </h3>
                                         <div class="lpc-designation">
-                                            {{ $advocate->designation->name ?? '' }}
+                                            {{ @$advocate->designation->name ?? '' }}
                                         </div>
 
                                         <div class="lpc-rating">

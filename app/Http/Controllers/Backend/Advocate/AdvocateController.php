@@ -54,7 +54,7 @@ class AdvocateController extends Controller
     // ২. Add Form (id = 3 wala designation dropdown e show hobe na)
     public function add()
     {       
-        $data['designations'] = Designation::whereNotIn('id', [4])->get();
+        $data['designations'] = Designation::whereIn('id', ['2','5'])->get();
         $data['departments'] = Department::all();
         return view('backend.advocate.advocate_add', $data);
     }
@@ -63,7 +63,7 @@ class AdvocateController extends Controller
     public function edit($id)
     {
         $data['editData'] = User::find($id);
-        $data['designations'] = Designation::whereNotIn('id', [4])->get();
+        $data['designations'] = Designation::whereIn('id', ['2','5'])->get();
         $data['departments'] = Department::all();
         return view('backend.advocate.advocate_add', $data);
     }
@@ -202,7 +202,7 @@ class AdvocateController extends Controller
     public function details($id) 
     {
         $data['details'] = User::find($id);
-        $data['designations'] = Designation::all();
+        $data['designations'] = Designation::whereIn('id', ['2','5'])->get();
         $data['departments'] = Department::all();
         $data['page_title'] = 'statement';
         return view('backend.advocate.advocate_details', $data);
@@ -213,7 +213,7 @@ class AdvocateController extends Controller
     {
         $data['details'] = User::find($id);
         $data['editData'] = User::find($id); 
-        $data['designations'] = Designation::all();
+        $data['designations'] = Designation::whereIn('id', ['2','5'])->get();
         $data['departments'] = Department::all();
         $data['page_title'] = 'official';
         return view('backend.advocate.official_details', $data);
@@ -283,7 +283,7 @@ class AdvocateController extends Controller
     public function aboutDetails($id) 
     {
         $data['details'] = User::find($id);
-        $data['designations'] = Designation::all();
+        $data['designations'] = Designation::whereIn('id', ['2','5'])->get();
         $data['districts'] = District::all();
         $data['practice_areas'] = Practice::all();
         $data['laws'] = Law::all();
@@ -365,7 +365,7 @@ class AdvocateController extends Controller
     public function educationDetails($id) 
     {
         $data['details'] = User::find($id);
-        $data['designations'] = Designation::all();
+        $data['designations'] = Designation::whereIn('id', ['2','5'])->get();
         $data['page_title'] = 'education';
         return view('backend.advocate.education_details', $data);
     }
@@ -382,7 +382,7 @@ class AdvocateController extends Controller
     public function trainingDetails($id) 
     {
         $data['details'] = User::find($id);
-        $data['designations'] = Designation::all();
+        $data['designations'] = Designation::whereIn('id', ['2','5'])->get();
         $data['page_title'] = 'training';
         return view('backend.advocate.training_details', $data);
     }
@@ -399,7 +399,7 @@ class AdvocateController extends Controller
     public function membershipDetails($id) 
     {
         $data['details'] = User::find($id);
-        $data['designations'] = Designation::all();
+        $data['designations'] = Designation::whereIn('id', ['2','5'])->get();
         $data['page_title'] = 'membership';
         return view('backend.advocate.membership_details', $data);
     }
@@ -436,7 +436,7 @@ class AdvocateController extends Controller
     public function engagementDetails($id) 
     {
         $data['details'] = User::find($id);
-        $data['designations'] = Designation::all();
+        $data['designations'] = Designation::whereIn('id', ['2','5'])->get();
         $data['page_title'] = 'engagement';
         return view('backend.advocate.engagement_details', $data);
     }
@@ -453,7 +453,7 @@ class AdvocateController extends Controller
     public function chamberDetails($id) 
     {
         $data['details'] = User::find($id);
-        $data['designations'] = Designation::all();
+        $data['designations'] = Designation::whereIn('id', ['2','5'])->get();
         $data['page_title'] = 'chamber';
         return view('backend.advocate.chamber_details', $data);
     }
@@ -461,6 +461,7 @@ class AdvocateController extends Controller
     public function chamberDetailsStore(Request $request, $id)
     {
         $data = User::find($id);
+        $data->chamber_office_title = $request->chamber_office_title;
         $data->chamber = $request->chamber;
         $data->save();
         return redirect()->back()->with('success', 'Chamber details updated successfully!');
@@ -470,7 +471,7 @@ class AdvocateController extends Controller
     public function mapDetails($id) 
     {
         $data['details'] = User::find($id);
-        $data['designations'] = Designation::all();
+        $data['designations'] = Designation::whereIn('id', ['2','5'])->get();
         $data['page_title'] = 'map';
         return view('backend.advocate.map_details', $data);
     }
@@ -478,7 +479,9 @@ class AdvocateController extends Controller
     public function mapDetailsStore(Request $request, $id)
     {
         $data = User::find($id);
+        $data->map_address = $request->map_address;
         $data->map = $request->map;
+        $data->map_embed = $request->map_embed;
         $data->save();
         return redirect()->back()->with('success', 'Map details updated successfully!');
     }
@@ -487,7 +490,7 @@ class AdvocateController extends Controller
     public function galleryDetails($id)
     {
         $data['details'] = User::find($id);
-        $data['designations'] = Designation::all();
+        $data['designations'] = Designation::whereIn('id', ['2','5'])->get();
         $data['gallery_details'] = PhotoGallery::where('user_id', $id)->orderBy('id', 'asc')->get();
         $data['page_title'] = 'gallery';
         return view('backend.advocate.gallery_details', $data);
@@ -511,7 +514,7 @@ class AdvocateController extends Controller
             $file->move(public_path('uploads/gallery_images'), $filename);
             
             $file = Image::make(public_path('uploads/gallery_images/').$filename);
-            $file->resize(600, 400)->save(public_path('uploads/gallery_images/').$filename);
+            $file->resize(500, 500)->save(public_path('uploads/gallery_images/').$filename);
             
             $data->image = $filename;
         } else {

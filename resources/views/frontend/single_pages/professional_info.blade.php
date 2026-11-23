@@ -67,7 +67,7 @@
 
 </div>
 
-@include('frontend.layouts.find_professional')
+@include('frontend.layouts.advocate_barrister_firm_link')
 
 <script>
 (function () {

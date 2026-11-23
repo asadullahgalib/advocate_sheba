@@ -33,46 +33,7 @@
             </h3>
         </div>
 
-        <div class="card-body">
-            <div class="row">
-
-                <div class="col-md-8 col-xs-6">
-                    <table>
-                        <tr>
-                            <td>
-                                <strong style="font-size:25px">
-                                    {{ @$details->name }} - {{ @$details->name_bn }}
-                                </strong>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>{{ @$details->present_address }}</td>
-                        </tr>
-
-                        <tr>
-                            <td><strong>Mobile No :</strong> {{ @$details->mobile }}</td>
-                        </tr>
-
-                        <tr>
-                            <td><strong>Email :</strong> {{ @$details->email }}</td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class="col-md-4 col-xs-6">
-                    <div class="profile-sidebar">
-                        <div class="profile-userpic text-center">
-                            <img src="{{ (!empty(@$details->image)) ? url('uploads/advocates_images/'.@$details->image) : url('uploads/no_image.png') }}"
-                                 class="img-responsive" alt="">
-                        </div>
-                    </div>
-                </div>
-
-                @include('backend.advocate.advocate_tab')
-
-            </div>
-        </div>
+        @include('backend.advocate.advocate_tab')
 
         <div class="card-body">
             <div class="row">
@@ -117,7 +78,13 @@
 <script type="text/javascript">
     $(document).ready(function(){
 
-        var editor2 = CKEDITOR.replace('office_hour');
+        CKEDITOR.dtd.$removeEmpty['i'] = false;
+
+        var editor2 = CKEDITOR.replace('office_hour', {
+            allowedContent: true,
+            fillEmptyBlocks: false,
+            basicEntities: false
+        });
 
         CKFinder.setupCKEditor(editor2, '/ckfinder/');
 
@@ -126,8 +93,12 @@
             $('#myForm').validate().element('#office_hour');
         });
 
+        $('#myForm').on('submit', function() {
+            editor2.updateElement();
+        });
+
     });
-</script>
+ </script>
 
 <!-- Validation -->
 <script type="text/javascript">
