@@ -1214,6 +1214,79 @@ button[type='submit'] {
 
 }
 
+/* =========================================================
+   MOBILE CATEGORY CARD LAYOUT
+   Top: Advocates (Full Width)
+   Bottom: Barristers + Law Firms (Two Columns)
+========================================================= */
+
+@media (max-width: 767px) {
+
+    /* Category Cards Row */
+    .legal-category-section .row.g-3.justify-content-center {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    /* 1st Card - Advocates (Full Width Top) */
+    .legal-category-section .row.g-3.justify-content-center > div:nth-child(1) {
+        order: 1;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    /* 2nd Card - Barristers (Bottom Left) */
+    .legal-category-section .row.g-3.justify-content-center > div:nth-child(2) {
+        order: 2;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    /* 3rd Card - Law Firms (Bottom Right) */
+    .legal-category-section .row.g-3.justify-content-center > div:nth-child(3) {
+        order: 3;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+}
+
+@media (max-width: 767px) {
+
+    .legal-category-links {
+        display: grid !important;
+        grid-template-columns: auto auto !important;
+        justify-content: center !important;
+        justify-items: center !important;
+        align-items: center !important;
+        column-gap: 12px !important;
+        row-gap: 10px !important;
+        margin-top: 18px !important;
+    }
+
+    /* Advocates - Top Center */
+    .legal-category-links a:nth-child(1) {
+        grid-column: 1 / 3 !important;
+        grid-row: 1 !important;
+        justify-self: center !important;
+    }
+
+    /* Barristers - Bottom Left */
+    .legal-category-links a:nth-child(2) {
+        grid-column: 1 !important;
+        grid-row: 2 !important;
+        justify-self: center !important;
+    }
+
+    /* Law Firms - Bottom Right */
+    .legal-category-links a:nth-child(3) {
+        grid-column: 2 !important;
+        grid-row: 2 !important;
+        justify-self: center !important;
+    }
+
+}
+
 </style>
 
 <script>

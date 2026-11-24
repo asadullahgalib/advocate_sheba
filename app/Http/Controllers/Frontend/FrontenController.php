@@ -647,8 +647,6 @@ public function lawFirmDetails($slug = null){
 
     $data['law_firm_members'] = LawFirmMember::with(['user'])->where('law_firm_id',$lawFirm->id)->where('user_id','!=',$lawFirm->leader_id)->get();
 
-    // dd($data['law_firm_members']->toArray());
-
     if (!$lawFirm) {
         abort(404);
     }
