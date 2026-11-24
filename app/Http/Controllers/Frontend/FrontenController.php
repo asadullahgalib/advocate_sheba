@@ -51,6 +51,7 @@ use App\Model\SubCourt;
 use App\Model\AdvocateLaw;
 use App\Model\AdvocatePracticeArea;
 use App\Model\AdvocateLocation;
+use App\Model\LawFirmMember;
 use\Model\SubCourtDetail;
 use Auth;
 use DateTime;
@@ -643,6 +644,10 @@ public function lawFirmDetails($slug = null){
         ->where('slug', $slug)
         ->where('status', 1)
         ->first();
+
+    $data['law_firm_members'] = LawFirmMember::with(['user'])->where('law_firm_id',$lawFirm->id)->where('user_id','!=',$lawFirm->leader_id)->get();
+
+    // dd($data['law_firm_members']->toArray());
 
     if (!$lawFirm) {
         abort(404);
