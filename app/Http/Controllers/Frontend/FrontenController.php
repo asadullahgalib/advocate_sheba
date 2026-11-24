@@ -631,7 +631,7 @@ class FrontenController extends Controller
         return view('frontend.single_pages.find_law_firm_list',$data);
     }
 
-    public function lawFirmDetails($slug = null){
+public function lawFirmDetails($slug = null){
 
     // slug ছাড়া পুরোনো লিংকে এলে list পেজে পাঠিয়ে দেবে
     if (empty($slug)) {
@@ -683,14 +683,9 @@ class FrontenController extends Controller
     $data['firm_district_name'] = optional($firmDistrict)->name;
 
     // ================= Photo Gallery =================
-    // photo_galleries টেবিলে law_firm_id কলাম থাকলে তবেই আনবে (না থাকলে ফাঁকা)
-    $data['firm_galleries'] = collect();
-
-    if (\Illuminate\Support\Facades\Schema::hasColumn('photo_galleries', 'law_firm_id')) {
-        $data['firm_galleries'] = \App\Model\PhotoGallery::where('law_firm_id', $lawFirm->id)
-            ->orderBy('id', 'desc')
-            ->get();
-    }
+    $data['firm_galleries'] = \App\Model\LawFirmGallery::where('law_firm_id', $lawFirm->id)
+        ->orderBy('id', 'desc')
+        ->get();
 
     // ================= বর্তমান লিডারের Multiple IDs =================
     $lawIds = $data['leader_laws']

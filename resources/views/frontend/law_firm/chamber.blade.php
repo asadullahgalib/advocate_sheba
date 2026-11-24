@@ -1,20 +1,5 @@
+@if(!empty(trim(strip_tags((string) $law_firm->chamber, '<img><iframe>'))))
 <style>
-    .law-page {
-        max-width: 1000px;
-        margin: 2px auto;
-        padding: 30px 25px 25px;
-        margin-bottom: 15px;
-        background:
-            radial-gradient(circle at 20% 15%, rgba(255,255,255,.8), transparent 25%),
-            radial-gradient(circle at 85% 75%, rgba(255,255,255,.7), transparent 25%),
-            linear-gradient(135deg, #efefec, #e6e5df);
-        border: 1px solid #d3d1c9;
-        border-radius: 10px;
-        box-shadow: 0 4px 18px rgba(0,0,0,.18);
-        position: relative;
-        overflow: hidden;
-    }
-
     /* =========================
        HEADER
     ========================= */
@@ -39,45 +24,15 @@
         margin-bottom: 20px;
     }
 
-    /*.gold-line {
-        height: 1px;
-        background: #a58a57;
-        position: relative;
-        margin: 0 0 30px;
-    }*/
-
-    .gold-line .scales {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        background: #e9e8e2;
-        padding: 0 14px;
-        color: #8e7444;
-        font-size: 27px;
-    }
-
     /* =========================
        ADDRESS SECTION
+       (Admin editor-এর লেখায় এই ক্লাসগুলো আছে)
     ========================= */
 
     .address-column {
         position: relative;
         padding-left: 0px;
         min-height: 115px;
-    }
-
-    .address-column:first-child {
-        /*border-right: 1px solid #c9c8c2;*/
-    }
-
-    .address-icon {
-        position: absolute;
-        left: 36px;
-        top: 0;
-        font-size: 26px;
-        color: #4d5057;
-        line-height: 1;
     }
 
     .address-title {
@@ -92,219 +47,10 @@
     }
 
     /* =========================
-       OFFICE HOURS
-    ========================= */
-
-    .hours-card {
-        background: rgba(255,255,255,.88);
-        border: 1px solid #d9d9d5;
-        border-radius: 10px;
-        box-shadow: 0 7px 18px rgba(0,0,0,.14);
-        padding: 22px 28px 20px;
-        margin: -5px 35px 0;
-        position: relative;
-        z-index: 5;
-    }
-
-    .hours-heading {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        margin-bottom: 4px;
-    }
-
-    .clock-icon {
-        width: 40px;
-        height: 40px;
-        border-radius: 54%;
-        background: #4b4e54;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 22px;
-        flex-shrink: 0;
-    }
-
-    .hours-heading h2 {
-        font-size: 23px;
-        font-weight: 700;
-        margin: 0;
-    }
-
-    .hours-heading p {
-        font-size: 17px;
-        margin: -2px 0 0;
-    }
-
-    .hours-table {
-        margin-top: 10px;
-        width: 100%;
-    }
-
-    .hours-row {
-        display: grid;
-        grid-template-columns: 185px 1px 1fr;
-        align-items: center;
-        min-height: 25px;
-        border-bottom: 1px dashed #d1d1ce;
-        font-size: 16px;
-    }
-
-    .hours-row:last-child {
-        border-bottom: none;
-    }
-
-    .hours-day {
-        text-align: center;
-        font-weight: 700;
-    }
-
-    .hours-separator {
-        width: 1px;
-        height: 28px;
-        background: #c6c6c2;
-    }
-
-    .hours-time {
-        padding-left: 35px;
-    }
-
-    .closed {
-        color: #676052;
-    }
-
-    /* =========================
-       MAP / COMMUNICATION
-    ========================= */
-
-    .communication {
-        margin-top: 10px;
-        position: relative;
-    }
-
-    .communication-card {
-        background: rgba(255,255,255,.9);
-        border-radius: 3px;
-        box-shadow: 0 6px 14px rgba(0,0,0,.10);
-        padding: 12px 15px 15px;
-        position: relative;
-    }
-
-    .communication-title {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        font-size: 23px;
-        font-weight: 700;
-        margin-bottom: 10px;
-    }
-
-    .communication-title i {
-        font-size: 22px;
-        color: #4e5158;
-    }
-
-    .communication-items {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-    }
-
-    .communication-item {
-        text-align: center;
-        padding: 0 20px;
-        min-height: 70px;
-    }
-
-    .communication-item + .communication-item {
-        border-left: 1px solid #ccccca;
-    }
-
-    .communication-icon {
-        width: 25px;
-        height: 25px;
-        margin: 0 auto 8px;
-        border: 1px solid #ccc;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 19px;
-    }
-
-    .whatsapp-icon {
-        background: #24c46a;
-        border-color: #24c46a;
-        color: #fff;
-    }
-
-    .communication-label {
-        font-size: 17px;
-        line-height: 1.25;
-    }
-
-    .communication-value {
-        font-size: 18px;
-        margin-top: 2px;
-    }
-
-    /* =========================
-       PHONE BOX
-    ========================= */
-
-    .phone-box {
-        width: 290px;
-        margin: 0 auto;
-        margin-top: -1px;
-        background: rgba(255,255,255,.94);
-        padding: 10px 15px 12px;
-        border-radius: 0 0 8px 8px;
-        box-shadow: 0 5px 14px rgba(0,0,0,.12);
-        text-align: center;
-        position: relative;
-        z-index: 2;
-    }
-
-    .phone-box::before {
-        content: "";
-        position: absolute;
-        width: 130px;
-        height: 2px;
-        background: #a58a57;
-        top: -1px;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .phone-box .communication-icon {
-        margin-bottom: 5px;
-    }
-
-    /* =========================
-       FOOTER
-    ========================= */
-
-    .appointment {
-        text-align: center;
-        font-size: 19px;
-        margin-top: 10px;
-        margin-bottom: 0;
-    }
-
-    /* =========================
-       DECORATION
-    ========================= */
-
-    /* =========================
        RESPONSIVE
     ========================= */
 
     @media (max-width: 768px) {
-
-        .law-page {
-            margin: 10px;
-            padding: 22px 15px;
-        }
 
         .law-title h1 {
             font-size: 25px;
@@ -337,80 +83,10 @@
         .address-text {
             font-size: 15px;
         }
-
-        .address-icon {
-            font-size: 22px;
-        }
-
-        .hours-card {
-            margin: 10px 0 0;
-            padding: 18px 15px;
-        }
-
-        .hours-heading {
-            gap: 12px;
-        }
-
-        .clock-icon {
-            width: 55px;
-            height: 55px;
-            font-size: 30px;
-        }
-
-        .hours-heading h2 {
-            font-size: 24px;
-        }
-
-        .hours-heading p {
-            font-size: 17px;
-        }
-
-        .hours-row {
-            grid-template-columns: 100px 1px 1fr;
-            font-size: 16px;
-        }
-
-        .hours-time {
-            padding-left: 15px;
-        }
-
-        .communication {
-            margin-top: 45px;
-        }
-
-        .communication-title {
-            font-size: 23px;
-        }
-
-        .communication-items {
-            grid-template-columns: 1fr;
-        }
-
-        .communication-item {
-            min-height: auto;
-            padding: 15px 10px;
-        }
-
-        .communication-item + .communication-item {
-            border-left: none;
-            border-top: 1px solid #ccc;
-        }
-
-        .phone-box {
-            width: 90%;
-        }
-
-        .appointment {
-            font-size: 16px;
-        }
-
-        .decoration,
-        .decoration-left {
-            display: none;
-        }
     }
 </style>
 
+<!-- Chamber & Office -->
 <div class="col-lg-4 col-md-4 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
     <div class="lpc-slide">
 
@@ -426,49 +102,22 @@
                 </div>
 
                 <div class="law-subtitle" style="text-align:left !important;">
-                    Professional Legal Services | Supreme Court Bar
+                    Professional Legal Services
+                    @if(!empty($law_firm->court_name))
+                        | {{ $law_firm->court_name }}
+                    @endif
                 </div>
 
-                <!-- ADDRESS -->
+                <!-- ADDRESS (Admin-এর Chamber ট্যাব থেকে) -->
                 <div class="address-wrapper">
 
                     <div class="row">
 
-                        <!-- CHAMBER ADDRESS -->
+                        {!! $law_firm->chamber !!}
+
+                        @if(!empty(trim(strip_tags((string) $law_firm->map, '<img><iframe>'))))
                         <div class="col-md-12" style="text-align:left;">
-                            <div class="address-column" style="padding-left: 0px !important;border-right:none !important;">
-
-                                <div class="address-title">
-                                    Chamber Address:
-                                </div>
-
-                                <div class="address-text">
-                                    Supreme Court Bar Building (8th Floor)<br>
-                                    Room No-810, Shahbagh, Dhaka-1000
-                                </div>
-
-                            </div>
-                        </div>
-
-
-                        <!-- OFFICE ADDRESS -->
-                        <div class="col-md-12" style="text-align:left;">
-                            <div class="address-column" style="padding-left: 0px !important;border-right:none !important;border-bottom: none !important;">
-
-                                <div class="address-title">
-                                    Office Address:
-                                </div>
-
-                                <div class="address-text">
-                                    Supreme Court Bar Building (8th Floor)<br>
-                                    Room No-810, Shahbagh, Dhaka-1000
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="col-md-12" style="text-align:left;">
-                            <a href="#" class="doctor-outline-btn" style="background-color: #153f70;color: #fff;">
+                            <a href="#law-firm-map" class="doctor-outline-btn" style="background-color: #153f70;color: #fff;">
 
                                 <i class="fa fa-map-marker" style="color:#fff"></i>
 
@@ -478,6 +127,7 @@
 
                             </a>
                         </div>
+                        @endif
 
                     </div>
 
@@ -487,3 +137,4 @@
         </div>
     </div>
 </div>
+@endif

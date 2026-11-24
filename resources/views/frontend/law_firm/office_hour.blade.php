@@ -1,20 +1,5 @@
+@if(!empty(trim(strip_tags((string) $law_firm->office_hour, '<img><iframe>'))))
 <style>
-    .law-page {
-        max-width: 1000px;
-        margin: 2px auto;
-        padding: 30px 25px 25px;
-        margin-bottom: 15px;
-        background:
-            radial-gradient(circle at 20% 15%, rgba(255,255,255,.8), transparent 25%),
-            radial-gradient(circle at 85% 75%, rgba(255,255,255,.7), transparent 25%),
-            linear-gradient(135deg, #efefec, #e6e5df);
-        border: 1px solid #d3d1c9;
-        border-radius: 10px;
-        box-shadow: 0 4px 18px rgba(0,0,0,.18);
-        position: relative;
-        overflow: hidden;
-    }
-
     /* =========================
        HEADER
     ========================= */
@@ -39,103 +24,10 @@
         margin-bottom: 20px;
     }
 
-    /*.gold-line {
-        height: 1px;
-        background: #a58a57;
-        position: relative;
-        margin: 0 0 30px;
-    }*/
-
-    .gold-line .scales {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        background: #e9e8e2;
-        padding: 0 14px;
-        color: #8e7444;
-        font-size: 27px;
-    }
-
     /* =========================
-       ADDRESS SECTION
+       OFFICE HOURS TABLE
+       (Admin editor-এর লেখায় এই ক্লাস থাকলে কাজ করবে)
     ========================= */
-
-    .address-column {
-        position: relative;
-        padding-left: 0px;
-        min-height: 115px;
-    }
-
-    .address-column:first-child {
-        /*border-right: 1px solid #c9c8c2;*/
-    }
-
-    .address-icon {
-        position: absolute;
-        left: 36px;
-        top: 0;
-        font-size: 26px;
-        color: #4d5057;
-        line-height: 1;
-    }
-
-    .address-title {
-        font-size: 23px;
-        font-weight: 700;
-        margin-bottom: 15px;
-    }
-
-    .address-text {
-        font-size: 17px;
-        line-height: 1.45;
-    }
-
-    /* =========================
-       OFFICE HOURS
-    ========================= */
-
-    .hours-card {
-        background: rgba(255,255,255,.88);
-        border: 1px solid #d9d9d5;
-        border-radius: 10px;
-        box-shadow: 0 7px 18px rgba(0,0,0,.14);
-        padding: 22px 28px 20px;
-        margin: -5px 35px 0;
-        position: relative;
-        z-index: 5;
-    }
-
-    .hours-heading {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        margin-bottom: 4px;
-    }
-
-    .clock-icon {
-        width: 40px;
-        height: 40px;
-        border-radius: 54%;
-        background: #4b4e54;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 22px;
-        flex-shrink: 0;
-    }
-
-    .hours-heading h2 {
-        font-size: 23px;
-        font-weight: 700;
-        margin: 0;
-    }
-
-    .hours-heading p {
-        font-size: 17px;
-        margin: -2px 0 0;
-    }
 
     .hours-table {
         margin-top: 10px;
@@ -175,193 +67,16 @@
     }
 
     /* =========================
-       MAP / COMMUNICATION
-    ========================= */
-
-    .communication {
-        margin-top: 10px;
-        position: relative;
-    }
-
-    .communication-card {
-        background: rgba(255,255,255,.9);
-        border-radius: 3px;
-        box-shadow: 0 6px 14px rgba(0,0,0,.10);
-        padding: 12px 15px 15px;
-        position: relative;
-    }
-
-    .communication-title {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        font-size: 23px;
-        font-weight: 700;
-        margin-bottom: 10px;
-    }
-
-    .communication-title i {
-        font-size: 22px;
-        color: #4e5158;
-    }
-
-    .communication-items {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-    }
-
-    .communication-item {
-        text-align: center;
-        padding: 0 20px;
-        min-height: 70px;
-    }
-
-    .communication-item + .communication-item {
-        border-left: 1px solid #ccccca;
-    }
-
-    .communication-icon {
-        width: 25px;
-        height: 25px;
-        margin: 0 auto 8px;
-        border: 1px solid #ccc;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 19px;
-    }
-
-    .whatsapp-icon {
-        background: #24c46a;
-        border-color: #24c46a;
-        color: #fff;
-    }
-
-    .communication-label {
-        font-size: 17px;
-        line-height: 1.25;
-    }
-
-    .communication-value {
-        font-size: 18px;
-        margin-top: 2px;
-    }
-
-    /* =========================
-       PHONE BOX
-    ========================= */
-
-    .phone-box {
-        width: 290px;
-        margin: 0 auto;
-        margin-top: -1px;
-        background: rgba(255,255,255,.94);
-        padding: 10px 15px 12px;
-        border-radius: 0 0 8px 8px;
-        box-shadow: 0 5px 14px rgba(0,0,0,.12);
-        text-align: center;
-        position: relative;
-        z-index: 2;
-    }
-
-    .phone-box::before {
-        content: "";
-        position: absolute;
-        width: 130px;
-        height: 2px;
-        background: #a58a57;
-        top: -1px;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .phone-box .communication-icon {
-        margin-bottom: 5px;
-    }
-
-    /* =========================
-       FOOTER
-    ========================= */
-
-    .appointment {
-        text-align: center;
-        font-size: 19px;
-        margin-top: 10px;
-        margin-bottom: 0;
-    }
-
-    /* =========================
-       DECORATION
-    ========================= */
-
-    /* =========================
        RESPONSIVE
     ========================= */
 
     @media (max-width: 768px) {
-
-        .law-page {
-            margin: 10px;
-            padding: 22px 15px;
-        }
 
         .law-title h1 {
             font-size: 25px;
         }
 
         .law-subtitle {
-            font-size: 17px;
-        }
-
-        .address-wrapper {
-            padding: 20px 15px;
-        }
-
-        .address-column {
-            padding-left: 0px;
-        }
-
-        .address-column:first-child {
-            border-right: none;
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 20px;
-            margin-bottom: 20px;
-        }
-
-        .address-title {
-            font-size: 15px;
-            margin-left: 5px;
-        }
-
-        .address-text {
-            font-size: 15px;
-        }
-
-        .address-icon {
-            font-size: 22px;
-        }
-
-        .hours-card {
-            margin: 10px 0 0;
-            padding: 18px 15px;
-        }
-
-        .hours-heading {
-            gap: 12px;
-        }
-
-        .clock-icon {
-            width: 55px;
-            height: 55px;
-            font-size: 30px;
-        }
-
-        .hours-heading h2 {
-            font-size: 24px;
-        }
-
-        .hours-heading p {
             font-size: 17px;
         }
 
@@ -373,44 +88,10 @@
         .hours-time {
             padding-left: 15px;
         }
-
-        .communication {
-            margin-top: 45px;
-        }
-
-        .communication-title {
-            font-size: 23px;
-        }
-
-        .communication-items {
-            grid-template-columns: 1fr;
-        }
-
-        .communication-item {
-            min-height: auto;
-            padding: 15px 10px;
-        }
-
-        .communication-item + .communication-item {
-            border-left: none;
-            border-top: 1px solid #ccc;
-        }
-
-        .phone-box {
-            width: 90%;
-        }
-
-        .appointment {
-            font-size: 16px;
-        }
-
-        .decoration,
-        .decoration-left {
-            display: none;
-        }
     }
 </style>
 
+<!-- Office Hours -->
 <div class="col-lg-3 col-md-3 wow animate__animated animate__fadeIn custom_doctor_profile_bottom" data-wow-delay=".4s">
     <div class="lpc-slide">
 
@@ -429,53 +110,16 @@
                     Counseling & Consultation Times
                 </div>
 
-                <div class="hours-table">
+                {!! $law_firm->office_hour !!}
 
-                    <div class="hours-row">
-                        <div class="hours-day closed" style="text-align:left;">
-                            Court Office
-                        </div>
+                <button type="button" class="btn" style="background-color: #a0cae33d;color: black;border: 1px solid #a0cae33d;width: 100%;margin-bottom: 10px;border-radius: 10px;margin-top: 20px;">By Prior Appointment Only</button>
 
-                        <div class="hours-separator"></div>
-
-                        <div class="hours-time" style="font-weight:bold;">
-                            10:00 AM – 7:00 PM
-                        </div>
-                    </div>
-
-
-                    <div class="hours-row">
-                        <div class="hours-day" style="text-align:left;    font-weight: normal;">
-                            Chamber
-                        </div>
-
-                        <div class="hours-separator"></div>
-
-                        <div class="hours-time" style="font-weight:bold;">
-                            10:00 AM – 7:00 PM
-                        </div>
-                    </div>
-
-
-                    <div class="hours-row">
-                        <div class="hours-day" style="text-align:left;    font-weight: normal;">
-                            Weekly Off
-                        </div>
-
-                        <div class="hours-separator"></div>
-
-                        <div class="hours-time" style="font-weight:bold;">
-                            Friday
-                        </div>
-                    </div>
-
-                </div>
-
-                <button class="btn" style="background-color: #a0cae33d;color: black;border: 1px solid #a0cae33d;width: 100%;margin-bottom: 10px;border-radius: 10px;margin-top: 20px;">By Prior Appointment Only</button>
-
-                <button class="btn" style="background-color: white;color: black;border: 1px solid rgb(16, 60, 109);width: 100%;margin-bottom: 10px;border-radius: 10px;margin-top: 20px;">Email: <i class="fa fa-envelope"></i> info@lawchamber.com </button>
+                @if(!empty(optional($law_firm->leader)->email))
+                <button type="button" class="btn" style="background-color: white;color: black;border: 1px solid rgb(16, 60, 109);width: 100%;margin-bottom: 10px;border-radius: 10px;margin-top: 20px;">Email: <i class="fa fa-envelope"></i> {{ $law_firm->leader->email }} </button>
+                @endif
 
             </div>
         </div>
     </div>
 </div>
+@endif
