@@ -52,6 +52,7 @@ use App\Model\AdvocateLaw;
 use App\Model\AdvocatePracticeArea;
 use App\Model\AdvocateLocation;
 use App\Model\LawFirmMember;
+use App\Model\AdvocateCourt;
 use\Model\SubCourtDetail;
 use Auth;
 use DateTime;
@@ -60,223 +61,11 @@ use Session;
 
 class FrontenController extends Controller
 {
-    public function getDoctorByDepartment(Request $request){
-        $department_id = $request->department_id;
-        $doctors = User::with(['designation'])->where('user_category','doctor')->where('status','1')->where('department_id',$department_id)->get();
-        return response()->json($doctors);
-    }
-
-
-    //Term Show
-    public function term()
-    {
-        $route = request()->route()->getName();
-
-        $ids = [
-            'for.advocate'     => 1,
-            'how.it.works'     => 2,
-            'user.guide'       => 3,
-            'privacy.policy'   => 5,
-            'disclaimer'       => 6,
-            'terms.of.use'     => 7,
-            'editorial.policy' => 8,
-            'about'            => 9,
-        ];
-
-        $id = $ids[$route] ?? abort(404);
-        $term = Term::findOrFail($id);
-
-        return view('frontend.term.term', compact('term'));
-    }
-
-    public function contact(){
-        $data['contactInfo'] = Contact::first();
-        return view('frontend.contact.contact',$data);
-    }
-
-    //Registration
-    public function registration(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
-
-        // As Featured In (Megazine) Data
-        $data['megazines']      = Megazine::orderBy('serial', 'asc')
-            ->orderBy('id', 'desc')
-            ->get();
-
-        $data['page_type']      = 'registration';
-        return view('frontend.registration.user_registration',$data);
-    }
-
-    public function joinAdvocate(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
-        $data['page_type']      = 'joinAdvocate';
-        return view('frontend.registration.user_registration',$data);
-    }
-
-    public function joinBarrister(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
-        $data['page_type']      = 'joinBarrister';
-        return view('frontend.registration.user_registration',$data);
-    }
-
-    public function joinConsultant(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
-        $data['page_type']      = 'joinConsultant';
-        return view('frontend.registration.user_registration',$data);
-    }
-
-    public function joinLawFirm(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
-        $data['page_type']      = 'joinLawFirm';
-        return view('frontend.registration.user_registration',$data);
-    }
-
-    //Registration
-    public function advocateJoin(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
-        $data['page_type']      = 'advocate-join';
-        return view('frontend.registration.advocate_join',$data);
-    }
-
-    public function courtDetails($slug){
-        // Court Name এবং Overview এর জন্য (slug বা id দুটোই সাপোর্ট করবে)
-        $data['court'] = Court::where('slug', $slug)->orWhere('id', $slug)->firstOrFail();
-
-        // Court এর অধীনে থাকা Sub Courts (Tabs এর জন্য)
-        $data['subCourts'] = SubCourt::where('court_id', $data['court']->id)
-                                ->where('status', 1)
-                                ->get();
-
-        $data['page_type']      = 'court';
-
-        return view('frontend.courts.court_details', $data);
-    }
-
-    public function courtsList(){
-
-        $data['page_type']      = 'courts';
-
-        return view('frontend.courts.courts_list', $data);
-    }
-
-    public function legalFormList()
-    {
-
-        $data['page_type'] = 'legal_form';
-        $data['documents'] = Document::orderBy('id', 'desc')
-            ->get();
-
-        return view('frontend.document_forms.legal_form_list', $data);
-    }
-
-    public function legalForm($slug)
-    {
-        $data['categories'] = Category::all();
-
-        $data['departments'] = Department::orderBy('sort', 'asc')->get();
-
-        $data['doctors'] = User::where('user_category', 'doctor')
-            ->where('department_id', '57')
-            ->where('status', '1')
-            ->paginate(8);
-
-        $data['page_type'] = 'legal_form';
-
-        $data['document'] = Document::where('slug', $slug)->firstOrFail();
-
-        $data['pdfUrl'] = !empty($data['document']->pdf_file)
-            ? asset('uploads/document_files/' . $data['document']->pdf_file)
-            : null;
-
-        return view('frontend.document_forms.legal_form', $data);
-    }
-
-    // Legal Information started
-
-    // ====== slug দিয়ে dynamic details পেজ ======
-    public function legalInformationDetails($slug){
-        $data['page_type']      = 'legal_information_details';
-        $data['legalInfo']      = LegalInformation::with('details')->where('slug', $slug)->firstOrFail();
-        
-        return view('frontend.legal_information.details', $data);
-    }
-
-    // ====== পুরনো ৪টা লিংক নতুন dynamic পেজে পাঠায় ======
-    public function legalInformationRights(){
-        return $this->redirectLegalInformation('Rights');
-    }
-
-    public function legalInformationTerms(){
-        return $this->redirectLegalInformation('Terms');
-    }
-
-    public function legalInformationLaws(){
-        return $this->redirectLegalInformation('Laws');
-    }
-
-    public function legalInformationProcudures(){
-        return $this->redirectLegalInformation('Procedures');
-    }
-
-    // title-এ শব্দটা থাকলে সেই Legal Information-এর পেজে পাঠায়
-    private function redirectLegalInformation($keyword){
-        $info = LegalInformation::where('title_en', 'like', '%' . $keyword . '%')->first();
-
-        if (!$info) {
-            abort(404);
-        }
-
-        return redirect()->route('legal.information.details', $info->slug);
-    }
-    
-    public function lawDetails($slug)
-    {
-
-        $data['law'] = Law::with(['lawDetails' => function ($query) {
-            $query->orderBy('serial', 'asc');
-        }])
-        ->where('slug', $slug)
-        ->firstOrFail();
-
-        $data['page_type'] = 'law_details';
-
-        return view('frontend.law.law_details', $data);
-    }
-
-    public function lawList()
-    {
-        $data['categories'] = Category::all();
-
-        $data['departments'] = Department::orderBy('sort', 'asc')->get();
-
-        $data['laws'] = Law::orderBy('sort', 'asc')->get();
-
-        $data['page_type'] = 'law_list';
-
-        return view('frontend.law.law_list', $data);
-    }
-
-
-// Legal Information ends
-
     public function index(){
 
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
         $data['sliders']        = Slider::all();
         $data['logo']           = Logo::first();
+        // $data['AdvocatePracticeArea'] = AdvocatePracticeArea::select('')->groupBy('practice_id')->get()->take(12);
         $data['page_type']      = 'home';
 
         $data['legalArticles']  = NewsEvent::with('law')
@@ -536,6 +325,169 @@ class FrontenController extends Controller
 
 
         return view('frontend.advocate.advocate_profile', $data);
+    }
+
+    //Term Show
+    public function term()
+    {
+        $route = request()->route()->getName();
+
+        $ids = [
+            'for.advocate'     => 1,
+            'how.it.works'     => 2,
+            'user.guide'       => 3,
+            'privacy.policy'   => 5,
+            'disclaimer'       => 6,
+            'terms.of.use'     => 7,
+            'editorial.policy' => 8,
+            'about'            => 9,
+        ];
+
+        $id = $ids[$route] ?? abort(404);
+        $term = Term::findOrFail($id);
+
+        return view('frontend.term.term', compact('term'));
+    }
+
+    public function contact(){
+        $data['contactInfo'] = Contact::first();
+        return view('frontend.contact.contact',$data);
+    }
+
+    //Registration
+    public function registration(){
+        // As Featured In (Megazine) Data
+        $data['megazines']      = Megazine::orderBy('serial', 'asc')
+            ->orderBy('id', 'desc')
+            ->get();
+
+        $data['page_type']      = 'registration';
+        return view('frontend.registration.user_registration',$data);
+    }
+
+    public function joinAdvocate(){
+        $data['page_type']      = 'joinAdvocate';
+        return view('frontend.registration.user_registration',$data);
+    }
+
+    public function joinBarrister(){
+        $data['page_type']      = 'joinBarrister';
+        return view('frontend.registration.user_registration',$data);
+    }
+
+    public function joinConsultant(){
+        $data['page_type']      = 'joinConsultant';
+        return view('frontend.registration.user_registration',$data);
+    }
+
+    public function joinLawFirm(){
+        $data['page_type']      = 'joinLawFirm';
+        return view('frontend.registration.user_registration',$data);
+    }
+
+    //Registration
+    public function advocateJoin(){
+        $data['page_type']      = 'advocate-join';
+        return view('frontend.registration.advocate_join',$data);
+    }
+
+    public function courtDetails($slug){
+        // Court Name এবং Overview এর জন্য (slug বা id দুটোই সাপোর্ট করবে)
+        $data['court'] = Court::where('slug', $slug)->orWhere('id', $slug)->firstOrFail();
+
+        // Court এর অধীনে থাকা Sub Courts (Tabs এর জন্য)
+        $data['subCourts'] = SubCourt::where('court_id', $data['court']->id)
+                                ->where('status', 1)
+                                ->get();
+
+        $data['page_type']      = 'court';
+
+        return view('frontend.courts.court_details', $data);
+    }
+
+    public function courtsList(){
+        $data['page_type']      = 'courts';
+
+        return view('frontend.courts.courts_list', $data);
+    }
+
+    public function legalFormList()
+    {
+        $data['page_type'] = 'legal_form';
+        $data['documents'] = Document::orderBy('id', 'desc')
+            ->get();
+
+        return view('frontend.document_forms.legal_form_list', $data);
+    }
+
+    public function legalForm($slug)
+    {
+        $data['page_type'] = 'legal_form';
+        $data['document'] = Document::where('slug', $slug)->firstOrFail();
+
+        $data['pdfUrl'] = !empty($data['document']->pdf_file)
+            ? asset('uploads/document_files/' . $data['document']->pdf_file)
+            : null;
+
+        return view('frontend.document_forms.legal_form', $data);
+    }
+
+    // ====== slug দিয়ে dynamic details পেজ ======
+    public function legalInformationDetails($slug){
+        $data['page_type']      = 'legal_information_details';
+        $data['legalInfo']      = LegalInformation::with('details')->where('slug', $slug)->firstOrFail();
+        
+        return view('frontend.legal_information.details', $data);
+    }
+
+    // ====== পুরনো ৪টা লিংক নতুন dynamic পেজে পাঠায় ======
+    public function legalInformationRights(){
+        return $this->redirectLegalInformation('Rights');
+    }
+
+    public function legalInformationTerms(){
+        return $this->redirectLegalInformation('Terms');
+    }
+
+    public function legalInformationLaws(){
+        return $this->redirectLegalInformation('Laws');
+    }
+
+    public function legalInformationProcudures(){
+        return $this->redirectLegalInformation('Procedures');
+    }
+
+    // title-এ শব্দটা থাকলে সেই Legal Information-এর পেজে পাঠায়
+    private function redirectLegalInformation($keyword){
+        $info = LegalInformation::where('title_en', 'like', '%' . $keyword . '%')->first();
+
+        if (!$info) {
+            abort(404);
+        }
+
+        return redirect()->route('legal.information.details', $info->slug);
+    }
+    
+    public function lawDetails($slug)
+    {
+
+        $data['law'] = Law::with(['lawDetails' => function ($query) {
+            $query->orderBy('serial', 'asc');
+        }])
+        ->where('slug', $slug)
+        ->firstOrFail();
+
+        $data['page_type'] = 'law_details';
+
+        return view('frontend.law.law_details', $data);
+    }
+
+    public function lawList()
+    {
+        $data['laws'] = Law::orderBy('sort', 'asc')->get();
+        $data['page_type'] = 'law_list';
+
+        return view('frontend.law.law_list', $data);
     }
 
     public function advocateList(){
@@ -834,17 +786,11 @@ public function lawFirmDetails($slug = null){
 }
 
     public function legalNews(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
         $data['page_type'] = 'legal_news';
         return view('frontend.single_pages.legal_news',$data);
     }
 
     public function courts(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
         $data['page_type'] = 'courts';
         return view('frontend.single_pages.courts',$data);
     }
@@ -861,15 +807,6 @@ public function lawFirmDetails($slug = null){
 
     public function legalArticleDetails($slug)
     {
-        $data['categories'] = Category::all();
-
-        $data['departments'] = Department::orderBy('sort', 'asc')->get();
-
-        $data['doctors'] = User::where('user_category', 'doctor')
-            ->where('department_id', '57')
-            ->where('status', '1')
-            ->paginate(8);
-
         $data['page_type'] = 'legal_article';
 
         $data['article'] = NewsEvent::with('law')
@@ -906,17 +843,11 @@ public function lawFirmDetails($slug = null){
     }
 
     public function locationWiseList(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
         $data['page_type'] = 'find_consultant';
         return view('frontend.single_pages.location-wise-advocate',$data);
     }
 
     public function practiceAreaWiseList(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']        = User::where('user_category','doctor')->where('department_id','57')->where('status','1')->paginate(8);
         $data['page_type'] = 'find_consultant';
         return view('frontend.single_pages.practice-area-wise-advocate',$data);
     }
@@ -963,15 +894,6 @@ public function lawFirmDetails($slug = null){
 
     public function videoList()
     {
-        $data['categories'] = Category::all();
-
-        $data['departments'] = Department::orderBy('sort', 'asc')->get();
-
-        $data['doctors'] = User::where('user_category', 'doctor')
-            ->where('department_id', '57')
-            ->where('status', '1')
-            ->paginate(8, ['*'], 'doctors_page');
-
         $data['page_type'] = 'video';
 
         $data['videos'] = VideoGallery::orderBy('id', 'desc')
@@ -1003,48 +925,6 @@ public function lawFirmDetails($slug = null){
         return view('frontend.single_pages.video_details', $data);
     }
 
-    public function categoryList(){
-        $data['categories']     = Category::all();
-        $data['page_type']      = 'category';
-        return view('frontend.single_pages.category_list',$data);
-    }
-
-    public function categoryDetails($id){
-        $data['category']     = Category::find($id);
-        $data['times']        = Time::all();
-        $data['payment_number'] = PaymentNumber::first();
-        $data['page_type']    = 'category';
-        return view('frontend.single_pages.category_details',$data);
-    }
-
-    public function departmentList(){
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['page_type']      = 'department';
-        return view('frontend.single_pages.department',$data);
-    }
-
-    public function facilities(){
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['abouts']         = Support::all();
-        $data['facilities']     = Promotion::orderBy('sort','asc')->get();
-        $data['page_type']      = 'facilities';
-        return view('frontend.single_pages.facilities',$data);
-    }
-
-    public function doctorFind(Request $request){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $name = $request->name;
-        $data['doctors'] = User::where('user_category','doctor')->where('status','1')->where('name', 'LIKE', '%' . $name . '%')->orderBy('sort','asc')->paginate(8);
-        $data['page_type'] = 'doctor';
-        $data['count'] = $data['doctors']->count();
-        if($data['count'] =='0'){
-            return redirect()->back()->with(Session::flash('findNoDoctorMessage','Sorry! no one was found with this name'));
-        }elseif($data['count'] >='1'){
-            return view('frontend.single_pages.doctor_find_list',$data); 
-        }
-    }
-
     public function getSearchDoctor(Request $request){
         $name = $request->name;
         $doctorData = User::where('user_category','doctor')->where('status','1')->where('name', 'LIKE', '%' . $name . '%')->orderBy('sort','asc')->get();
@@ -1057,38 +937,6 @@ public function lawFirmDetails($slug = null){
         }
         $html .= '</ul></div>';
         return response()->json($html);
-    }
-
-    public function nurseList(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']        = User::where('user_category','nurse')->where('status','1')->orderBy('sort','asc')->paginate(8);
-        $data['page_type'] = 'nursing';
-        return view('frontend.single_pages.doctor_list',$data);
-    }
-
-    public function packageList(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['packages']       = Package::all();
-        $data['page_type']      = 'package';
-        return view('frontend.single_pages.package_list',$data);
-    }
-
-    public function ambulanceList(){
-        $data['categories']     = Category::all();
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['packages']       = Ambulance::all();
-        $data['page_type']      = 'package';
-        return view('frontend.single_pages.ambulance_list',$data);
-    }
-
-    public function doctorDetails($id){
-        $data['doctor']         = User::where('user_category','doctor')->where('status','1')->where('id',$id)->first();
-        $data['times'] = TimeAssign::where('doctor_id',@$data['doctor']->id)->get();
-        $data['payment_number'] = PaymentNumber::first();
-        $data['page_type'] = 'doctor';
-        return view('frontend.single_pages.doctor_details',$data);
     }
 
     public function doctorStore(Request $request){
@@ -1262,15 +1110,6 @@ public function lawFirmDetails($slug = null){
         return response()->json($package);
     }
 
-    public function departmentWiseDoctor($id){
-        $data['department']    = Department::find($id);
-        $data['departments']    = Department::orderBy('sort','asc')->get();
-        $data['doctors']         = User::where('user_category','doctor')->where('status','1')->where('department_id',@$data['department']->id)->orderBy('sort','asc')->get();
-        $data['page_type'] = 'doctor';
-        $data['department_title'] = @$data['department']->name;
-        return view('frontend.single_pages.department_wise_doctor_list',$data);
-    }
-
     public function doctorRegistration(){
         $data['categories']     = Category::all();
         $data['departments']    = Department::orderBy('sort','asc')->get();
@@ -1400,7 +1239,6 @@ public function lawFirmDetails($slug = null){
         return redirect()->back();
     }
 
-
     public function doctorScheduleDate(request $request){
         $scheduleWeekdays = TimeAssign::with("day", "time")->where("doctor_id", $request->doctor_id)->get();
         $weekdays = [];
@@ -1422,87 +1260,5 @@ public function lawFirmDetails($slug = null){
 
         return $holidays;
 
-    }
-
-    public function doctorTimeSlot(request $request){
-        $dateObj = DateTime::createFromFormat('d-m-Y', $request->appoint_date);
-        $bookingsCheck = $dateObj->format('Y-m-d');
-        $dateWithDoctorBooking =  DoctorBooking::where('date', $bookingsCheck)->pluck("time_id");
-        $getDay = Day::where("name", $dateObj->format('D'))->first()->id;
-        $time_ids = TimeAssign::where(["day_id" => $getDay, "doctor_id" => $request->doctor_id])->pluck('time_id');
-        $doctorTimeSlot = Time::whereIn('id', $time_ids)->whereNotIn('id', $dateWithDoctorBooking)->get();
-        return $doctorTimeSlot;
-    }
-
-    public function getVisitFee(Request $request){
-        $fee_type = $request->fee_type;
-        $doctor_id = $request->doctor_id;
-        $doctor = User::where('id',$doctor_id)->first();
-        if($fee_type=='Consultation-Fee'){
-            $fee = $doctor->consultation_fee;
-        }elseif($fee_type=='Follow-Up-Fee'){
-            $fee = $doctor->follow_up_fee;
-        }
-        return response()->json($fee);
-    }
-
-    public function numberToWord($num = '')
-    {
-        $num    = ( string ) ( ( int ) $num );
-        
-        if( ( int ) ( $num ) && ctype_digit( $num ) )
-        {
-            $words  = array( );
-             
-            $num    = str_replace( array( ',' , ' ' ) , '' , trim( $num ) );
-             
-            $list1  = array('','one','two','three','four','five','six','seven',
-                'eight','nine','ten','eleven','twelve','thirteen','fourteen',
-                'fifteen','sixteen','seventeen','eighteen','nineteen');
-             
-            $list2  = array('','ten','twenty','thirty','forty','fifty','sixty',
-                'seventy','eighty','ninety','hundred');
-             
-            $list3  = array('','thousand','million','billion','trillion',
-                'quadrillion','quintillion','sextillion','septillion',
-                'octillion','nonillion','decillion','undecillion',
-                'duodecillion','tredecillion','quattuordecillion',
-                'quindecillion','sexdecillion','septendecillion',
-                'octodecillion','novemdecillion','vigintillion');
-             
-            $num_length = strlen( $num );
-            $levels = ( int ) ( ( $num_length + 2 ) / 3 );
-            $max_length = $levels * 3;
-            $num    = substr( '00'.$num , -$max_length );
-            $num_levels = str_split( $num , 3 );
-             
-            foreach( $num_levels as $num_part )
-            {
-                $levels--;
-                $hundreds   = ( int ) ( $num_part / 100 );
-                $hundreds   = ( $hundreds ? ' ' . $list1[$hundreds] . ' Hundred' . ( $hundreds == 1 ? '' : 's' ) . ' ' : '' );
-                $tens       = ( int ) ( $num_part % 100 );
-                $singles    = '';
-                 
-                if( $tens < 20 ) { $tens = ( $tens ? ' ' . $list1[$tens] . ' ' : '' ); } else { $tens = ( int ) ( $tens / 10 ); $tens = ' ' . $list2[$tens] . ' '; $singles = ( int ) ( $num_part % 10 ); $singles = ' ' . $list1[$singles] . ' '; } $words[] = $hundreds . $tens . $singles . ( ( $levels && ( int ) ( $num_part ) ) ? ' ' . $list3[$levels] . ' ' : '' ); } $commas = count( $words ); if( $commas > 1 )
-            {
-                $commas = $commas - 1;
-            }
-             
-            $words  = implode( ', ' , $words );
-             
-            $words  = trim( str_replace( ' ,' , ',' , ucwords( $words ) )  , ', ' );
-            if( $commas )
-            {
-                $words  = str_replace( ',' , ' and' , $words );
-            }
-             
-            return $words;
-        }
-        else if( ! ( ( int ) $num ) )
-        {
-            return 'Zero';
-        }
-        return '';
     }
 }
