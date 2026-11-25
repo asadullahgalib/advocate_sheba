@@ -52,7 +52,7 @@
                 </select>
               </div>
 
-              <!-- Practice Areas (নতুন) -->
+              <!-- Practice Areas -->
               <div class="form-group col-md-12">
                 <label>Practice Areas <span style="color:red;">*</span></label>
                 <select name="practice_id[]" class="form-control form-control-sm select2" multiple required>
@@ -64,7 +64,19 @@
                 </select>
               </div>
 
-              <!-- Locations / Districts (নতুন) -->
+              <!-- Courts -->
+              <div class="form-group col-md-12">
+                <label>Courts <span style="color:red;">*</span></label>
+                <select name="court_id[]" class="form-control form-control-sm select2" multiple required>
+                  @foreach($courts as $court)
+                  <option value="{{ $court->id }}" {{ in_array($court->id, $court_array) ? 'selected' : '' }}>
+                      {{ $court->name }}
+                  </option>
+                  @endforeach
+                </select>
+              </div>
+
+              <!-- Locations / Districts -->
               <div class="form-group col-md-12">
                 <label>Locations <span style="color:red;">*</span></label>
                 <select name="district_id[]" class="form-control form-control-sm select2" multiple required>
@@ -144,6 +156,62 @@
           $(element).removeClass('is-invalid');
         }
       });
+    });
+</script>
+
+<!-- select করা অপশন list থেকে লুকানো (select2 এর সব ভার্সনের জন্য) -->
+<style type="text/css">
+    .select2-results__option[aria-selected=true],
+    .select2-results__option--selected,
+    .select2-results__option[data-selected=true] {
+        display: none !important;
+    }
+</style>
+
+<script type="text/javascript">
+    $(window).on('load', function () {
+
+        // dropdown-এ কিছু বাকি না থাকলে "No more options" দেখানো
+        function refreshMessage() {
+            var $options = $('.select2-results__options');
+            if (!$options.length) { return; }
+
+            $options.find('.no-more-option').remove();
+
+            var visible = 0;
+            $options.children('.select2-results__option').each(function () {
+                var $li = $(this);
+                if ($li.hasClass('no-more-option') || $li.hasClass('select2-results__message')) { return; }
+
+                var isSelected = $li.attr('aria-selected') === 'true'
+                              || $li.hasClass('select2-results__option--selected')
+                              || $li.attr('data-selected') === 'true';
+                if (!isSelected) { visible++; }
+            });
+
+            if (visible === 0 && $options.find('.select2-results__message').length === 0) {
+                $options.append('<li class="select2-results__option no-more-option" style="color:#999; padding:6px;">No more options</li>');
+            }
+        }
+
+        $('.select2').each(function () {
+            var $el = $(this);
+
+            // master layout-এ আগে থেকে চালু থাকলে বন্ধ করে নতুন করে চালু
+            if ($el.hasClass('select2-hidden-accessible')) {
+                $el.select2('destroy');
+            }
+
+            $el.select2({
+                width: '100%',
+                closeOnSelect: false
+            });
+
+            $el.on('select2:open select2:select select2:unselect', function () {
+                setTimeout(refreshMessage, 0);
+                setTimeout(refreshMessage, 50);
+            });
+        });
     });
 </script>
 

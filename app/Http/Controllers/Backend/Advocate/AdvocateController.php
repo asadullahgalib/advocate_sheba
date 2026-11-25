@@ -30,6 +30,8 @@ use App\Model\DoctorBooking;
 use App\Model\AdvocateLaw;
 use App\Model\AdvocateLocation;
 use App\Model\AdvocatePracticeArea;
+use App\Model\AdvocateCourt;
+use App\Model\Court;
 use App\Model\District;
 use App\Model\Practice;
 use App\Model\Law;
@@ -220,7 +222,6 @@ class AdvocateController extends Controller
     }
 
     // ৭.২ Official Details Store (POST)
-       // ৭.২ Official Details Store (POST)
     public function officialDetailsStore(Request $request, $id) 
     {
         $user = User::find($id);
@@ -287,6 +288,7 @@ class AdvocateController extends Controller
         $data['districts'] = District::all();
         $data['practice_areas'] = Practice::all();
         $data['laws'] = Law::all();
+        $data['courts'] = Court::all();
         $data['page_title'] = 'abouts';
 
         // Laws এর ডাটা
@@ -297,6 +299,11 @@ class AdvocateController extends Controller
         // Practice Areas এর ডাটা
         $data['practice_array'] = AdvocatePracticeArea::where('user_id', $id)
             ->pluck('practice_id')
+            ->toArray();
+
+        // Courts এর ডাটা
+        $data['court_array'] = AdvocateCourt::where('user_id', $id)
+            ->pluck('court_id')
             ->toArray();
 
         // Locations (Districts) এর ডাটা
@@ -340,6 +347,21 @@ class AdvocateController extends Controller
                 $mypractice->user_id = $id;
                 $mypractice->practice_id = $pr;
                 $mypractice->save();
+            }
+        }
+
+        // ================= Courts =================
+        $court = $request->court_id;
+        if(!empty($court)){
+           AdvocateCourt::where('user_id',$id)->delete();
+        }
+
+        if(!empty($court)){
+            foreach ($court as $ct) {
+                $mycourt = new AdvocateCourt();
+                $mycourt->user_id = $id;
+                $mycourt->court_id = $ct;
+                $mycourt->save();
             }
         }
 
