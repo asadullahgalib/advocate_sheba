@@ -432,13 +432,33 @@ class FrontenController extends Controller
         return view('frontend.document_forms.legal_form', $data);
     }
 
-    // ====== slug দিয়ে dynamic details পেজ ======
-    public function legalInformationDetails($slug){
-        $data['page_type']      = 'legal_information_details';
-        $data['legalInfo']      = LegalInformation::with('details')->where('slug', $slug)->firstOrFail();
-        
-        return view('frontend.legal_information.details', $data);
+    public function legalInformation()
+    {
+        $data['page_type']          = 'legal_information';
+        $data['legalInformations']  = LegalInformation::orderBy('id', 'asc')->get();
+
+        $data['laws'] =Law::orderBy('id', 'asc')->get()->take(10);
+
+        $data['legalArticles'] = NewsEvent::with('law')
+            ->orderBy('date', 'desc')
+            ->take(4)
+            ->get();
+
+        $data['videos'] = VideoGallery::orderBy('id', 'desc')
+            ->take(4)
+            ->get();
+
+        return view('frontend.single_pages.legal_information', $data);
     }
+
+    // ====== slug দিয়ে dynamic details পেজ ======
+    public function legalInformationDetails($slug)
+        {
+            $data['page_type']      = 'legal_information_details';
+            $data['legalInfo']      = LegalInformation::with('details')->where('slug', $slug)->firstOrFail();
+
+            return view('frontend.legal_information.details', $data);
+        }
 
     // ====== পুরনো ৪টা লিংক নতুন dynamic পেজে পাঠায় ======
     public function legalInformationRights(){
