@@ -58,6 +58,7 @@ class AdvocateController extends Controller
     {       
         $data['designations'] = Designation::whereIn('id', ['2','5'])->get();
         $data['departments'] = Department::all();
+        $data['districts'] = District::all(); // নতুন
         return view('backend.advocate.advocate_add', $data);
     }
 
@@ -67,6 +68,7 @@ class AdvocateController extends Controller
         $data['editData'] = User::find($id);
         $data['designations'] = Designation::whereIn('id', ['2','5'])->get();
         $data['departments'] = Department::all();
+        $data['districts'] = District::all(); // নতুন
         return view('backend.advocate.advocate_add', $data);
     }
     
@@ -86,10 +88,11 @@ class AdvocateController extends Controller
         $slug = rand(0000, 9999);
         $user->slug = Str::slug($request->name) . $slug . date('His');
         $user->name_bn = $request->name_bn;
+        $user->personal_whatsapp = $request->personal_whatsapp;
         $user->email = $request->email;
-        $user->short_qualification = $request->short_qualification;
+        $user->bar_no = $request->bar_no;
         $user->enrollment_no = $request->enrollment_no;
-        $user->bar_association = $request->bar_association;
+        $user->district_id = $request->district_id;
         $user->employee_type = $request->employee_type;
         $user->booking_status = $request->booking_status;
         $user->mobile = $request->mobile;
@@ -153,9 +156,10 @@ class AdvocateController extends Controller
 
         $user->name_bn = $request->name_bn;
         $user->email = $request->email;
-        $user->short_qualification = $request->short_qualification;
+        $user->bar_no = $request->bar_no;
         $user->enrollment_no = $request->enrollment_no;
-        $user->bar_association = $request->bar_association;
+        $user->personal_whatsapp = $request->personal_whatsapp;
+        $user->district_id = $request->district_id; // নতুন
         $user->employee_type = $request->employee_type;
         $user->booking_status = $request->booking_status;
         $user->mobile = $request->mobile;
@@ -214,6 +218,7 @@ class AdvocateController extends Controller
     public function officialDetails($id) 
     {
         $data['details'] = User::find($id);
+        $data['districts'] = District::all();
         $data['editData'] = User::find($id); 
         $data['designations'] = Designation::whereIn('id', ['2','5'])->get();
         $data['departments'] = Department::all();
@@ -227,6 +232,7 @@ class AdvocateController extends Controller
         $user = User::find($id);
         $user->name = $request->name;
         $user->name_bn = $request->name_bn;
+        $user->personal_whatsapp = $request->personal_whatsapp;
         $user->mobile = $request->mobile;
         $user->designation_id = $request->designation_id;
         $user->email = $request->email;
@@ -234,10 +240,9 @@ class AdvocateController extends Controller
         $user->appointment_contact = $request->appointment_contact;
         
         // নতুন ৩টি ফিল্ড সেভ করা হচ্ছে
-        $user->short_qualification = $request->short_qualification;
+        $user->bar_no = $request->bar_no;
         $user->enrollment_no = $request->enrollment_no;
-        $user->bar_association = $request->bar_association;
-
+        $user->district_id = $request->district_id;
         if ($request->hasFile('image')) {
 
             /*

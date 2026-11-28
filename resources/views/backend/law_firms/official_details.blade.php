@@ -36,6 +36,9 @@
             <tr>
               <td><strong>Established :</strong> {{ @$details->established }}</td>
             </tr>
+            <tr>
+              <td><strong>Bar Association :</strong> {{ @$details->district->name }}</td>
+            </tr>
           </table>
         </div>
         <div class="col-md-4 col-xs-6">
@@ -90,10 +93,18 @@
                   <font style="color: red">{{ ($errors->has('enrollment_no')) ? $errors->first('enrollment_no') : '' }}</font>
                 </div>
 
+                <!-- District Dropdown (Bar Association এর জায়গায়) -->
                 <div class="form-group col-md-4">
-                  <label for="bar_association">Bar Association <span style="color:red">*</span></label>
-                  <input type="text" name="bar_association" class="form-control form-control-sm" placeholder="e.g. Dhaka Bar Association" value="{{ old('bar_association', @$details->bar_association) }}">
-                  <font style="color: red">{{ ($errors->has('bar_association')) ? $errors->first('bar_association') : '' }}</font>
+                  <label for="district_id">Bar Association <span style="color:red">*</span></label>
+                  <select name="district_id" id="district_id" class="form-control form-control-sm select2">
+                    <option value="">Bar Association</option>
+                    @foreach($districts as $district)
+                      <option value="{{ $district->id }}" {{ (old('district_id', @$details->district_id) == $district->id) ? 'selected' : '' }}>
+                        {{ $district->name }}
+                      </option>
+                    @endforeach
+                  </select>
+                  <font style="color: red">{{ ($errors->has('district_id')) ? $errors->first('district_id') : '' }}</font>
                 </div>
 
                 <div class="form-group col-md-4">
@@ -142,14 +153,14 @@
         leader_id:{ required:true },
         firm_name:{ required:true },
         enrollment_no:{ required:true },
-        bar_association:{ required:true },
+        district_id:{ required:true }, // bar_association এর জায়গায়
         team_size:{ required:true, number:true }
       },
       messages: {
         leader_id: { required: "Please select a leader" },
         firm_name: { required: "Please enter firm name" },
         enrollment_no: { required: "Please enter enrollment no" },
-        bar_association: { required: "Please enter bar association" },
+        district_id: { required: "Please select a district" }, // bar_association এর জায়গায়
         team_size: { required: "Please enter team size", number: "Please enter a number" }
       },
       errorElement: 'span',

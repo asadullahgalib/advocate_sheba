@@ -25,7 +25,9 @@
                 <td>{{$practice->name}}</td>
                 <td>
                   <a class="btn btn-sm btn-success" title="Edit" href="{{route('practice-area.edit',$practice->id)}}"><i class="fa fa-edit"></i></a>  
-                  <a class="btn btn-sm btn-danger" title="Delete" id="delete" href="{{route('practice-area.delete',$practice->id)}}"><i class="fa fa-trash"></i></a>
+                  <!-- Delete Button -->
+                  <a id="delete" href="{{ route('practice-area.delete') }}" data-token="{{csrf_token()}}" data-id="{{$practice->id}}" class="btn btn-danger btn-sm" title="Delete"><i class="fa fa-trash"></i></a>
+
                 </td>
               </tr>
               @endforeach

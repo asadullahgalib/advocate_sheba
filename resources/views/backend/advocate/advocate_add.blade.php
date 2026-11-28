@@ -69,10 +69,10 @@
                 <img id="showImage" src="{{(!empty($editData->image)) ? url('uploads/advocates_images/'.$editData->image) : url('uploads/no_image.png')}}" style="width: 100px; height: 80px; object-fit: cover; border:1px solid #000;" class="form-control">
               </div>
 
-              <!-- ================= নতুন ৩টি ফিল্ড শুরু ================= -->
+              <!-- ================= নতুন ফিল্ড শুরু ================= -->
               <div class="form-group col-md-4">
-                <label for="short_qualification">Short Qualification (For Card) <span style="color:red">*</span></label>
-                <input type="text" name="short_qualification" class="form-control form-control-sm" placeholder="e.g. LL.B, LL.M" value="{{ @$editData->short_qualification }}">
+                <label for="bar_no">Bar No<span style="color:red">*</span></label>
+                <input type="text" name="bar_no" class="form-control form-control-sm" placeholder="Enter Bar No" value="{{ @$editData->bar_no }}">
               </div>
 
               <div class="form-group col-md-4">
@@ -80,18 +80,36 @@
                 <input type="text" name="enrollment_no" class="form-control form-control-sm" placeholder="Enter Enrollment No" value="{{ @$editData->enrollment_no }}">
               </div>
 
+              <!-- ================= District Dropdown ================= -->
               <div class="form-group col-md-4">
-                <label for="bar_association">Bar Association <span style="color:red">*</span></label>
-                <input type="text" name="bar_association" class="form-control form-control-sm" placeholder="Enter Bar Association" value="{{ @$editData->bar_association }}">
+                <label for="district_id">Bar Association <span style="color:red">*</span></label>
+                <select name="district_id" id="district_id" class="form-control form-control-sm select2">
+                  <option value="">Select Bar Association</option>
+                  @foreach($districts as $district)
+                    <option value="{{ $district->id }}" {{ (@$editData->district_id == $district->id) ? 'selected' : '' }}>
+                      {{ $district->name }}
+                    </option>
+                  @endforeach
+                </select>
+                <font style="color: red"> 
+                  {{($errors->has('district_id'))?($errors->first('district_id')):''}} 
+                </font> 
               </div>
-              <!-- ================= নতুন ৩টি ফিল্ড শেষ ================= -->
+              <!-- ================= নতুন ফিল্ড শেষ ================= -->
               
               <div class="form-group col-md-5">
                 <label>Total Experience <span style="color:red">*</span></label>
                 <input type="text" name="experience" class="form-control form-control-sm" value="{{ @$editData->experience }}"> 
               </div>
+              
+              <!-- WhatsApp Consultant -->
+              <div class="form-group col-md-5">
+                <label>WhatsApp Consultant</label>
+                <input type="text" name="personal_whatsapp" class="form-control form-control-sm" value="{{ @$editData->personal_whatsapp }}" placeholder="Enter WhatsApp Number">
+              </div>
+
               <div class="form-group col-md-6">
-                <label>IMO/What's App </label>
+                <label>Chamber Whatsapp </label>
                 <input type="text" name="appointment_contact" class="form-control form-control-sm" value="{{ @$editData->appointment_contact }}" placeholder="Contact No"> 
               </div>
               
@@ -121,9 +139,9 @@
         name_bn:{ required:true },
         designation_id:{ required:true },
         email:{ required:true, email:true },
-        short_qualification:{ required:true },
+        bar_no:{ required:true },
         enrollment_no:{ required:true },
-        bar_association:{ required:true },
+        district_id:{ required:true },
         experience:{ required:true }
       },
       messages: {      
@@ -131,9 +149,9 @@
         name_bn: { required: "Please enter Bangla name" },
         designation_id: { required: "Please select a designation" },
         email: { required: "Please enter email address", email: "Please enter a valid email" },
-        short_qualification: { required: "Please enter short qualification" },
+        bar_no: { required: "Please enter Bar No" },
         enrollment_no: { required: "Please enter enrollment no" },
-        bar_association: { required: "Please enter bar association" },
+        district_id: { required: "Please select a district" },
         experience: { required: "Please enter total experience" }
       },
       errorElement: 'span',

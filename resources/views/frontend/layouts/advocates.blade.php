@@ -71,16 +71,20 @@
                                 <!-- INFORMATION -->
                                 <div class="lpc-info">
                                     <div class="lpc-info-column">
-                                        <div class="lpc-info-label">Qualification:</div>
-                                        <div class="lpc-info-value">{{ $advocate->short_qualification }}</div>
                                         <div class="lpc-info-label">Enrollment No:</div>
                                         <div class="lpc-info-value">{{ $advocate->enrollment_no }}</div>
+                                        <div class="lpc-info-label">
+                                        Bar No:</div>
+                                        <div class="lpc-info-value">{{ $advocate->bar_no }}</div>
+                                        
                                     </div>
                                     <div class="lpc-info-column">
                                         <div class="lpc-info-label">Experience:</div>
                                         <div class="lpc-info-value">{{ $advocate->experience }}</div>
+                                        
+                                        <!-- District Name (রিলেশন ব্যবহার করে) -->
                                         <div class="lpc-info-label">Bar Association:</div>
-                                        <div class="lpc-info-value">{{ $advocate->bar_association }}</div>
+                                        <div class="lpc-info-value">{{ $advocate->district->name ?? 'N/A' }}</div>
                                     </div>
                                 </div>
 

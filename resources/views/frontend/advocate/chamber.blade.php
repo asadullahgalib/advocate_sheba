@@ -39,13 +39,6 @@
         margin-bottom: 20px;
     }
 
-    /*.gold-line {
-        height: 1px;
-        background: #a58a57;
-        position: relative;
-        margin: 0 0 30px;
-    }*/
-
     .gold-line .scales {
         position: absolute;
         left: 50%;
@@ -65,10 +58,6 @@
         position: relative;
         padding-left: 0px;
         min-height: 115px;
-    }
-
-    .address-column:first-child {
-        /*border-right: 1px solid #c9c8c2;*/
     }
 
     .address-icon {
@@ -292,10 +281,6 @@
     }
 
     /* =========================
-       DECORATION
-    ========================= */
-
-    /* =========================
        RESPONSIVE
     ========================= */
 
@@ -435,6 +420,42 @@
                     <div class="row">
 
                         {!! @$advocate->chamber !!}
+
+                        <!-- Call & WhatsApp Buttons -->
+                        <div class="col-md-12" style="text-align:left; margin-bottom: 10px; margin-top: 10px;">
+                            <div class="row g-2">
+                                <!-- Call Button -->
+                                <div class="col-6">
+                                    @if(!empty($advocate->mobile))
+                                        <a href="tel:{{ $advocate->mobile }}" class="doctor-outline-btn" style="background-color: #153f70; color: #fff;" onclick="return confirm('Do you want to call {{ $advocate->mobile }}?');">
+                                            <i class="fa fa-phone" style="color:#fff"></i>
+                                            <span>Call</span>
+                                        </a>
+                                    @else
+                                        <a href="javascript:void(0)" class="doctor-outline-btn" style="background-color: #cccccc; color: #fff; opacity: 0.6; cursor: not-allowed;">
+                                            <i class="fa fa-phone" style="color:#fff"></i>
+                                            <span>Call</span>
+                                        </a>
+                                    @endif
+                                </div>
+
+                                <!-- WhatsApp Button -->
+                                <div class="col-6">
+                                    @if(!empty($advocate->appointment_contact))
+                                        <a href="https://wa.me/88{{ $advocate->appointment_contact }}" target="_blank" class="doctor-outline-btn" style="background-color: #25D366; color: #fff;">
+                                            <i class="fa-brands fa-whatsapp" style="color:#fff"></i>
+                                            <span>WhatsApp</span>
+                                        </a>
+                                    @else
+                                        <a href="javascript:void(0)" class="doctor-outline-btn" style="background-color: #cccccc; color: #fff; opacity: 0.6; cursor: not-allowed;">
+                                            <i class="fa-brands fa-whatsapp" style="color:#fff"></i>
+                                            <span>WhatsApp</span>
+                                        </a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Call & WhatsApp Buttons -->
 
                         <div class="col-md-12" style="text-align:left;">
                             <a target="_blank" href="{{@$advocate->map}}" class="doctor-outline-btn" style="background-color: #153f70;color: #fff;">

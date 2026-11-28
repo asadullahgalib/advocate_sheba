@@ -23,7 +23,7 @@
               <!-- Leader Dropdown -->
               <div class="form-group col-md-6">
                 <label class="control-label" for="leader_id">Select Leader (Advocate) <span style="color:red;">*</span></label>
-                <select name="leader_id" id="leader_id" class="form-control form-control-sm">
+                <select name="leader_id" id="leader_id" class="form-control form-control-sm select2">
                   <option value="">Select Leader</option>
                   @foreach($leaders as $leader)
                     <option value="{{ $leader->id }}" {{ (old('leader_id', @$editData->leader_id) == $leader->id) ? 'selected' : '' }}>{{ $leader->name }}</option>
@@ -57,11 +57,18 @@
                 <font style="color: red">{{ ($errors->has('enrollment_no')) ? $errors->first('enrollment_no') : '' }}</font>
               </div>
 
-              <!-- Bar Association -->
+              <!-- District Dropdown (Bar Association এর জায়গায়) -->
               <div class="form-group col-md-4">
-                <label class="control-label" for="bar_association">Bar Association <span style="color:red;">*</span></label>
-                <input type="text" name="bar_association" id="bar_association" class="form-control form-control-sm" value="{{ old('bar_association', @$editData->bar_association) }}" placeholder="e.g. Dhaka Bar Association">
-                <font style="color: red">{{ ($errors->has('bar_association')) ? $errors->first('bar_association') : '' }}</font>
+                <label class="control-label" for="district_id">Bar Association <span style="color:red;">*</span></label>
+                <select name="district_id" id="district_id" class="form-control form-control-sm select2">
+                  <option value="">Select Bar Association</option>
+                  @foreach($districts as $district)
+                    <option value="{{ $district->id }}" {{ (old('district_id', @$editData->district_id) == $district->id) ? 'selected' : '' }}>
+                      {{ $district->name }}
+                    </option>
+                  @endforeach
+                </select>
+                <font style="color: red">{{ ($errors->has('district_id')) ? $errors->first('district_id') : '' }}</font>
               </div>
 
               <!-- Team Size -->
@@ -141,7 +148,7 @@
           leader_id: { required: true },
           firm_name: { required: true },
           enrollment_no: { required: true },
-          bar_association: { required: true },
+          district_id: { required: true }, // bar_association এর জায়গায়
           team_size: { required: true, number: true },
           abouts: { required: true }
         },
@@ -149,7 +156,7 @@
           leader_id: { required: "Please select a leader" },
           firm_name: { required: "Please enter the firm name" },
           enrollment_no: { required: "Please enter enrollment no" },
-          bar_association: { required: "Please enter bar association" },
+          district_id: { required: "Please select a district" }, // bar_association এর জায়গায়
           team_size: { required: "Please enter team size", number: "Please enter a number" },
           abouts: { required: "Please enter firm details" }
         },

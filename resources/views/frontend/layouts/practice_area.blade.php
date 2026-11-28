@@ -32,7 +32,7 @@
             </p>
           </div>
           <a
-            href="#"
+            href="{{ route('our.practice-areas') }}"
             aria-label=""
             class="flex items-center gap-1 text-[#008080] text-sm font-semibold hover:underline transition"
           >

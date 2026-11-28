@@ -27,15 +27,15 @@ class SetupController extends Controller
     public function storeDistrict(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|unique:districts,name',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'name'        => 'required|unique:districts,name',
+            'description' => 'nullable|string',
+            'image'       => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $district = new District();
         $district->name = $request->name;
+        $district->description = $request->description;
         // $district->division_id = 1; 
-
-        $imageName = null;
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -66,7 +66,7 @@ class SetupController extends Controller
     // ৪. Edit District Form
     public function editDistrict($id)
     {
-        $editData = District::find($id);
+        $editData = District::findOrFail($id);
         return view('backend.setup.district-add', compact('editData'));
     }
 
@@ -74,41 +74,37 @@ class SetupController extends Controller
     public function updateDistrict(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required|unique:districts,name,' . $id,
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'name'        => 'required|unique:districts,name,' . $id,
+            'description' => 'nullable|string',
+            'image'       => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $district = District::find($id);
+        $district = District::findOrFail($id);
         $district->name = $request->name;
+        $district->description = $request->description;
         // $district->division_id = 1; 
 
         if ($request->hasFile('image')) {
 
-            /*
-            |--------------------------------------------------------------------------
-            | Old Image Delete
-            |--------------------------------------------------------------------------
-            | শুধু তখনই unlink হবে যখন database-এ পুরাতন image-এর নাম আছে
-            */
-            if (!empty($data->image)) {
-
-                $oldImage = public_path('uploads/district_images/' . $data->image);
+            // পুরোনো ছবি থাকলে মুছে ফেলা
+            if (!empty($district->image)) {
+                $oldImage = public_path('uploads/district_images/' . $district->image);
 
                 if (file_exists($oldImage) && is_file($oldImage)) {
                     unlink($oldImage);
                 }
             }
 
-            /*
-            |--------------------------------------------------------------------------
-            | New Image Upload
-            |--------------------------------------------------------------------------
-            */
+            // নতুন ছবি আপলোড
             $image = $request->file('image');
-
             $imageName = time() . '.' . $image->getClientOriginalExtension();
 
             $destinationPath = public_path('uploads/district_images/');
+
+            // Folder না থাকলে create হবে
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0777, true);
+            }
 
             // Resize + Save
             Image::make($image)

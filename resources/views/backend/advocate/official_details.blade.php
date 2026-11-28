@@ -83,14 +83,14 @@
               </div>
               
               <div class="form-group col-md-4">
-                <label>IMO/What's App <span style="color:red">*</span></label>
+                <label>Chamber Whatsapp <span style="color:red">*</span></label>
                 <input type="text" name="appointment_contact" class="form-control form-control-sm" value="{{ @$editData->appointment_contact }}" placeholder="Contact No" required> 
               </div>
 
-              <!-- ================= নতুন ৩টি ফিল্ড শুরু ================= -->
+              <!-- ================= নতুন ফিল্ড শুরু ================= -->
               <div class="form-group col-md-4">
-                <label for="short_qualification">Short Qualification (For Card) <span style="color:red">*</span></label>
-                <input type="text" name="short_qualification" class="form-control form-control-sm" placeholder="e.g. LL.B, LL.M" value="{{ @$details->short_qualification }}" required>
+                <label for="bar_no">Bar No <span style="color:red">*</span></label>
+                <input type="text" name="bar_no" class="form-control form-control-sm" placeholder="Enter Bar No" value="{{ @$details->bar_no }}" required>
               </div>
 
               <div class="form-group col-md-4">
@@ -98,11 +98,28 @@
                 <input type="text" name="enrollment_no" class="form-control form-control-sm" placeholder="Enter Enrollment No" value="{{ @$details->enrollment_no }}" required>
               </div>
 
+              <!-- ================= District Dropdown ================= -->
               <div class="form-group col-md-4">
-                <label for="bar_association">Bar Association <span style="color:red">*</span></label>
-                <input type="text" name="bar_association" class="form-control form-control-sm" placeholder="Enter Bar Association" value="{{ @$details->bar_association }}" required>
+                <label for="district_id">Bar Association <span style="color:red">*</span></label>
+                <select name="district_id" id="district_id" class="form-control form-control-sm select2" required>
+                  <option value="">Select Bar Association</option>
+                  @foreach($districts as $district)
+                    <option value="{{ $district->id }}" {{ (@$details->district_id == $district->id) ? 'selected' : '' }}>
+                      {{ $district->name }}
+                    </option>
+                  @endforeach
+                </select>
+                <font style="color: red"> 
+                  {{($errors->has('district_id'))?($errors->first('district_id')):''}} 
+                </font> 
               </div>
-              <!-- ================= নতুন ৩টি ফিল্ড শেষ ================= -->
+              <!-- ================= নতুন ফিল্ড শেষ ================= -->
+
+              <!-- WhatsApp Consultant -->
+              <div class="form-group col-md-4">
+                <label for="personal_whatsapp">WhatsApp Consultant</label>
+                <input type="text" name="personal_whatsapp" class="form-control form-control-sm" value="{{ @$details->personal_whatsapp }}" placeholder="Enter WhatsApp Number">
+              </div>
 
               <!-- মেইন প্রোফাইলের মতো ইমেজ আপলোড অপশন -->
               <div class="form-group col-sm-4">
@@ -110,11 +127,10 @@
                 <input type="file" name="image" id="image" class="form-control form-control-sm">
               </div>
               
-              <!-- স্কয়ার ৩০০x৩০০ রেশিওর লাইভ ইমেজ প্রিভিউ বক্স -->
+              <!-- লাইভ ইমেজ প্রিভিউ বক্স -->
               <div class="form-group col-sm-2" style="z-index: 100;">
                 <img id="showImage" src="{{(!empty($editData->image)) ? url('uploads/advocates_images/'.$editData->image) : url('uploads/no_image.png')}}" style="width: 100px; height: 100px; aspect-ratio: 1/1; object-fit: cover; border:1px solid #000;" class="form-control">
               </div>
-              <!-- ১০. ফর্ম সাবমিট ও আপডেট বাটন সেকশন -->
               <div class="form-group col-md-12" style="padding-top: 15px;">
                 <button type="submit" class="btn btn-primary btn-sm">@if(isset($editData)) Update @else Submit @endif</button>
               </div>
@@ -128,11 +144,9 @@
     </div>
   </div>
 
-<!-- জাভাস্ক্রিপ্ট এবং লাইভ ইমেজ প্রিভিউ স্ক্রিপ্ট -->
 <script type="text/javascript">
   $(document).ready(function () {  
     
-    // ছবি সিলেক্ট করার সাথে সাথে চারকোনা বক্সে লাইভ থাম্বনেইল চেঞ্জ করার ফাংশন
     $('#image').change(function(e){
       var reader = new FileReader();
       reader.onload = function(e){
@@ -141,7 +155,6 @@
       reader.readAsDataURL(e.target.files['0']);
     });
 
-    // jQuery Validation স্ক্রিপ্ট
     $('#MyForm').validate({
       rules:{
         name:{ required:true },
@@ -151,9 +164,9 @@
         email:{ required:true, email:true },
         experience:{ required:true },
         appointment_contact:{ required:true },
-        short_qualification:{ required:true },
+        bar_no:{ required:true },
         enrollment_no:{ required:true },
-        bar_association:{ required:true }
+        district_id:{ required:true }
       },
       messages: {      
         name: { required: "Please enter English name" },
@@ -163,9 +176,9 @@
         email: { required: "Please enter email address", email: "Please enter a valid email" },
         experience: { required: "Please enter total experience" },
         appointment_contact: { required: "Please enter IMO/WhatsApp number" },
-        short_qualification: { required: "Please enter short qualification" },
+        bar_no: { required: "Please enter Bar No" },
         enrollment_no: { required: "Please enter enrollment number" },
-        bar_association: { required: "Please enter bar association" }
+        district_id: { required: "Please select a district" }
       },
       errorElement: 'span',
       errorPlacement: function (error, element) {

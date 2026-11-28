@@ -32,6 +32,7 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->string('gender')->nullable();
             $table->string('image')->nullable();
+            $table->string('personal_whatsapp')->nullable();
             $table->string('restaurant_logo')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->rememberToken();

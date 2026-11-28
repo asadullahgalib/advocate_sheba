@@ -93,6 +93,7 @@ Route::get('/legal-information','Frontend\FrontenController@legalInformation')->
 Route::get('/legal-information/details','Frontend\FrontenController@legalInformationDetails')->name('our.legal-information.details');
 Route::get('/location-wise-list','Frontend\FrontenController@locationWiseList')->name('our.location-wise-list');
 Route::get('/practice-area-wise-list','Frontend\FrontenController@practiceAreaWiseList')->name('our.practice-area-wise-list');
+Route::get('/practice-areas','Frontend\FrontenController@practiceAreaList')->name('our.practice-areas');
 Route::get('/legal-professional/profile/{slug}','Frontend\FrontenController@advocateProfile')->name('advocate-profile');
 // ==========================================
 // LEGAL ARTICLES
@@ -213,7 +214,7 @@ Route::group(['middleware'=>['auth','admin']],function(){
 			Route::post('/store','Backend\PracticeAreaController@store')->name('practice-area.store');
 			Route::get('/edit/{id}','Backend\PracticeAreaController@edit')->name('practice-area.edit');
 			Route::post('/update/{id}','Backend\PracticeAreaController@update')->name('practice-area.update');
-			Route::get('/delete/{id}', 'Backend\PracticeAreaController@delete')->name('practice-area.delete');
+			Route::post('/delete', 'Backend\PracticeAreaController@delete')->name('practice-area.delete');
 		});
 
 		// Legal Information

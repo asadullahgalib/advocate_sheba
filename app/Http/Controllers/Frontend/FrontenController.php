@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Model\Logo;
 use Mail;
 use DB;
@@ -870,6 +871,11 @@ public function lawFirmDetails($slug = null){
     public function practiceAreaWiseList(){
         $data['page_type'] = 'find_consultant';
         return view('frontend.single_pages.practice-area-wise-advocate',$data);
+    }
+
+        public function practiceAreaList(){
+        $data['page_type'] = 'practice_area';
+        return view('frontend.single_pages.practice_area_list', $data);
     }
 
     public function advocateGroupList($type)

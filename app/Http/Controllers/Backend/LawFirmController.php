@@ -8,6 +8,7 @@ use App\Model\LawFirm;
 use App\Model\User;
 use App\Model\LawFirmGallery;
 use App\Model\LawFirmMember;
+use App\Model\District; // নতুন যোগ হয়েছে
 use Image;
 use Auth;
 use Illuminate\Support\Str;
@@ -60,7 +61,7 @@ class LawFirmController extends Controller
     // ১. View List
     public function view()
     {
-        $allData = LawFirm::with(['leader'])->orderBy('id', 'desc')->get();
+        $allData = LawFirm::with(['leader', 'district'])->orderBy('id', 'desc')->get();
         return view('backend.law_firms.law_firms_view', compact('allData'));
     }
 
@@ -68,7 +69,8 @@ class LawFirmController extends Controller
     public function add()
     {
         $leaders = User::where('user_category', 'advocate')->get(); 
-        return view('backend.law_firms.law_firms_add', compact('leaders'));
+        $districts = District::all(); // নতুন
+        return view('backend.law_firms.law_firms_add', compact('leaders', 'districts'));
     }
 
     // ৩. Store Data
@@ -78,7 +80,7 @@ class LawFirmController extends Controller
             'firm_name'       => 'required|string|max:255',
             'abouts'          => 'required',
             'enrollment_no'   => 'required',
-            'bar_association' => 'required',
+            'district_id'     => 'required', // bar_association এর জায়গায়
             'team_size'       => 'required|numeric|min:0',
             'image'           => 'nullable|image|mimes:jpeg,png,jpg,webp',
         ]);
@@ -90,7 +92,7 @@ class LawFirmController extends Controller
         $data->court_name = $request->court_name;
         $data->established = $request->established;
         $data->enrollment_no = $request->enrollment_no;
-        $data->bar_association = $request->bar_association;
+        $data->district_id = $request->district_id; // bar_association এর জায়গায়
         $data->team_size = $request->team_size;
         $data->abouts = $request->abouts;
         $data->membership = $request->membership;
@@ -118,7 +120,8 @@ class LawFirmController extends Controller
     {
         $editData = LawFirm::find($id);
         $leaders = User::where('user_category', 'advocate')->get();
-        return view('backend.law_firms.law_firms_add', compact('editData', 'leaders'));
+        $districts = District::all(); // নতুন
+        return view('backend.law_firms.law_firms_add', compact('editData', 'leaders', 'districts'));
     }
 
     // ৫. Update Data
@@ -128,7 +131,7 @@ class LawFirmController extends Controller
             'firm_name'       => 'required|string|max:255',
             'abouts'          => 'required',
             'enrollment_no'   => 'required',
-            'bar_association' => 'required',
+            'district_id'     => 'required', // bar_association এর জায়গায়
             'team_size'       => 'required|numeric|min:0',
             'image'           => 'nullable|image|mimes:jpeg,png,jpg,webp',
         ]);
@@ -144,7 +147,7 @@ class LawFirmController extends Controller
         $data->court_name = $request->court_name;
         $data->established = $request->established;
         $data->enrollment_no = $request->enrollment_no;
-        $data->bar_association = $request->bar_association;
+        $data->district_id = $request->district_id; // bar_association এর জায়গায়
         $data->team_size = $request->team_size;
         $data->abouts = $request->abouts;
         $data->membership = $request->membership;
@@ -191,7 +194,7 @@ class LawFirmController extends Controller
     // Details Tab
     public function details($id)
     {
-        $details = LawFirm::find($id);
+        $details = LawFirm::with('district')->find($id); // নতুন
         $page_title = 'details';
         return view('backend.law_firms.law_firm_details', compact('details', 'page_title'));
     }
@@ -199,10 +202,11 @@ class LawFirmController extends Controller
     // Official Tab (GET)
     public function officialDetails($id)
     {
-        $details = LawFirm::with('leader')->findOrFail($id);
+        $details = LawFirm::with(['leader', 'district'])->findOrFail($id); // নতুন
         $leaders = User::where('user_category', 'advocate')->get();
+        $districts = District::all(); // নতুন
         $page_title = 'official';
-        return view('backend.law_firms.official_details', compact('details', 'leaders', 'page_title'));
+        return view('backend.law_firms.official_details', compact('details', 'leaders', 'districts', 'page_title'));
     }
 
     // Official Tab Store (POST)
@@ -212,7 +216,7 @@ class LawFirmController extends Controller
             'leader_id'       => 'required',
             'firm_name'       => 'required|string|max:255',
             'enrollment_no'   => 'required',
-            'bar_association' => 'required',
+            'district_id'     => 'required', // bar_association এর জায়গায়
             'team_size'       => 'required|numeric|min:0',
             'image'           => 'nullable|image|mimes:jpeg,png,jpg,webp',
         ]);
@@ -228,7 +232,7 @@ class LawFirmController extends Controller
         $data->court_name = $request->court_name;
         $data->established = $request->established;
         $data->enrollment_no = $request->enrollment_no;
-        $data->bar_association = $request->bar_association;
+        $data->district_id = $request->district_id; // bar_association এর জায়গায়
         $data->team_size = $request->team_size;
         $data->updated_by = Auth::user()->id;
 

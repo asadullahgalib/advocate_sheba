@@ -16,6 +16,8 @@ class CreatePracticesTable extends Migration
         Schema::create('practices', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
+            $table->string('image')->nullable();
+            $table->longText('description')->nullable();
             $table->integer('created_by')->nullable();
             $table->integer('modified_by')->nullable();
             $table->timestamps();

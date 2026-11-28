@@ -761,7 +761,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="lpc-info-column">
+                                                                                        <div class="lpc-info-column">
                                                 <div class="lpc-info-label">
                                                     Experience:
                                                 </div>
@@ -780,23 +780,16 @@
                                         <div class="doctor-action-buttons">
                                             <div class="row g-3 doctor-bottom-buttons" style="margin-bottom: 15px;">
                                                 <div class="col-6">
-                                                    @if(!empty($callNumber))
-                                                        <a href="tel:{{ $callNumber }}" class="doctor-outline-btn" onclick="return confirm('Do you want to call {{ $callNumber }}?');">
-                                                            <i class="fa fa-phone"></i>
-                                                            <span>Call</span>
-                                                        </a>
-                                                    @else
-                                                        <a href="javascript:void(0)" class="doctor-outline-btn" style="opacity:0.5; cursor:not-allowed;">
-                                                            <i class="fa fa-phone"></i>
-                                                            <span>Call</span>
-                                                        </a>
-                                                    @endif
+                                                    <a href="javascript:void(0)" onclick="openDigitalCard()" class="doctor-outline-btn" style="line-height:1.15; text-align:center;">
+                                                        <i class="fa fa-id-card"></i>
+                                                        <span>View &amp; Save Digital Card</span>
+                                                    </a>
                                                 </div>
 
                                                 <div class="col-6">
-                                                    <a href="javascript:void(0)" onclick="openConsultModal()" class="doctor-outline-btn">
+                                                    <a href="javascript:void(0)" onclick="openConsultModal()" class="doctor-outline-btn" style="line-height:1.15; text-align:center;">
                                                         <i class="fa-brands fa-whatsapp"></i>
-                                                        <span>WhatsApp</span>
+                                                        <span>WhatsApp Consultation</span>
                                                     </a>
                                                 </div>
                                             </div>
@@ -807,11 +800,11 @@
                                                     <span>Share Profile</span>
                                                 </a>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                        </div>  {{-- doctor-action-buttons --}}
+                                    </div>      {{-- lpc-body --}}
+                                </div>          {{-- lpc-card --}}
+                            </div>              {{-- lpc-slide --}}
+                        </div>                  {{-- col-lg-4 --}}
 
                         @include('frontend.advocate.about_advocate')
                         @include('frontend.advocate.legal_service')
@@ -837,4 +830,7 @@
 
     {{-- মডাল সবসময় একদম শেষে --}}
     @include('frontend.advocate.consult_modal')
+        {{-- মডাল সবসময় একদম শেষে --}}
+    @include('frontend.advocate.consult_modal')
+    @include('frontend.advocate.digital_card_modal')
 @endsection
