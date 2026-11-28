@@ -81,7 +81,7 @@
                 </h2>
 
                 <p class="text-sm text-gray-600 dark:text-gray-400">
-                    আইন সম্পর্কে জানুন ভিডিও দেখে
+                    Advocates Explain Common Legal Issues
                 </p>
 
             </div>

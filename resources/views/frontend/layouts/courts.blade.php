@@ -6,10 +6,10 @@
         <div class="flex justify-between items-center mt-2">
           <div class="my-4">
             <h2 id="hospitals-by-location" class="text-lg md:text-xl font-semibold text-gray-800 dark:text-gray-100">
-              Court & Jurisdictions
+              Courts & Judicial Forums
             </h2>
             <p class="text-sm text-gray-600 dark:text-gray-400">
-              Explore Court & Jurisdictions
+              Explore courts & jurisdictions
             </p>
           </div>
         </div>

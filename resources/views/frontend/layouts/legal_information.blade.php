@@ -13,7 +13,7 @@
               Legal Information
             </h2>
             <p class="text-sm text-gray-600 dark:text-gray-400">
-              Explore Our Legal Information
+              Explore Legal Information
             </p>
           </div>
         </div>

@@ -297,7 +297,7 @@
               Legal Documents & Forms
             </h2>
             <p class="text-sm text-gray-600 dark:text-gray-400">
-              বিভিন্ন আইনি ডকুমেন্ট ও ফর্ম ডাউনলোড করুন
+              Download various legal documents and forms
             </p>
           </div>
           <a

@@ -157,3 +157,17 @@ Note:
 3. Navbar theke Courts Dynamic hoi nai.
 4. Legal Service Details er Article & Video Gallery Dynamic Hoi nai.
 5. 
+
+26/11/2026:
+===========
+1. Profile theke Digital Card hobe. Doctor24 er moto download hobe.
+2. Profile details er first box er phone er icon er jaigai hobe digital card hobe. & whats app er icon er jaigai what's app consultant
+3.  Chamber & Office box er modde 2 ta icon hobe call & what's app. uporer box er ta muloto. 
+
+4. Location er sathe akta description field hobe ja location wise advocate e gele advocate list er upore oita asbe.
+5. Practice Area r jonno image & description er aro 2 ta column hobe.
+6. Advocate registration er somoi bar number hobe. & profile er Qualification jeita ase seita remove hoye bar number hoye jabe. Note: Enrollment number upore & bar number niche asbe.
+7. Bar Association (location) ta ke dynamic hobe. mane location ei bar association.
+
+
+Note: Joto jaigai our ase sob tar hoye jabe.

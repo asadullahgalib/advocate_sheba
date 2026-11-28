@@ -27,16 +27,6 @@
     </div>
 </section>
 
-<!-- ==========================================
-     ডাইনামিক সেকশনগুলো ইনক্লুড করা হলো 
-=========================================== -->
-
-{{-- Legal Articles --}}
-@include('frontend.layouts.legal_articles')
-
-{{-- Latest Video --}}
-@include('frontend.layouts.latest_video')
-
 {{-- Find Professional --}}
 <style>
     .find_more_div{
@@ -97,5 +87,15 @@
 
     </div>
 </section>
+
+<!-- ==========================================
+     ডাইনামিক সেকশনগুলো ইনক্লুড করা হলো 
+=========================================== -->
+
+{{-- Legal Articles --}}
+@include('frontend.layouts.legal_articles')
+
+{{-- Latest Video --}}
+@include('frontend.layouts.latest_video')
 
 @endsection

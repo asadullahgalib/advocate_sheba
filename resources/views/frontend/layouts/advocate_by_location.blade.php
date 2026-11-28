@@ -11,10 +11,10 @@
               id="hospitals-by-location"
               class="text-lg md:text-xl font-semibold text-gray-800 dark:text-gray-100"
             >
-              Find Legal Professionals Near You
+              Find Legal Professionals by Location
             </h2>
             <p class="text-sm text-gray-600 dark:text-gray-400">
-              Explore Legal Professionals by Location
+              Explore Legal Professionals by City.
             </p>
           </div>
           <a

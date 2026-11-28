@@ -184,12 +184,6 @@
 
 </section>
 
-{{-- Legal Articles --}}
-@include('frontend.layouts.legal_articles')
-
-{{-- Latest Video --}}
-@include('frontend.layouts.latest_video')
-
 <style>
     .find_more_div{
         padding: 12px 20px;
@@ -250,5 +244,11 @@
 
     </div>
 </section>
+
+{{-- Legal Articles --}}
+@include('frontend.layouts.legal_articles')
+
+{{-- Latest Video --}}
+@include('frontend.layouts.latest_video')
 
 @endsection

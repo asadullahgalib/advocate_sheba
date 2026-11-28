@@ -5,10 +5,10 @@
         <div class="flex justify-between items-center mt-2">
           <div class="my-4">
             <h2 id="hospitals-by-location" class="text-lg md:text-xl font-semibold text-gray-800 dark:text-gray-100">
-              Legal Advocates
+              Recently Added Advocates
             </h2>
             <p class="text-sm text-gray-600 dark:text-gray-400">
-              Explore Our Legal Advocates
+              Explore newly added advocates
             </p>
           </div>
             <a href="{{ route('find.our.advocate-list') }}" aria-label="View all advocates" class="flex items-center gap-1 text-[#008080] text-sm font-semibold hover:underline transition">

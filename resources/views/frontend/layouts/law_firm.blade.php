@@ -15,10 +15,10 @@
               id="hospitals-by-location"
               class="text-lg md:text-xl font-semibold text-gray-800 dark:text-gray-100"
             >
-              Law Firms
+              Recently Added Law Firms
             </h2>
             <p class="text-sm text-gray-600 dark:text-gray-400">
-              Explore Law Firms
+              Explore newly added faw firms
             </p>
           </div>
           <a

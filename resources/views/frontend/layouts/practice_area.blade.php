@@ -25,7 +25,7 @@
               id="hospitals-by-location"
               class="text-lg md:text-xl font-semibold text-gray-800 dark:text-gray-100"
             >
-              Find Legal Help by Practice Area
+              Find Legal Professionals by Practice Area
             </h2>
             <p class="text-sm text-gray-600 dark:text-gray-400">
               Explore Practice Area
